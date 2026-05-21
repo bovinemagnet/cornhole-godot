@@ -877,7 +877,7 @@ Acceptance criteria:
 [9]: https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_ios.html "Exporting for iOS — Godot Engine (stable) documentation in English"
 [10]: https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html "High-level multiplayer — Godot Engine (stable) documentation in English"
 [11]: https://docs.godotengine.org/en/stable/classes/class_multiplayerspawner.html "MultiplayerSpawner — Godot Engine (stable) documentation in English"
-[12]: https://docs.godotengine.org/en/4.4/classes/class_multiplayersynchronizer.html "MultiplayerSynchronizer — Godot Engine (4.4) documentation in English"
+[12]: https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html "MultiplayerSynchronizer — Godot Engine (stable) documentation in English"
 [13]: https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_android.html "Exporting for Android — Godot Engine (stable) documentation in English"
 [14]: https://docs.godotengine.org/en/stable/classes/class_touchscreenbutton.html "TouchScreenButton — Godot Engine (stable) documentation in English"
 [15]: https://raw.githubusercontent.com/bovinemagnet/corn-hole/main/Assets/Scripts/CameraFollow.cs "raw.githubusercontent.com"
