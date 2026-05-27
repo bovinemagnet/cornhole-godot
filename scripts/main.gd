@@ -2,8 +2,11 @@ extends Node3D
 
 const MathUtil = preload("res://scripts/math_util.gd")
 const PropGrid = preload("res://scripts/prop_grid.gd")
+const AudioUtil = preload("res://scripts/audio_util.gd")
 const PROP_GRID_CELL_SIZE := 6.0
 const BOT_TARGET_QUERY_RADIUS := 40.0
+const CONSUME_DEBRIS_COUNT := 4
+const CONSUME_DEBRIS_SECONDS := 0.45
 
 const ARENA_HALF_SIZE := 72.0
 const INITIAL_RADIUS := 1.15
@@ -95,6 +98,11 @@ var consumption_actor_positions_cache: PackedVector2Array = PackedVector2Array()
 var max_actor_radius_cache: float = INITIAL_RADIUS
 var prop_grid: RefCounted
 var active_prop_indices: PackedInt32Array = PackedInt32Array()
+var audio_consume_player: AudioStreamPlayer
+var audio_hole_eaten_player: AudioStreamPlayer
+var audio_countdown_player: AudioStreamPlayer
+var audio_go_player: AudioStreamPlayer
+var countdown_last_tick := -1
 
 var player_root: Node3D
 var hole_mesh: MeshInstance3D
@@ -145,10 +153,33 @@ func _ready() -> void:
 	_configure_input_actions()
 	_create_materials()
 	_create_prop_tiers()
+	_create_audio()
 	_load_profile()
 	_build_world()
 	_build_hud()
 	reset_match(false)
+
+
+func _create_audio() -> void:
+	audio_consume_player = AudioStreamPlayer.new()
+	audio_consume_player.stream = AudioUtil.make_tone(720.0, 0.10)
+	audio_consume_player.volume_db = -8.0
+	add_child(audio_consume_player)
+
+	audio_hole_eaten_player = AudioStreamPlayer.new()
+	audio_hole_eaten_player.stream = AudioUtil.make_noise_burst(0.22)
+	audio_hole_eaten_player.volume_db = -4.0
+	add_child(audio_hole_eaten_player)
+
+	audio_countdown_player = AudioStreamPlayer.new()
+	audio_countdown_player.stream = AudioUtil.make_tone(520.0, 0.12)
+	audio_countdown_player.volume_db = -6.0
+	add_child(audio_countdown_player)
+
+	audio_go_player = AudioStreamPlayer.new()
+	audio_go_player.stream = AudioUtil.make_chord(PackedFloat32Array([523.25, 659.25, 783.99]), 0.35)
+	audio_go_player.volume_db = -4.0
+	add_child(audio_go_player)
 
 
 func _physics_process(delta: float) -> void:
@@ -163,10 +194,18 @@ func _physics_process(delta: float) -> void:
 				_update_hud()
 				return
 			countdown_remaining -= delta
+			var current_tick: int = max(0, ceili(countdown_remaining))
+			if current_tick > 0 and current_tick != countdown_last_tick:
+				countdown_last_tick = current_tick
+				if audio_countdown_player:
+					audio_countdown_player.play()
 			if countdown_remaining <= 0.0:
 				countdown_remaining = 0.0
 				match_phase = MatchPhase.PLAYING
 				message_label.text = ""
+				countdown_last_tick = -1
+				if audio_go_player:
+					audio_go_player.play()
 		MatchPhase.PLAYING:
 			if Input.is_action_just_pressed("pause_match"):
 				_pause_match()
@@ -214,6 +253,7 @@ func reset_match(start_countdown := true) -> void:
 	remaining_count = 0
 	time_remaining = selected_match_seconds
 	countdown_remaining = COUNTDOWN_SECONDS
+	countdown_last_tick = -1
 	match_phase = MatchPhase.COUNTDOWN if start_countdown else MatchPhase.MENU
 	phase_before_pause = MatchPhase.PLAYING
 	_clear_event_feed()
@@ -1382,6 +1422,8 @@ func _consume_hole(predator: Dictionary, prey: Dictionary) -> void:
 	_apply_actor_growth(predator, prey_area * HOLE_EAT_AREA_FACTOR, score_value)
 	_play_growth_feedback(predator, score_value)
 	_play_hole_eaten_feedback(prey_position)
+	if audio_hole_eaten_player:
+		audio_hole_eaten_player.play()
 	_add_event_feed_message("%s ate %s  +%d" % [_get_actor_name(predator), _get_actor_name(prey), score_value])
 	_knockout_actor(prey)
 
@@ -1581,8 +1623,52 @@ func _consume_prop(prop: Dictionary, actor: Dictionary) -> void:
 	_play_growth_feedback(actor, int(prop["score"]))
 	if bool(actor["is_player"]):
 		_record_player_prop_eaten(prop)
+		_play_consume_sfx(int(prop["tier"]))
+		_spawn_consume_debris(prop)
 	if bool(actor["is_player"]) or int(prop["score"]) >= 75:
 		_add_event_feed_message("%s ate %s  +%d" % [_get_actor_name(actor), String(prop["object_type"]), int(prop["score"])])
+
+
+func _play_consume_sfx(tier: int) -> void:
+	if not audio_consume_player:
+		return
+	# Higher-tier props sound deeper -- one octave drop across the tier range.
+	audio_consume_player.pitch_scale = clamp(1.25 - 0.12 * float(tier), 0.55, 1.5)
+	audio_consume_player.play()
+
+
+func _spawn_consume_debris(prop: Dictionary) -> void:
+	if not effects_root:
+		return
+	var prop_position: Vector3 = prop["position"]
+	var base_color: Color = Color(1.0, 0.85, 0.32)
+	for tier in prop_tiers:
+		if String(tier["name"]) == String(prop["object_type"]):
+			base_color = tier["color"]
+			break
+	var rng := RandomNumberGenerator.new()
+	rng.randomize()
+	for i in range(CONSUME_DEBRIS_COUNT):
+		var cube := MeshInstance3D.new()
+		var cube_mesh := BoxMesh.new()
+		var debris_size: float = clamp(0.12 + float(prop["tier"]) * 0.05, 0.12, 0.32)
+		cube_mesh.size = Vector3(debris_size, debris_size, debris_size)
+		cube.mesh = cube_mesh
+		cube.position = Vector3(prop_position.x, 0.25, prop_position.z)
+		cube.material_override = _make_transparent_material(Color(base_color.r, base_color.g, base_color.b, 0.9))
+		effects_root.add_child(cube)
+		var angle := rng.randf_range(0.0, TAU)
+		var distance := rng.randf_range(0.7, 1.4)
+		var target_position := cube.position + Vector3(cos(angle) * distance, rng.randf_range(0.4, 1.0), sin(angle) * distance)
+		var tween := create_tween()
+		tween.set_parallel(true)
+		tween.tween_property(cube, "position", target_position, CONSUME_DEBRIS_SECONDS).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		tween.tween_property(cube, "scale", Vector3(0.05, 0.05, 0.05), CONSUME_DEBRIS_SECONDS).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+		tween.tween_property(cube.material_override, "albedo_color:a", 0.0, CONSUME_DEBRIS_SECONDS).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+		tween.finished.connect(func() -> void:
+			if is_instance_valid(cube):
+				cube.queue_free()
+		)
 
 
 func _record_player_prop_eaten(prop: Dictionary) -> void:
