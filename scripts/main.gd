@@ -1,6 +1,9 @@
 extends Node3D
 
 const MathUtil = preload("res://scripts/math_util.gd")
+const PropGrid = preload("res://scripts/prop_grid.gd")
+const PROP_GRID_CELL_SIZE := 6.0
+const BOT_TARGET_QUERY_RADIUS := 40.0
 
 const ARENA_HALF_SIZE := 72.0
 const INITIAL_RADIUS := 1.15
@@ -90,6 +93,8 @@ var joystick_pointer_id := -1
 var consumption_actors_cache: Array = []
 var consumption_actor_positions_cache: PackedVector2Array = PackedVector2Array()
 var max_actor_radius_cache: float = INITIAL_RADIUS
+var prop_grid: RefCounted
+var active_prop_indices: PackedInt32Array = PackedInt32Array()
 
 var player_root: Node3D
 var hole_mesh: MeshInstance3D
@@ -828,6 +833,14 @@ func _spawn_props() -> void:
 		})
 
 	remaining_count = props.size()
+	var prop_positions := PackedVector2Array()
+	prop_positions.resize(props.size())
+	for i in range(props.size()):
+		var p: Vector3 = props[i]["position"]
+		prop_positions[i] = Vector2(p.x, p.z)
+	prop_grid = PropGrid.new()
+	prop_grid.build(prop_positions, ARENA_HALF_SIZE, PROP_GRID_CELL_SIZE)
+	active_prop_indices.clear()
 	_update_prop_markers()
 
 
@@ -1055,7 +1068,15 @@ func _update_bot_target(bot: Dictionary) -> void:
 	var best_id := -1
 	var best_weighted_distance := INF
 
-	for prop in props:
+	var candidates: PackedInt32Array = PackedInt32Array()
+	if prop_grid:
+		candidates = prop_grid.query_radius(bot_flat, BOT_TARGET_QUERY_RADIUS)
+	if candidates.is_empty():
+		for i in range(props.size()):
+			candidates.append(i)
+
+	for idx in candidates:
+		var prop: Dictionary = props[idx]
 		if bool(prop["consumed"]):
 			continue
 		if not _can_actor_consume_prop(prop, float(bot["radius"])):
@@ -1304,12 +1325,9 @@ func _is_prop_near_consume_radius(prop: Dictionary, actor_flat: Vector2, actor_r
 
 
 func _check_consumption() -> void:
-	for prop in props:
+	for idx in active_prop_indices:
+		var prop: Dictionary = props[idx]
 		if bool(prop["consumed"]):
-			continue
-
-		var prop_position: Vector3 = prop["position"]
-		if not _is_prop_potentially_interactive(Vector2(prop_position.x, prop_position.z), 0.0):
 			continue
 
 		var winning_actor := _find_consumption_winner(prop)
@@ -1502,6 +1520,20 @@ func _refresh_interaction_cache() -> void:
 		var actor_radius := _get_actor_radius(actor)
 		if actor_radius > max_actor_radius_cache:
 			max_actor_radius_cache = actor_radius
+
+	active_prop_indices.clear()
+	if not prop_grid:
+		return
+	var seen: Dictionary = {}
+	for i in range(consumption_actors_cache.size()):
+		var actor_radius := _get_actor_radius(consumption_actors_cache[i])
+		var reach: float = actor_radius * CONSUME_RADIUS_FACTOR + PROP_MARKER_NEAR_MARGIN + 2.5
+		var candidates: PackedInt32Array = prop_grid.query_radius(consumption_actor_positions_cache[i], reach)
+		for idx in candidates:
+			if seen.has(idx):
+				continue
+			seen[idx] = true
+			active_prop_indices.append(idx)
 
 
 # Cheap broad-phase: skip props whose centre is clearly out of reach of every

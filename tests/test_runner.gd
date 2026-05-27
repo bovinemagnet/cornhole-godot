@@ -7,6 +7,7 @@ extends SceneTree
 
 const TEST_SCRIPTS: Array = [
 	preload("res://tests/test_math_util.gd"),
+	preload("res://tests/test_prop_grid.gd"),
 ]
 
 
