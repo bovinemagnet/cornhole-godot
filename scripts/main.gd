@@ -1,5 +1,7 @@
 extends Node3D
 
+const MathUtil = preload("res://scripts/math_util.gd")
+
 const ARENA_HALF_SIZE := 72.0
 const INITIAL_RADIUS := 1.15
 const MAX_AREA := 125.0
@@ -1452,13 +1454,12 @@ func _get_prop_fit_radius(prop: Dictionary) -> float:
 
 
 func _get_tier_fit_radius(tier: Dictionary) -> float:
-	if String(tier["shape"]) == "box":
-		var scale: Vector3 = tier["scale"]
-		return Vector2(scale.x * 0.5, scale.z * 0.5).length()
-	if String(tier["shape"]) == "tree":
-		return float(tier["collision_radius"])
-
-	return float(tier["required_radius"])
+	return MathUtil.tier_fit_radius(
+		String(tier["shape"]),
+		tier["scale"],
+		float(tier["required_radius"]),
+		float(tier["collision_radius"])
+	)
 
 
 func _get_distance_to_prop_footprint(prop: Dictionary, actor_flat: Vector2, prop_flat: Vector2) -> float:
@@ -1470,18 +1471,7 @@ func _get_distance_to_prop_footprint(prop: Dictionary, actor_flat: Vector2, prop
 
 
 func _distance_to_rotated_rect(point: Vector2, rect_center: Vector2, half_extents: Vector2, rotation_y: float) -> float:
-	var local_point := point - rect_center
-	var cos_y := cos(-rotation_y)
-	var sin_y := sin(-rotation_y)
-	var rotated_point := Vector2(
-		local_point.x * cos_y - local_point.y * sin_y,
-		local_point.x * sin_y + local_point.y * cos_y
-	)
-	var outside_delta := Vector2(
-		max(abs(rotated_point.x) - half_extents.x, 0.0),
-		max(abs(rotated_point.y) - half_extents.y, 0.0)
-	)
-	return outside_delta.length()
+	return MathUtil.distance_to_rotated_rect(point, rect_center, half_extents, rotation_y)
 
 
 func _get_consumption_actors() -> Array:
