@@ -85,6 +85,9 @@ var event_feed_messages := []
 var joystick_input_vector := Vector2.ZERO
 var joystick_dragging := false
 var joystick_pointer_id := -1
+var consumption_actors_cache: Array = []
+var consumption_actor_positions_cache: PackedVector2Array = PackedVector2Array()
+var max_actor_radius_cache: float = INITIAL_RADIUS
 
 var player_root: Node3D
 var hole_mesh: MeshInstance3D
@@ -171,6 +174,7 @@ func _physics_process(delta: float) -> void:
 				_update_respawns(delta)
 				_handle_movement(delta)
 				_update_bots(delta)
+				_refresh_interaction_cache()
 				_update_too_big_prop_feedback(delta)
 				_update_prop_markers()
 				_check_consumption()
@@ -452,6 +456,7 @@ func _create_bots() -> void:
 			"score": 0,
 			"velocity": Vector3.ZERO,
 			"target_id": -1,
+			"target_cooldown": 0.0,
 			"enabled": true,
 			"alive": true,
 			"respawn_remaining": 0.0,
@@ -469,6 +474,7 @@ func _reset_bots() -> void:
 		bot["score"] = 0
 		bot["velocity"] = Vector3.ZERO
 		bot["target_id"] = -1
+		bot["target_cooldown"] = 0.0
 		bot["enabled"] = is_enabled
 		bot["alive"] = is_enabled
 		bot["respawn_remaining"] = 0.0
@@ -954,7 +960,12 @@ func _update_bots(delta: float) -> void:
 		if not bool(bot["alive"]):
 			continue
 
-		_update_bot_target(bot)
+		bot["target_cooldown"] = float(bot["target_cooldown"]) - delta
+		var current_target := _find_prop_by_id(int(bot["target_id"]))
+		var target_invalid := current_target.is_empty() or bool(current_target["consumed"]) or not _can_actor_consume_prop(current_target, float(bot["radius"]))
+		if target_invalid or float(bot["target_cooldown"]) <= 0.0:
+			_update_bot_target(bot)
+			bot["target_cooldown"] = 0.25
 
 		var move_vector := _get_bot_hole_interaction_vector(bot)
 		var target_prop := _find_prop_by_id(int(bot["target_id"]))
@@ -968,10 +979,29 @@ func _update_bots(delta: float) -> void:
 			if offset.length() > 0.05:
 				move_vector += offset.normalized()
 
+		move_vector += _get_bot_wall_avoidance(bot)
+
 		if move_vector.length() > 1.0:
 			move_vector = move_vector.normalized()
 
 		_move_bot(bot, move_vector, delta)
+
+
+func _get_bot_wall_avoidance(bot: Dictionary) -> Vector2:
+	var bot_root := bot["root"] as Node3D
+	var radius := float(bot["radius"])
+	var wall_margin: float = 6.0 + radius
+	var inner_half: float = ARENA_HALF_SIZE - wall_margin
+	var steering := Vector2.ZERO
+	if bot_root.position.x > inner_half:
+		steering.x -= (bot_root.position.x - inner_half) / wall_margin
+	elif bot_root.position.x < -inner_half:
+		steering.x += (-inner_half - bot_root.position.x) / wall_margin
+	if bot_root.position.z > inner_half:
+		steering.y -= (bot_root.position.z - inner_half) / wall_margin
+	elif bot_root.position.z < -inner_half:
+		steering.y += (-inner_half - bot_root.position.z) / wall_margin
+	return steering * 1.4
 
 
 func _get_bot_hole_interaction_vector(bot: Dictionary) -> Vector2:
@@ -1106,6 +1136,7 @@ func _respawn_bot(bot: Dictionary) -> void:
 	bot["radius"] = INITIAL_RADIUS
 	bot["velocity"] = Vector3.ZERO
 	bot["target_id"] = -1
+	bot["target_cooldown"] = 0.0
 	var bot_root := bot["root"] as Node3D
 	bot_root.position = respawn_position
 	bot_root.show()
@@ -1147,6 +1178,11 @@ func _update_too_big_prop_feedback(delta: float) -> void:
 		if bool(prop["consumed"]):
 			continue
 
+		var prop_position: Vector3 = prop["position"]
+		if not _is_prop_potentially_interactive(Vector2(prop_position.x, prop_position.z), 0.0):
+			_recover_too_big_prop(prop, delta)
+			continue
+
 		var actor := _find_too_big_pressure_actor(prop)
 		if actor.is_empty():
 			_recover_too_big_prop(prop, delta)
@@ -1165,7 +1201,7 @@ func _find_too_big_pressure_actor(prop: Dictionary) -> Dictionary:
 	var best_actor := {}
 	var best_distance := INF
 
-	for actor in _get_consumption_actors():
+	for actor in consumption_actors_cache:
 		var actor_radius := _get_actor_radius(actor)
 		if _can_actor_consume_prop(prop, actor_radius):
 			continue
@@ -1226,13 +1262,21 @@ func _recover_too_big_prop(prop: Dictionary, delta: float) -> void:
 
 func _update_prop_markers() -> void:
 	var player_flat := Vector2(player_root.position.x, player_root.position.z)
+	var fast_bound := hole_radius * CONSUME_RADIUS_FACTOR + PROP_MARKER_NEAR_MARGIN + 2.5
+	var fast_bound_sq := fast_bound * fast_bound
 
 	for prop in props:
 		var marker := prop["marker"] as MeshInstance3D
 		if not is_instance_valid(marker):
 			continue
 
-		if bool(prop["consumed"]) or match_phase != MatchPhase.PLAYING:
+		if bool(prop["consumed"]) or match_phase != MatchPhase.PLAYING or not player_alive:
+			marker.hide()
+			continue
+
+		var prop_position: Vector3 = prop["position"]
+		var prop_flat := Vector2(prop_position.x, prop_position.z)
+		if player_flat.distance_squared_to(prop_flat) > fast_bound_sq:
 			marker.hide()
 			continue
 
@@ -1260,6 +1304,10 @@ func _is_prop_near_consume_radius(prop: Dictionary, actor_flat: Vector2, actor_r
 func _check_consumption() -> void:
 	for prop in props:
 		if bool(prop["consumed"]):
+			continue
+
+		var prop_position: Vector3 = prop["position"]
+		if not _is_prop_potentially_interactive(Vector2(prop_position.x, prop_position.z), 0.0):
 			continue
 
 		var winning_actor := _find_consumption_winner(prop)
@@ -1363,7 +1411,7 @@ func _find_consumption_winner(prop: Dictionary) -> Dictionary:
 	var winning_actor := {}
 	var winning_distance := INF
 
-	for actor in _get_consumption_actors():
+	for actor in consumption_actors_cache:
 		var actor_radius := _get_actor_radius(actor)
 		if not _can_actor_consume_prop(prop, actor_radius):
 			continue
@@ -1451,6 +1499,33 @@ func _get_consumption_actors() -> Array:
 			actors.append(bot)
 
 	return actors
+
+
+func _refresh_interaction_cache() -> void:
+	consumption_actors_cache = _get_consumption_actors()
+	consumption_actor_positions_cache.resize(consumption_actors_cache.size())
+	max_actor_radius_cache = INITIAL_RADIUS
+	for i in range(consumption_actors_cache.size()):
+		var actor: Dictionary = consumption_actors_cache[i]
+		var actor_position := _get_actor_position(actor)
+		consumption_actor_positions_cache[i] = Vector2(actor_position.x, actor_position.z)
+		var actor_radius := _get_actor_radius(actor)
+		if actor_radius > max_actor_radius_cache:
+			max_actor_radius_cache = actor_radius
+
+
+# Cheap broad-phase: skip props whose centre is clearly out of reach of every
+# actor. PROP_MAX_HALF_EXTENT (2.5) is a generous bound on prop footprints so
+# the cull never rejects something that could actually interact.
+func _is_prop_potentially_interactive(prop_flat: Vector2, extra_margin: float) -> bool:
+	if consumption_actor_positions_cache.is_empty():
+		return false
+	var reach := max_actor_radius_cache * CONSUME_RADIUS_FACTOR + 2.5 + extra_margin
+	var reach_sq := reach * reach
+	for actor_flat in consumption_actor_positions_cache:
+		if prop_flat.distance_squared_to(actor_flat) <= reach_sq:
+			return true
+	return false
 
 
 func _is_better_consumption_candidate(
@@ -1841,10 +1916,15 @@ func _update_camera(delta: float) -> void:
 
 	var height: float = clamp(14.0 + hole_radius * 2.25, 14.0, 30.0)
 	var back: float = clamp(9.5 + hole_radius * 0.75, 9.5, 16.0)
-	var target_position := player_root.position + Vector3(0.0, height, back)
+	var look_ahead := Vector3.ZERO
+	var velocity_flat := Vector2(velocity.x, velocity.z)
+	if player_alive and velocity_flat.length() > 0.1:
+		var ahead_strength: float = clamp(velocity_flat.length() * 0.30, 0.0, 3.5)
+		look_ahead = Vector3(velocity.x, 0.0, velocity.z).normalized() * ahead_strength
+	var target_position := player_root.position + look_ahead + Vector3(0.0, height, back)
 	var weight: float = clamp(delta * 4.5, 0.0, 1.0)
 	camera.position = camera.position.lerp(target_position, weight)
-	camera.look_at(player_root.position, Vector3.UP)
+	camera.look_at(player_root.position + look_ahead * 0.5, Vector3.UP)
 
 
 func _update_hud() -> void:
@@ -1901,6 +1981,13 @@ func _update_hud() -> void:
 	size_label.text = "Radius %.2f" % hole_radius
 	var seconds_left := int(time_remaining)
 	timer_label.text = "Time %02d:%02d" % [floori(seconds_left / 60.0), seconds_left % 60]
+	var timer_urgent := match_phase == MatchPhase.PLAYING and time_remaining <= 10.0 and time_remaining > 0.0
+	if timer_urgent:
+		timer_label.add_theme_color_override("font_color", Color(1.0, 0.42, 0.36))
+		timer_label.add_theme_font_size_override("font_size", 22)
+	else:
+		timer_label.add_theme_color_override("font_color", Color(0.94, 0.97, 1.0))
+		timer_label.add_theme_font_size_override("font_size", 18)
 	remaining_label.text = "Props %d" % remaining_count
 	rank_label.text = "Rank %d/%d" % [_get_player_rank(), _get_rankings().size()]
 	growth_label.text = _format_growth_progress()
@@ -1972,13 +2059,13 @@ func _world_to_minimap(world_position: Vector3) -> Vector2:
 func _format_growth_progress() -> String:
 	var next_tier := _get_next_locked_tier()
 	if next_tier.is_empty():
-		return "Can eat all props"
+		return "All props unlocked"
 
 	var required_radius := _get_tier_fit_radius(next_tier)
 	var current_area := PI * hole_radius * hole_radius
 	var required_area := PI * required_radius * required_radius
 	var progress: float = clamp(current_area / required_area, 0.0, 1.0)
-	return "Next %s %d%%" % [String(next_tier["name"]), int(progress * 100.0)]
+	return "Next: %s (%d%%)" % [String(next_tier["name"]), int(progress * 100.0)]
 
 
 func _get_next_locked_tier() -> Dictionary:
