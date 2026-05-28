@@ -5,9 +5,13 @@ extends RefCounted
 
 
 static func make_tone(frequency: float, duration: float, sample_rate := 22050, fade_curve := 1.5) -> AudioStreamWAV:
-	var sample_count: int = int(sample_rate * duration)
+	var safe_sample_rate: int = max(1, sample_rate)
+	var sample_count: int = max(0, int(safe_sample_rate * max(0.0, duration)))
 	var bytes := PackedByteArray()
 	bytes.resize(sample_count * 2)
+	if sample_count == 0:
+		return _make_stream(bytes, safe_sample_rate)
+	sample_rate = safe_sample_rate
 	var two_pi_f := TAU * frequency
 	var inv_sample_rate := 1.0 / float(sample_rate)
 	var inv_duration: float = 1.0 / max(duration, 0.001)
@@ -22,9 +26,13 @@ static func make_tone(frequency: float, duration: float, sample_rate := 22050, f
 
 
 static func make_chord(frequencies: PackedFloat32Array, duration: float, sample_rate := 22050) -> AudioStreamWAV:
-	var sample_count: int = int(sample_rate * duration)
+	var safe_sample_rate: int = max(1, sample_rate)
+	var sample_count: int = max(0, int(safe_sample_rate * max(0.0, duration)))
 	var bytes := PackedByteArray()
 	bytes.resize(sample_count * 2)
+	if sample_count == 0:
+		return _make_stream(bytes, safe_sample_rate)
+	sample_rate = safe_sample_rate
 	var inv_sample_rate := 1.0 / float(sample_rate)
 	var inv_duration: float = 1.0 / max(duration, 0.001)
 	var voice_scale: float = 0.6 / max(1.0, float(frequencies.size()))
@@ -41,9 +49,13 @@ static func make_chord(frequencies: PackedFloat32Array, duration: float, sample_
 
 
 static func make_noise_burst(duration: float, sample_rate := 22050, low_pass_alpha := 0.45) -> AudioStreamWAV:
-	var sample_count: int = int(sample_rate * duration)
+	var safe_sample_rate: int = max(1, sample_rate)
+	var sample_count: int = max(0, int(safe_sample_rate * max(0.0, duration)))
 	var bytes := PackedByteArray()
 	bytes.resize(sample_count * 2)
+	if sample_count == 0:
+		return _make_stream(bytes, safe_sample_rate)
+	sample_rate = safe_sample_rate
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 19937
 	var inv_sample_rate := 1.0 / float(sample_rate)

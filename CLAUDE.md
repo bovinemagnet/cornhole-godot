@@ -13,10 +13,11 @@ The full conversion plan, including the target multiplayer architecture, scene l
 Target Godot 4.6.3 stable (not 4.7 beta).
 
 - `godot --editor .` — open the project in the editor.
-- `godot --headless --check-only .` — validate scripts and resources without launching the editor; use this to catch GDScript errors.
+- `godot --headless --check-only --script scripts/<file>.gd` — validate one GDScript file. In Godot 4.6.3 `--check-only` is a script-only flag, so the directory form (`--check-only .`) hangs; always pass a `--script` path. Validate every script you touch.
+- `godot --headless --script tests/test_runner.gd` — run the lightweight test suite under `tests/`. This is the canonical validator: it also parses every test script, so it catches parse errors in addition to running behaviour tests.
 - `godot .` — run the project (main scene is `scenes/main.tscn`).
 
-No automated test framework is configured yet. When gameplay rules, deterministic spawning, growth maths, or networking state transitions are added, add tests and name them around behaviour, e.g. `test_consumption_requires_radius`, `test_same_seed_spawns_same_props`.
+Tests live in `tests/` as `RefCounted` subclasses with `test_*` methods returning `""` on pass or a message on fail; the runner script aggregates results. When gameplay rules, deterministic spawning, growth maths, or networking state transitions are added, add tests and name them around behaviour, e.g. `test_consumption_requires_radius`, `test_same_seed_spawns_same_props`.
 
 ## Architecture
 

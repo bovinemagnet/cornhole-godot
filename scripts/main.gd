@@ -3,10 +3,22 @@ extends Node3D
 const MathUtil = preload("res://scripts/math_util.gd")
 const PropGrid = preload("res://scripts/prop_grid.gd")
 const AudioUtil = preload("res://scripts/audio_util.gd")
+const MovingRouteUtil = preload("res://scripts/moving_route_util.gd")
+const MovingCarSpawn = preload("res://scripts/moving_car_spawn.gd")
+const PROP_CAR_SCENE = preload("res://scenes/props/PropCar.tscn")
 const PROP_GRID_CELL_SIZE := 6.0
 const BOT_TARGET_QUERY_RADIUS := 40.0
 const CONSUME_DEBRIS_COUNT := 4
 const CONSUME_DEBRIS_SECONDS := 0.45
+const MOVING_CAR_COUNT := 8
+const MOVING_CAR_SPEED_MIN := 2.8
+const MOVING_CAR_SPEED_MAX := 4.6
+const MOVING_CAR_AREA := 3.0
+const MOVING_CAR_SCORE := 140
+const MOVING_CAR_REQUIRED_RADIUS := 2.25
+const MOVING_CAR_COLLISION_RADIUS := 1.40
+const MOVING_CAR_FOOTPRINT := Vector2(1.25, 0.625)
+const MOVING_CAR_TIER := 4
 
 const ARENA_HALF_SIZE := 72.0
 const INITIAL_RADIUS := 1.15
@@ -98,6 +110,9 @@ var consumption_actor_positions_cache: PackedVector2Array = PackedVector2Array()
 var max_actor_radius_cache: float = INITIAL_RADIUS
 var prop_grid: RefCounted
 var active_prop_indices: PackedInt32Array = PackedInt32Array()
+var moving_props: Array = []
+var moving_routes: Array = []
+var moving_route_lengths: PackedFloat32Array = PackedFloat32Array()
 var audio_consume_player: AudioStreamPlayer
 var audio_hole_eaten_player: AudioStreamPlayer
 var audio_countdown_player: AudioStreamPlayer
@@ -109,6 +124,7 @@ var hole_mesh: MeshInstance3D
 var consume_mesh: MeshInstance3D
 var player_name_label: Label3D
 var props_root: Node3D
+var moving_props_root: Node3D
 var bots_root: Node3D
 var effects_root: Node3D
 var camera: Camera3D
@@ -220,10 +236,12 @@ func _physics_process(delta: float) -> void:
 				_update_respawns(delta)
 				_handle_movement(delta)
 				_update_bots(delta)
+				_update_moving_props()
 				_refresh_interaction_cache()
 				_update_too_big_prop_feedback(delta)
 				_update_prop_markers()
 				_check_consumption()
+				_check_moving_prop_consumption()
 				_check_hole_consumption()
 		MatchPhase.PAUSED:
 			if Input.is_action_just_pressed("pause_match"):
@@ -274,6 +292,7 @@ func reset_match(start_countdown := true) -> void:
 	_update_hole_visual()
 	_reset_bots()
 	_spawn_props()
+	_spawn_moving_props()
 	if start_countdown:
 		_add_event_feed_message("Practice started: %d rivals, %s AI" % [selected_bot_count, _get_bot_difficulty_name()])
 	_update_camera(1.0)
@@ -462,6 +481,11 @@ func _build_world() -> void:
 	effects_root = Node3D.new()
 	effects_root.name = "Effects"
 	add_child(effects_root)
+
+	moving_props_root = Node3D.new()
+	moving_props_root.name = "MovingProps"
+	add_child(moving_props_root)
+	_build_moving_routes()
 
 
 func _create_bots() -> void:
@@ -884,6 +908,165 @@ func _spawn_props() -> void:
 	_update_prop_markers()
 
 
+func _make_moving_route(id: int, points_array: Array, loop: bool) -> Dictionary:
+	var points := PackedVector3Array()
+	points.resize(points_array.size())
+	for i in range(points_array.size()):
+		points[i] = points_array[i]
+	return {"id": id, "points": points, "loop": loop}
+
+
+func _build_moving_routes() -> void:
+	moving_routes.clear()
+	# Five fixed lane loops. All routes stay inside ARENA_HALF_SIZE so cars
+	# never clip walls. Routes have stable IDs so deterministic spawn data
+	# remains valid across runs with the same map seed.
+	moving_routes.append(_make_moving_route(0, [
+		Vector3(-55.0, 0.0, -50.0),
+		Vector3(55.0, 0.0, -50.0),
+		Vector3(55.0, 0.0, -44.0),
+		Vector3(-55.0, 0.0, -44.0),
+	], true))
+	moving_routes.append(_make_moving_route(1, [
+		Vector3(-55.0, 0.0, 44.0),
+		Vector3(55.0, 0.0, 44.0),
+		Vector3(55.0, 0.0, 50.0),
+		Vector3(-55.0, 0.0, 50.0),
+	], true))
+	moving_routes.append(_make_moving_route(2, [
+		Vector3(-50.0, 0.0, -55.0),
+		Vector3(-50.0, 0.0, 55.0),
+		Vector3(-44.0, 0.0, 55.0),
+		Vector3(-44.0, 0.0, -55.0),
+	], true))
+	moving_routes.append(_make_moving_route(3, [
+		Vector3(44.0, 0.0, -55.0),
+		Vector3(44.0, 0.0, 55.0),
+		Vector3(50.0, 0.0, 55.0),
+		Vector3(50.0, 0.0, -55.0),
+	], true))
+	moving_routes.append(_make_moving_route(4, [
+		Vector3(-22.0, 0.0, -22.0),
+		Vector3(22.0, 0.0, -22.0),
+		Vector3(22.0, 0.0, 22.0),
+		Vector3(-22.0, 0.0, 22.0),
+	], true))
+
+	moving_route_lengths = PackedFloat32Array()
+	moving_route_lengths.resize(moving_routes.size())
+	for i in range(moving_routes.size()):
+		var route: Dictionary = moving_routes[i]
+		moving_route_lengths[i] = MovingRouteUtil.route_length(route["points"], bool(route["loop"]))
+
+
+func _spawn_moving_props() -> void:
+	for prop in moving_props:
+		var existing_node := prop["node"] as Node
+		if is_instance_valid(existing_node):
+			existing_node.queue_free()
+	moving_props.clear()
+
+	if moving_routes.is_empty() or not moving_props_root:
+		return
+
+	var spawn_data: Array = MovingCarSpawn.make_spawns(
+		selected_map_seed,
+		MOVING_CAR_COUNT,
+		moving_route_lengths,
+		MOVING_CAR_SPEED_MIN,
+		MOVING_CAR_SPEED_MAX
+	)
+
+	for spawn in spawn_data:
+		var route_id := int(spawn["route_id"])
+		var route: Dictionary = moving_routes[route_id]
+		var sample: Dictionary = MovingRouteUtil.sample_route(
+			route["points"], bool(route["loop"]), float(spawn["phase_offset"])
+		)
+		var position: Vector3 = sample["position"]
+		var tangent: Vector3 = sample["tangent"]
+		var rotation_y := atan2(tangent.x, tangent.z)
+
+		var node: Node3D = PROP_CAR_SCENE.instantiate()
+		node.name = "MovingCar_%d" % int(spawn["id"])
+		node.position = position
+		node.rotation.y = rotation_y
+		moving_props_root.add_child(node)
+
+		moving_props.append({
+			"id": int(spawn["id"]),
+			"route_id": route_id,
+			"phase_offset": float(spawn["phase_offset"]),
+			"speed": float(spawn["speed"]),
+			"object_type": "MovingCar",
+			"tier": MOVING_CAR_TIER,
+			"shape": "box",
+			"footprint": MOVING_CAR_FOOTPRINT,
+			"required_radius": MOVING_CAR_REQUIRED_RADIUS,
+			"collision_radius": MOVING_CAR_COLLISION_RADIUS,
+			"area": MOVING_CAR_AREA,
+			"score": MOVING_CAR_SCORE,
+			"node": node,
+			"position": position,
+			"rotation_y": rotation_y,
+			"consumed": false,
+		})
+
+
+func _update_moving_props() -> void:
+	if moving_props.is_empty():
+		return
+	# Match elapsed time stops when paused/ended, so cars naturally freeze.
+	var elapsed: float = selected_match_seconds - time_remaining
+	for prop in moving_props:
+		if bool(prop["consumed"]):
+			continue
+		var route_id := int(prop["route_id"])
+		if route_id < 0 or route_id >= moving_routes.size():
+			continue
+		var route: Dictionary = moving_routes[route_id]
+		var distance: float = elapsed * float(prop["speed"]) + float(prop["phase_offset"])
+		var sample: Dictionary = MovingRouteUtil.sample_route(route["points"], bool(route["loop"]), distance)
+		var position: Vector3 = sample["position"]
+		var tangent: Vector3 = sample["tangent"]
+		var rotation_y := atan2(tangent.x, tangent.z)
+		var node := prop["node"] as Node3D
+		if is_instance_valid(node):
+			node.position = position
+			node.rotation.y = rotation_y
+		prop["position"] = position
+		prop["rotation_y"] = rotation_y
+
+
+func _check_moving_prop_consumption() -> void:
+	if moving_props.is_empty():
+		return
+	for prop in moving_props:
+		if bool(prop["consumed"]):
+			continue
+		var winner: Dictionary = _find_consumption_winner(prop)
+		if winner.is_empty():
+			continue
+		_consume_moving_prop(prop, winner)
+
+
+func _consume_moving_prop(prop: Dictionary, actor: Dictionary) -> void:
+	# Mirrors _consume_prop minus the `remaining_count -= 1` — moving cars are
+	# score opportunities that do not block match clear conditions.
+	prop["consumed"] = true
+	_apply_actor_growth(actor, float(prop["area"]), int(prop["score"]))
+	_play_consume_effect(prop, _get_actor_position(actor))
+	_play_growth_feedback(actor, int(prop["score"]))
+	if bool(actor["is_player"]):
+		_record_player_prop_eaten(prop)
+		_play_consume_sfx(int(prop["tier"]))
+		_spawn_consume_debris(prop)
+	_add_event_feed_message("%s ate %s  +%d" % [_get_actor_name(actor), String(prop["object_type"]), int(prop["score"])])
+	var node := prop["node"] as Node3D
+	if is_instance_valid(node):
+		node.hide()
+
+
 func _random_spawn_position(rng: RandomNumberGenerator) -> Vector3:
 	for attempt in 40:
 		var position := Vector3(
@@ -1110,7 +1293,7 @@ func _update_bot_target(bot: Dictionary) -> void:
 
 	var candidates: PackedInt32Array = PackedInt32Array()
 	if prop_grid:
-		candidates = prop_grid.query_radius(bot_flat, BOT_TARGET_QUERY_RADIUS)
+		candidates = prop_grid.query_radius_candidates(bot_flat, BOT_TARGET_QUERY_RADIUS)
 	if candidates.is_empty():
 		for i in range(props.size()):
 			candidates.append(i)
@@ -1504,13 +1687,14 @@ func _can_actor_consume_prop(prop: Dictionary, actor_radius: float) -> bool:
 
 
 func _get_prop_fit_radius(prop: Dictionary) -> float:
+	var required_radius := float(prop["required_radius"])
 	if String(prop["shape"]) == "box":
 		var footprint: Vector2 = prop["footprint"]
-		return footprint.length()
+		return max(required_radius, footprint.length())
 	if String(prop["shape"]) == "tree":
-		return float(prop["collision_radius"])
+		return max(required_radius, float(prop["collision_radius"]))
 
-	return float(prop["required_radius"])
+	return required_radius
 
 
 func _get_tier_fit_radius(tier: Dictionary) -> float:
@@ -1570,7 +1754,7 @@ func _refresh_interaction_cache() -> void:
 	for i in range(consumption_actors_cache.size()):
 		var actor_radius := _get_actor_radius(consumption_actors_cache[i])
 		var reach: float = actor_radius * CONSUME_RADIUS_FACTOR + PROP_MARKER_NEAR_MARGIN + 2.5
-		var candidates: PackedInt32Array = prop_grid.query_radius(consumption_actor_positions_cache[i], reach)
+		var candidates: PackedInt32Array = prop_grid.query_radius_candidates(consumption_actor_positions_cache[i], reach)
 		for idx in candidates:
 			if seen.has(idx):
 				continue

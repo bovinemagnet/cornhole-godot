@@ -52,3 +52,37 @@ func test_make_chord_data_length_matches_duration() -> String:
 	if stream.data.size() != expected_bytes:
 		return "expected %d bytes, got %d" % [expected_bytes, stream.data.size()]
 	return ""
+
+
+func test_make_tone_non_positive_duration_returns_empty_stream() -> String:
+	var stream: AudioStreamWAV = AudioUtil.make_tone(440.0, 0.0)
+	if stream.data.size() != 0:
+		return "expected empty data for zero duration, got %d bytes" % stream.data.size()
+	var negative: AudioStreamWAV = AudioUtil.make_tone(440.0, -0.5)
+	if negative.data.size() != 0:
+		return "expected empty data for negative duration, got %d bytes" % negative.data.size()
+	return ""
+
+
+func test_make_tone_non_positive_sample_rate_returns_empty_stream() -> String:
+	var stream: AudioStreamWAV = AudioUtil.make_tone(440.0, 0.05, 0)
+	if stream.data.size() != 0:
+		return "expected empty data for zero sample_rate, got %d bytes" % stream.data.size()
+	if stream.mix_rate < 1:
+		return "expected mix_rate clamped to >= 1, got %d" % stream.mix_rate
+	return ""
+
+
+func test_make_chord_non_positive_duration_returns_empty_stream() -> String:
+	var freqs := PackedFloat32Array([440.0])
+	var stream: AudioStreamWAV = AudioUtil.make_chord(freqs, -0.1)
+	if stream.data.size() != 0:
+		return "expected empty data, got %d bytes" % stream.data.size()
+	return ""
+
+
+func test_make_noise_burst_non_positive_duration_returns_empty_stream() -> String:
+	var stream: AudioStreamWAV = AudioUtil.make_noise_burst(-0.05)
+	if stream.data.size() != 0:
+		return "expected empty data, got %d bytes" % stream.data.size()
+	return ""

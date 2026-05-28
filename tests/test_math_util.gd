@@ -54,7 +54,7 @@ func test_distance_to_rotated_rect_45deg_rotation_changes_inside_test() -> Strin
 	return ""
 
 
-func test_tier_fit_radius_box_uses_diagonal() -> String:
+func test_tier_fit_radius_box_uses_diagonal_when_larger_than_required() -> String:
 	# Box with scale (2, _, 1) has half-extents (1, 0.5) and diagonal sqrt(1.25) ≈ 1.1180.
 	var fit := MathUtil.tier_fit_radius("box", Vector3(2.0, 1.0, 1.0), 0.0, 0.0)
 	var expected := sqrt(1.0 * 1.0 + 0.5 * 0.5)
@@ -63,10 +63,27 @@ func test_tier_fit_radius_box_uses_diagonal() -> String:
 	return ""
 
 
-func test_tier_fit_radius_tree_uses_collision_radius() -> String:
-	var fit := MathUtil.tier_fit_radius("tree", Vector3(3.0, 4.0, 3.0), 99.0, 0.75)
+func test_tier_fit_radius_box_respects_authored_required_radius() -> String:
+	# Bench-shaped box: half-extents (0.95, 0.325), diagonal ≈ 1.00. Authored
+	# required_radius 1.45 must win so the prop is not edible below that.
+	var fit := MathUtil.tier_fit_radius("box", Vector3(1.90, 0.45, 0.65), 1.45, 1.00)
+	if abs(fit - 1.45) > EPSILON:
+		return "expected 1.45 (authored required_radius), got %f" % fit
+	return ""
+
+
+func test_tier_fit_radius_tree_uses_collision_radius_when_larger_than_required() -> String:
+	var fit := MathUtil.tier_fit_radius("tree", Vector3(3.0, 4.0, 3.0), 0.5, 0.75)
 	if abs(fit - 0.75) > EPSILON:
 		return "expected 0.75 (collision_radius), got %f" % fit
+	return ""
+
+
+func test_tier_fit_radius_tree_respects_authored_required_radius() -> String:
+	# Tree tier: collision_radius 0.75, authored required_radius 1.65 must win.
+	var fit := MathUtil.tier_fit_radius("tree", Vector3(1.5, 2.5, 1.5), 1.65, 0.75)
+	if abs(fit - 1.65) > EPSILON:
+		return "expected 1.65 (authored required_radius), got %f" % fit
 	return ""
 
 

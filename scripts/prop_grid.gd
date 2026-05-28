@@ -25,7 +25,10 @@ func build(prop_positions: PackedVector2Array, arena_half_size: float, cell_size
 		_cells[cell_index].append(idx)
 
 
-func query_radius(center: Vector2, radius: float) -> PackedInt32Array:
+# Broad-phase only: returns every prop index in any cell touched by the
+# query bounding box. Callers must apply exact distance/footprint checks
+# on the returned candidates.
+func query_radius_candidates(center: Vector2, radius: float) -> PackedInt32Array:
 	var result := PackedInt32Array()
 	if _cells.is_empty() or radius < 0.0:
 		return result
