@@ -1,0 +1,114 @@
+{
+  "pack_name": "Robot World Map Pack",
+  "version": "1.0.0",
+  "description": "10 futuristic robot world maps for hole.io-style games in Godot.",
+  "engine": "Godot 4",
+  "world_theme": "futuristic_robot_world",
+  "includes": [
+    "manifest.json",
+    "10 map json files",
+    "10 png preview files",
+    "overview infographic",
+    "schema",
+    "README",
+    "Godot loader scripts"
+  ],
+  "maps": [
+    {
+      "id": "map_01_neon_scrap_yard",
+      "name": "Neon Scrap Yard",
+      "difficulty": "easy",
+      "difficulty_rank": 1,
+      "preview_image": "images/map_01_neon_scrap_yard.png",
+      "json_path": "maps/map_01_neon_scrap_yard.json",
+      "theme": "scrapyard"
+    },
+    {
+      "id": "map_02_servo_suburb",
+      "name": "Servo Suburb",
+      "difficulty": "easy",
+      "difficulty_rank": 2,
+      "preview_image": "images/map_02_servo_suburb.png",
+      "json_path": "maps/map_02_servo_suburb.json",
+      "theme": "robot suburb"
+    },
+    {
+      "id": "map_03_circuit_plaza",
+      "name": "Circuit Plaza",
+      "difficulty": "medium",
+      "difficulty_rank": 3,
+      "preview_image": "images/map_03_circuit_plaza.png",
+      "json_path": "maps/map_03_circuit_plaza.json",
+      "theme": "tech plaza"
+    },
+    {
+      "id": "map_04_mecha_gardens",
+      "name": "Mecha Gardens",
+      "difficulty": "medium",
+      "difficulty_rank": 4,
+      "preview_image": "images/map_04_mecha_gardens.png",
+      "json_path": "maps/map_04_mecha_gardens.json",
+      "theme": "botanic-tech park"
+    },
+    {
+      "id": "map_05_drone_docks",
+      "name": "Drone Docks",
+      "difficulty": "medium-hard",
+      "difficulty_rank": 5,
+      "preview_image": "images/map_05_drone_docks.png",
+      "json_path": "maps/map_05_drone_docks.json",
+      "theme": "landing depot"
+    },
+    {
+      "id": "map_06_chrome_foundry",
+      "name": "Chrome Foundry",
+      "difficulty": "hard",
+      "difficulty_rank": 6,
+      "preview_image": "images/map_06_chrome_foundry.png",
+      "json_path": "maps/map_06_chrome_foundry.json",
+      "theme": "industrial foundry"
+    },
+    {
+      "id": "map_07_hologrid_junction",
+      "name": "Hologrid Junction",
+      "difficulty": "hard",
+      "difficulty_rank": 7,
+      "preview_image": "images/map_07_hologrid_junction.png",
+      "json_path": "maps/map_07_hologrid_junction.json",
+      "theme": "neon city crossroad"
+    },
+    {
+      "id": "map_08_quantum_reactor_maze",
+      "name": "Quantum Reactor Maze",
+      "difficulty": "very hard",
+      "difficulty_rank": 8,
+      "preview_image": "images/map_08_quantum_reactor_maze.png",
+      "json_path": "maps/map_08_quantum_reactor_maze.json",
+      "theme": "reactor labyrinth"
+    },
+    {
+      "id": "map_09_nanotech_citadel",
+      "name": "Nanotech Citadel",
+      "difficulty": "very hard",
+      "difficulty_rank": 9,
+      "preview_image": "images/map_09_nanotech_citadel.png",
+      "json_path": "maps/map_09_nanotech_citadel.json",
+      "theme": "high-tech citadel"
+    },
+    {
+      "id": "map_10_omega_core_fortress",
+      "name": "Omega Core Fortress",
+      "difficulty": "extreme",
+      "difficulty_rank": 10,
+      "preview_image": "images/map_10_omega_core_fortress.png",
+      "json_path": "maps/map_10_omega_core_fortress.json",
+      "theme": "fortress boss arena"
+    }
+  ],
+  "file_layout": {
+    "maps": "maps/*.json",
+    "images": "images/*.png",
+    "scripts": "scripts/*.gd",
+    "schema": "schema/robot_map_schema.json"
+  }
+}

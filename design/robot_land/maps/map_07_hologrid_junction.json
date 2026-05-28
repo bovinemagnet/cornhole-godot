@@ -1,0 +1,340 @@
+{
+  "map": {
+    "id": "map_07_hologrid_junction",
+    "name": "Hologrid Junction",
+    "slug": "hologrid_junction",
+    "world": "futuristic_robot_world",
+    "description": "A hyperactive neon intersection loaded with holograms, robo-traffic, and commercial clutter. Many routes, many traps, and lots of visual chaos.",
+    "difficulty": "hard",
+    "difficulty_rank": 7,
+    "recommended_players": "4-6",
+    "estimated_match_length_sec": 190,
+    "preview_image": "images/map_07_hologrid_junction.png",
+    "overview_image": "images/robot_world_map_pack_overview.png",
+    "theme": "neon city crossroad",
+    "palette": [
+      "#120F22",
+      "#A06CFF",
+      "#3EDBFF",
+      "#FF5CA8"
+    ],
+    "bounds": {
+      "min": [
+        0.0,
+        0.0
+      ],
+      "max": [
+        1.0,
+        1.0
+      ]
+    },
+    "hole": {
+      "initial_position": [
+        0.5,
+        0.5
+      ],
+      "initial_radius": 0.031,
+      "growth_curve": "linear_plus_pickup_bonus",
+      "max_radius": 0.42,
+      "speed_curve": {
+        "small": 1.0,
+        "medium": 0.88,
+        "large": 0.72,
+        "huge": 0.58
+      }
+    },
+    "regions": [
+      {
+        "id": "north_market",
+        "type": "pickup_zone",
+        "polygon": [
+          [
+            0.26,
+            0.05
+          ],
+          [
+            0.74,
+            0.05
+          ],
+          [
+            0.74,
+            0.25
+          ],
+          [
+            0.26,
+            0.25
+          ]
+        ]
+      },
+      {
+        "id": "west_crosswalks",
+        "type": "lane",
+        "polygon": [
+          [
+            0.04,
+            0.32
+          ],
+          [
+            0.4,
+            0.32
+          ],
+          [
+            0.4,
+            0.68
+          ],
+          [
+            0.04,
+            0.68
+          ]
+        ]
+      },
+      {
+        "id": "east_crosswalks",
+        "type": "lane",
+        "polygon": [
+          [
+            0.6,
+            0.32
+          ],
+          [
+            0.96,
+            0.32
+          ],
+          [
+            0.96,
+            0.68
+          ],
+          [
+            0.6,
+            0.68
+          ]
+        ]
+      },
+      {
+        "id": "south_market",
+        "type": "pickup_zone",
+        "polygon": [
+          [
+            0.2,
+            0.74
+          ],
+          [
+            0.8,
+            0.74
+          ],
+          [
+            0.8,
+            0.94
+          ],
+          [
+            0.2,
+            0.94
+          ]
+        ]
+      },
+      {
+        "id": "central_hub",
+        "type": "hub",
+        "polygon": [
+          [
+            0.36,
+            0.3
+          ],
+          [
+            0.64,
+            0.3
+          ],
+          [
+            0.64,
+            0.7
+          ],
+          [
+            0.36,
+            0.7
+          ]
+        ]
+      }
+    ],
+    "spawn_points": [
+      {
+        "id": "sp_01",
+        "position": 0.12,
+        "team": "neutral"
+      },
+      {
+        "id": "sp_02",
+        "position": 0.84,
+        "team": "neutral"
+      }
+    ],
+    "object_tiers": [
+      {
+        "tier": 1,
+        "name": "tiny props",
+        "min_hole_radius": 0.0,
+        "examples": [
+          "bolts",
+          "microchips",
+          "battery cells",
+          "traffic cones"
+        ],
+        "points": 1
+      },
+      {
+        "tier": 2,
+        "name": "small props",
+        "min_hole_radius": 0.05,
+        "examples": [
+          "tool crates",
+          "service bots",
+          "benches",
+          "cargo bins"
+        ],
+        "points": 3
+      },
+      {
+        "tier": 3,
+        "name": "medium props",
+        "min_hole_radius": 0.1,
+        "examples": [
+          "kiosks",
+          "drone racks",
+          "hover scooters",
+          "garden pods"
+        ],
+        "points": 8
+      },
+      {
+        "tier": 4,
+        "name": "large props",
+        "min_hole_radius": 0.18,
+        "examples": [
+          "cars",
+          "repair shacks",
+          "furnaces",
+          "generator pods"
+        ],
+        "points": 18
+      },
+      {
+        "tier": 5,
+        "name": "huge props",
+        "min_hole_radius": 0.28,
+        "examples": [
+          "tower modules",
+          "warehouse blocks",
+          "reactor tanks",
+          "security statues"
+        ],
+        "points": 40
+      }
+    ],
+    "spawn_rules": {
+      "small_object_density": 0.64,
+      "medium_object_density": 0.56,
+      "bonus_spawn_rate": 1.15,
+      "respawn_interval_sec": 6.25,
+      "prefer_region_types": [
+        "pickup_zone",
+        "hub",
+        "lane"
+      ]
+    },
+    "hazards": [
+      {
+        "id": "traffic_bots",
+        "type": "moving_hazard",
+        "strength": 0.26,
+        "radius": 0.03,
+        "count": 6
+      },
+      {
+        "id": "holo_billboards",
+        "type": "vision_blocker",
+        "strength": 0.0,
+        "count": 5
+      }
+    ],
+    "blockers": [
+      {
+        "id": "edge_barrier",
+        "type": "boundary",
+        "shape": "rect",
+        "min": [
+          0.0,
+          0.0
+        ],
+        "max": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "id": "center_no_build",
+        "type": "reserved_hole_space",
+        "shape": "circle",
+        "center": [
+          0.5,
+          0.5
+        ],
+        "radius": 0.1
+      }
+    ],
+    "gameplay_rules": {
+      "mode": "free_for_all",
+      "match_duration_sec": 180,
+      "score_mode": "consumed_mass",
+      "allow_bot_respawn": true,
+      "max_bots": 6,
+      "overtime": {
+        "enabled": true,
+        "sudden_death_after_sec": 180
+      },
+      "pickup_combo_window_sec": 2.5
+    },
+    "bot_behavior": {
+      "aggression": 0.6,
+      "route_bias": "seek_dense_pickups_then_enemy_intercept",
+      "avoid_hazards_weight": 0.89,
+      "preferred_targets": [
+        "tiny props",
+        "small props",
+        "isolated bots"
+      ]
+    },
+    "landmarks": [
+      "BOT NEWS sign",
+      "DATA LINK billboard",
+      "ROBO MART corner",
+      "neon lanes"
+    ],
+    "generation_hints": {
+      "suggested_world_size_px": [
+        2048,
+        2048
+      ],
+      "tile_size_px": 64,
+      "nav_grid": [
+        32,
+        32
+      ],
+      "visual_style": "bright_topdown_arcade_sci_fi",
+      "notes": "Use the PNG preview as a visual guide only; JSON regions are normalized for procedural layout."
+    },
+    "metadata": {
+      "package": "RobotMapPack",
+      "version": "1.0.0",
+      "author": "OpenAI - generated pack",
+      "engine": "Godot 4",
+      "license": "Permissive demo content for prototyping",
+      "tags": [
+        "robot",
+        "sci-fi",
+        "hole.io",
+        "top-down",
+        "godot",
+        "procedural"
+      ]
+    }
+  }
+}

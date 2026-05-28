@@ -1,0 +1,346 @@
+{
+  "map": {
+    "id": "map_01_neon_scrap_yard",
+    "name": "Neon Scrap Yard",
+    "slug": "neon_scrap_yard",
+    "world": "futuristic_robot_world",
+    "description": "A chaotic scrapyard full of rusted robot husks, repair bays, conveyor runs, and salvage piles. Spacious and forgiving for introductory matches.",
+    "difficulty": "easy",
+    "difficulty_rank": 1,
+    "recommended_players": "2-4",
+    "estimated_match_length_sec": 130,
+    "preview_image": "images/map_01_neon_scrap_yard.png",
+    "overview_image": "images/robot_world_map_pack_overview.png",
+    "theme": "scrapyard",
+    "palette": [
+      "#0A1120",
+      "#4AF28B",
+      "#FF8C42",
+      "#6F7B8C"
+    ],
+    "bounds": {
+      "min": [
+        0.0,
+        0.0
+      ],
+      "max": [
+        1.0,
+        1.0
+      ]
+    },
+    "hole": {
+      "initial_position": [
+        0.5,
+        0.5
+      ],
+      "initial_radius": 0.035,
+      "growth_curve": "linear_plus_pickup_bonus",
+      "max_radius": 0.42,
+      "speed_curve": {
+        "small": 1.0,
+        "medium": 0.88,
+        "large": 0.72,
+        "huge": 0.58
+      }
+    },
+    "regions": [
+      {
+        "id": "repair_bays",
+        "type": "safe_area",
+        "polygon": [
+          [
+            0.05,
+            0.08
+          ],
+          [
+            0.25,
+            0.08
+          ],
+          [
+            0.25,
+            0.24
+          ],
+          [
+            0.05,
+            0.24
+          ]
+        ],
+        "notes": "Low clutter, great for spawn safety."
+      },
+      {
+        "id": "central_scrap_ring",
+        "type": "debris",
+        "polygon": [
+          [
+            0.32,
+            0.22
+          ],
+          [
+            0.68,
+            0.22
+          ],
+          [
+            0.68,
+            0.52
+          ],
+          [
+            0.32,
+            0.52
+          ]
+        ],
+        "notes": "Dense scrap cluster around the hole."
+      },
+      {
+        "id": "conveyor_lane_w",
+        "type": "conveyor",
+        "polygon": [
+          [
+            0.06,
+            0.55
+          ],
+          [
+            0.42,
+            0.55
+          ],
+          [
+            0.42,
+            0.66
+          ],
+          [
+            0.06,
+            0.66
+          ]
+        ],
+        "notes": "Adds small drift toward center."
+      },
+      {
+        "id": "conveyor_lane_e",
+        "type": "conveyor",
+        "polygon": [
+          [
+            0.58,
+            0.55
+          ],
+          [
+            0.94,
+            0.55
+          ],
+          [
+            0.94,
+            0.66
+          ],
+          [
+            0.58,
+            0.66
+          ]
+        ],
+        "notes": "Adds small drift toward center."
+      },
+      {
+        "id": "junk_fields",
+        "type": "pickup_zone",
+        "polygon": [
+          [
+            0.1,
+            0.72
+          ],
+          [
+            0.9,
+            0.72
+          ],
+          [
+            0.9,
+            0.94
+          ],
+          [
+            0.1,
+            0.94
+          ]
+        ],
+        "notes": "Abundant small objects."
+      }
+    ],
+    "spawn_points": [
+      {
+        "id": "sp_01",
+        "position": 0.12,
+        "team": "neutral"
+      },
+      {
+        "id": "sp_02",
+        "position": 0.84,
+        "team": "neutral"
+      }
+    ],
+    "object_tiers": [
+      {
+        "tier": 1,
+        "name": "tiny props",
+        "min_hole_radius": 0.0,
+        "examples": [
+          "bolts",
+          "microchips",
+          "battery cells",
+          "traffic cones"
+        ],
+        "points": 1
+      },
+      {
+        "tier": 2,
+        "name": "small props",
+        "min_hole_radius": 0.05,
+        "examples": [
+          "tool crates",
+          "service bots",
+          "benches",
+          "cargo bins"
+        ],
+        "points": 3
+      },
+      {
+        "tier": 3,
+        "name": "medium props",
+        "min_hole_radius": 0.1,
+        "examples": [
+          "kiosks",
+          "drone racks",
+          "hover scooters",
+          "garden pods"
+        ],
+        "points": 8
+      },
+      {
+        "tier": 4,
+        "name": "large props",
+        "min_hole_radius": 0.18,
+        "examples": [
+          "cars",
+          "repair shacks",
+          "furnaces",
+          "generator pods"
+        ],
+        "points": 18
+      },
+      {
+        "tier": 5,
+        "name": "huge props",
+        "min_hole_radius": 0.28,
+        "examples": [
+          "tower modules",
+          "warehouse blocks",
+          "reactor tanks",
+          "security statues"
+        ],
+        "points": 40
+      }
+    ],
+    "spawn_rules": {
+      "small_object_density": 0.82,
+      "medium_object_density": 0.38,
+      "bonus_spawn_rate": 1.0,
+      "respawn_interval_sec": 7.75,
+      "prefer_region_types": [
+        "pickup_zone",
+        "hub",
+        "lane"
+      ]
+    },
+    "hazards": [
+      {
+        "id": "welding_sparks",
+        "type": "stun_patch",
+        "strength": 0.2,
+        "radius": 0.035,
+        "count": 4
+      },
+      {
+        "id": "magnet_crane",
+        "type": "push_zone",
+        "strength": 0.15,
+        "radius": 0.05,
+        "count": 2
+      }
+    ],
+    "blockers": [
+      {
+        "id": "edge_barrier",
+        "type": "boundary",
+        "shape": "rect",
+        "min": [
+          0.0,
+          0.0
+        ],
+        "max": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "id": "center_no_build",
+        "type": "reserved_hole_space",
+        "shape": "circle",
+        "center": [
+          0.5,
+          0.5
+        ],
+        "radius": 0.1
+      }
+    ],
+    "gameplay_rules": {
+      "mode": "free_for_all",
+      "match_duration_sec": 180,
+      "score_mode": "consumed_mass",
+      "allow_bot_respawn": true,
+      "max_bots": 3,
+      "overtime": {
+        "enabled": true,
+        "sudden_death_after_sec": 180
+      },
+      "pickup_combo_window_sec": 2.5
+    },
+    "bot_behavior": {
+      "aggression": 0.35,
+      "route_bias": "seek_dense_pickups_then_enemy_intercept",
+      "avoid_hazards_weight": 1.07,
+      "preferred_targets": [
+        "tiny props",
+        "small props",
+        "isolated bots"
+      ]
+    },
+    "landmarks": [
+      "SCRAP & REPAIR sign",
+      "salvage piles",
+      "robot carcasses",
+      "forklifts"
+    ],
+    "generation_hints": {
+      "suggested_world_size_px": [
+        2048,
+        2048
+      ],
+      "tile_size_px": 64,
+      "nav_grid": [
+        32,
+        32
+      ],
+      "visual_style": "bright_topdown_arcade_sci_fi",
+      "notes": "Use the PNG preview as a visual guide only; JSON regions are normalized for procedural layout."
+    },
+    "metadata": {
+      "package": "RobotMapPack",
+      "version": "1.0.0",
+      "author": "OpenAI - generated pack",
+      "engine": "Godot 4",
+      "license": "Permissive demo content for prototyping",
+      "tags": [
+        "robot",
+        "sci-fi",
+        "hole.io",
+        "top-down",
+        "godot",
+        "procedural"
+      ]
+    }
+  }
+}

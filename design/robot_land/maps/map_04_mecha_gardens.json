@@ -1,0 +1,340 @@
+{
+  "map": {
+    "id": "map_04_mecha_gardens",
+    "name": "Mecha Gardens",
+    "slug": "mecha_gardens",
+    "world": "futuristic_robot_world",
+    "description": "A robotic park where floral turbines, geometric hedges, and drone gardeners create a surprisingly tactical arena with split routes.",
+    "difficulty": "medium",
+    "difficulty_rank": 4,
+    "recommended_players": "3-5",
+    "estimated_match_length_sec": 160,
+    "preview_image": "images/map_04_mecha_gardens.png",
+    "overview_image": "images/robot_world_map_pack_overview.png",
+    "theme": "botanic-tech park",
+    "palette": [
+      "#14202A",
+      "#A5FF6D",
+      "#57D7FF",
+      "#F39BFF"
+    ],
+    "bounds": {
+      "min": [
+        0.0,
+        0.0
+      ],
+      "max": [
+        1.0,
+        1.0
+      ]
+    },
+    "hole": {
+      "initial_position": [
+        0.5,
+        0.5
+      ],
+      "initial_radius": 0.033,
+      "growth_curve": "linear_plus_pickup_bonus",
+      "max_radius": 0.42,
+      "speed_curve": {
+        "small": 1.0,
+        "medium": 0.88,
+        "large": 0.72,
+        "huge": 0.58
+      }
+    },
+    "regions": [
+      {
+        "id": "blossom_quads",
+        "type": "pickup_zone",
+        "polygon": [
+          [
+            0.06,
+            0.08
+          ],
+          [
+            0.42,
+            0.08
+          ],
+          [
+            0.42,
+            0.42
+          ],
+          [
+            0.06,
+            0.42
+          ]
+        ]
+      },
+      {
+        "id": "south_grove",
+        "type": "pickup_zone",
+        "polygon": [
+          [
+            0.58,
+            0.58
+          ],
+          [
+            0.92,
+            0.58
+          ],
+          [
+            0.92,
+            0.92
+          ],
+          [
+            0.58,
+            0.92
+          ]
+        ]
+      },
+      {
+        "id": "hedge_corridor_ns",
+        "type": "lane",
+        "polygon": [
+          [
+            0.44,
+            0.04
+          ],
+          [
+            0.56,
+            0.04
+          ],
+          [
+            0.56,
+            0.96
+          ],
+          [
+            0.44,
+            0.96
+          ]
+        ]
+      },
+      {
+        "id": "hedge_corridor_ew",
+        "type": "lane",
+        "polygon": [
+          [
+            0.04,
+            0.44
+          ],
+          [
+            0.96,
+            0.44
+          ],
+          [
+            0.96,
+            0.56
+          ],
+          [
+            0.04,
+            0.56
+          ]
+        ]
+      },
+      {
+        "id": "sprinkler_court",
+        "type": "safe_area",
+        "polygon": [
+          [
+            0.38,
+            0.38
+          ],
+          [
+            0.62,
+            0.38
+          ],
+          [
+            0.62,
+            0.62
+          ],
+          [
+            0.38,
+            0.62
+          ]
+        ]
+      }
+    ],
+    "spawn_points": [
+      {
+        "id": "sp_01",
+        "position": 0.12,
+        "team": "neutral"
+      },
+      {
+        "id": "sp_02",
+        "position": 0.84,
+        "team": "neutral"
+      }
+    ],
+    "object_tiers": [
+      {
+        "tier": 1,
+        "name": "tiny props",
+        "min_hole_radius": 0.0,
+        "examples": [
+          "bolts",
+          "microchips",
+          "battery cells",
+          "traffic cones"
+        ],
+        "points": 1
+      },
+      {
+        "tier": 2,
+        "name": "small props",
+        "min_hole_radius": 0.05,
+        "examples": [
+          "tool crates",
+          "service bots",
+          "benches",
+          "cargo bins"
+        ],
+        "points": 3
+      },
+      {
+        "tier": 3,
+        "name": "medium props",
+        "min_hole_radius": 0.1,
+        "examples": [
+          "kiosks",
+          "drone racks",
+          "hover scooters",
+          "garden pods"
+        ],
+        "points": 8
+      },
+      {
+        "tier": 4,
+        "name": "large props",
+        "min_hole_radius": 0.18,
+        "examples": [
+          "cars",
+          "repair shacks",
+          "furnaces",
+          "generator pods"
+        ],
+        "points": 18
+      },
+      {
+        "tier": 5,
+        "name": "huge props",
+        "min_hole_radius": 0.28,
+        "examples": [
+          "tower modules",
+          "warehouse blocks",
+          "reactor tanks",
+          "security statues"
+        ],
+        "points": 40
+      }
+    ],
+    "spawn_rules": {
+      "small_object_density": 0.73,
+      "medium_object_density": 0.47,
+      "bonus_spawn_rate": 1.05,
+      "respawn_interval_sec": 7.0,
+      "prefer_region_types": [
+        "pickup_zone",
+        "hub",
+        "lane"
+      ]
+    },
+    "hazards": [
+      {
+        "id": "sprinkler_slicks",
+        "type": "slide_zone",
+        "strength": 0.14,
+        "radius": 0.05,
+        "count": 3
+      },
+      {
+        "id": "drone_pruners",
+        "type": "moving_blocker",
+        "strength": 0.0,
+        "count": 4
+      }
+    ],
+    "blockers": [
+      {
+        "id": "edge_barrier",
+        "type": "boundary",
+        "shape": "rect",
+        "min": [
+          0.0,
+          0.0
+        ],
+        "max": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "id": "center_no_build",
+        "type": "reserved_hole_space",
+        "shape": "circle",
+        "center": [
+          0.5,
+          0.5
+        ],
+        "radius": 0.1
+      }
+    ],
+    "gameplay_rules": {
+      "mode": "free_for_all",
+      "match_duration_sec": 180,
+      "score_mode": "consumed_mass",
+      "allow_bot_respawn": true,
+      "max_bots": 5,
+      "overtime": {
+        "enabled": true,
+        "sudden_death_after_sec": 180
+      },
+      "pickup_combo_window_sec": 2.5
+    },
+    "bot_behavior": {
+      "aggression": 0.45,
+      "route_bias": "seek_dense_pickups_then_enemy_intercept",
+      "avoid_hazards_weight": 0.98,
+      "preferred_targets": [
+        "tiny props",
+        "small props",
+        "isolated bots"
+      ]
+    },
+    "landmarks": [
+      "solar flowers",
+      "pink and blue trees",
+      "hedge lanes",
+      "drone gardeners"
+    ],
+    "generation_hints": {
+      "suggested_world_size_px": [
+        2048,
+        2048
+      ],
+      "tile_size_px": 64,
+      "nav_grid": [
+        32,
+        32
+      ],
+      "visual_style": "bright_topdown_arcade_sci_fi",
+      "notes": "Use the PNG preview as a visual guide only; JSON regions are normalized for procedural layout."
+    },
+    "metadata": {
+      "package": "RobotMapPack",
+      "version": "1.0.0",
+      "author": "OpenAI - generated pack",
+      "engine": "Godot 4",
+      "license": "Permissive demo content for prototyping",
+      "tags": [
+        "robot",
+        "sci-fi",
+        "hole.io",
+        "top-down",
+        "godot",
+        "procedural"
+      ]
+    }
+  }
+}
