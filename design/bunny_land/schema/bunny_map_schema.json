@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Bunny Map Pack Map Schema",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "id",
+    "name",
+    "world",
+    "assets",
+    "player",
+    "gameplay_rules",
+    "regions",
+    "paths",
+    "spawn_points",
+    "object_catalog",
+    "object_spawn_rules"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "difficulty": {
+      "type": "object"
+    },
+    "world": {
+      "type": "object"
+    },
+    "assets": {
+      "type": "object"
+    },
+    "player": {
+      "type": "object"
+    },
+    "gameplay_rules": {
+      "type": "object"
+    },
+    "regions": {
+      "type": "array"
+    },
+    "paths": {
+      "type": "array"
+    },
+    "spawn_points": {
+      "type": "array"
+    },
+    "object_catalog": {
+      "type": "array"
+    },
+    "object_spawn_rules": {
+      "type": "array"
+    },
+    "hazards": {
+      "type": "array"
+    },
+    "blockers": {
+      "type": "array"
+    },
+    "events": {
+      "type": "array"
+    }
+  }
+}

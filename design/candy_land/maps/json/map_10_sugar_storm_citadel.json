@@ -1,0 +1,670 @@
+{
+  "schema_version": "1.0.0",
+  "map_id": "candy_10_sugar_storm_citadel",
+  "display_name": "Sugar Storm Citadel",
+  "series": "Candy Collapse Arenas",
+  "difficulty_index": 10,
+  "difficulty_label": "hardest",
+  "title_text": "Map 10 \u2013 Sugar Storm Citadel",
+  "theme": "Grand candy fortress with central sugar castle, layered courtyards, chocolate moat sections, wafer bridges, peppermint towers and royal candy gardens.",
+  "png_reference": {
+    "local_file": "res://maps/candy/images/map_10_sugar_storm_citadel.png",
+    "generator_reference_only": true,
+    "note": "Use this PNG as visual concept/layout reference. JSON geometry is normalized and intended for procedural construction/collision, not pixel-perfect tracing."
+  },
+  "godot_import": {
+    "target_engine": "Godot 4.x",
+    "coordinate_system": "normalized_top_left",
+    "world_size_px": {
+      "x": 2048,
+      "y": 2048
+    },
+    "recommended_root_scene": "CandyArena.tscn",
+    "tile_size_px": 32,
+    "spawn_units": "world_pixels",
+    "collision_layers": {
+      "player_holes": 1,
+      "edible_props": 2,
+      "static_blockers": 4,
+      "hazards": 8,
+      "navigation_only": 16
+    }
+  },
+  "match_rules": {
+    "mode": "hole_io_score_attack",
+    "time_limit_seconds": 225,
+    "player_start_radius_px": 14,
+    "player_max_radius_px": 150,
+    "growth": {
+      "score_to_radius_formula": "radius = start_radius + sqrt(score) * 1.85",
+      "mass_decay_per_second": 0.0
+    },
+    "win_conditions": [
+      "highest_score_at_timer_end"
+    ],
+    "tie_breakers": [
+      "largest_radius",
+      "most_large_props_eaten",
+      "earliest_to_score"
+    ]
+  },
+  "edible_tiers": [
+    {
+      "tier": 1,
+      "id": "tiny",
+      "radius_required": 0,
+      "score": 1,
+      "examples": [
+        "sprinkles",
+        "loose jellybeans",
+        "mini gumdrops",
+        "candy pebbles"
+      ]
+    },
+    {
+      "tier": 2,
+      "id": "small",
+      "radius_required": 18,
+      "score": 4,
+      "examples": [
+        "gumdrop bushes",
+        "marshmallow cubes",
+        "small lollipop signs",
+        "cookie stools"
+      ]
+    },
+    {
+      "tier": 3,
+      "id": "medium",
+      "radius_required": 36,
+      "score": 12,
+      "examples": [
+        "cupcake kiosks",
+        "caramel puddle rims",
+        "wafer carts",
+        "frosting fountains"
+      ]
+    },
+    {
+      "tier": 4,
+      "id": "large",
+      "radius_required": 64,
+      "score": 35,
+      "examples": [
+        "cupcake huts",
+        "giant lollipop trees",
+        "donut rides",
+        "candy machines"
+      ]
+    },
+    {
+      "tier": 5,
+      "id": "huge",
+      "radius_required": 96,
+      "score": 95,
+      "examples": [
+        "large factory vats",
+        "large bridges",
+        "castle towers",
+        "major landmark structures"
+      ]
+    }
+  ],
+  "regions": [
+    {
+      "name": "arena_bounds",
+      "shape": "rect",
+      "rect": {
+        "x": 0.04,
+        "y": 0.05,
+        "w": 0.92,
+        "h": 0.9
+      },
+      "gameplay_role": "playable_area",
+      "palette_hint": "royal candy garden"
+    },
+    {
+      "name": "central_castle_keep",
+      "shape": "circle",
+      "center": {
+        "x": 0.5,
+        "y": 0.43
+      },
+      "radius": 0.13,
+      "gameplay_role": "final_landmark_high_value",
+      "palette_hint": "pink sugar castle"
+    },
+    {
+      "name": "inner_courtyard_ring",
+      "shape": "circle",
+      "center": {
+        "x": 0.5,
+        "y": 0.43
+      },
+      "radius": 0.22,
+      "gameplay_role": "inner_ring_route",
+      "palette_hint": "royal frosting walls"
+    },
+    {
+      "name": "middle_courtyard_ring",
+      "shape": "circle",
+      "center": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "radius": 0.34,
+      "gameplay_role": "middle_ring_route",
+      "palette_hint": "gardens and moat"
+    },
+    {
+      "name": "outer_garden_ring",
+      "shape": "circle",
+      "center": {
+        "x": 0.5,
+        "y": 0.52
+      },
+      "radius": 0.44,
+      "gameplay_role": "outer_ring_route",
+      "palette_hint": "candy gardens"
+    },
+    {
+      "name": "chocolate_moat_sections",
+      "shape": "polygon",
+      "points": [
+        {
+          "x": 0.2,
+          "y": 0.28
+        },
+        {
+          "x": 0.34,
+          "y": 0.24
+        },
+        {
+          "x": 0.4,
+          "y": 0.33
+        },
+        {
+          "x": 0.34,
+          "y": 0.42
+        },
+        {
+          "x": 0.18,
+          "y": 0.43
+        },
+        {
+          "x": 0.12,
+          "y": 0.36
+        },
+        {
+          "x": 0.2,
+          "y": 0.28
+        },
+        {
+          "x": 0.66,
+          "y": 0.24
+        },
+        {
+          "x": 0.8,
+          "y": 0.28
+        },
+        {
+          "x": 0.88,
+          "y": 0.36
+        },
+        {
+          "x": 0.82,
+          "y": 0.43
+        },
+        {
+          "x": 0.66,
+          "y": 0.42
+        },
+        {
+          "x": 0.6,
+          "y": 0.33
+        }
+      ],
+      "gameplay_role": "bridge_choke_barrier",
+      "palette_hint": "glossy chocolate moat"
+    },
+    {
+      "name": "north_gate",
+      "shape": "rect",
+      "rect": {
+        "x": 0.43,
+        "y": 0.08,
+        "w": 0.14,
+        "h": 0.1
+      },
+      "gameplay_role": "gatehouse",
+      "palette_hint": "frosting gate"
+    },
+    {
+      "name": "south_gate",
+      "shape": "rect",
+      "rect": {
+        "x": 0.43,
+        "y": 0.82,
+        "w": 0.14,
+        "h": 0.1
+      },
+      "gameplay_role": "gatehouse",
+      "palette_hint": "frosting gate"
+    },
+    {
+      "name": "west_tower_garden",
+      "shape": "rect",
+      "rect": {
+        "x": 0.08,
+        "y": 0.28,
+        "w": 0.16,
+        "h": 0.24
+      },
+      "gameplay_role": "side_tower_garden",
+      "palette_hint": "yellow cupcake tower"
+    },
+    {
+      "name": "east_tower_garden",
+      "shape": "rect",
+      "rect": {
+        "x": 0.76,
+        "y": 0.28,
+        "w": 0.16,
+        "h": 0.24
+      },
+      "gameplay_role": "side_tower_garden",
+      "palette_hint": "vanilla cupcake tower"
+    }
+  ],
+  "pathways": [
+    {
+      "name": "royal_north_south_axis",
+      "surface": "golden_cookie_path",
+      "width": 0.055,
+      "points": [
+        {
+          "x": 0.5,
+          "y": 0.91
+        },
+        {
+          "x": 0.5,
+          "y": 0.72
+        },
+        {
+          "x": 0.5,
+          "y": 0.58
+        },
+        {
+          "x": 0.5,
+          "y": 0.43
+        },
+        {
+          "x": 0.5,
+          "y": 0.25
+        },
+        {
+          "x": 0.5,
+          "y": 0.08
+        }
+      ],
+      "gameplay_role": "primary_route"
+    },
+    {
+      "name": "royal_west_east_axis",
+      "surface": "golden_cookie_path",
+      "width": 0.055,
+      "points": [
+        {
+          "x": 0.08,
+          "y": 0.5
+        },
+        {
+          "x": 0.28,
+          "y": 0.5
+        },
+        {
+          "x": 0.5,
+          "y": 0.43
+        },
+        {
+          "x": 0.72,
+          "y": 0.5
+        },
+        {
+          "x": 0.92,
+          "y": 0.5
+        }
+      ],
+      "gameplay_role": "primary_route"
+    },
+    {
+      "name": "inner_ring_path",
+      "surface": "frosting_wall_path",
+      "width": 0.045,
+      "points": [
+        {
+          "x": 0.5,
+          "y": 0.21
+        },
+        {
+          "x": 0.66,
+          "y": 0.28
+        },
+        {
+          "x": 0.72,
+          "y": 0.43
+        },
+        {
+          "x": 0.66,
+          "y": 0.58
+        },
+        {
+          "x": 0.5,
+          "y": 0.65
+        },
+        {
+          "x": 0.34,
+          "y": 0.58
+        },
+        {
+          "x": 0.28,
+          "y": 0.43
+        },
+        {
+          "x": 0.34,
+          "y": 0.28
+        },
+        {
+          "x": 0.5,
+          "y": 0.21
+        }
+      ],
+      "gameplay_role": "ring_route"
+    },
+    {
+      "name": "outer_ring_path",
+      "surface": "garden_path",
+      "width": 0.05,
+      "points": [
+        {
+          "x": 0.5,
+          "y": 0.1
+        },
+        {
+          "x": 0.86,
+          "y": 0.28
+        },
+        {
+          "x": 0.86,
+          "y": 0.72
+        },
+        {
+          "x": 0.5,
+          "y": 0.9
+        },
+        {
+          "x": 0.14,
+          "y": 0.72
+        },
+        {
+          "x": 0.14,
+          "y": 0.28
+        },
+        {
+          "x": 0.5,
+          "y": 0.1
+        }
+      ],
+      "gameplay_role": "ring_route"
+    },
+    {
+      "name": "wafer_bridge_ring",
+      "surface": "wafer_bridge",
+      "width": 0.035,
+      "points": [
+        {
+          "x": 0.32,
+          "y": 0.34
+        },
+        {
+          "x": 0.4,
+          "y": 0.34
+        },
+        {
+          "x": 0.6,
+          "y": 0.34
+        },
+        {
+          "x": 0.68,
+          "y": 0.34
+        },
+        {
+          "x": 0.68,
+          "y": 0.55
+        },
+        {
+          "x": 0.6,
+          "y": 0.55
+        },
+        {
+          "x": 0.4,
+          "y": 0.55
+        },
+        {
+          "x": 0.32,
+          "y": 0.55
+        }
+      ],
+      "gameplay_role": "bridge_choke_route"
+    }
+  ],
+  "blockers": [
+    {
+      "name": "candy_cane_outer_fence",
+      "type": "boundary",
+      "shape": "rect_ring",
+      "outer_rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "inner_rect": {
+        "x": 0.04,
+        "y": 0.05,
+        "w": 0.92,
+        "h": 0.9
+      },
+      "solid": true
+    },
+    {
+      "name": "castle_walls",
+      "type": "concentric_wall_network",
+      "ring_centers": [
+        {
+          "x": 0.5,
+          "y": 0.43
+        }
+      ],
+      "ring_radii": [
+        0.16,
+        0.27,
+        0.39
+      ],
+      "gate_angles_degrees": [
+        0,
+        90,
+        180,
+        270,
+        45,
+        135,
+        225,
+        315
+      ],
+      "wall_thickness_px": 24,
+      "solid": true
+    },
+    {
+      "name": "chocolate_moat",
+      "type": "liquid_barrier",
+      "regions": [
+        "chocolate_moat_sections"
+      ],
+      "bridge_only_crossing": true
+    },
+    {
+      "name": "peppermint_towers",
+      "type": "peppermint_tower",
+      "center": {
+        "x": 0.5,
+        "y": 0.48
+      },
+      "radius": 0.38,
+      "count": 14,
+      "edible_tier": 5,
+      "density": "medium",
+      "placement": "scatter_within_region",
+      "notes": "Decorative and edible when the player radius meets the tier requirement."
+    },
+    {
+      "name": "royal_gumdrop_gardens",
+      "type": "gumdrop_cluster",
+      "center": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "radius": 0.43,
+      "count": 42,
+      "edible_tier": 2,
+      "density": "high",
+      "placement": "scatter_within_region",
+      "notes": "Decorative and edible when the player radius meets the tier requirement."
+    },
+    {
+      "name": "castle_turrets",
+      "type": "castle_turret",
+      "center": {
+        "x": 0.5,
+        "y": 0.43
+      },
+      "radius": 0.19,
+      "count": 12,
+      "edible_tier": 5,
+      "density": "medium",
+      "placement": "scatter_within_region",
+      "notes": "Decorative and edible when the player radius meets the tier requirement."
+    }
+  ],
+  "spawn_rules": {
+    "player_spawns": [
+      {
+        "x": 0.5,
+        "y": 0.9
+      },
+      {
+        "x": 0.13,
+        "y": 0.5
+      },
+      {
+        "x": 0.87,
+        "y": 0.5
+      }
+    ],
+    "bot_spawns": [
+      {
+        "x": 0.14,
+        "y": 0.14
+      },
+      {
+        "x": 0.86,
+        "y": 0.14
+      },
+      {
+        "x": 0.14,
+        "y": 0.86
+      },
+      {
+        "x": 0.86,
+        "y": 0.86
+      },
+      {
+        "x": 0.5,
+        "y": 0.18
+      },
+      {
+        "x": 0.5,
+        "y": 0.72
+      },
+      {
+        "x": 0.27,
+        "y": 0.43
+      },
+      {
+        "x": 0.73,
+        "y": 0.43
+      }
+    ],
+    "edible_density": 1.25,
+    "large_prop_density": 0.72,
+    "respawn_policy": {
+      "enabled": true,
+      "interval_seconds": 9,
+      "max_respawn_tier": 4
+    },
+    "boss_props": [
+      {
+        "type": "central_castle_keep",
+        "tier": 5,
+        "score": 300,
+        "min_radius_px": 115,
+        "respawn": false
+      }
+    ]
+  },
+  "hazards": [
+    {
+      "name": "sugar_storm_bursts",
+      "type": "timed_area_denial",
+      "interval_seconds": 18,
+      "warning_seconds": 2.5,
+      "duration_seconds": 4,
+      "damage_model": "knockback_only",
+      "candidate_regions": [
+        "inner_courtyard_ring",
+        "middle_courtyard_ring"
+      ]
+    },
+    {
+      "name": "moat_choke_pressure",
+      "type": "score_multiplier_zone",
+      "multiplier": 1.15,
+      "regions": [
+        "middle_courtyard_ring"
+      ],
+      "risk": "high bot traffic"
+    }
+  ],
+  "bot_rules": {
+    "bot_count": 8,
+    "aggression": 0.9,
+    "route_bias": "contest_castle_and_choke_points",
+    "avoid_player_when_smaller": false,
+    "late_game_focus_seconds_remaining": 60
+  },
+  "audio_visual_hints": {
+    "music": "finale_sugar_storm_orchestra",
+    "ambient": "castle_bells_chocolate_moat",
+    "dominant_colors": [
+      "pink",
+      "gold",
+      "lime",
+      "chocolate_brown",
+      "peppermint_red"
+    ]
+  },
+  "generator_notes": [
+    "This should feel like the final exam: strong landmarks, layered rings, many chokepoints.",
+    "Use separate NavigationRegion2D polygons per ring and bridge to reduce AI pathing problems.",
+    "The central castle should only become edible very late in the match."
+  ]
+}

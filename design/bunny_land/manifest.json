@@ -1,0 +1,150 @@
+{
+  "pack_name": "Bunny Map Pack",
+  "pack_id": "bunny_map_pack",
+  "version": "1.0.0",
+  "schema_version": "1.0.0",
+  "description": "Ten bunny-inspired, brightly coloured, progressively harder Hole.io-style maps for Godot procedural generation.",
+  "target_engine": "Godot 4.x",
+  "coordinate_space": "normalized_0_to_1",
+  "authoring_note": "Map JSON files are procedural layout specs. PNG files are reference previews/blockouts, not collision source of truth.",
+  "folders": {
+    "maps": "res://BunnyMapPack/maps",
+    "images": "res://BunnyMapPack/images",
+    "scripts": "res://BunnyMapPack/scripts",
+    "schema": "res://BunnyMapPack/schema"
+  },
+  "maps": [
+    {
+      "id": "map_01_bunny_meadow",
+      "name": "Bunny Meadow",
+      "difficulty": "easy",
+      "difficulty_index": 1,
+      "preview": "res://BunnyMapPack/images/map_01_bunny_meadow.png",
+      "json_path": "res://BunnyMapPack/maps/map_01_bunny_meadow.json",
+      "tags": [
+        "tutorial",
+        "open",
+        "low_density"
+      ]
+    },
+    {
+      "id": "map_02_carrot_village",
+      "name": "Carrot Village",
+      "difficulty": "easy",
+      "difficulty_index": 2,
+      "preview": "res://BunnyMapPack/images/map_02_carrot_village.png",
+      "json_path": "res://BunnyMapPack/maps/map_02_carrot_village.json",
+      "tags": [
+        "village",
+        "resource_patches",
+        "safe_routes"
+      ]
+    },
+    {
+      "id": "map_03_bunny_burrow_park",
+      "name": "Bunny Burrow Park",
+      "difficulty": "medium",
+      "difficulty_index": 3,
+      "preview": "res://BunnyMapPack/images/map_03_bunny_burrow_park.png",
+      "json_path": "res://BunnyMapPack/maps/map_03_bunny_burrow_park.json",
+      "tags": [
+        "loop_layout",
+        "burrows",
+        "first_hazard"
+      ]
+    },
+    {
+      "id": "map_04_hopscotch_hills",
+      "name": "Hopscotch Hills",
+      "difficulty": "medium",
+      "difficulty_index": 4,
+      "preview": "res://BunnyMapPack/images/map_04_hopscotch_hills.png",
+      "json_path": "res://BunnyMapPack/maps/map_04_hopscotch_hills.json",
+      "tags": [
+        "hills",
+        "bonus_lane",
+        "slope_costs"
+      ]
+    },
+    {
+      "id": "map_05_easter_garden",
+      "name": "Easter Garden",
+      "difficulty": "medium_hard",
+      "difficulty_index": 5,
+      "preview": "res://BunnyMapPack/images/map_05_easter_garden.png",
+      "json_path": "res://BunnyMapPack/maps/map_05_easter_garden.json",
+      "tags": [
+        "maze",
+        "eggs",
+        "hazards"
+      ]
+    },
+    {
+      "id": "map_06_bunny_bakery_town",
+      "name": "Bunny Bakery Town",
+      "difficulty": "hard",
+      "difficulty_index": 6,
+      "preview": "res://BunnyMapPack/images/map_06_bunny_bakery_town.png",
+      "json_path": "res://BunnyMapPack/maps/map_06_bunny_bakery_town.json",
+      "tags": [
+        "town",
+        "buildings",
+        "street_grid"
+      ]
+    },
+    {
+      "id": "map_07_whisker_wonderland",
+      "name": "Whisker Wonderland",
+      "difficulty": "hard",
+      "difficulty_index": 7,
+      "preview": "res://BunnyMapPack/images/map_07_whisker_wonderland.png",
+      "json_path": "res://BunnyMapPack/maps/map_07_whisker_wonderland.json",
+      "tags": [
+        "wonderland",
+        "curves",
+        "bot_pressure"
+      ]
+    },
+    {
+      "id": "map_08_moonlit_burrows",
+      "name": "Moonlit Burrows",
+      "difficulty": "very_hard",
+      "difficulty_index": 8,
+      "preview": "res://BunnyMapPack/images/map_08_moonlit_burrows.png",
+      "json_path": "res://BunnyMapPack/maps/map_08_moonlit_burrows.json",
+      "tags": [
+        "night",
+        "caverns",
+        "pits",
+        "bridges"
+      ]
+    },
+    {
+      "id": "map_09_bunny_kingdom",
+      "name": "Bunny Kingdom",
+      "difficulty": "very_hard",
+      "difficulty_index": 9,
+      "preview": "res://BunnyMapPack/images/map_09_bunny_kingdom.png",
+      "json_path": "res://BunnyMapPack/maps/map_09_bunny_kingdom.json",
+      "tags": [
+        "kingdom",
+        "gates",
+        "boss_props"
+      ]
+    },
+    {
+      "id": "map_10_great_bunny_citadel",
+      "name": "The Great Bunny Citadel",
+      "difficulty": "extreme",
+      "difficulty_index": 10,
+      "preview": "res://BunnyMapPack/images/map_10_great_bunny_citadel.png",
+      "json_path": "res://BunnyMapPack/maps/map_10_great_bunny_citadel.json",
+      "tags": [
+        "finale",
+        "spiral",
+        "boss_object",
+        "extreme"
+      ]
+    }
+  ]
+}

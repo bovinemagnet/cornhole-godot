@@ -1,0 +1,475 @@
+{
+  "schema_version": "1.0.0",
+  "map_id": "candy_07_jellybean_junction",
+  "display_name": "Jellybean Junction",
+  "series": "Candy Collapse Arenas",
+  "difficulty_index": 7,
+  "difficulty_label": "hard",
+  "title_text": "Map 7 \u2013 Jellybean Junction",
+  "theme": "Busy candy crossroads with jellybean boulevards, candy-cane medians, peppermint traffic circles, gummy parking lots and shop blocks.",
+  "png_reference": {
+    "local_file": "res://maps/candy/images/map_07_jellybean_junction.png",
+    "generator_reference_only": true,
+    "note": "Use this PNG as visual concept/layout reference. JSON geometry is normalized and intended for procedural construction/collision, not pixel-perfect tracing."
+  },
+  "godot_import": {
+    "target_engine": "Godot 4.x",
+    "coordinate_system": "normalized_top_left",
+    "world_size_px": {
+      "x": 2048,
+      "y": 2048
+    },
+    "recommended_root_scene": "CandyArena.tscn",
+    "tile_size_px": 32,
+    "spawn_units": "world_pixels",
+    "collision_layers": {
+      "player_holes": 1,
+      "edible_props": 2,
+      "static_blockers": 4,
+      "hazards": 8,
+      "navigation_only": 16
+    }
+  },
+  "match_rules": {
+    "mode": "hole_io_score_attack",
+    "time_limit_seconds": 200,
+    "player_start_radius_px": 14,
+    "player_max_radius_px": 150,
+    "growth": {
+      "score_to_radius_formula": "radius = start_radius + sqrt(score) * 1.85",
+      "mass_decay_per_second": 0.0
+    },
+    "win_conditions": [
+      "highest_score_at_timer_end"
+    ],
+    "tie_breakers": [
+      "largest_radius",
+      "most_large_props_eaten",
+      "earliest_to_score"
+    ]
+  },
+  "edible_tiers": [
+    {
+      "tier": 1,
+      "id": "tiny",
+      "radius_required": 0,
+      "score": 1,
+      "examples": [
+        "sprinkles",
+        "loose jellybeans",
+        "mini gumdrops",
+        "candy pebbles"
+      ]
+    },
+    {
+      "tier": 2,
+      "id": "small",
+      "radius_required": 18,
+      "score": 4,
+      "examples": [
+        "gumdrop bushes",
+        "marshmallow cubes",
+        "small lollipop signs",
+        "cookie stools"
+      ]
+    },
+    {
+      "tier": 3,
+      "id": "medium",
+      "radius_required": 36,
+      "score": 12,
+      "examples": [
+        "cupcake kiosks",
+        "caramel puddle rims",
+        "wafer carts",
+        "frosting fountains"
+      ]
+    },
+    {
+      "tier": 4,
+      "id": "large",
+      "radius_required": 64,
+      "score": 35,
+      "examples": [
+        "cupcake huts",
+        "giant lollipop trees",
+        "donut rides",
+        "candy machines"
+      ]
+    },
+    {
+      "tier": 5,
+      "id": "huge",
+      "radius_required": 96,
+      "score": 95,
+      "examples": [
+        "large factory vats",
+        "large bridges",
+        "castle towers",
+        "major landmark structures"
+      ]
+    }
+  ],
+  "regions": [
+    {
+      "name": "arena_bounds",
+      "shape": "rect",
+      "rect": {
+        "x": 0.04,
+        "y": 0.05,
+        "w": 0.92,
+        "h": 0.9
+      },
+      "gameplay_role": "playable_area",
+      "palette_hint": "green candy city"
+    },
+    {
+      "name": "central_peppermint_roundabout",
+      "shape": "circle",
+      "center": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "radius": 0.1,
+      "gameplay_role": "traffic_roundabout",
+      "palette_hint": "red white peppermint"
+    },
+    {
+      "name": "north_parking_lot",
+      "shape": "rect",
+      "rect": {
+        "x": 0.33,
+        "y": 0.08,
+        "w": 0.34,
+        "h": 0.13
+      },
+      "gameplay_role": "gummy_parking",
+      "palette_hint": "grey licorice asphalt"
+    },
+    {
+      "name": "south_parking_lot",
+      "shape": "rect",
+      "rect": {
+        "x": 0.33,
+        "y": 0.78,
+        "w": 0.34,
+        "h": 0.13
+      },
+      "gameplay_role": "gummy_parking",
+      "palette_hint": "grey licorice asphalt"
+    },
+    {
+      "name": "west_parking_lot",
+      "shape": "rect",
+      "rect": {
+        "x": 0.07,
+        "y": 0.35,
+        "w": 0.15,
+        "h": 0.28
+      },
+      "gameplay_role": "gummy_parking",
+      "palette_hint": "grey licorice asphalt"
+    },
+    {
+      "name": "east_parking_lot",
+      "shape": "rect",
+      "rect": {
+        "x": 0.78,
+        "y": 0.35,
+        "w": 0.15,
+        "h": 0.28
+      },
+      "gameplay_role": "gummy_parking",
+      "palette_hint": "grey licorice asphalt"
+    },
+    {
+      "name": "north_shop_row",
+      "shape": "rect",
+      "rect": {
+        "x": 0.33,
+        "y": 0.25,
+        "w": 0.34,
+        "h": 0.12
+      },
+      "gameplay_role": "shop_row",
+      "palette_hint": "striped candy storefronts"
+    },
+    {
+      "name": "south_shop_row",
+      "shape": "rect",
+      "rect": {
+        "x": 0.33,
+        "y": 0.64,
+        "w": 0.34,
+        "h": 0.12
+      },
+      "gameplay_role": "shop_row",
+      "palette_hint": "striped candy storefronts"
+    },
+    {
+      "name": "nw_lollipop_park",
+      "shape": "circle",
+      "center": {
+        "x": 0.21,
+        "y": 0.24
+      },
+      "radius": 0.09,
+      "gameplay_role": "park_food_cluster",
+      "palette_hint": "gumdrops and lollipop"
+    },
+    {
+      "name": "se_lollipop_park",
+      "shape": "circle",
+      "center": {
+        "x": 0.79,
+        "y": 0.74
+      },
+      "radius": 0.09,
+      "gameplay_role": "park_food_cluster",
+      "palette_hint": "gumdrops and lollipop"
+    }
+  ],
+  "pathways": [
+    {
+      "name": "north_south_boulevard",
+      "surface": "jellybean_road",
+      "width": 0.07,
+      "points": [
+        {
+          "x": 0.5,
+          "y": 0.06
+        },
+        {
+          "x": 0.5,
+          "y": 0.94
+        }
+      ],
+      "gameplay_role": "primary_route"
+    },
+    {
+      "name": "west_east_boulevard",
+      "surface": "jellybean_road",
+      "width": 0.07,
+      "points": [
+        {
+          "x": 0.06,
+          "y": 0.5
+        },
+        {
+          "x": 0.94,
+          "y": 0.5
+        }
+      ],
+      "gameplay_role": "primary_route"
+    },
+    {
+      "name": "north_loop_road",
+      "surface": "jellybean_road",
+      "width": 0.052,
+      "points": [
+        {
+          "x": 0.15,
+          "y": 0.28
+        },
+        {
+          "x": 0.5,
+          "y": 0.22
+        },
+        {
+          "x": 0.85,
+          "y": 0.28
+        }
+      ],
+      "gameplay_role": "traffic_loop"
+    },
+    {
+      "name": "south_loop_road",
+      "surface": "jellybean_road",
+      "width": 0.052,
+      "points": [
+        {
+          "x": 0.15,
+          "y": 0.72
+        },
+        {
+          "x": 0.5,
+          "y": 0.78
+        },
+        {
+          "x": 0.85,
+          "y": 0.72
+        }
+      ],
+      "gameplay_role": "traffic_loop"
+    },
+    {
+      "name": "outer_city_loop",
+      "surface": "jellybean_road",
+      "width": 0.048,
+      "points": [
+        {
+          "x": 0.12,
+          "y": 0.12
+        },
+        {
+          "x": 0.88,
+          "y": 0.12
+        },
+        {
+          "x": 0.88,
+          "y": 0.88
+        },
+        {
+          "x": 0.12,
+          "y": 0.88
+        },
+        {
+          "x": 0.12,
+          "y": 0.12
+        }
+      ],
+      "gameplay_role": "traffic_loop"
+    }
+  ],
+  "blockers": [
+    {
+      "name": "candy_cane_outer_fence",
+      "type": "boundary",
+      "shape": "rect_ring",
+      "outer_rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "inner_rect": {
+        "x": 0.04,
+        "y": 0.05,
+        "w": 0.92,
+        "h": 0.9
+      },
+      "solid": true
+    },
+    {
+      "name": "shopfront_blocks",
+      "type": "candy_shop",
+      "center": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "radius": 0.42,
+      "count": 22,
+      "edible_tier": 4,
+      "density": "high",
+      "placement": "scatter_within_region",
+      "notes": "Decorative and edible when the player radius meets the tier requirement."
+    },
+    {
+      "name": "candy_cane_medians",
+      "type": "median_post",
+      "center": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "radius": 0.45,
+      "count": 72,
+      "edible_tier": 1,
+      "density": "high",
+      "placement": "scatter_within_region",
+      "notes": "Decorative and edible when the player radius meets the tier requirement."
+    }
+  ],
+  "spawn_rules": {
+    "player_spawns": [
+      {
+        "x": 0.5,
+        "y": 0.91
+      },
+      {
+        "x": 0.1,
+        "y": 0.5
+      },
+      {
+        "x": 0.9,
+        "y": 0.5
+      }
+    ],
+    "bot_spawns": [
+      {
+        "x": 0.15,
+        "y": 0.15
+      },
+      {
+        "x": 0.85,
+        "y": 0.15
+      },
+      {
+        "x": 0.15,
+        "y": 0.85
+      },
+      {
+        "x": 0.85,
+        "y": 0.85
+      },
+      {
+        "x": 0.5,
+        "y": 0.2
+      },
+      {
+        "x": 0.5,
+        "y": 0.8
+      }
+    ],
+    "edible_density": 1.0,
+    "large_prop_density": 0.52,
+    "respawn_policy": {
+      "enabled": true,
+      "interval_seconds": 12,
+      "max_respawn_tier": 3
+    },
+    "moving_edibles": [
+      {
+        "type": "jellybean_car",
+        "tier": 2,
+        "count": 18,
+        "speed_px_per_sec": 75,
+        "routes": [
+          "north_south_boulevard",
+          "west_east_boulevard",
+          "outer_city_loop"
+        ],
+        "respawn_on_eaten": true
+      }
+    ]
+  },
+  "hazards": [
+    {
+      "name": "traffic_flow",
+      "type": "moving_edible_collision",
+      "small_holes_bounce": true,
+      "large_holes_consume": true,
+      "min_radius_to_consume_px": 26
+    }
+  ],
+  "bot_rules": {
+    "bot_count": 6,
+    "aggression": 0.67,
+    "route_bias": "race_along_boulevards",
+    "avoid_player_when_smaller": false
+  },
+  "audio_visual_hints": {
+    "music": "busy_candy_city",
+    "ambient": "jellybean_traffic_pops",
+    "dominant_colors": [
+      "lime",
+      "red",
+      "yellow",
+      "purple",
+      "asphalt_grey"
+    ]
+  },
+  "generator_notes": [
+    "Traffic props add score but can cause bumping when player is tiny.",
+    "Intersections should be cleanly connected for AI navigation."
+  ]
+}

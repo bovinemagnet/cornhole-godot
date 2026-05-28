@@ -1,0 +1,1289 @@
+{
+  "schema_version": "1.0.0",
+  "id": "map_08_moonlit_burrows",
+  "name": "Moonlit Burrows",
+  "display_name": "Moonlit Burrows",
+  "theme": "bunny",
+  "subtheme": "moon",
+  "description": "A night cavern map with narrow bridges, crystal resources, pit zones, and shifting routes.",
+  "difficulty": {
+    "label": "very_hard",
+    "index": 8,
+    "recommended_player_skill": "expert"
+  },
+  "world": {
+    "coordinate_space": "normalized_0_to_1",
+    "recommended_world_size": {
+      "width": 3360,
+      "height": 3360
+    },
+    "origin": "top_left",
+    "wrap_edges": false,
+    "outer_wall": {
+      "enabled": true,
+      "style": "white_picket_fence",
+      "collision": true
+    },
+    "camera": {
+      "mode": "top_down",
+      "suggested_zoom": 0.77
+    }
+  },
+  "assets": {
+    "preview_png": "res://BunnyMapPack/images/map_08_moonlit_burrows.png",
+    "json_path": "res://BunnyMapPack/maps/map_08_moonlit_burrows.json",
+    "tileset_hint": "soft_pastel_top_down_bunny_props",
+    "palette": [
+      "midnight_blue",
+      "cyan_glow",
+      "violet"
+    ],
+    "feature_tags": [
+      "night",
+      "caverns",
+      "pits",
+      "bridges"
+    ]
+  },
+  "player": {
+    "start_position": [
+      0.5,
+      0.86
+    ],
+    "start_hole_radius": 0.026,
+    "max_hole_radius": 0.244,
+    "movement_speed": 0.84,
+    "growth_curve": "eat_value_weighted_radius",
+    "safe_start_radius": 0.078
+  },
+  "gameplay_rules": {
+    "mode": "hole_io_style_collect_and_grow",
+    "round_time_seconds": 94,
+    "score_to_win": 6800,
+    "allow_eat_players": true,
+    "eat_player_score_multiplier": 1.64,
+    "object_eat_rule": "object_radius_must_be_less_than_current_hole_radius_times_0.92",
+    "growth_per_score": 3.8e-05,
+    "combo_window_seconds": 3.0,
+    "combo_bonus_per_stack": 0.078,
+    "respawn_consumed_small_objects": true,
+    "respawn_consumed_large_objects": false,
+    "hazard_damage_enabled": true,
+    "fall_off_map_penalty": "instant_respawn_minus_10_percent_score"
+  },
+  "win_conditions": [
+    {
+      "type": "highest_score_when_timer_expires"
+    },
+    {
+      "type": "score_target",
+      "value": 6800
+    }
+  ],
+  "bot_ai": {
+    "enabled": true,
+    "bot_count": 9,
+    "bot_names": [
+      "Thumper",
+      "Clover",
+      "Mopsy",
+      "Flopsy",
+      "Nibbles",
+      "Velvet",
+      "Pippin",
+      "Hazel",
+      "Bramble"
+    ],
+    "aggression": 0.68,
+    "pathfinding": "region_graph_then_direct_steering",
+    "targeting_priority": [
+      "nearby_tier_1",
+      "safe_clusters",
+      "bonus_regions",
+      "weaker_players"
+    ],
+    "avoid_hazards_until_radius": 0.123
+  },
+  "audio_visual": {
+    "ambient_track": "moon_bouncy_loop",
+    "lighting": "moonlit_glow",
+    "particle_theme": "petals_and_bunny_sparkles",
+    "confetti_on_level_complete": true
+  },
+  "regions": [
+    {
+      "id": "grass_main",
+      "name": "Main Playfield",
+      "type": "ground",
+      "polygon": [
+        [
+          0.03,
+          0.07
+        ],
+        [
+          0.97,
+          0.07
+        ],
+        [
+          0.97,
+          0.97
+        ],
+        [
+          0.03,
+          0.97
+        ]
+      ],
+      "surface": "grass",
+      "color_hint": "#89D86C",
+      "spawn_tags": [
+        "flowers",
+        "carrots",
+        "small_props"
+      ],
+      "nav_cost": 1.0
+    },
+    {
+      "id": "start_pad",
+      "name": "Starting Burrow Pad",
+      "type": "safe_zone",
+      "polygon": [
+        [
+          0.575,
+          0.86
+        ],
+        [
+          0.572,
+          0.879
+        ],
+        [
+          0.565,
+          0.897
+        ],
+        [
+          0.553,
+          0.913
+        ],
+        [
+          0.537,
+          0.925
+        ],
+        [
+          0.519,
+          0.932
+        ],
+        [
+          0.5,
+          0.935
+        ],
+        [
+          0.481,
+          0.932
+        ],
+        [
+          0.463,
+          0.925
+        ],
+        [
+          0.447,
+          0.913
+        ],
+        [
+          0.435,
+          0.897
+        ],
+        [
+          0.428,
+          0.879
+        ],
+        [
+          0.425,
+          0.86
+        ],
+        [
+          0.428,
+          0.841
+        ],
+        [
+          0.435,
+          0.823
+        ],
+        [
+          0.447,
+          0.807
+        ],
+        [
+          0.462,
+          0.795
+        ],
+        [
+          0.481,
+          0.788
+        ],
+        [
+          0.5,
+          0.785
+        ],
+        [
+          0.519,
+          0.788
+        ],
+        [
+          0.537,
+          0.795
+        ],
+        [
+          0.553,
+          0.807
+        ],
+        [
+          0.565,
+          0.823
+        ],
+        [
+          0.572,
+          0.841
+        ]
+      ],
+      "surface": "soft_dirt",
+      "color_hint": "#D9B37B",
+      "spawn_tags": [
+        "safe_small"
+      ],
+      "nav_cost": 0.75
+    },
+    {
+      "id": "moonlit_caverns",
+      "name": "Moonlit Burrow Caverns",
+      "type": "cave_network",
+      "polygon": [
+        [
+          0.08,
+          0.12
+        ],
+        [
+          0.92,
+          0.12
+        ],
+        [
+          0.92,
+          0.89
+        ],
+        [
+          0.08,
+          0.89
+        ]
+      ],
+      "surface": "dark_stone",
+      "color_hint": "#2E385B",
+      "spawn_tags": [
+        "glow_crystals",
+        "mushrooms",
+        "eggs"
+      ],
+      "nav_cost": 1.25
+    },
+    {
+      "id": "glow_crystal_north",
+      "name": "Northern Glow Crystal Field",
+      "type": "resource",
+      "polygon": [
+        [
+          0.44,
+          0.25
+        ],
+        [
+          0.436,
+          0.284
+        ],
+        [
+          0.423,
+          0.315
+        ],
+        [
+          0.402,
+          0.342
+        ],
+        [
+          0.375,
+          0.363
+        ],
+        [
+          0.344,
+          0.376
+        ],
+        [
+          0.31,
+          0.38
+        ],
+        [
+          0.276,
+          0.376
+        ],
+        [
+          0.245,
+          0.363
+        ],
+        [
+          0.218,
+          0.342
+        ],
+        [
+          0.197,
+          0.315
+        ],
+        [
+          0.184,
+          0.284
+        ],
+        [
+          0.18,
+          0.25
+        ],
+        [
+          0.184,
+          0.216
+        ],
+        [
+          0.197,
+          0.185
+        ],
+        [
+          0.218,
+          0.158
+        ],
+        [
+          0.245,
+          0.137
+        ],
+        [
+          0.276,
+          0.124
+        ],
+        [
+          0.31,
+          0.12
+        ],
+        [
+          0.344,
+          0.124
+        ],
+        [
+          0.375,
+          0.137
+        ],
+        [
+          0.402,
+          0.158
+        ],
+        [
+          0.423,
+          0.185
+        ],
+        [
+          0.436,
+          0.216
+        ]
+      ],
+      "surface": "crystal",
+      "color_hint": "#5EE1FF",
+      "spawn_tags": [
+        "crystals",
+        "bonus"
+      ],
+      "nav_cost": 1.35
+    },
+    {
+      "id": "glow_crystal_south",
+      "name": "Southern Glow Crystal Field",
+      "type": "resource",
+      "polygon": [
+        [
+          0.82,
+          0.72
+        ],
+        [
+          0.815,
+          0.756
+        ],
+        [
+          0.801,
+          0.79
+        ],
+        [
+          0.779,
+          0.819
+        ],
+        [
+          0.75,
+          0.841
+        ],
+        [
+          0.716,
+          0.855
+        ],
+        [
+          0.68,
+          0.86
+        ],
+        [
+          0.644,
+          0.855
+        ],
+        [
+          0.61,
+          0.841
+        ],
+        [
+          0.581,
+          0.819
+        ],
+        [
+          0.559,
+          0.79
+        ],
+        [
+          0.545,
+          0.756
+        ],
+        [
+          0.54,
+          0.72
+        ],
+        [
+          0.545,
+          0.684
+        ],
+        [
+          0.559,
+          0.65
+        ],
+        [
+          0.581,
+          0.621
+        ],
+        [
+          0.61,
+          0.599
+        ],
+        [
+          0.644,
+          0.585
+        ],
+        [
+          0.68,
+          0.58
+        ],
+        [
+          0.716,
+          0.585
+        ],
+        [
+          0.75,
+          0.599
+        ],
+        [
+          0.779,
+          0.621
+        ],
+        [
+          0.801,
+          0.65
+        ],
+        [
+          0.815,
+          0.684
+        ]
+      ],
+      "surface": "crystal",
+      "color_hint": "#B165FF",
+      "spawn_tags": [
+        "crystals",
+        "bonus"
+      ],
+      "nav_cost": 1.35
+    },
+    {
+      "id": "abyss_gaps",
+      "name": "Moonbeam Abyss Gaps",
+      "type": "pit_field",
+      "polygon": [
+        [
+          0.39,
+          0.34
+        ],
+        [
+          0.61,
+          0.34
+        ],
+        [
+          0.61,
+          0.66
+        ],
+        [
+          0.39,
+          0.66
+        ]
+      ],
+      "surface": "void",
+      "color_hint": "#11172E",
+      "spawn_tags": [],
+      "nav_cost": 99,
+      "blocked": true
+    }
+  ],
+  "paths": [
+    {
+      "id": "cave_spine",
+      "type": "glow_path",
+      "width": 0.04,
+      "points": [
+        [
+          0.5,
+          0.93
+        ],
+        [
+          0.44,
+          0.76
+        ],
+        [
+          0.58,
+          0.62
+        ],
+        [
+          0.42,
+          0.48
+        ],
+        [
+          0.6,
+          0.34
+        ],
+        [
+          0.5,
+          0.08
+        ]
+      ]
+    },
+    {
+      "id": "crystal_bridge_west",
+      "type": "narrow_bridge",
+      "width": 0.025,
+      "points": [
+        [
+          0.16,
+          0.6
+        ],
+        [
+          0.34,
+          0.53
+        ],
+        [
+          0.43,
+          0.48
+        ]
+      ]
+    },
+    {
+      "id": "crystal_bridge_east",
+      "type": "narrow_bridge",
+      "width": 0.025,
+      "points": [
+        [
+          0.84,
+          0.42
+        ],
+        [
+          0.66,
+          0.48
+        ],
+        [
+          0.57,
+          0.55
+        ]
+      ]
+    },
+    {
+      "id": "outer_cavern_loop",
+      "type": "glow_path",
+      "width": 0.035,
+      "points": [
+        [
+          0.14,
+          0.18
+        ],
+        [
+          0.86,
+          0.18
+        ],
+        [
+          0.86,
+          0.83
+        ],
+        [
+          0.14,
+          0.83
+        ],
+        [
+          0.14,
+          0.18
+        ]
+      ]
+    }
+  ],
+  "spawn_points": [
+    {
+      "id": "player_spawn",
+      "kind": "player",
+      "position": [
+        0.5,
+        0.86
+      ],
+      "rotation_degrees": -90,
+      "safe": true
+    },
+    {
+      "id": "bot_spawn_01",
+      "kind": "bot",
+      "position": [
+        0.18,
+        0.18
+      ],
+      "weight": 1.0
+    },
+    {
+      "id": "bot_spawn_02",
+      "kind": "bot",
+      "position": [
+        0.82,
+        0.18
+      ],
+      "weight": 1.0
+    },
+    {
+      "id": "bot_spawn_03",
+      "kind": "bot",
+      "position": [
+        0.18,
+        0.82
+      ],
+      "weight": 1.0
+    },
+    {
+      "id": "bot_spawn_04",
+      "kind": "bot",
+      "position": [
+        0.82,
+        0.82
+      ],
+      "weight": 1.0
+    },
+    {
+      "id": "bot_spawn_05",
+      "kind": "bot",
+      "position": [
+        0.5,
+        0.16
+      ],
+      "weight": 1.0
+    },
+    {
+      "id": "bot_spawn_06",
+      "kind": "bot",
+      "position": [
+        0.5,
+        0.72
+      ],
+      "weight": 1.0
+    },
+    {
+      "id": "bot_spawn_07",
+      "kind": "bot",
+      "position": [
+        0.18,
+        0.5
+      ],
+      "weight": 1.0
+    },
+    {
+      "id": "bot_spawn_08",
+      "kind": "bot",
+      "position": [
+        0.82,
+        0.5
+      ],
+      "weight": 1.0
+    },
+    {
+      "id": "bot_spawn_09",
+      "kind": "bot",
+      "position": [
+        0.35,
+        0.34
+      ],
+      "weight": 1.0
+    },
+    {
+      "id": "bonus_spawn_01",
+      "kind": "bonus_cluster",
+      "position": [
+        0.5,
+        0.5
+      ],
+      "weight": 1.0
+    },
+    {
+      "id": "bonus_spawn_02",
+      "kind": "bonus_cluster",
+      "position": [
+        0.25,
+        0.28
+      ],
+      "weight": 1.08
+    },
+    {
+      "id": "bonus_spawn_03",
+      "kind": "bonus_cluster",
+      "position": [
+        0.75,
+        0.3
+      ],
+      "weight": 1.16
+    },
+    {
+      "id": "bonus_spawn_04",
+      "kind": "bonus_cluster",
+      "position": [
+        0.28,
+        0.72
+      ],
+      "weight": 1.24
+    },
+    {
+      "id": "bonus_spawn_05",
+      "kind": "bonus_cluster",
+      "position": [
+        0.72,
+        0.72
+      ],
+      "weight": 1.32
+    }
+  ],
+  "object_catalog": [
+    {
+      "id": "daisy_patch",
+      "tier": 1,
+      "radius": 0.01,
+      "score": 10,
+      "tags": [
+        "flower",
+        "tiny",
+        "safe"
+      ]
+    },
+    {
+      "id": "clover_clump",
+      "tier": 1,
+      "radius": 0.012,
+      "score": 14,
+      "tags": [
+        "plant",
+        "tiny",
+        "safe"
+      ]
+    },
+    {
+      "id": "baby_carrot",
+      "tier": 1,
+      "radius": 0.014,
+      "score": 18,
+      "tags": [
+        "carrot",
+        "food",
+        "tiny"
+      ]
+    },
+    {
+      "id": "painted_egg_small",
+      "tier": 1,
+      "radius": 0.016,
+      "score": 22,
+      "tags": [
+        "egg",
+        "tiny",
+        "seasonal"
+      ]
+    },
+    {
+      "id": "picnic_basket",
+      "tier": 2,
+      "radius": 0.025,
+      "score": 60,
+      "tags": [
+        "basket",
+        "prop"
+      ]
+    },
+    {
+      "id": "garden_fence_short",
+      "tier": 2,
+      "radius": 0.031,
+      "score": 90,
+      "tags": [
+        "fence",
+        "breakable"
+      ]
+    },
+    {
+      "id": "carrot_crate",
+      "tier": 2,
+      "radius": 0.034,
+      "score": 110,
+      "tags": [
+        "crate",
+        "carrot"
+      ]
+    },
+    {
+      "id": "burrow_sign",
+      "tier": 2,
+      "radius": 0.038,
+      "score": 130,
+      "tags": [
+        "sign",
+        "wood"
+      ]
+    },
+    {
+      "id": "rabbit_hutch",
+      "tier": 3,
+      "radius": 0.055,
+      "score": 260,
+      "tags": [
+        "hut",
+        "building"
+      ]
+    },
+    {
+      "id": "giant_carrot",
+      "tier": 3,
+      "radius": 0.062,
+      "score": 320,
+      "tags": [
+        "carrot",
+        "large_food"
+      ]
+    },
+    {
+      "id": "egg_fountain",
+      "tier": 3,
+      "radius": 0.075,
+      "score": 430,
+      "tags": [
+        "fountain",
+        "egg",
+        "landmark"
+      ]
+    },
+    {
+      "id": "burrow_house",
+      "tier": 4,
+      "radius": 0.095,
+      "score": 850,
+      "tags": [
+        "building",
+        "burrow",
+        "large"
+      ]
+    },
+    {
+      "id": "windmill",
+      "tier": 4,
+      "radius": 0.11,
+      "score": 1050,
+      "tags": [
+        "building",
+        "moving",
+        "large"
+      ]
+    },
+    {
+      "id": "castle_tower",
+      "tier": 5,
+      "radius": 0.135,
+      "score": 1650,
+      "tags": [
+        "castle",
+        "tower",
+        "boss_object"
+      ]
+    }
+  ],
+  "object_spawn_rules": [
+    {
+      "id": "tiny_meadow_scatter",
+      "tier": 1,
+      "object_ids": [
+        "daisy_patch",
+        "clover_clump",
+        "baby_carrot",
+        "painted_egg_small"
+      ],
+      "regions": [
+        "grass_main",
+        "start_pad"
+      ],
+      "count": 234,
+      "distribution": "blue_noise",
+      "respawn_seconds": 8
+    },
+    {
+      "id": "carrot_resource_patches",
+      "tier": 1,
+      "object_ids": [
+        "baby_carrot",
+        "clover_clump"
+      ],
+      "regions": [
+        "carrot_patch_a",
+        "carrot_patch_b",
+        "secret_patch",
+        "royal_garden"
+      ],
+      "count": 99,
+      "distribution": "clustered",
+      "respawn_seconds": 10
+    },
+    {
+      "id": "medium_props",
+      "tier": 2,
+      "object_ids": [
+        "picnic_basket",
+        "garden_fence_short",
+        "carrot_crate",
+        "burrow_sign"
+      ],
+      "regions": [
+        "grass_main",
+        "main_streets",
+        "castle_town_outer",
+        "egg_garden_outer"
+      ],
+      "count": 72,
+      "distribution": "near_paths",
+      "respawn_seconds": 18
+    },
+    {
+      "id": "landmark_props",
+      "tier": 3,
+      "object_ids": [
+        "rabbit_hutch",
+        "giant_carrot",
+        "egg_fountain"
+      ],
+      "regions": [
+        "cottage_cluster",
+        "market_square",
+        "royal_plaza",
+        "tea_party_ring"
+      ],
+      "count": 22,
+      "distribution": "region_centers",
+      "respawn_seconds": 0
+    },
+    {
+      "id": "late_game_structures",
+      "tier": 4,
+      "object_ids": [
+        "burrow_house",
+        "windmill"
+      ],
+      "regions": [
+        "bakery_row",
+        "windmill_ridge",
+        "castle_town_outer",
+        "citadel_outer_ring"
+      ],
+      "count": 5,
+      "distribution": "fixed_landmarks",
+      "respawn_seconds": 0
+    },
+    {
+      "id": "boss_objects",
+      "tier": 5,
+      "object_ids": [
+        "castle_tower"
+      ],
+      "regions": [
+        "throne_keep",
+        "royal_plaza"
+      ],
+      "count": 0,
+      "distribution": "fixed_landmark",
+      "respawn_seconds": 0
+    }
+  ],
+  "hazards": [
+    {
+      "id": "wandering_fox_shadow",
+      "name": "Wandering Fox Shadow",
+      "type": "moving_enemy_zone",
+      "shape": "circle",
+      "position": [
+        0.18,
+        0.18
+      ],
+      "radius": 0.055,
+      "damage": "minor_stun",
+      "speed": 0.2,
+      "active_after_seconds": 18
+    },
+    {
+      "id": "slippery_egg_tiles",
+      "name": "Slippery Egg Tiles",
+      "type": "low_friction_surface",
+      "regions": [],
+      "friction_multiplier": 0.55,
+      "score_penalty_on_slide": 0
+    },
+    {
+      "id": "spring_bouncer",
+      "name": "Bunny Spring Bouncer",
+      "type": "impulse_trap",
+      "positions": [
+        [
+          0.23,
+          0.43
+        ],
+        [
+          0.77,
+          0.57
+        ]
+      ],
+      "impulse": 0.18,
+      "cooldown_seconds": 4
+    },
+    {
+      "id": "pit_edges",
+      "name": "Pit Edges",
+      "type": "fall_zone",
+      "regions": [
+        "abyss_gaps"
+      ],
+      "penalty": "respawn_minus_10_percent_score"
+    },
+    {
+      "id": "boss_guard_patrol",
+      "name": "Royal Guard Patrol",
+      "type": "moving_blocker",
+      "path_id": "outer_spiral",
+      "radius": 0.045,
+      "damage": "knockback_and_score_drop"
+    }
+  ],
+  "blockers": [
+    {
+      "id": "outer_fence",
+      "type": "static_wall",
+      "source": "world.outer_wall",
+      "collision_layer": "walls"
+    },
+    {
+      "id": "hedge_cluster_a",
+      "type": "static_obstacle",
+      "shape": "polygon",
+      "polygon": [
+        [
+          0.12,
+          0.44
+        ],
+        [
+          0.24,
+          0.44
+        ],
+        [
+          0.24,
+          0.5
+        ],
+        [
+          0.12,
+          0.5
+        ]
+      ],
+      "min_hole_radius_to_eat": 0.07,
+      "score": 240
+    },
+    {
+      "id": "hedge_cluster_b",
+      "type": "static_obstacle",
+      "shape": "polygon",
+      "polygon": [
+        [
+          0.76,
+          0.5
+        ],
+        [
+          0.88,
+          0.5
+        ],
+        [
+          0.88,
+          0.56
+        ],
+        [
+          0.76,
+          0.56
+        ]
+      ],
+      "min_hole_radius_to_eat": 0.07,
+      "score": 240
+    },
+    {
+      "id": "large_building_cluster_north",
+      "type": "large_eatable_blocker",
+      "shape": "rect",
+      "rect": [
+        0.36,
+        0.16,
+        0.64,
+        0.26
+      ],
+      "min_hole_radius_to_eat": 0.115,
+      "score": 1200
+    },
+    {
+      "id": "large_building_cluster_south",
+      "type": "large_eatable_blocker",
+      "shape": "rect",
+      "rect": [
+        0.34,
+        0.74,
+        0.66,
+        0.84
+      ],
+      "min_hole_radius_to_eat": 0.115,
+      "score": 1200
+    }
+  ],
+  "events": [
+    {
+      "id": "golden_carrot_rush",
+      "trigger": "timer_at_50_percent",
+      "effect": "spawn_bonus_cluster",
+      "positions": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.25,
+          0.75
+        ],
+        [
+          0.75,
+          0.25
+        ]
+      ],
+      "duration_seconds": 15
+    },
+    {
+      "id": "egg_burst",
+      "trigger": "every_35_seconds",
+      "effect": "scatter_tier1_painted_eggs",
+      "count": 28,
+      "warning_seconds": 3
+    },
+    {
+      "id": "moonbeam_shift",
+      "trigger": "every_28_seconds",
+      "effect": "toggle_selected_bridge_collisions",
+      "path_ids": [
+        "crystal_bridge_west",
+        "crystal_bridge_east"
+      ],
+      "warning_seconds": 4
+    }
+  ],
+  "region_graph": {
+    "nodes": [
+      {
+        "id": "grass_main",
+        "center": [
+          0.5,
+          0.52
+        ],
+        "type": "ground"
+      },
+      {
+        "id": "start_pad",
+        "center": [
+          0.5,
+          0.86
+        ],
+        "type": "safe_zone"
+      },
+      {
+        "id": "moonlit_caverns",
+        "center": [
+          0.5,
+          0.505
+        ],
+        "type": "cave_network"
+      },
+      {
+        "id": "glow_crystal_north",
+        "center": [
+          0.31,
+          0.25
+        ],
+        "type": "resource"
+      },
+      {
+        "id": "glow_crystal_south",
+        "center": [
+          0.68,
+          0.72
+        ],
+        "type": "resource"
+      },
+      {
+        "id": "abyss_gaps",
+        "center": [
+          0.5,
+          0.5
+        ],
+        "type": "pit_field"
+      }
+    ],
+    "links": [
+      {
+        "from": "grass_main",
+        "to": "start_pad",
+        "cost": 1.0
+      },
+      {
+        "from": "grass_main",
+        "to": "moonlit_caverns",
+        "cost": 1.0
+      },
+      {
+        "from": "grass_main",
+        "to": "glow_crystal_north",
+        "cost": 1.0
+      },
+      {
+        "from": "grass_main",
+        "to": "glow_crystal_south",
+        "cost": 1.0
+      },
+      {
+        "from": "grass_main",
+        "to": "abyss_gaps",
+        "cost": 1.0
+      },
+      {
+        "from": "start_pad",
+        "to": "grass_main",
+        "cost": 0.5
+      }
+    ]
+  }
+}
