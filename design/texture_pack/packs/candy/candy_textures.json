@@ -1,0 +1,338 @@
+{
+  "id": "candy",
+  "name": "Candy Texture Pack",
+  "texture_count": 10,
+  "preview": "packs/candy/previews/candy_texture_preview.png",
+  "textures": [
+    {
+      "id": "frosting_sprinkles",
+      "display_name": "Frosting Sprinkles",
+      "category": "ground",
+      "albedo_texture": "packs/candy/textures/frosting_sprinkles.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "shader": "standard",
+        "uv_scale": [
+          2.0,
+          2.0
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": true,
+        "road": false,
+        "water": false,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "sprinkle_path",
+      "display_name": "Sprinkle Path",
+      "category": "road",
+      "albedo_texture": "packs/candy/textures/sprinkle_path.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.95,
+        "metallic": 0.0,
+        "shader": "standard",
+        "uv_scale": [
+          2.0,
+          2.0
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": true,
+        "water": false,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "chocolate_swirl",
+      "display_name": "Chocolate Swirl",
+      "category": "road",
+      "albedo_texture": "packs/candy/textures/chocolate_swirl.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.9,
+        "metallic": 0.0,
+        "shader": "standard",
+        "uv_scale": [
+          2.5,
+          2.5
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": true,
+        "water": false,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "peppermint_tiles",
+      "display_name": "Peppermint Tiles",
+      "category": "floor",
+      "albedo_texture": "packs/candy/textures/peppermint_tiles.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.6,
+        "metallic": 0.0,
+        "shader": "standard",
+        "uv_scale": [
+          2.0,
+          2.0
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": false,
+        "water": false,
+        "hazard": false,
+        "floor": true
+      }
+    },
+    {
+      "id": "jelly_water",
+      "display_name": "Jelly Water",
+      "category": "water",
+      "albedo_texture": "packs/candy/textures/jelly_water.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.15,
+        "metallic": 0.0,
+        "shader": "scrolling_water",
+        "uv_scale": [
+          1.5,
+          1.5
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": false,
+        "water": true,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "gumdrop_grass",
+      "display_name": "Gumdrop Grass",
+      "category": "ground",
+      "albedo_texture": "packs/candy/textures/gumdrop_grass.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.9,
+        "metallic": 0.0,
+        "shader": "standard",
+        "uv_scale": [
+          2.0,
+          2.0
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": true,
+        "road": false,
+        "water": false,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "licorice_road",
+      "display_name": "Licorice Road",
+      "category": "road",
+      "albedo_texture": "packs/candy/textures/licorice_road.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.8,
+        "metallic": 0.0,
+        "shader": "standard",
+        "uv_scale": [
+          2.5,
+          2.5
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": true,
+        "water": false,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "wafer_boardwalk",
+      "display_name": "Wafer Boardwalk",
+      "category": "bridge",
+      "albedo_texture": "packs/candy/textures/wafer_boardwalk.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "shader": "standard",
+        "uv_scale": [
+          1.5,
+          1.5
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": true,
+        "water": false,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "caramel_river",
+      "display_name": "Caramel River",
+      "category": "water",
+      "albedo_texture": "packs/candy/textures/caramel_river.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.25,
+        "metallic": 0.0,
+        "shader": "scrolling_water",
+        "uv_scale": [
+          1.8,
+          1.8
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": false,
+        "water": true,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "donut_paver",
+      "display_name": "Donut Paver",
+      "category": "floor",
+      "albedo_texture": "packs/candy/textures/donut_paver.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.65,
+        "metallic": 0.0,
+        "shader": "standard",
+        "uv_scale": [
+          2.0,
+          2.0
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": false,
+        "water": false,
+        "hazard": false,
+        "floor": true
+      }
+    }
+  ]
+}

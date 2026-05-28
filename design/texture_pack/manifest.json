@@ -1,0 +1,40 @@
+{
+  "pack_name": "Themed Texture Packs for Godot",
+  "version": "1.0.0",
+  "description": "Godot-ready tiling texture packs for Candy, Bunny, Robot, and Prehistoric worlds.",
+  "engine": "Godot 4",
+  "tile_resolution": [
+    512,
+    512
+  ],
+  "packs": [
+    {
+      "id": "candy",
+      "name": "Candy Texture Pack",
+      "texture_count": 10,
+      "manifest_path": "packs/candy/candy_textures.json",
+      "preview": "packs/candy/previews/candy_texture_preview.png"
+    },
+    {
+      "id": "bunny",
+      "name": "Bunny Texture Pack",
+      "texture_count": 10,
+      "manifest_path": "packs/bunny/bunny_textures.json",
+      "preview": "packs/bunny/previews/bunny_texture_preview.png"
+    },
+    {
+      "id": "robot",
+      "name": "Robot Texture Pack",
+      "texture_count": 10,
+      "manifest_path": "packs/robot/robot_textures.json",
+      "preview": "packs/robot/previews/robot_texture_preview.png"
+    },
+    {
+      "id": "prehistoric",
+      "name": "Prehistoric Texture Pack",
+      "texture_count": 10,
+      "manifest_path": "packs/prehistoric/prehistoric_textures.json",
+      "preview": "packs/prehistoric/previews/prehistoric_texture_preview.png"
+    }
+  ]
+}

@@ -1,0 +1,338 @@
+{
+  "id": "robot",
+  "name": "Robot Texture Pack",
+  "texture_count": 10,
+  "preview": "packs/robot/previews/robot_texture_preview.png",
+  "textures": [
+    {
+      "id": "brushed_metal_floor",
+      "display_name": "Brushed Metal Floor",
+      "category": "floor",
+      "albedo_texture": "packs/robot/textures/brushed_metal_floor.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.45,
+        "metallic": 0.85,
+        "shader": "standard",
+        "uv_scale": [
+          2.0,
+          2.0
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": false,
+        "water": false,
+        "hazard": false,
+        "floor": true
+      }
+    },
+    {
+      "id": "circuit_board",
+      "display_name": "Circuit Board",
+      "category": "floor",
+      "albedo_texture": "packs/robot/textures/circuit_board.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.4,
+        "metallic": 0.35,
+        "shader": "emissive_pulse",
+        "uv_scale": [
+          2.0,
+          2.0
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": false,
+        "water": false,
+        "hazard": false,
+        "floor": true
+      }
+    },
+    {
+      "id": "neon_grid_road",
+      "display_name": "Neon Grid Road",
+      "category": "road",
+      "albedo_texture": "packs/robot/textures/neon_grid_road.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.35,
+        "metallic": 0.75,
+        "shader": "emissive_pulse",
+        "uv_scale": [
+          2.0,
+          2.0
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": true,
+        "water": false,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "conveyor_belt",
+      "display_name": "Conveyor Belt",
+      "category": "road",
+      "albedo_texture": "packs/robot/textures/conveyor_belt.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.55,
+        "metallic": 0.8,
+        "shader": "conveyor_scroll",
+        "uv_scale": [
+          2.0,
+          2.0
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": true,
+        "water": false,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "coolant_water",
+      "display_name": "Coolant Water",
+      "category": "water",
+      "albedo_texture": "packs/robot/textures/coolant_water.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.18,
+        "metallic": 0.0,
+        "shader": "scrolling_water",
+        "uv_scale": [
+          1.8,
+          1.8
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": false,
+        "water": true,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "hazard_chevrons",
+      "display_name": "Hazard Chevrons",
+      "category": "hazard",
+      "albedo_texture": "packs/robot/textures/hazard_chevrons.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.5,
+        "metallic": 0.9,
+        "shader": "standard",
+        "uv_scale": [
+          2.2,
+          2.2
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": false,
+        "water": false,
+        "hazard": true,
+        "floor": false
+      }
+    },
+    {
+      "id": "scrap_ground",
+      "display_name": "Scrap Ground",
+      "category": "ground",
+      "albedo_texture": "packs/robot/textures/scrap_ground.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.8,
+        "metallic": 0.5,
+        "shader": "standard",
+        "uv_scale": [
+          2.0,
+          2.0
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": true,
+        "road": false,
+        "water": false,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "lab_tiles",
+      "display_name": "Lab Tiles",
+      "category": "floor",
+      "albedo_texture": "packs/robot/textures/lab_tiles.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.3,
+        "metallic": 0.2,
+        "shader": "standard",
+        "uv_scale": [
+          2.0,
+          2.0
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": false,
+        "water": false,
+        "hazard": false,
+        "floor": true
+      }
+    },
+    {
+      "id": "drone_pad",
+      "display_name": "Drone Pad",
+      "category": "landing_pad",
+      "albedo_texture": "packs/robot/textures/drone_pad.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.4,
+        "metallic": 0.8,
+        "shader": "standard",
+        "uv_scale": [
+          2.0,
+          2.0
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": true,
+        "water": false,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "industrial_grate",
+      "display_name": "Industrial Grate",
+      "category": "bridge",
+      "albedo_texture": "packs/robot/textures/industrial_grate.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.65,
+        "metallic": 0.95,
+        "shader": "standard",
+        "uv_scale": [
+          2.0,
+          2.0
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": true,
+        "water": false,
+        "hazard": false,
+        "floor": false
+      }
+    }
+  ]
+}

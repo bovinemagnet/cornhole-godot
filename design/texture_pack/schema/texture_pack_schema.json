@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Themed Texture Pack",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "textures"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "textures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "category",
+          "albedo_texture",
+          "material"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "albedo_texture": {
+            "type": "string"
+          },
+          "tileable": {
+            "type": "boolean"
+          },
+          "resolution": {
+            "type": "array"
+          },
+          "material": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}
