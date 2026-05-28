@@ -5,6 +5,10 @@ const PropGrid = preload("res://scripts/prop_grid.gd")
 const AudioUtil = preload("res://scripts/audio_util.gd")
 const MovingRouteUtil = preload("res://scripts/moving_route_util.gd")
 const MovingCarSpawn = preload("res://scripts/moving_car_spawn.gd")
+const MapCatalog = preload("res://scripts/map_catalog.gd")
+const MapDefinition = preload("res://scripts/map_definition.gd")
+const MapBuilder = preload("res://scripts/map_builder.gd")
+const MapSpawnService = preload("res://scripts/map_spawn_service.gd")
 const PROP_CAR_SCENE = preload("res://scenes/props/PropCar.tscn")
 const PROP_GRID_CELL_SIZE := 6.0
 const BOT_TARGET_QUERY_RADIUS := 40.0
@@ -19,6 +23,20 @@ const MOVING_CAR_REQUIRED_RADIUS := 2.25
 const MOVING_CAR_COLLISION_RADIUS := 1.40
 const MOVING_CAR_FOOTPRINT := Vector2(1.25, 0.625)
 const MOVING_CAR_TIER := 4
+const PEOPLE_ID_BASE := 30000
+const PEOPLE_SPEED := 1.6
+const PEOPLE_AREA := 0.34
+const PEOPLE_SCORE := 22
+const PEOPLE_REQUIRED_RADIUS := 0.55
+const PEOPLE_COLLISION_RADIUS := 0.30
+const PEOPLE_TIER := 2
+const PEOPLE_SEED_NAMESPACE := 730000
+const STACK_MEMBER_ID_BASE := 40000
+const STACK_MEMBER_SIZE := Vector3(0.70, 0.60, 0.70)
+const STACK_MEMBER_AREA := 0.30
+const STACK_MEMBER_SCORE := 18
+const STACK_MEMBER_REQUIRED_RADIUS := 0.85
+const STACK_MEMBER_TIER := 1
 
 const ARENA_HALF_SIZE := 72.0
 const INITIAL_RADIUS := 1.15
@@ -105,6 +123,8 @@ var selected_match_seconds := MATCH_SECONDS
 var selected_map_seed := MAP_SEED
 var selected_map_id := "classic_park"
 var selected_map_name := "Classic Park"
+var selected_map_catalog_path := ""
+var current_map_definition: Dictionary = {}
 var selected_bot_count := BOT_COUNT
 var selected_bot_difficulty := BOT_DIFFICULTY_NORMAL
 var time_remaining := MATCH_SECONDS
@@ -123,6 +143,10 @@ var active_prop_indices: PackedInt32Array = PackedInt32Array()
 var moving_props: Array = []
 var moving_routes: Array = []
 var moving_route_lengths: PackedFloat32Array = PackedFloat32Array()
+var people_actors: Array = []
+var people_paths_world: Array = []
+var people_path_lengths: PackedFloat32Array = PackedFloat32Array()
+var stack_members: Array = []
 var map_options: Array = []
 var audio_consume_player: AudioStreamPlayer
 var audio_hole_eaten_player: AudioStreamPlayer
@@ -134,8 +158,11 @@ var player_root: Node3D
 var hole_mesh: MeshInstance3D
 var consume_mesh: MeshInstance3D
 var player_name_label: Label3D
+var map_root: Node3D
 var props_root: Node3D
 var moving_props_root: Node3D
+var people_root: Node3D
+var stacks_root: Node3D
 var bots_root: Node3D
 var effects_root: Node3D
 var camera: Camera3D
@@ -248,11 +275,14 @@ func _physics_process(delta: float) -> void:
 				_handle_movement(delta)
 				_update_bots(delta)
 				_update_moving_props()
+				_update_people()
 				_refresh_interaction_cache()
 				_update_too_big_prop_feedback(delta)
 				_update_prop_markers()
 				_check_consumption()
 				_check_moving_prop_consumption()
+				_check_people_consumption()
+				_check_stack_consumption()
 				_check_hole_consumption()
 		MatchPhase.PAUSED:
 			if Input.is_action_just_pressed("pause_match"):
@@ -304,6 +334,8 @@ func reset_match(start_countdown := true) -> void:
 	_reset_bots()
 	_spawn_props()
 	_spawn_moving_props()
+	_spawn_people()
+	_spawn_stacks()
 	if start_countdown:
 		_add_event_feed_message("Practice started on %s: %d rivals, %s AI" % [selected_map_name, selected_bot_count, _get_bot_difficulty_name()])
 	_update_camera(1.0)
@@ -332,9 +364,7 @@ func _on_duration_selected(index: int) -> void:
 
 
 func _load_map_options() -> void:
-	map_options.clear()
-	for catalog_path in MAP_CATALOG_PATHS:
-		_load_map_catalog(catalog_path)
+	map_options = MapCatalog.load_all(MAP_CATALOG_PATHS)
 
 	if map_options.is_empty():
 		_add_map_option("classic_park", "Classic Park", "Classic Park", MAP_SEED)
@@ -343,49 +373,13 @@ func _load_map_options() -> void:
 		_add_map_option("big_finish", "Big Finish", "Big Finish", 24680)
 
 
-func _load_map_catalog(catalog_path: String) -> void:
-	if not FileAccess.file_exists(catalog_path):
-		return
-
-	var file := FileAccess.open(catalog_path, FileAccess.READ)
-	if not file:
-		push_warning("Unable to read map catalog: %s" % catalog_path)
-		return
-
-	var parsed = JSON.parse_string(file.get_as_text())
-	if typeof(parsed) != TYPE_DICTIONARY:
-		push_warning("Map catalog is not a dictionary: %s" % catalog_path)
-		return
-
-	var catalog: Dictionary = parsed
-	var maps = catalog.get("maps", [])
-	if typeof(maps) != TYPE_ARRAY:
-		push_warning("Map catalog has no maps array: %s" % catalog_path)
-		return
-
-	var pack_id := String(catalog.get("pack_id", catalog_path.get_base_dir().get_file()))
-	var pack_name := String(catalog.get("name", ""))
-	if pack_name.is_empty():
-		pack_name = "Base Maps" if catalog_path.ends_with("/map_catalog.json") else pack_id.capitalize()
-
-	for map_data in maps:
-		if typeof(map_data) != TYPE_DICTIONARY:
-			continue
-		var map_dictionary: Dictionary = map_data
-		var map_id := String(map_dictionary.get("id", "map_%d" % map_options.size()))
-		var map_name := String(map_dictionary.get("name", map_id.capitalize()))
-		var option_id := "%s/%s" % [pack_id, map_id]
-		var label := "%s: %s" % [pack_name, map_name]
-		var seed := int(map_dictionary.get("seed", MAP_SEED + abs(option_id.hash())))
-		_add_map_option(option_id, map_name, label, seed)
-
-
 func _add_map_option(map_id: String, map_name: String, label: String, seed: int) -> void:
 	map_options.append({
 		"id": map_id,
 		"name": map_name,
 		"label": label,
 		"seed": seed,
+		"catalog_path": "",
 	})
 
 
@@ -397,8 +391,44 @@ func _apply_selected_map_option(index: int, refresh_hud := true) -> void:
 	selected_map_id = String(option["id"])
 	selected_map_name = String(option["name"])
 	selected_map_seed = int(option["seed"])
+	selected_map_catalog_path = String(option.get("catalog_path", ""))
+	_load_current_map_definition()
+	if map_root:
+		MapBuilder.build_map(map_root, current_map_definition)
+	_build_moving_routes()
+	_build_people_paths()
 	if refresh_hud:
 		_update_hud()
+
+
+func _load_current_map_definition() -> void:
+	current_map_definition = {}
+	if selected_map_catalog_path.is_empty():
+		return
+	if not FileAccess.file_exists(selected_map_catalog_path):
+		return
+	var file := FileAccess.open(selected_map_catalog_path, FileAccess.READ)
+	if not file:
+		return
+	var parsed: Variant = JSON.parse_string(file.get_as_text())
+	if typeof(parsed) != TYPE_DICTIONARY:
+		return
+	var catalog: Dictionary = parsed
+	var maps_value: Variant = catalog.get("maps", [])
+	if typeof(maps_value) != TYPE_ARRAY:
+		return
+	var pack_id := String(catalog.get("pack_id", selected_map_catalog_path.get_base_dir().get_file()))
+	var pack_name := String(catalog.get("name", pack_id))
+	# selected_map_id is "<pack_id>/<inner_map_id>".
+	var inner_id := selected_map_id.split("/", true, 1)[-1]
+	for map_data in maps_value:
+		if typeof(map_data) != TYPE_DICTIONARY:
+			continue
+		var entry: Dictionary = map_data
+		if String(entry.get("id", "")) != inner_id:
+			continue
+		current_map_definition = MapDefinition.from_catalog_map(pack_id, pack_name, entry)
+		return
 
 
 func _on_seed_selected(index: int) -> void:
@@ -512,14 +542,9 @@ func _build_world() -> void:
 	sun.rotation_degrees = Vector3(-58.0, -34.0, 0.0)
 	add_child(sun)
 
-	var floor_mesh := MeshInstance3D.new()
-	var floor_plane := PlaneMesh.new()
-	floor_plane.size = Vector2(ARENA_HALF_SIZE * 2.15, ARENA_HALF_SIZE * 2.15)
-	floor_mesh.name = "ArenaFloor"
-	floor_mesh.mesh = floor_plane
-	floor_mesh.material_override = materials["floor"]
-	floor_mesh.position.y = -0.03
-	add_child(floor_mesh)
+	map_root = Node3D.new()
+	map_root.name = "MapRoot"
+	add_child(map_root)
 
 	_add_wall("NorthWall", Vector3(0.0, 0.35, -ARENA_HALF_SIZE), Vector3(ARENA_HALF_SIZE * 2.0, 0.70, 0.45))
 	_add_wall("SouthWall", Vector3(0.0, 0.35, ARENA_HALF_SIZE), Vector3(ARENA_HALF_SIZE * 2.0, 0.70, 0.45))
@@ -566,7 +591,14 @@ func _build_world() -> void:
 	moving_props_root = Node3D.new()
 	moving_props_root.name = "MovingProps"
 	add_child(moving_props_root)
-	_build_moving_routes()
+	people_root = Node3D.new()
+	people_root.name = "People"
+	add_child(people_root)
+	stacks_root = Node3D.new()
+	stacks_root.name = "Stacks"
+	add_child(stacks_root)
+	# Routes are derived from the loaded map definition; the initial call
+	# happens during _apply_selected_map_option once the menu picks a map.
 
 
 func _create_bots() -> void:
@@ -948,9 +980,19 @@ func _spawn_props() -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = selected_map_seed
 
+	# Zones from the loaded map take precedence over the historic full-arena
+	# scatter. The service uses its own seed namespace so changing where props
+	# are placed never disturbs which tier the per-prop tier rng selects.
+	var prop_spawn_zones: Array = current_map_definition.get("prop_spawn_zones", [])
+	var water_regions: Array = current_map_definition.get("water_regions", [])
+	var zone_positions: PackedVector3Array = MapSpawnService.choose_static_prop_positions(
+		selected_map_seed, SPAWN_ALGO_VERSION, PROP_COUNT,
+		prop_spawn_zones, water_regions, ARENA_HALF_SIZE, 6.0
+	)
+
 	for id in range(PROP_COUNT):
 		var tier := _choose_tier(rng)
-		var position := _random_spawn_position(rng)
+		var position: Vector3 = zone_positions[id] if not prop_spawn_zones.is_empty() else _random_spawn_position(rng)
 		var node := Node3D.new()
 		node.name = "%s_%03d" % [tier["name"], id]
 		node.position = position
@@ -991,55 +1033,70 @@ func _spawn_props() -> void:
 	_update_prop_markers()
 
 
-func _make_moving_route(id: int, points_array: Array, loop: bool) -> Dictionary:
-	var points := PackedVector3Array()
-	points.resize(points_array.size())
-	for i in range(points_array.size()):
-		points[i] = points_array[i]
-	return {"id": id, "points": points, "loop": loop}
-
-
 func _build_moving_routes() -> void:
 	moving_routes.clear()
-	# Five fixed lane loops. All routes stay inside ARENA_HALF_SIZE so cars
-	# never clip walls. Routes have stable IDs so deterministic spawn data
-	# remains valid across runs with the same map seed.
-	moving_routes.append(_make_moving_route(0, [
-		Vector3(-55.0, 0.0, -50.0),
-		Vector3(55.0, 0.0, -50.0),
-		Vector3(55.0, 0.0, -44.0),
-		Vector3(-55.0, 0.0, -44.0),
-	], true))
-	moving_routes.append(_make_moving_route(1, [
-		Vector3(-55.0, 0.0, 44.0),
-		Vector3(55.0, 0.0, 44.0),
-		Vector3(55.0, 0.0, 50.0),
-		Vector3(-55.0, 0.0, 50.0),
-	], true))
-	moving_routes.append(_make_moving_route(2, [
-		Vector3(-50.0, 0.0, -55.0),
-		Vector3(-50.0, 0.0, 55.0),
-		Vector3(-44.0, 0.0, 55.0),
-		Vector3(-44.0, 0.0, -55.0),
-	], true))
-	moving_routes.append(_make_moving_route(3, [
-		Vector3(44.0, 0.0, -55.0),
-		Vector3(44.0, 0.0, 55.0),
-		Vector3(50.0, 0.0, 55.0),
-		Vector3(50.0, 0.0, -55.0),
-	], true))
-	moving_routes.append(_make_moving_route(4, [
-		Vector3(-22.0, 0.0, -22.0),
-		Vector3(22.0, 0.0, -22.0),
-		Vector3(22.0, 0.0, 22.0),
-		Vector3(-22.0, 0.0, 22.0),
-	], true))
-
 	moving_route_lengths = PackedFloat32Array()
+	# Routes are sourced from the loaded map's roads. A road whose first and
+	# last point coincide loops; otherwise the polyline is open. Maps without
+	# roads simply spawn no cars (spec: "If a map has no roads, spawn no cars").
+	var map_roads: Array = current_map_definition.get("roads", [])
+	for road in map_roads:
+		var entry: Dictionary = road
+		var points2d: PackedVector2Array = entry["points"]
+		if points2d.size() < 2:
+			continue
+		var points3d := PackedVector3Array()
+		points3d.resize(points2d.size())
+		for i in range(points2d.size()):
+			points3d[i] = Vector3(points2d[i].x, 0.0, points2d[i].y)
+		var loop: bool = points2d[0].distance_to(points2d[points2d.size() - 1]) < 0.5
+		moving_routes.append({"id": int(entry["id"]), "points": points3d, "loop": loop})
+
 	moving_route_lengths.resize(moving_routes.size())
 	for i in range(moving_routes.size()):
 		var route: Dictionary = moving_routes[i]
 		moving_route_lengths[i] = MovingRouteUtil.route_length(route["points"], bool(route["loop"]))
+
+
+func _find_moving_route_index_by_id(road_id: int) -> int:
+	for i in range(moving_routes.size()):
+		var route: Dictionary = moving_routes[i]
+		if int(route["id"]) == road_id:
+			return i
+	return -1
+
+
+func _build_moving_car_spawn_data() -> Array:
+	# Map-derived car routes win: each entry pins a specific road_id and
+	# speed. Maps with roads but no moving_car_routes get a small deterministic
+	# fallback so empty road networks still feel alive.
+	var map_car_routes: Array = current_map_definition.get("moving_car_routes", [])
+	if not map_car_routes.is_empty():
+		var rng := RandomNumberGenerator.new()
+		rng.seed = selected_map_seed + MovingCarSpawn.SEED_NAMESPACE + SPAWN_ALGO_VERSION
+		var spawns: Array = []
+		for index in range(map_car_routes.size()):
+			var entry: Dictionary = map_car_routes[index]
+			var route_index := _find_moving_route_index_by_id(int(entry["road_id"]))
+			if route_index < 0:
+				continue
+			var route_length: float = moving_route_lengths[route_index]
+			spawns.append({
+				"id": MovingCarSpawn.MOVING_PROP_ID_BASE + index,
+				"route_id": route_index,
+				"phase_offset": rng.randf() * route_length,
+				"speed": float(entry.get("speed", MOVING_CAR_SPEED_MIN)),
+			})
+		return spawns
+
+	var fallback_count: int = min(MOVING_CAR_COUNT, moving_routes.size() * 2)
+	return MovingCarSpawn.make_spawns(
+		selected_map_seed,
+		fallback_count,
+		moving_route_lengths,
+		MOVING_CAR_SPEED_MIN,
+		MOVING_CAR_SPEED_MAX
+	)
 
 
 func _spawn_moving_props() -> void:
@@ -1052,13 +1109,7 @@ func _spawn_moving_props() -> void:
 	if moving_routes.is_empty() or not moving_props_root:
 		return
 
-	var spawn_data: Array = MovingCarSpawn.make_spawns(
-		selected_map_seed,
-		MOVING_CAR_COUNT,
-		moving_route_lengths,
-		MOVING_CAR_SPEED_MIN,
-		MOVING_CAR_SPEED_MAX
-	)
+	var spawn_data: Array = _build_moving_car_spawn_data()
 
 	for spawn in spawn_data:
 		var route_id := int(spawn["route_id"])
@@ -1153,6 +1204,266 @@ func _consume_moving_prop(prop: Dictionary, actor: Dictionary) -> void:
 		_spawn_consume_debris(prop)
 	_add_event_feed_message("%s ate %s  +%d" % [_get_actor_name(actor), String(prop["object_type"]), int(prop["score"])])
 	var node := prop["node"] as Node3D
+	if is_instance_valid(node):
+		node.hide()
+
+
+func _build_people_paths() -> void:
+	people_paths_world.clear()
+	people_path_lengths = PackedFloat32Array()
+	var paths: Array = current_map_definition.get("people_paths", [])
+	for entry in paths:
+		var path_data: Dictionary = entry
+		var points2d: PackedVector2Array = path_data["points"]
+		if points2d.size() < 2:
+			continue
+		var points3d := PackedVector3Array()
+		points3d.resize(points2d.size())
+		for i in range(points2d.size()):
+			points3d[i] = Vector3(points2d[i].x, 0.0, points2d[i].y)
+		people_paths_world.append({"id": int(path_data["id"]), "points": points3d, "loop": true})
+
+	people_path_lengths.resize(people_paths_world.size())
+	for i in range(people_paths_world.size()):
+		var path: Dictionary = people_paths_world[i]
+		people_path_lengths[i] = MovingRouteUtil.route_length(path["points"], bool(path["loop"]))
+
+
+func _spawn_people() -> void:
+	for person in people_actors:
+		var existing_node := person["node"] as Node
+		if is_instance_valid(existing_node):
+			existing_node.queue_free()
+	people_actors.clear()
+
+	if people_paths_world.is_empty() or not people_root:
+		return
+
+	# One person per path keeps the visual count proportional to map design.
+	# Seeded RNG ensures phase offsets reproduce on every machine.
+	var rng := RandomNumberGenerator.new()
+	rng.seed = selected_map_seed + PEOPLE_SEED_NAMESPACE + SPAWN_ALGO_VERSION
+
+	for index in range(people_paths_world.size()):
+		var path: Dictionary = people_paths_world[index]
+		var path_length: float = people_path_lengths[index]
+		if path_length <= 0.0:
+			continue
+		var phase_offset := rng.randf() * path_length
+		var sample := MovingRouteUtil.sample_route(path["points"], bool(path["loop"]), phase_offset)
+		var position: Vector3 = sample["position"]
+		var tangent: Vector3 = sample["tangent"]
+		var rotation_y := atan2(tangent.x, tangent.z)
+
+		var node := _build_person_visual()
+		node.name = "Person_%d" % (PEOPLE_ID_BASE + index)
+		node.position = position
+		node.rotation.y = rotation_y
+		people_root.add_child(node)
+
+		people_actors.append({
+			"id": PEOPLE_ID_BASE + index,
+			"path_index": index,
+			"phase_offset": phase_offset,
+			"speed": PEOPLE_SPEED,
+			"object_type": "Person",
+			"tier": PEOPLE_TIER,
+			"shape": "sphere",
+			"required_radius": PEOPLE_REQUIRED_RADIUS,
+			"collision_radius": PEOPLE_COLLISION_RADIUS,
+			"area": PEOPLE_AREA,
+			"score": PEOPLE_SCORE,
+			"footprint": Vector2(PEOPLE_COLLISION_RADIUS, PEOPLE_COLLISION_RADIUS),
+			"node": node,
+			"position": position,
+			"rotation_y": rotation_y,
+			"consumed": false,
+		})
+
+
+func _build_person_visual() -> Node3D:
+	var root := Node3D.new()
+	var body := MeshInstance3D.new()
+	var capsule := CapsuleMesh.new()
+	capsule.radius = 0.30
+	capsule.height = 1.50
+	body.mesh = capsule
+	body.position.y = 0.75
+	var material := StandardMaterial3D.new()
+	material.albedo_color = Color(0.92, 0.78, 0.66)
+	material.roughness = 0.7
+	body.material_override = material
+	root.add_child(body)
+	return root
+
+
+func _update_people() -> void:
+	if people_actors.is_empty():
+		return
+	var elapsed: float = selected_match_seconds - time_remaining
+	for person in people_actors:
+		if bool(person["consumed"]):
+			continue
+		var path_index := int(person["path_index"])
+		if path_index < 0 or path_index >= people_paths_world.size():
+			continue
+		var path: Dictionary = people_paths_world[path_index]
+		var distance: float = elapsed * float(person["speed"]) + float(person["phase_offset"])
+		var sample := MovingRouteUtil.sample_route(path["points"], bool(path["loop"]), distance)
+		var position: Vector3 = sample["position"]
+		var tangent: Vector3 = sample["tangent"]
+		var rotation_y := atan2(tangent.x, tangent.z)
+		var node := person["node"] as Node3D
+		if is_instance_valid(node):
+			node.position = position
+			node.rotation.y = rotation_y
+		person["position"] = position
+		person["rotation_y"] = rotation_y
+
+
+func _check_people_consumption() -> void:
+	if people_actors.is_empty():
+		return
+	for person in people_actors:
+		if bool(person["consumed"]):
+			continue
+		var winner: Dictionary = _find_consumption_winner(person)
+		if winner.is_empty():
+			continue
+		_consume_person(person, winner)
+
+
+func _consume_person(person: Dictionary, actor: Dictionary) -> void:
+	# Same shape as _consume_moving_prop — people are score-only and never
+	# decrement remaining_count.
+	person["consumed"] = true
+	_apply_actor_growth(actor, float(person["area"]), int(person["score"]))
+	_play_growth_feedback(actor, int(person["score"]))
+	if bool(actor["is_player"]):
+		_record_player_prop_eaten(person)
+		_play_consume_sfx(int(person["tier"]))
+	_add_event_feed_message("%s ate Person  +%d" % [_get_actor_name(actor), int(person["score"])])
+	var node := person["node"] as Node3D
+	if is_instance_valid(node):
+		node.hide()
+
+
+func _spawn_stacks() -> void:
+	for member in stack_members:
+		var existing_node := member["node"] as Node
+		if is_instance_valid(existing_node):
+			existing_node.queue_free()
+	stack_members.clear()
+
+	if not stacks_root:
+		return
+
+	var spawn_points: Array = current_map_definition.get("stack_spawn_points", [])
+	if spawn_points.is_empty():
+		return
+
+	var member_size: Vector3 = STACK_MEMBER_SIZE
+	var footprint := Vector2(member_size.x * 0.5, member_size.z * 0.5)
+	var next_id := STACK_MEMBER_ID_BASE
+
+	for group_index in range(spawn_points.size()):
+		var entry: Dictionary = spawn_points[group_index]
+		var base_pos: Vector2 = entry["position"]
+		var count: int = max(1, int(entry.get("count", 1)))
+		var stack_type := String(entry.get("type", "stack"))
+
+		for stack_index in range(count):
+			var member_pos := Vector3(
+				base_pos.x,
+				member_size.y * (stack_index + 0.5),
+				base_pos.y
+			)
+			var node := _build_stack_member_visual(stack_type, member_size)
+			node.name = "Stack_%s_%d_%d" % [stack_type, group_index, stack_index]
+			node.position = member_pos
+			stacks_root.add_child(node)
+
+			stack_members.append({
+				"id": next_id,
+				"group_id": group_index,
+				"stack_index": stack_index,
+				"object_type": "Stack:%s" % stack_type,
+				"tier": STACK_MEMBER_TIER,
+				"shape": "box",
+				"footprint": footprint,
+				"required_radius": STACK_MEMBER_REQUIRED_RADIUS,
+				"collision_radius": footprint.length(),
+				"area": STACK_MEMBER_AREA,
+				"score": STACK_MEMBER_SCORE,
+				"node": node,
+				"position": member_pos,
+				"rotation_y": 0.0,
+				"consumed": false,
+			})
+			next_id += 1
+
+
+func _build_stack_member_visual(stack_type: String, member_size: Vector3) -> Node3D:
+	var root := Node3D.new()
+	var mesh_instance := MeshInstance3D.new()
+	var box := BoxMesh.new()
+	box.size = member_size
+	mesh_instance.mesh = box
+	var material := StandardMaterial3D.new()
+	if stack_type.contains("crate") or stack_type.contains("delivery"):
+		material.albedo_color = Color(0.62, 0.45, 0.24)
+	elif stack_type.contains("barrel"):
+		material.albedo_color = Color(0.34, 0.28, 0.20)
+	elif stack_type.contains("ship") or stack_type.contains("container"):
+		material.albedo_color = Color(0.30, 0.46, 0.62)
+	else:
+		material.albedo_color = Color(0.78, 0.66, 0.42)
+	material.roughness = 0.8
+	mesh_instance.material_override = material
+	root.add_child(mesh_instance)
+	return root
+
+
+func _check_stack_consumption() -> void:
+	if stack_members.is_empty():
+		return
+	for member in stack_members:
+		if bool(member["consumed"]):
+			continue
+		# Only the bottom unconsumed member of each group is reachable; skip
+		# members blocked by a still-standing lower one so the visible tower
+		# collapses from the bottom up.
+		if not _is_stack_member_reachable(member):
+			continue
+		var winner: Dictionary = _find_consumption_winner(member)
+		if winner.is_empty():
+			continue
+		_consume_stack_member(member, winner)
+
+
+func _is_stack_member_reachable(member: Dictionary) -> bool:
+	var group_id := int(member["group_id"])
+	var my_index := int(member["stack_index"])
+	for other in stack_members:
+		var other_entry: Dictionary = other
+		if int(other_entry["group_id"]) != group_id:
+			continue
+		if bool(other_entry["consumed"]):
+			continue
+		if int(other_entry["stack_index"]) < my_index:
+			return false
+	return true
+
+
+func _consume_stack_member(member: Dictionary, actor: Dictionary) -> void:
+	member["consumed"] = true
+	_apply_actor_growth(actor, float(member["area"]), int(member["score"]))
+	_play_growth_feedback(actor, int(member["score"]))
+	if bool(actor["is_player"]):
+		_record_player_prop_eaten(member)
+		_play_consume_sfx(int(member["tier"]))
+	_add_event_feed_message("%s ate %s  +%d" % [_get_actor_name(actor), String(member["object_type"]), int(member["score"])])
+	var node := member["node"] as Node3D
 	if is_instance_valid(node):
 		node.hide()
 

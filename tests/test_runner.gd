@@ -11,6 +11,9 @@ const TEST_SCRIPTS: Array = [
 	preload("res://tests/test_audio_util.gd"),
 	preload("res://tests/test_moving_route_util.gd"),
 	preload("res://tests/test_moving_car_spawn.gd"),
+	preload("res://tests/test_map_catalog.gd"),
+	preload("res://tests/test_map_definition.gd"),
+	preload("res://tests/test_map_spawn_service.gd"),
 ]
 
 
