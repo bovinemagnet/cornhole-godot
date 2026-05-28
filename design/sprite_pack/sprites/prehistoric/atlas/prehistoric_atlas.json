@@ -1,0 +1,555 @@
+{
+  "pack": "prehistoric",
+  "version": "1.0.0",
+  "sprite_size_px": [
+    256,
+    256
+  ],
+  "spritesheet": "sprites/prehistoric/atlas/prehistoric_spritesheet.png",
+  "sprites": [
+    {
+      "id": "cave_man",
+      "display_name": "Cave Man",
+      "category": "character",
+      "tier": 2,
+      "texture": "sprites/prehistoric/individual/cave_man.png",
+      "atlas": "sprites/prehistoric/atlas/prehistoric_spritesheet.png",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.36,
+        "consumable_tier": 2,
+        "mass_points": 8
+      }
+    },
+    {
+      "id": "cave_woman",
+      "display_name": "Cave Woman",
+      "category": "character",
+      "tier": 2,
+      "texture": "sprites/prehistoric/individual/cave_woman.png",
+      "atlas": "sprites/prehistoric/atlas/prehistoric_spritesheet.png",
+      "frame": {
+        "x": 256,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.36,
+        "consumable_tier": 2,
+        "mass_points": 8
+      }
+    },
+    {
+      "id": "woolly_mammoth",
+      "display_name": "Woolly Mammoth",
+      "category": "creature",
+      "tier": 5,
+      "texture": "sprites/prehistoric/individual/woolly_mammoth.png",
+      "atlas": "sprites/prehistoric/atlas/prehistoric_spritesheet.png",
+      "frame": {
+        "x": 512,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.6,
+        "consumable_tier": 5,
+        "mass_points": 50
+      }
+    },
+    {
+      "id": "woolly_rhino",
+      "display_name": "Woolly Rhino",
+      "category": "creature",
+      "tier": 5,
+      "texture": "sprites/prehistoric/individual/woolly_rhino.png",
+      "atlas": "sprites/prehistoric/atlas/prehistoric_spritesheet.png",
+      "frame": {
+        "x": 768,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.6,
+        "consumable_tier": 5,
+        "mass_points": 50
+      }
+    },
+    {
+      "id": "sabre_tooth_tiger",
+      "display_name": "Sabre Tooth Tiger",
+      "category": "predator",
+      "tier": 4,
+      "texture": "sprites/prehistoric/individual/sabre_tooth_tiger.png",
+      "atlas": "sprites/prehistoric/atlas/prehistoric_spritesheet.png",
+      "frame": {
+        "x": 0,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.52,
+        "consumable_tier": 4,
+        "mass_points": 32
+      }
+    },
+    {
+      "id": "green_raptor",
+      "display_name": "Green Raptor",
+      "category": "predator",
+      "tier": 4,
+      "texture": "sprites/prehistoric/individual/green_raptor.png",
+      "atlas": "sprites/prehistoric/atlas/prehistoric_spritesheet.png",
+      "frame": {
+        "x": 256,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.52,
+        "consumable_tier": 4,
+        "mass_points": 32
+      }
+    },
+    {
+      "id": "baby_dino",
+      "display_name": "Baby Dino",
+      "category": "creature",
+      "tier": 3,
+      "texture": "sprites/prehistoric/individual/baby_dino.png",
+      "atlas": "sprites/prehistoric/atlas/prehistoric_spritesheet.png",
+      "frame": {
+        "x": 512,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.44,
+        "consumable_tier": 3,
+        "mass_points": 18
+      }
+    },
+    {
+      "id": "stegosaur",
+      "display_name": "Stegosaur",
+      "category": "creature",
+      "tier": 5,
+      "texture": "sprites/prehistoric/individual/stegosaur.png",
+      "atlas": "sprites/prehistoric/atlas/prehistoric_spritesheet.png",
+      "frame": {
+        "x": 768,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.6,
+        "consumable_tier": 5,
+        "mass_points": 50
+      }
+    },
+    {
+      "id": "campfire",
+      "display_name": "Campfire",
+      "category": "hazard",
+      "tier": 2,
+      "texture": "sprites/prehistoric/individual/campfire.png",
+      "atlas": "sprites/prehistoric/atlas/prehistoric_spritesheet.png",
+      "frame": {
+        "x": 0,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.36,
+        "consumable_tier": 2,
+        "mass_points": 8
+      }
+    },
+    {
+      "id": "bone_pile",
+      "display_name": "Bone Pile",
+      "category": "pickup",
+      "tier": 2,
+      "texture": "sprites/prehistoric/individual/bone_pile.png",
+      "atlas": "sprites/prehistoric/atlas/prehistoric_spritesheet.png",
+      "frame": {
+        "x": 256,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.36,
+        "consumable_tier": 2,
+        "mass_points": 8
+      }
+    },
+    {
+      "id": "cave_hut",
+      "display_name": "Cave Hut",
+      "category": "large_prop",
+      "tier": 4,
+      "texture": "sprites/prehistoric/individual/cave_hut.png",
+      "atlas": "sprites/prehistoric/atlas/prehistoric_spritesheet.png",
+      "frame": {
+        "x": 512,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.52,
+        "consumable_tier": 4,
+        "mass_points": 32
+      }
+    },
+    {
+      "id": "egg_nest",
+      "display_name": "Egg Nest",
+      "category": "pickup",
+      "tier": 2,
+      "texture": "sprites/prehistoric/individual/egg_nest.png",
+      "atlas": "sprites/prehistoric/atlas/prehistoric_spritesheet.png",
+      "frame": {
+        "x": 768,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.36,
+        "consumable_tier": 2,
+        "mass_points": 8
+      }
+    },
+    {
+      "id": "tar_pit",
+      "display_name": "Tar Pit",
+      "category": "hazard",
+      "tier": 3,
+      "texture": "sprites/prehistoric/individual/tar_pit.png",
+      "atlas": "sprites/prehistoric/atlas/prehistoric_spritesheet.png",
+      "frame": {
+        "x": 0,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.44,
+        "consumable_tier": 3,
+        "mass_points": 18
+      }
+    },
+    {
+      "id": "ice_block",
+      "display_name": "Ice Block",
+      "category": "blocker",
+      "tier": 3,
+      "texture": "sprites/prehistoric/individual/ice_block.png",
+      "atlas": "sprites/prehistoric/atlas/prehistoric_spritesheet.png",
+      "frame": {
+        "x": 256,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.44,
+        "consumable_tier": 3,
+        "mass_points": 18
+      }
+    },
+    {
+      "id": "volcanic_rock",
+      "display_name": "Volcanic Rock",
+      "category": "hazard",
+      "tier": 3,
+      "texture": "sprites/prehistoric/individual/volcanic_rock.png",
+      "atlas": "sprites/prehistoric/atlas/prehistoric_spritesheet.png",
+      "frame": {
+        "x": 512,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.44,
+        "consumable_tier": 3,
+        "mass_points": 18
+      }
+    },
+    {
+      "id": "stone_totem",
+      "display_name": "Stone Totem",
+      "category": "landmark",
+      "tier": 3,
+      "texture": "sprites/prehistoric/individual/stone_totem.png",
+      "atlas": "sprites/prehistoric/atlas/prehistoric_spritesheet.png",
+      "frame": {
+        "x": 768,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.44,
+        "consumable_tier": 3,
+        "mass_points": 18
+      }
+    }
+  ]
+}

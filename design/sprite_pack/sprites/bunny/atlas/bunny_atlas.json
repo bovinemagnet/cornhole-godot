@@ -1,0 +1,555 @@
+{
+  "pack": "bunny",
+  "version": "1.0.0",
+  "sprite_size_px": [
+    256,
+    256
+  ],
+  "spritesheet": "sprites/bunny/atlas/bunny_spritesheet.png",
+  "sprites": [
+    {
+      "id": "white_bunny",
+      "display_name": "White Bunny",
+      "category": "character",
+      "tier": 2,
+      "texture": "sprites/bunny/individual/white_bunny.png",
+      "atlas": "sprites/bunny/atlas/bunny_spritesheet.png",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.36,
+        "consumable_tier": 2,
+        "mass_points": 8
+      }
+    },
+    {
+      "id": "brown_bunny",
+      "display_name": "Brown Bunny",
+      "category": "character",
+      "tier": 2,
+      "texture": "sprites/bunny/individual/brown_bunny.png",
+      "atlas": "sprites/bunny/atlas/bunny_spritesheet.png",
+      "frame": {
+        "x": 256,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.36,
+        "consumable_tier": 2,
+        "mass_points": 8
+      }
+    },
+    {
+      "id": "robot_bunny",
+      "display_name": "Robot Bunny",
+      "category": "character",
+      "tier": 3,
+      "texture": "sprites/bunny/individual/robot_bunny.png",
+      "atlas": "sprites/bunny/atlas/bunny_spritesheet.png",
+      "frame": {
+        "x": 512,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.44,
+        "consumable_tier": 3,
+        "mass_points": 18
+      }
+    },
+    {
+      "id": "giant_carrot",
+      "display_name": "Giant Carrot",
+      "category": "pickup",
+      "tier": 3,
+      "texture": "sprites/bunny/individual/giant_carrot.png",
+      "atlas": "sprites/bunny/atlas/bunny_spritesheet.png",
+      "frame": {
+        "x": 768,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.44,
+        "consumable_tier": 3,
+        "mass_points": 18
+      }
+    },
+    {
+      "id": "baby_carrot",
+      "display_name": "Baby Carrot",
+      "category": "pickup",
+      "tier": 1,
+      "texture": "sprites/bunny/individual/baby_carrot.png",
+      "atlas": "sprites/bunny/atlas/bunny_spritesheet.png",
+      "frame": {
+        "x": 0,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.28,
+        "consumable_tier": 1,
+        "mass_points": 2
+      }
+    },
+    {
+      "id": "painted_easter_egg",
+      "display_name": "Painted Easter Egg",
+      "category": "pickup",
+      "tier": 2,
+      "texture": "sprites/bunny/individual/painted_easter_egg.png",
+      "atlas": "sprites/bunny/atlas/bunny_spritesheet.png",
+      "frame": {
+        "x": 256,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.36,
+        "consumable_tier": 2,
+        "mass_points": 8
+      }
+    },
+    {
+      "id": "golden_egg",
+      "display_name": "Golden Egg",
+      "category": "bonus",
+      "tier": 3,
+      "texture": "sprites/bunny/individual/golden_egg.png",
+      "atlas": "sprites/bunny/atlas/bunny_spritesheet.png",
+      "frame": {
+        "x": 512,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.44,
+        "consumable_tier": 3,
+        "mass_points": 18
+      }
+    },
+    {
+      "id": "flower_patch",
+      "display_name": "Flower Patch",
+      "category": "decoration",
+      "tier": 1,
+      "texture": "sprites/bunny/individual/flower_patch.png",
+      "atlas": "sprites/bunny/atlas/bunny_spritesheet.png",
+      "frame": {
+        "x": 768,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.28,
+        "consumable_tier": 1,
+        "mass_points": 2
+      }
+    },
+    {
+      "id": "burrow_entrance",
+      "display_name": "Burrow Entrance",
+      "category": "landmark",
+      "tier": 3,
+      "texture": "sprites/bunny/individual/burrow_entrance.png",
+      "atlas": "sprites/bunny/atlas/bunny_spritesheet.png",
+      "frame": {
+        "x": 0,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.44,
+        "consumable_tier": 3,
+        "mass_points": 18
+      }
+    },
+    {
+      "id": "carrot_house",
+      "display_name": "Carrot House",
+      "category": "large_prop",
+      "tier": 4,
+      "texture": "sprites/bunny/individual/carrot_house.png",
+      "atlas": "sprites/bunny/atlas/bunny_spritesheet.png",
+      "frame": {
+        "x": 256,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.52,
+        "consumable_tier": 4,
+        "mass_points": 32
+      }
+    },
+    {
+      "id": "bunny_bakery",
+      "display_name": "Bunny Bakery",
+      "category": "large_prop",
+      "tier": 4,
+      "texture": "sprites/bunny/individual/bunny_bakery.png",
+      "atlas": "sprites/bunny/atlas/bunny_spritesheet.png",
+      "frame": {
+        "x": 512,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.52,
+        "consumable_tier": 4,
+        "mass_points": 32
+      }
+    },
+    {
+      "id": "hay_bale",
+      "display_name": "Hay Bale",
+      "category": "pickup",
+      "tier": 2,
+      "texture": "sprites/bunny/individual/hay_bale.png",
+      "atlas": "sprites/bunny/atlas/bunny_spritesheet.png",
+      "frame": {
+        "x": 768,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.36,
+        "consumable_tier": 2,
+        "mass_points": 8
+      }
+    },
+    {
+      "id": "wooden_fence",
+      "display_name": "Wooden Fence",
+      "category": "blocker",
+      "tier": 2,
+      "texture": "sprites/bunny/individual/wooden_fence.png",
+      "atlas": "sprites/bunny/atlas/bunny_spritesheet.png",
+      "frame": {
+        "x": 0,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.36,
+        "consumable_tier": 2,
+        "mass_points": 8
+      }
+    },
+    {
+      "id": "moon_crystal",
+      "display_name": "Moon Crystal",
+      "category": "bonus",
+      "tier": 3,
+      "texture": "sprites/bunny/individual/moon_crystal.png",
+      "atlas": "sprites/bunny/atlas/bunny_spritesheet.png",
+      "frame": {
+        "x": 256,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.44,
+        "consumable_tier": 3,
+        "mass_points": 18
+      }
+    },
+    {
+      "id": "bunny_castle_tower",
+      "display_name": "Bunny Castle Tower",
+      "category": "landmark",
+      "tier": 5,
+      "texture": "sprites/bunny/individual/bunny_castle_tower.png",
+      "atlas": "sprites/bunny/atlas/bunny_spritesheet.png",
+      "frame": {
+        "x": 512,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.6,
+        "consumable_tier": 5,
+        "mass_points": 50
+      }
+    },
+    {
+      "id": "picnic_basket",
+      "display_name": "Picnic Basket",
+      "category": "pickup",
+      "tier": 2,
+      "texture": "sprites/bunny/individual/picnic_basket.png",
+      "atlas": "sprites/bunny/atlas/bunny_spritesheet.png",
+      "frame": {
+        "x": 768,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.36,
+        "consumable_tier": 2,
+        "mass_points": 8
+      }
+    }
+  ]
+}
