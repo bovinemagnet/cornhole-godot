@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ball_body"]
+albedo_color = Color(0.86, 0.22, 0.28, 1)
+roughness = 0.72
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ball_stripe"]
+albedo_color = Color(1, 0.96, 0.86, 1)
+roughness = 0.68
+
+[sub_resource type="SphereMesh" id="SphereMesh_ball"]
+radius = 0.35
+height = 0.7
+radial_segments = 12
+rings = 6
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ball"]
+radius = 0.35
+
+[node name="PropBall" type="Node3D"]
+
+[node name="VisualRoot" type="Node3D" parent="."]
+
+[node name="Body" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+mesh = SubResource("SphereMesh_ball")
+material_override = SubResource("StandardMaterial3D_ball_body")
+
+[node name="Stripe" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(1.025, 0, 0, 0, 0.16, 0, 0, 0, 1.025, 0, 0.35, 0)
+mesh = SubResource("SphereMesh_ball")
+material_override = SubResource("StandardMaterial3D_ball_stripe")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("SphereShape3D_ball")

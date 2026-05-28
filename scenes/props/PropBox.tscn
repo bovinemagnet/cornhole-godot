@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_box_body"]
+albedo_color = Color(0.66, 0.42, 0.22, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_box_tape"]
+albedo_color = Color(0.87, 0.71, 0.46, 1)
+roughness = 0.82
+
+[sub_resource type="BoxMesh" id="BoxMesh_box_body"]
+size = Vector3(0.65, 0.55, 0.65)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_box"]
+size = Vector3(0.65, 0.55, 0.65)
+
+[node name="PropBox" type="Node3D"]
+
+[node name="VisualRoot" type="Node3D" parent="."]
+
+[node name="Body" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275, 0)
+mesh = SubResource("BoxMesh_box_body")
+material_override = SubResource("StandardMaterial3D_box_body")
+
+[node name="TapeLong" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(0.16, 0, 0, 0, 0.03, 0, 0, 0, 0.67, 0, 0.57, 0)
+mesh = SubResource("BoxMesh_box_body")
+material_override = SubResource("StandardMaterial3D_box_tape")
+
+[node name="TapeCross" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(0.67, 0, 0, 0, 0.031, 0, 0, 0, 0.16, 0, 0.575, 0)
+mesh = SubResource("BoxMesh_box_body")
+material_override = SubResource("StandardMaterial3D_box_tape")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275, 0)
+shape = SubResource("BoxShape3D_box")

@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_can_body"]
+albedo_color = Color(0.9, 0.72, 0.16, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_can_band"]
+albedo_color = Color(0.95, 0.95, 0.88, 1)
+roughness = 0.75
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_can_body"]
+top_radius = 0.18
+bottom_radius = 0.18
+height = 0.65
+radial_segments = 10
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_can_lid"]
+top_radius = 0.19
+bottom_radius = 0.19
+height = 0.035
+radial_segments = 10
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_can_band"]
+top_radius = 0.181
+bottom_radius = 0.181
+height = 0.12
+radial_segments = 10
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_can"]
+height = 0.65
+radius = 0.19
+
+[node name="PropCan" type="Node3D"]
+
+[node name="VisualRoot" type="Node3D" parent="."]
+
+[node name="Body" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.325, 0)
+mesh = SubResource("CylinderMesh_can_body")
+material_override = SubResource("StandardMaterial3D_can_body")
+
+[node name="TopLid" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.668, 0)
+mesh = SubResource("CylinderMesh_can_lid")
+material_override = SubResource("StandardMaterial3D_can_band")
+
+[node name="BottomLid" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.018, 0)
+mesh = SubResource("CylinderMesh_can_lid")
+material_override = SubResource("StandardMaterial3D_can_band")
+
+[node name="LabelBand" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33, 0)
+mesh = SubResource("CylinderMesh_can_band")
+material_override = SubResource("StandardMaterial3D_can_band")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.325, 0)
+shape = SubResource("CylinderShape3D_can")

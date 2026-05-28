@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bin_body"]
+albedo_color = Color(0.16, 0.35, 0.72, 1)
+roughness = 0.86
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bin_lid"]
+albedo_color = Color(0.08, 0.16, 0.36, 1)
+roughness = 0.82
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bin_body"]
+top_radius = 0.36
+bottom_radius = 0.42
+height = 1.05
+radial_segments = 10
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bin_lid"]
+top_radius = 0.44
+bottom_radius = 0.44
+height = 0.09
+radial_segments = 10
+
+[sub_resource type="BoxMesh" id="BoxMesh_bin_handle"]
+size = Vector3(0.42, 0.08, 0.08)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bin"]
+height = 1.12
+radius = 0.44
+
+[node name="PropBin" type="Node3D"]
+
+[node name="VisualRoot" type="Node3D" parent="."]
+
+[node name="Body" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.525, 0)
+mesh = SubResource("CylinderMesh_bin_body")
+material_override = SubResource("StandardMaterial3D_bin_body")
+
+[node name="Lid" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.095, 0)
+mesh = SubResource("CylinderMesh_bin_lid")
+material_override = SubResource("StandardMaterial3D_bin_lid")
+
+[node name="Handle" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18, 0)
+mesh = SubResource("BoxMesh_bin_handle")
+material_override = SubResource("StandardMaterial3D_bin_lid")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56, 0)
+shape = SubResource("CylinderShape3D_bin")

@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/props/PropCan.tscn" id="1_can"]
+[ext_resource type="PackedScene" path="res://scenes/props/PropBox.tscn" id="2_box"]
+[ext_resource type="PackedScene" path="res://scenes/props/PropBall.tscn" id="3_ball"]
+[ext_resource type="PackedScene" path="res://scenes/props/PropBin.tscn" id="4_bin"]
+[ext_resource type="PackedScene" path="res://scenes/props/PropBench.tscn" id="5_bench"]
+[ext_resource type="PackedScene" path="res://scenes/props/PropCar.tscn" id="6_car"]
+[ext_resource type="PackedScene" path="res://scenes/props/PropTree.tscn" id="7_tree"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_floor"]
+albedo_color = Color(0.18, 0.48, 0.28, 1)
+roughness = 0.88
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_floor"]
+size = Vector2(10, 5)
+
+[node name="PropPackPreview" type="Node3D"]
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_floor")
+material_override = SubResource("StandardMaterial3D_floor")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.829769, -0.469846, 0.300579, 0, 0.539493, 0.842001, -0.558107, -0.698919, 0.447735, 0, 4, 0)
+light_energy = 2.0
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.65038, 0.759609, 0, -0.759609, 0.65038, 0, 4.6, 6.8)
+current = true
+fov = 50.0
+
+[node name="PropCan" parent="." instance=ExtResource("1_can")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0, 0, 0)
+
+[node name="PropBox" parent="." instance=ExtResource("2_box")]
+transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, -2.75, 0, 0)
+
+[node name="PropBall" parent="." instance=ExtResource("3_ball")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 0, 0)
+
+[node name="PropBin" parent="." instance=ExtResource("4_bin")]
+transform = Transform3D(0.939693, 0, 0.34202, 0, 1, 0, -0.34202, 0, 0.939693, -0.25, 0, 0)
+
+[node name="PropBench" parent="." instance=ExtResource("5_bench")]
+transform = Transform3D(0.906308, 0, -0.422618, 0, 1, 0, 0.422618, 0, 0.906308, 1.35, 0, 0)
+
+[node name="PropCar" parent="." instance=ExtResource("6_car")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 3.35, 0, 0)
+
+[node name="PropTree" parent="." instance=ExtResource("7_tree")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.85, 0, 0)

@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_car_body"]
+albedo_color = Color(0.06, 0.34, 0.7, 1)
+roughness = 0.7
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_car_window"]
+albedo_color = Color(0.48, 0.82, 0.92, 1)
+roughness = 0.45
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_car_tire"]
+albedo_color = Color(0.025, 0.025, 0.03, 1)
+roughness = 0.86
+
+[sub_resource type="BoxMesh" id="BoxMesh_car_body"]
+size = Vector3(2.5, 0.48, 1.18)
+
+[sub_resource type="BoxMesh" id="BoxMesh_car_cabin"]
+size = Vector3(1.1, 0.42, 0.82)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_car_wheel"]
+top_radius = 0.22
+bottom_radius = 0.22
+height = 0.12
+radial_segments = 10
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_car"]
+size = Vector3(2.5, 0.85, 1.25)
+
+[node name="PropCar" type="Node3D"]
+
+[node name="VisualRoot" type="Node3D" parent="."]
+
+[node name="Body" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38, 0)
+mesh = SubResource("BoxMesh_car_body")
+material_override = SubResource("StandardMaterial3D_car_body")
+
+[node name="Cabin" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0.18, 1, 0, 0, 0, 1, -0.12, 0.82, 0)
+mesh = SubResource("BoxMesh_car_cabin")
+material_override = SubResource("StandardMaterial3D_car_window")
+
+[node name="WheelFL" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.78, 0.2, -0.64)
+mesh = SubResource("CylinderMesh_car_wheel")
+material_override = SubResource("StandardMaterial3D_car_tire")
+
+[node name="WheelFR" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.78, 0.2, -0.64)
+mesh = SubResource("CylinderMesh_car_wheel")
+material_override = SubResource("StandardMaterial3D_car_tire")
+
+[node name="WheelBL" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.78, 0.2, 0.64)
+mesh = SubResource("CylinderMesh_car_wheel")
+material_override = SubResource("StandardMaterial3D_car_tire")
+
+[node name="WheelBR" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.78, 0.2, 0.64)
+mesh = SubResource("CylinderMesh_car_wheel")
+material_override = SubResource("StandardMaterial3D_car_tire")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43, 0)
+shape = SubResource("BoxShape3D_car")
