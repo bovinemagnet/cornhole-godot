@@ -1,0 +1,1 @@
+Demo/prototype content generated for rapid game prototyping. Review and adapt before shipping commercially.

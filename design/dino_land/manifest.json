@@ -1,0 +1,130 @@
+{
+  "pack_name": "Prehistoric World Map Pack",
+  "version": "1.0.0",
+  "description": "10 prehistoric world maps for hole.io-style games in Godot, spanning multiple eras and combined timelines.",
+  "engine": "Godot 4",
+  "world_theme": "prehistoric_world",
+  "time_periods": [
+    "Paleolithic",
+    "Ice Age / Pleistocene",
+    "Mesozoic",
+    "Combined-era fantasy"
+  ],
+  "includes": [
+    "manifest.json",
+    "10 map json files",
+    "10 png preview files",
+    "overview infographic",
+    "schema",
+    "README",
+    "Godot loader scripts"
+  ],
+  "maps": [
+    {
+      "id": "map_01_stone_camp_meadow",
+      "name": "Stone Camp Meadow",
+      "difficulty": "easy",
+      "difficulty_rank": 1,
+      "period": "Paleolithic grassland",
+      "preview_image": "images/map_01_stone_camp_meadow.png",
+      "json_path": "maps/map_01_stone_camp_meadow.json",
+      "theme": "cavemen camp meadow"
+    },
+    {
+      "id": "map_02_mammoth_tundra",
+      "name": "Mammoth Tundra",
+      "difficulty": "easy",
+      "difficulty_rank": 2,
+      "period": "Ice Age / Pleistocene",
+      "preview_image": "images/map_02_mammoth_tundra.png",
+      "json_path": "maps/map_02_mammoth_tundra.json",
+      "theme": "mammoth snowfield"
+    },
+    {
+      "id": "map_03_fernswamp_raptor_run",
+      "name": "Fernswamp Raptor Run",
+      "difficulty": "medium",
+      "difficulty_rank": 3,
+      "period": "Mesozoic swamp",
+      "preview_image": "images/map_03_fernswamp_raptor_run.png",
+      "json_path": "maps/map_03_fernswamp_raptor_run.json",
+      "theme": "dinosaur fern swamp"
+    },
+    {
+      "id": "map_04_sabertooth_canyon",
+      "name": "Sabertooth Canyon",
+      "difficulty": "medium",
+      "difficulty_rank": 4,
+      "period": "Late Pleistocene canyon",
+      "preview_image": "images/map_04_sabertooth_canyon.png",
+      "json_path": "maps/map_04_sabertooth_canyon.json",
+      "theme": "predator canyon"
+    },
+    {
+      "id": "map_05_cave_village_crossing",
+      "name": "Cave Village Crossing",
+      "difficulty": "medium-hard",
+      "difficulty_rank": 5,
+      "period": "Mixed late Stone Age",
+      "preview_image": "images/map_05_cave_village_crossing.png",
+      "json_path": "maps/map_05_cave_village_crossing.json",
+      "theme": "prehistoric village"
+    },
+    {
+      "id": "map_06_glacial_mammoth_pass",
+      "name": "Glacial Mammoth Pass",
+      "difficulty": "hard",
+      "difficulty_rank": 6,
+      "period": "Ice Age glacial canyon",
+      "preview_image": "images/map_06_glacial_mammoth_pass.png",
+      "json_path": "maps/map_06_glacial_mammoth_pass.json",
+      "theme": "icy pass with megafauna"
+    },
+    {
+      "id": "map_07_dino_jungle_basin",
+      "name": "Dino Jungle Basin",
+      "difficulty": "hard",
+      "difficulty_rank": 7,
+      "period": "Jurassic/Cretaceous mashup",
+      "preview_image": "images/map_07_dino_jungle_basin.png",
+      "json_path": "maps/map_07_dino_jungle_basin.json",
+      "theme": "large dinosaur jungle"
+    },
+    {
+      "id": "map_08_tar_pit_timewarp",
+      "name": "Tar Pit Timewarp",
+      "difficulty": "very hard",
+      "difficulty_rank": 8,
+      "period": "Time-mixed fossil flats",
+      "preview_image": "images/map_08_tar_pit_timewarp.png",
+      "json_path": "maps/map_08_tar_pit_timewarp.json",
+      "theme": "tar pits and fossils"
+    },
+    {
+      "id": "map_09_chrono_rift_highlands",
+      "name": "Chrono Rift Highlands",
+      "difficulty": "very hard",
+      "difficulty_rank": 9,
+      "period": "Multi-era rift zone",
+      "preview_image": "images/map_09_chrono_rift_highlands.png",
+      "json_path": "maps/map_09_chrono_rift_highlands.json",
+      "theme": "time-rift highlands"
+    },
+    {
+      "id": "map_10_primeval_citadel",
+      "name": "Primeval Citadel",
+      "difficulty": "extreme",
+      "difficulty_rank": 10,
+      "period": "Combined-era fantasy finale",
+      "preview_image": "images/map_10_primeval_citadel.png",
+      "json_path": "maps/map_10_primeval_citadel.json",
+      "theme": "prehistoric mega fortress"
+    }
+  ],
+  "file_layout": {
+    "maps": "maps/*.json",
+    "images": "images/*.png",
+    "scripts": "scripts/*.gd",
+    "schema": "schema/prehistoric_map_schema.json"
+  }
+}

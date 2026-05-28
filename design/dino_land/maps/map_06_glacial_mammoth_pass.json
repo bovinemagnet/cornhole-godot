@@ -1,0 +1,411 @@
+{
+  "map": {
+    "id": "map_06_glacial_mammoth_pass",
+    "name": "Glacial Mammoth Pass",
+    "slug": "glacial_mammoth_pass",
+    "world": "prehistoric_world",
+    "period": "Ice Age glacial canyon",
+    "description": "A dangerous glacial corridor full of cliffs, crevasses, ice bridges, mammoths, and woolly rhinos. Precision pathing matters here.",
+    "difficulty": "hard",
+    "difficulty_rank": 6,
+    "recommended_players": "4-6",
+    "estimated_match_length_sec": 180,
+    "preview_image": "images/map_06_glacial_mammoth_pass.png",
+    "overview_image": "images/prehistoric_world_map_pack_overview.png",
+    "theme": "icy pass with megafauna",
+    "palette": [
+      "#D2F0FF",
+      "#93CDE8",
+      "#7D8F9E",
+      "#5C402A"
+    ],
+    "bounds": {
+      "min": [
+        0.0,
+        0.0
+      ],
+      "max": [
+        1.0,
+        1.0
+      ]
+    },
+    "hole": {
+      "initial_position": [
+        0.5,
+        0.5
+      ],
+      "initial_radius": 0.031,
+      "growth_curve": "linear_plus_pickup_bonus",
+      "max_radius": 0.42,
+      "speed_curve": {
+        "small": 1.0,
+        "medium": 0.88,
+        "large": 0.72,
+        "huge": 0.58
+      }
+    },
+    "regions": [
+      {
+        "id": "north_rim",
+        "type": "pickup_zone",
+        "polygon": [
+          [
+            0.06,
+            0.04
+          ],
+          [
+            0.94,
+            0.04
+          ],
+          [
+            0.94,
+            0.16
+          ],
+          [
+            0.06,
+            0.16
+          ]
+        ]
+      },
+      {
+        "id": "central_crevasse",
+        "type": "hazard_zone",
+        "polygon": [
+          [
+            0.3,
+            0.18
+          ],
+          [
+            0.7,
+            0.18
+          ],
+          [
+            0.7,
+            0.78
+          ],
+          [
+            0.3,
+            0.78
+          ]
+        ]
+      },
+      {
+        "id": "west_ice_shelf",
+        "type": "lane",
+        "polygon": [
+          [
+            0.04,
+            0.18
+          ],
+          [
+            0.28,
+            0.18
+          ],
+          [
+            0.28,
+            0.92
+          ],
+          [
+            0.04,
+            0.92
+          ]
+        ]
+      },
+      {
+        "id": "east_ice_shelf",
+        "type": "lane",
+        "polygon": [
+          [
+            0.72,
+            0.18
+          ],
+          [
+            0.96,
+            0.18
+          ],
+          [
+            0.96,
+            0.92
+          ],
+          [
+            0.72,
+            0.92
+          ]
+        ]
+      },
+      {
+        "id": "bridge_spines",
+        "type": "bridge",
+        "polygon": [
+          [
+            0.38,
+            0.38
+          ],
+          [
+            0.62,
+            0.38
+          ],
+          [
+            0.62,
+            0.58
+          ],
+          [
+            0.38,
+            0.58
+          ]
+        ]
+      }
+    ],
+    "spawn_points": [
+      {
+        "id": "sp_01",
+        "position": [
+          0.12,
+          0.84
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_02",
+        "position": [
+          0.86,
+          0.16
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_03",
+        "position": [
+          0.5,
+          0.08
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_04",
+        "position": [
+          0.08,
+          0.5
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_05",
+        "position": [
+          0.92,
+          0.5
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_06",
+        "position": [
+          0.22,
+          0.22
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_07",
+        "position": [
+          0.78,
+          0.78
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_08",
+        "position": [
+          0.5,
+          0.92
+        ],
+        "team": "neutral"
+      }
+    ],
+    "object_tiers": [
+      {
+        "tier": 1,
+        "name": "tiny props",
+        "min_hole_radius": 0.0,
+        "examples": [
+          "stones",
+          "bones",
+          "berries",
+          "pots",
+          "eggs"
+        ],
+        "points": 1
+      },
+      {
+        "tier": 2,
+        "name": "small props",
+        "min_hole_radius": 0.05,
+        "examples": [
+          "spears",
+          "camp stools",
+          "baskets",
+          "fish racks",
+          "skulls"
+        ],
+        "points": 3
+      },
+      {
+        "tier": 3,
+        "name": "medium props",
+        "min_hole_radius": 0.1,
+        "examples": [
+          "campfires",
+          "bone arches",
+          "canoes",
+          "small huts",
+          "nest mounds"
+        ],
+        "points": 8
+      },
+      {
+        "tier": 4,
+        "name": "large props",
+        "min_hole_radius": 0.18,
+        "examples": [
+          "stone huts",
+          "mammoth-bone shelters",
+          "totems",
+          "ice blocks",
+          "wooden pens"
+        ],
+        "points": 18
+      },
+      {
+        "tier": 5,
+        "name": "huge props",
+        "min_hole_radius": 0.28,
+        "examples": [
+          "mammoths",
+          "woolly rhinos",
+          "large dinosaurs",
+          "watch towers",
+          "volcanic boulders"
+        ],
+        "points": 40
+      }
+    ],
+    "spawn_rules": {
+      "small_object_density": 0.68,
+      "medium_object_density": 0.52,
+      "bonus_spawn_rate": 1.15,
+      "respawn_interval_sec": 6.5,
+      "prefer_region_types": [
+        "pickup_zone",
+        "hub",
+        "lane"
+      ]
+    },
+    "hazards": [
+      {
+        "id": "ice_slide",
+        "type": "slide_zone",
+        "strength": 0.22,
+        "radius": 0.05,
+        "count": 5
+      },
+      {
+        "id": "rhino_charge",
+        "type": "moving_hazard",
+        "strength": 0.24,
+        "radius": 0.03,
+        "count": 2
+      }
+    ],
+    "blockers": [
+      {
+        "id": "edge_barrier",
+        "type": "boundary",
+        "shape": "rect",
+        "min": [
+          0.0,
+          0.0
+        ],
+        "max": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "id": "center_no_build",
+        "type": "reserved_hole_space",
+        "shape": "circle",
+        "center": [
+          0.5,
+          0.5
+        ],
+        "radius": 0.1
+      }
+    ],
+    "gameplay_rules": {
+      "mode": "free_for_all",
+      "match_duration_sec": 180,
+      "score_mode": "consumed_mass",
+      "allow_bot_respawn": true,
+      "max_bots": 6,
+      "overtime": {
+        "enabled": true,
+        "sudden_death_after_sec": 180
+      },
+      "pickup_combo_window_sec": 2.5
+    },
+    "bot_behavior": {
+      "aggression": 0.6,
+      "route_bias": "seek_dense_pickups_then_enemy_intercept",
+      "avoid_hazards_weight": 0.92,
+      "preferred_targets": [
+        "tiny props",
+        "small props",
+        "isolated bots"
+      ]
+    },
+    "creature_population": {
+      "cave_people": true,
+      "cave_women": true,
+      "dinosaurs": false,
+      "woolly_mammoths": true,
+      "woolly_rhinoceroses": true,
+      "sabre_tooth_tigers": false
+    },
+    "landmarks": [
+      "mammoths",
+      "woolly rhinoceroses",
+      "ice cliffs",
+      "snow hunters",
+      "bridges"
+    ],
+    "generation_hints": {
+      "suggested_world_size_px": [
+        2048,
+        2048
+      ],
+      "tile_size_px": 64,
+      "nav_grid": [
+        32,
+        32
+      ],
+      "visual_style": "bright_topdown_arcade_prehistoric",
+      "notes": "Use the PNG preview as visual guidance only. JSON regions are normalized for procedural generation in Godot."
+    },
+    "metadata": {
+      "package": "PrehistoricMapPack",
+      "version": "1.0.0",
+      "author": "OpenAI - generated pack",
+      "engine": "Godot 4",
+      "license": "Permissive demo content for prototyping",
+      "tags": [
+        "prehistoric",
+        "dinosaur",
+        "mammoth",
+        "caveman",
+        "hole.io",
+        "godot",
+        "procedural"
+      ]
+    }
+  }
+}

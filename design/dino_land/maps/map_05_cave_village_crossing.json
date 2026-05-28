@@ -1,0 +1,410 @@
+{
+  "map": {
+    "id": "map_05_cave_village_crossing",
+    "name": "Cave Village Crossing",
+    "slug": "cave_village_crossing",
+    "world": "prehistoric_world",
+    "period": "Mixed late Stone Age",
+    "description": "A lively settlement with huts, fenced enclosures, smoke pits, drying racks, and bustling cave men and cave women. Central routes intersect constantly.",
+    "difficulty": "medium-hard",
+    "difficulty_rank": 5,
+    "recommended_players": "3-6",
+    "estimated_match_length_sec": 170,
+    "preview_image": "images/map_05_cave_village_crossing.png",
+    "overview_image": "images/prehistoric_world_map_pack_overview.png",
+    "theme": "prehistoric village",
+    "palette": [
+      "#A57A45",
+      "#6A4B2C",
+      "#C7A66E",
+      "#7E9F3A"
+    ],
+    "bounds": {
+      "min": [
+        0.0,
+        0.0
+      ],
+      "max": [
+        1.0,
+        1.0
+      ]
+    },
+    "hole": {
+      "initial_position": [
+        0.5,
+        0.5
+      ],
+      "initial_radius": 0.032,
+      "growth_curve": "linear_plus_pickup_bonus",
+      "max_radius": 0.42,
+      "speed_curve": {
+        "small": 1.0,
+        "medium": 0.88,
+        "large": 0.72,
+        "huge": 0.58
+      }
+    },
+    "regions": [
+      {
+        "id": "north_huts",
+        "type": "pickup_zone",
+        "polygon": [
+          [
+            0.08,
+            0.04
+          ],
+          [
+            0.92,
+            0.04
+          ],
+          [
+            0.92,
+            0.22
+          ],
+          [
+            0.08,
+            0.22
+          ]
+        ]
+      },
+      {
+        "id": "market_crossing",
+        "type": "hub",
+        "polygon": [
+          [
+            0.26,
+            0.24
+          ],
+          [
+            0.74,
+            0.24
+          ],
+          [
+            0.74,
+            0.58
+          ],
+          [
+            0.26,
+            0.58
+          ]
+        ]
+      },
+      {
+        "id": "pen_west",
+        "type": "pickup_zone",
+        "polygon": [
+          [
+            0.04,
+            0.3
+          ],
+          [
+            0.22,
+            0.3
+          ],
+          [
+            0.22,
+            0.78
+          ],
+          [
+            0.04,
+            0.78
+          ]
+        ]
+      },
+      {
+        "id": "pen_east",
+        "type": "pickup_zone",
+        "polygon": [
+          [
+            0.78,
+            0.3
+          ],
+          [
+            0.96,
+            0.3
+          ],
+          [
+            0.96,
+            0.78
+          ],
+          [
+            0.78,
+            0.78
+          ]
+        ]
+      },
+      {
+        "id": "south_paths",
+        "type": "lane",
+        "polygon": [
+          [
+            0.1,
+            0.72
+          ],
+          [
+            0.9,
+            0.72
+          ],
+          [
+            0.9,
+            0.96
+          ],
+          [
+            0.1,
+            0.96
+          ]
+        ]
+      }
+    ],
+    "spawn_points": [
+      {
+        "id": "sp_01",
+        "position": [
+          0.12,
+          0.84
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_02",
+        "position": [
+          0.86,
+          0.16
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_03",
+        "position": [
+          0.5,
+          0.08
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_04",
+        "position": [
+          0.08,
+          0.5
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_05",
+        "position": [
+          0.92,
+          0.5
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_06",
+        "position": [
+          0.22,
+          0.22
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_07",
+        "position": [
+          0.78,
+          0.78
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_08",
+        "position": [
+          0.5,
+          0.92
+        ],
+        "team": "neutral"
+      }
+    ],
+    "object_tiers": [
+      {
+        "tier": 1,
+        "name": "tiny props",
+        "min_hole_radius": 0.0,
+        "examples": [
+          "stones",
+          "bones",
+          "berries",
+          "pots",
+          "eggs"
+        ],
+        "points": 1
+      },
+      {
+        "tier": 2,
+        "name": "small props",
+        "min_hole_radius": 0.05,
+        "examples": [
+          "spears",
+          "camp stools",
+          "baskets",
+          "fish racks",
+          "skulls"
+        ],
+        "points": 3
+      },
+      {
+        "tier": 3,
+        "name": "medium props",
+        "min_hole_radius": 0.1,
+        "examples": [
+          "campfires",
+          "bone arches",
+          "canoes",
+          "small huts",
+          "nest mounds"
+        ],
+        "points": 8
+      },
+      {
+        "tier": 4,
+        "name": "large props",
+        "min_hole_radius": 0.18,
+        "examples": [
+          "stone huts",
+          "mammoth-bone shelters",
+          "totems",
+          "ice blocks",
+          "wooden pens"
+        ],
+        "points": 18
+      },
+      {
+        "tier": 5,
+        "name": "huge props",
+        "min_hole_radius": 0.28,
+        "examples": [
+          "mammoths",
+          "woolly rhinos",
+          "large dinosaurs",
+          "watch towers",
+          "volcanic boulders"
+        ],
+        "points": 40
+      }
+    ],
+    "spawn_rules": {
+      "small_object_density": 0.71,
+      "medium_object_density": 0.49,
+      "bonus_spawn_rate": 1.1,
+      "respawn_interval_sec": 6.75,
+      "prefer_region_types": [
+        "pickup_zone",
+        "hub",
+        "lane"
+      ]
+    },
+    "hazards": [
+      {
+        "id": "smoke_pits",
+        "type": "vision_blocker",
+        "strength": 0.0,
+        "count": 5
+      },
+      {
+        "id": "stampede_pens",
+        "type": "push_zone",
+        "strength": 0.2,
+        "radius": 0.035,
+        "count": 3
+      }
+    ],
+    "blockers": [
+      {
+        "id": "edge_barrier",
+        "type": "boundary",
+        "shape": "rect",
+        "min": [
+          0.0,
+          0.0
+        ],
+        "max": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "id": "center_no_build",
+        "type": "reserved_hole_space",
+        "shape": "circle",
+        "center": [
+          0.5,
+          0.5
+        ],
+        "radius": 0.1
+      }
+    ],
+    "gameplay_rules": {
+      "mode": "free_for_all",
+      "match_duration_sec": 180,
+      "score_mode": "consumed_mass",
+      "allow_bot_respawn": true,
+      "max_bots": 5,
+      "overtime": {
+        "enabled": true,
+        "sudden_death_after_sec": 180
+      },
+      "pickup_combo_window_sec": 2.5
+    },
+    "bot_behavior": {
+      "aggression": 0.52,
+      "route_bias": "seek_dense_pickups_then_enemy_intercept",
+      "avoid_hazards_weight": 0.95,
+      "preferred_targets": [
+        "tiny props",
+        "small props",
+        "isolated bots"
+      ]
+    },
+    "creature_population": {
+      "cave_people": true,
+      "cave_women": true,
+      "dinosaurs": false,
+      "woolly_mammoths": false,
+      "woolly_rhinoceroses": false,
+      "sabre_tooth_tigers": false
+    },
+    "landmarks": [
+      "cave men",
+      "cave women",
+      "thatch huts",
+      "fences",
+      "totem stones"
+    ],
+    "generation_hints": {
+      "suggested_world_size_px": [
+        2048,
+        2048
+      ],
+      "tile_size_px": 64,
+      "nav_grid": [
+        32,
+        32
+      ],
+      "visual_style": "bright_topdown_arcade_prehistoric",
+      "notes": "Use the PNG preview as visual guidance only. JSON regions are normalized for procedural generation in Godot."
+    },
+    "metadata": {
+      "package": "PrehistoricMapPack",
+      "version": "1.0.0",
+      "author": "OpenAI - generated pack",
+      "engine": "Godot 4",
+      "license": "Permissive demo content for prototyping",
+      "tags": [
+        "prehistoric",
+        "dinosaur",
+        "mammoth",
+        "caveman",
+        "hole.io",
+        "godot",
+        "procedural"
+      ]
+    }
+  }
+}
