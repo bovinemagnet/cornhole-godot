@@ -1,0 +1,2555 @@
+{
+  "schema_version": 1,
+  "pack_id": "dino_land",
+  "name": "Dino Land",
+  "description": "Ten prehistoric and dinosaur-themed maps normalized to the shared project map catalog layout.",
+  "coordinate_space": "xz",
+  "difficulty_scale": "1 easiest, 10 hardest",
+  "maps": [
+    {
+      "id": "stone_camp_meadow",
+      "source_map_id": "map_01_stone_camp_meadow",
+      "name": "Stone Camp Meadow",
+      "difficulty": 1,
+      "seed": 72001,
+      "size": [
+        136,
+        133
+      ],
+      "theme": "A gentle prehistoric meadow built around a cave camp with huts, fire pits, watering pools, and roaming hunter-gatherers. Introductory and spacious.",
+      "period": "Paleolithic grassland",
+      "preview_image": "res://assets/maps/dino_land/map_01_stone_camp_meadow.png",
+      "recommended_moving_cars": 1,
+      "recommended_people": 4,
+      "recommended_stack_groups": 1,
+      "challenge_notes": [
+        "easy",
+        "hazard: mud_patches",
+        "hazard: boar_charge"
+      ],
+      "ground_regions": [
+        {
+          "type": "prehistoric_floor",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            136,
+            133
+          ]
+        },
+        {
+          "type": "camp_core",
+          "center": [
+            0.0,
+            -9.31
+          ],
+          "size": [
+            54.4,
+            39.9
+          ]
+        },
+        {
+          "type": "west_ponds",
+          "center": [
+            -48.28,
+            30.59
+          ],
+          "size": [
+            28.56,
+            50.54
+          ]
+        },
+        {
+          "type": "east_huts",
+          "center": [
+            47.6,
+            -26.6
+          ],
+          "size": [
+            29.92,
+            47.88
+          ]
+        },
+        {
+          "type": "south_fire_ring",
+          "center": [
+            0.0,
+            43.89
+          ],
+          "size": [
+            65.28,
+            29.26
+          ]
+        },
+        {
+          "type": "fence_lane",
+          "center": [
+            -46.24,
+            -27.93
+          ],
+          "size": [
+            27.2,
+            34.58
+          ]
+        }
+      ],
+      "water_regions": [
+        {
+          "type": "west_ponds",
+          "center": [
+            -48.28,
+            30.59
+          ],
+          "size": [
+            28.56,
+            50.54
+          ]
+        }
+      ],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "hub",
+          "width": 10.241,
+          "lane_count": 1,
+          "points": [
+            [
+              -32.64,
+              43.89
+            ],
+            [
+              32.64,
+              43.89
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "lane",
+          "width": 9.52,
+          "lane_count": 1,
+          "points": [
+            [
+              -46.24,
+              -45.22
+            ],
+            [
+              -46.24,
+              -10.64
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "camp_core",
+          "center": [
+            0.0,
+            -9.31
+          ],
+          "size": [
+            54.4,
+            39.9
+          ]
+        },
+        {
+          "type": "east_huts",
+          "center": [
+            47.6,
+            -26.6
+          ],
+          "size": [
+            29.92,
+            47.88
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "camp_core",
+          "center": [
+            0.0,
+            -9.31
+          ],
+          "size": [
+            54.4,
+            39.9
+          ]
+        },
+        {
+          "type": "west_ponds",
+          "center": [
+            -48.28,
+            30.59
+          ],
+          "size": [
+            28.56,
+            50.54
+          ]
+        },
+        {
+          "type": "east_huts",
+          "center": [
+            47.6,
+            -26.6
+          ],
+          "size": [
+            29.92,
+            47.88
+          ]
+        },
+        {
+          "type": "south_fire_ring",
+          "center": [
+            0.0,
+            43.89
+          ],
+          "size": [
+            65.28,
+            29.26
+          ]
+        },
+        {
+          "type": "fence_lane",
+          "center": [
+            -46.24,
+            -27.93
+          ],
+          "size": [
+            27.2,
+            34.58
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -51.68,
+              45.22
+            ],
+            [
+              48.96,
+              -45.22
+            ],
+            [
+              0.0,
+              -55.86
+            ],
+            [
+              -57.12,
+              0.0
+            ],
+            [
+              57.12,
+              0.0
+            ],
+            [
+              -38.08,
+              -37.24
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 5.85
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "bone_stack",
+          "position": [
+            0.0,
+            -9.31
+          ],
+          "count": 5
+        }
+      ],
+      "creature_population": {
+        "cave_people": true,
+        "cave_women": true,
+        "dinosaurs": false,
+        "woolly_mammoths": true,
+        "woolly_rhinoceroses": false,
+        "sabre_tooth_tigers": false
+      },
+      "landmarks": [
+        "campfire",
+        "bone hut",
+        "ponds",
+        "stone tools",
+        "small mammoth herd"
+      ]
+    },
+    {
+      "id": "mammoth_tundra",
+      "source_map_id": "map_02_mammoth_tundra",
+      "name": "Mammoth Tundra",
+      "difficulty": 2,
+      "seed": 72002,
+      "size": [
+        140,
+        138
+      ],
+      "theme": "A snowy tundra packed with woolly mammoths, woolly rhinoceroses, ice pools, and mammoth-bone shelters. Teaches movement around broad open terrain.",
+      "period": "Ice Age / Pleistocene",
+      "preview_image": "res://assets/maps/dino_land/map_02_mammoth_tundra.png",
+      "recommended_moving_cars": 2,
+      "recommended_people": 5,
+      "recommended_stack_groups": 1,
+      "challenge_notes": [
+        "easy",
+        "hazard: slippery_ice",
+        "hazard: mammoth_stampede"
+      ],
+      "ground_regions": [
+        {
+          "type": "prehistoric_floor",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            140,
+            138
+          ]
+        },
+        {
+          "type": "bone_shelter_north",
+          "center": [
+            0.0,
+            -52.44
+          ],
+          "size": [
+            89.6,
+            22.08
+          ]
+        },
+        {
+          "type": "ice_ring_center",
+          "center": [
+            0.0,
+            -13.8
+          ],
+          "size": [
+            61.6,
+            49.68
+          ]
+        },
+        {
+          "type": "snow_drift_west",
+          "center": [
+            -50.4,
+            2.76
+          ],
+          "size": [
+            28.0,
+            82.8
+          ]
+        },
+        {
+          "type": "snow_drift_east",
+          "center": [
+            50.4,
+            2.76
+          ],
+          "size": [
+            28.0,
+            82.8
+          ]
+        },
+        {
+          "type": "mammoth_yard_south",
+          "center": [
+            0.0,
+            48.3
+          ],
+          "size": [
+            95.2,
+            30.36
+          ]
+        }
+      ],
+      "water_regions": [],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "hub",
+          "width": 17.388,
+          "lane_count": 1,
+          "points": [
+            [
+              -30.8,
+              -13.8
+            ],
+            [
+              30.8,
+              -13.8
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "lane",
+          "width": 9.8,
+          "lane_count": 1,
+          "points": [
+            [
+              -50.4,
+              -38.64
+            ],
+            [
+              -50.4,
+              44.16
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "lane",
+          "width": 9.8,
+          "lane_count": 1,
+          "points": [
+            [
+              50.4,
+              -38.64
+            ],
+            [
+              50.4,
+              44.16
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "bone_shelter_north",
+          "center": [
+            0.0,
+            -52.44
+          ],
+          "size": [
+            89.6,
+            22.08
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "bone_shelter_north",
+          "center": [
+            0.0,
+            -52.44
+          ],
+          "size": [
+            89.6,
+            22.08
+          ]
+        },
+        {
+          "type": "ice_ring_center",
+          "center": [
+            0.0,
+            -13.8
+          ],
+          "size": [
+            61.6,
+            49.68
+          ]
+        },
+        {
+          "type": "snow_drift_west",
+          "center": [
+            -50.4,
+            2.76
+          ],
+          "size": [
+            28.0,
+            82.8
+          ]
+        },
+        {
+          "type": "snow_drift_east",
+          "center": [
+            50.4,
+            2.76
+          ],
+          "size": [
+            28.0,
+            82.8
+          ]
+        },
+        {
+          "type": "mammoth_yard_south",
+          "center": [
+            0.0,
+            48.3
+          ],
+          "size": [
+            95.2,
+            30.36
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -53.2,
+              46.92
+            ],
+            [
+              50.4,
+              -46.92
+            ],
+            [
+              0.0,
+              -57.96
+            ],
+            [
+              -58.8,
+              0.0
+            ],
+            [
+              58.8,
+              0.0
+            ],
+            [
+              -39.2,
+              -38.64
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 6.2
+        },
+        {
+          "id": 1,
+          "road_id": 1,
+          "speed": 6.45
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "bone_stack",
+          "position": [
+            0.0,
+            -52.44
+          ],
+          "count": 6
+        }
+      ],
+      "creature_population": {
+        "cave_people": true,
+        "cave_women": true,
+        "dinosaurs": false,
+        "woolly_mammoths": true,
+        "woolly_rhinoceroses": true,
+        "sabre_tooth_tigers": false
+      },
+      "landmarks": [
+        "woolly mammoths",
+        "woolly rhinoceroses",
+        "bone arches",
+        "ice ponds",
+        "hunters"
+      ]
+    },
+    {
+      "id": "fernswamp_raptor_run",
+      "source_map_id": "map_03_fernswamp_raptor_run",
+      "name": "Fernswamp Raptor Run",
+      "difficulty": 3,
+      "seed": 72003,
+      "size": [
+        144,
+        143
+      ],
+      "theme": "A humid fern swamp crawling with raptors, egg nests, reeds, and shallow pools. Narrow channels and vegetation create more tactical movement.",
+      "period": "Mesozoic swamp",
+      "preview_image": "res://assets/maps/dino_land/map_03_fernswamp_raptor_run.png",
+      "recommended_moving_cars": 1,
+      "recommended_people": 6,
+      "recommended_stack_groups": 2,
+      "challenge_notes": [
+        "medium",
+        "hazard: bog_slow",
+        "hazard: raptor_ambush"
+      ],
+      "ground_regions": [
+        {
+          "type": "prehistoric_floor",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            144,
+            143
+          ]
+        },
+        {
+          "type": "raptor_nest_north",
+          "center": [
+            0.0,
+            -54.34
+          ],
+          "size": [
+            46.08,
+            22.88
+          ]
+        },
+        {
+          "type": "swamp_center",
+          "center": [
+            0.0,
+            -14.3
+          ],
+          "size": [
+            63.36,
+            45.76
+          ]
+        },
+        {
+          "type": "reed_lagoon_west",
+          "center": [
+            -50.4,
+            28.6
+          ],
+          "size": [
+            31.68,
+            51.48
+          ]
+        },
+        {
+          "type": "reed_lagoon_east",
+          "center": [
+            50.4,
+            27.17
+          ],
+          "size": [
+            31.68,
+            54.34
+          ]
+        },
+        {
+          "type": "log_crossings",
+          "center": [
+            0.0,
+            42.9
+          ],
+          "size": [
+            92.16,
+            40.04
+          ]
+        }
+      ],
+      "water_regions": [
+        {
+          "type": "reed_lagoon_west",
+          "center": [
+            -50.4,
+            28.6
+          ],
+          "size": [
+            31.68,
+            51.48
+          ]
+        },
+        {
+          "type": "reed_lagoon_east",
+          "center": [
+            50.4,
+            27.17
+          ],
+          "size": [
+            31.68,
+            54.34
+          ]
+        }
+      ],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "lane",
+          "width": 14.014,
+          "lane_count": 1,
+          "points": [
+            [
+              -46.08,
+              42.9
+            ],
+            [
+              46.08,
+              42.9
+            ]
+          ]
+        }
+      ],
+      "building_zones": [],
+      "prop_spawn_zones": [
+        {
+          "type": "raptor_nest_north",
+          "center": [
+            0.0,
+            -54.34
+          ],
+          "size": [
+            46.08,
+            22.88
+          ]
+        },
+        {
+          "type": "swamp_center",
+          "center": [
+            0.0,
+            -14.3
+          ],
+          "size": [
+            63.36,
+            45.76
+          ]
+        },
+        {
+          "type": "log_crossings",
+          "center": [
+            0.0,
+            42.9
+          ],
+          "size": [
+            92.16,
+            40.04
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -54.72,
+              48.62
+            ],
+            [
+              51.84,
+              -48.62
+            ],
+            [
+              0.0,
+              -60.06
+            ],
+            [
+              -60.48,
+              0.0
+            ],
+            [
+              60.48,
+              0.0
+            ],
+            [
+              -40.32,
+              -40.04
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 6.55
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "bone_stack",
+          "position": [
+            0.0,
+            -54.34
+          ],
+          "count": 7
+        },
+        {
+          "type": "stone_stack",
+          "position": [
+            0.0,
+            -14.3
+          ],
+          "count": 8
+        }
+      ],
+      "creature_population": {
+        "cave_people": false,
+        "cave_women": false,
+        "dinosaurs": true,
+        "woolly_mammoths": false,
+        "woolly_rhinoceroses": false,
+        "sabre_tooth_tigers": false
+      },
+      "landmarks": [
+        "raptors",
+        "nests with eggs",
+        "ferns",
+        "logs",
+        "swamp pools"
+      ]
+    },
+    {
+      "id": "sabertooth_canyon",
+      "source_map_id": "map_04_sabertooth_canyon",
+      "name": "Sabertooth Canyon",
+      "difficulty": 4,
+      "seed": 72004,
+      "size": [
+        148,
+        148
+      ],
+      "theme": "A warm canyon arena full of rock mesas, cave mouths, bones, and prowling sabre-tooth cats. Sightlines are long but routes loop around obstacles.",
+      "period": "Late Pleistocene canyon",
+      "preview_image": "res://assets/maps/dino_land/map_04_sabertooth_canyon.png",
+      "recommended_moving_cars": 1,
+      "recommended_people": 7,
+      "recommended_stack_groups": 2,
+      "challenge_notes": [
+        "medium",
+        "hazard: rockfalls",
+        "hazard: sabertooth_pounce"
+      ],
+      "ground_regions": [
+        {
+          "type": "prehistoric_floor",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            148,
+            148
+          ]
+        },
+        {
+          "type": "mesa_north",
+          "center": [
+            0.0,
+            -56.24
+          ],
+          "size": [
+            88.8,
+            23.68
+          ]
+        },
+        {
+          "type": "canyon_bowl",
+          "center": [
+            0.0,
+            -14.8
+          ],
+          "size": [
+            76.96,
+            53.28
+          ]
+        },
+        {
+          "type": "cave_west",
+          "center": [
+            -56.24,
+            -11.84
+          ],
+          "size": [
+            23.68,
+            71.04
+          ]
+        },
+        {
+          "type": "cave_east",
+          "center": [
+            56.24,
+            -11.84
+          ],
+          "size": [
+            23.68,
+            71.04
+          ]
+        },
+        {
+          "type": "bone_trail_south",
+          "center": [
+            0.0,
+            48.84
+          ],
+          "size": [
+            118.4,
+            32.56
+          ]
+        }
+      ],
+      "water_regions": [],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "lane",
+          "width": 11.396,
+          "lane_count": 1,
+          "points": [
+            [
+              -59.2,
+              48.84
+            ],
+            [
+              59.2,
+              48.84
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "cave_west",
+          "center": [
+            -56.24,
+            -11.84
+          ],
+          "size": [
+            23.68,
+            71.04
+          ]
+        },
+        {
+          "type": "cave_east",
+          "center": [
+            56.24,
+            -11.84
+          ],
+          "size": [
+            23.68,
+            71.04
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "mesa_north",
+          "center": [
+            0.0,
+            -56.24
+          ],
+          "size": [
+            88.8,
+            23.68
+          ]
+        },
+        {
+          "type": "canyon_bowl",
+          "center": [
+            0.0,
+            -14.8
+          ],
+          "size": [
+            76.96,
+            53.28
+          ]
+        },
+        {
+          "type": "cave_west",
+          "center": [
+            -56.24,
+            -11.84
+          ],
+          "size": [
+            23.68,
+            71.04
+          ]
+        },
+        {
+          "type": "cave_east",
+          "center": [
+            56.24,
+            -11.84
+          ],
+          "size": [
+            23.68,
+            71.04
+          ]
+        },
+        {
+          "type": "bone_trail_south",
+          "center": [
+            0.0,
+            48.84
+          ],
+          "size": [
+            118.4,
+            32.56
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -56.24,
+              50.32
+            ],
+            [
+              53.28,
+              -50.32
+            ],
+            [
+              0.0,
+              -62.16
+            ],
+            [
+              -62.16,
+              0.0
+            ],
+            [
+              62.16,
+              0.0
+            ],
+            [
+              -41.44,
+              -41.44
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 6.9
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "bone_stack",
+          "position": [
+            0.0,
+            -56.24
+          ],
+          "count": 8
+        },
+        {
+          "type": "stone_stack",
+          "position": [
+            0.0,
+            -14.8
+          ],
+          "count": 9
+        }
+      ],
+      "creature_population": {
+        "cave_people": true,
+        "cave_women": true,
+        "dinosaurs": false,
+        "woolly_mammoths": false,
+        "woolly_rhinoceroses": false,
+        "sabre_tooth_tigers": true
+      },
+      "landmarks": [
+        "sabre-tooth tigers",
+        "mesa rocks",
+        "caves",
+        "hunter camps",
+        "bone piles"
+      ]
+    },
+    {
+      "id": "cave_village_crossing",
+      "source_map_id": "map_05_cave_village_crossing",
+      "name": "Cave Village Crossing",
+      "difficulty": 5,
+      "seed": 72005,
+      "size": [
+        152,
+        153
+      ],
+      "theme": "A lively settlement with huts, fenced enclosures, smoke pits, drying racks, and bustling cave men and cave women. Central routes intersect constantly.",
+      "period": "Mixed late Stone Age",
+      "preview_image": "res://assets/maps/dino_land/map_05_cave_village_crossing.png",
+      "recommended_moving_cars": 1,
+      "recommended_people": 8,
+      "recommended_stack_groups": 2,
+      "challenge_notes": [
+        "medium-hard",
+        "hazard: smoke_pits",
+        "hazard: stampede_pens"
+      ],
+      "ground_regions": [
+        {
+          "type": "prehistoric_floor",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            152,
+            153
+          ]
+        },
+        {
+          "type": "north_huts",
+          "center": [
+            0.0,
+            -56.61
+          ],
+          "size": [
+            127.68,
+            27.54
+          ]
+        },
+        {
+          "type": "market_crossing",
+          "center": [
+            0.0,
+            -13.77
+          ],
+          "size": [
+            72.96,
+            52.02
+          ]
+        },
+        {
+          "type": "pen_west",
+          "center": [
+            -56.24,
+            6.12
+          ],
+          "size": [
+            27.36,
+            73.44
+          ]
+        },
+        {
+          "type": "pen_east",
+          "center": [
+            56.24,
+            6.12
+          ],
+          "size": [
+            27.36,
+            73.44
+          ]
+        },
+        {
+          "type": "south_paths",
+          "center": [
+            0.0,
+            52.02
+          ],
+          "size": [
+            121.6,
+            36.72
+          ]
+        }
+      ],
+      "water_regions": [],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "lane",
+          "width": 12.852,
+          "lane_count": 1,
+          "points": [
+            [
+              -60.8,
+              52.02
+            ],
+            [
+              60.8,
+              52.02
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "north_huts",
+          "center": [
+            0.0,
+            -56.61
+          ],
+          "size": [
+            127.68,
+            27.54
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "north_huts",
+          "center": [
+            0.0,
+            -56.61
+          ],
+          "size": [
+            127.68,
+            27.54
+          ]
+        },
+        {
+          "type": "market_crossing",
+          "center": [
+            0.0,
+            -13.77
+          ],
+          "size": [
+            72.96,
+            52.02
+          ]
+        },
+        {
+          "type": "pen_west",
+          "center": [
+            -56.24,
+            6.12
+          ],
+          "size": [
+            27.36,
+            73.44
+          ]
+        },
+        {
+          "type": "pen_east",
+          "center": [
+            56.24,
+            6.12
+          ],
+          "size": [
+            27.36,
+            73.44
+          ]
+        },
+        {
+          "type": "south_paths",
+          "center": [
+            0.0,
+            52.02
+          ],
+          "size": [
+            121.6,
+            36.72
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -57.76,
+              52.02
+            ],
+            [
+              54.72,
+              -52.02
+            ],
+            [
+              0.0,
+              -64.26
+            ],
+            [
+              -63.84,
+              0.0
+            ],
+            [
+              63.84,
+              0.0
+            ],
+            [
+              -42.56,
+              -42.84
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 7.25
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "bone_stack",
+          "position": [
+            0.0,
+            -56.61
+          ],
+          "count": 9
+        },
+        {
+          "type": "stone_stack",
+          "position": [
+            0.0,
+            -13.77
+          ],
+          "count": 10
+        }
+      ],
+      "creature_population": {
+        "cave_people": true,
+        "cave_women": true,
+        "dinosaurs": false,
+        "woolly_mammoths": false,
+        "woolly_rhinoceroses": false,
+        "sabre_tooth_tigers": false
+      },
+      "landmarks": [
+        "cave men",
+        "cave women",
+        "thatch huts",
+        "fences",
+        "totem stones"
+      ]
+    },
+    {
+      "id": "glacial_mammoth_pass",
+      "source_map_id": "map_06_glacial_mammoth_pass",
+      "name": "Glacial Mammoth Pass",
+      "difficulty": 6,
+      "seed": 72006,
+      "size": [
+        156,
+        158
+      ],
+      "theme": "A dangerous glacial corridor full of cliffs, crevasses, ice bridges, mammoths, and woolly rhinos. Precision pathing matters here.",
+      "period": "Ice Age glacial canyon",
+      "preview_image": "res://assets/maps/dino_land/map_06_glacial_mammoth_pass.png",
+      "recommended_moving_cars": 2,
+      "recommended_people": 8,
+      "recommended_stack_groups": 3,
+      "challenge_notes": [
+        "hard",
+        "hazard: ice_slide",
+        "hazard: rhino_charge"
+      ],
+      "ground_regions": [
+        {
+          "type": "prehistoric_floor",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            156,
+            158
+          ]
+        },
+        {
+          "type": "north_rim",
+          "center": [
+            0.0,
+            -63.2
+          ],
+          "size": [
+            137.28,
+            18.96
+          ]
+        },
+        {
+          "type": "central_crevasse",
+          "center": [
+            0.0,
+            -3.16
+          ],
+          "size": [
+            62.4,
+            94.8
+          ]
+        },
+        {
+          "type": "west_ice_shelf",
+          "center": [
+            -53.04,
+            7.9
+          ],
+          "size": [
+            37.44,
+            116.92
+          ]
+        },
+        {
+          "type": "east_ice_shelf",
+          "center": [
+            53.04,
+            7.9
+          ],
+          "size": [
+            37.44,
+            116.92
+          ]
+        },
+        {
+          "type": "bridge_spines",
+          "center": [
+            0.0,
+            -3.16
+          ],
+          "size": [
+            37.44,
+            31.6
+          ]
+        }
+      ],
+      "water_regions": [
+        {
+          "type": "central_crevasse",
+          "center": [
+            0.0,
+            -3.16
+          ],
+          "size": [
+            62.4,
+            94.8
+          ]
+        }
+      ],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "lane",
+          "width": 13.104,
+          "lane_count": 1,
+          "points": [
+            [
+              -53.04,
+              -50.56
+            ],
+            [
+              -53.04,
+              66.36
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "lane",
+          "width": 13.104,
+          "lane_count": 1,
+          "points": [
+            [
+              53.04,
+              -50.56
+            ],
+            [
+              53.04,
+              66.36
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "bridge",
+          "width": 11.06,
+          "lane_count": 1,
+          "points": [
+            [
+              -18.72,
+              -3.16
+            ],
+            [
+              18.72,
+              -3.16
+            ]
+          ]
+        }
+      ],
+      "building_zones": [],
+      "prop_spawn_zones": [
+        {
+          "type": "north_rim",
+          "center": [
+            0.0,
+            -63.2
+          ],
+          "size": [
+            137.28,
+            18.96
+          ]
+        },
+        {
+          "type": "west_ice_shelf",
+          "center": [
+            -53.04,
+            7.9
+          ],
+          "size": [
+            37.44,
+            116.92
+          ]
+        },
+        {
+          "type": "east_ice_shelf",
+          "center": [
+            53.04,
+            7.9
+          ],
+          "size": [
+            37.44,
+            116.92
+          ]
+        },
+        {
+          "type": "bridge_spines",
+          "center": [
+            0.0,
+            -3.16
+          ],
+          "size": [
+            37.44,
+            31.6
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -59.28,
+              53.72
+            ],
+            [
+              56.16,
+              -53.72
+            ],
+            [
+              0.0,
+              -66.36
+            ],
+            [
+              -65.52,
+              0.0
+            ],
+            [
+              65.52,
+              0.0
+            ],
+            [
+              -43.68,
+              -44.24
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 7.6
+        },
+        {
+          "id": 1,
+          "road_id": 1,
+          "speed": 7.85
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "bone_stack",
+          "position": [
+            0.0,
+            -63.2
+          ],
+          "count": 10
+        },
+        {
+          "type": "stone_stack",
+          "position": [
+            -53.04,
+            7.9
+          ],
+          "count": 10
+        },
+        {
+          "type": "bone_stack",
+          "position": [
+            53.04,
+            7.9
+          ],
+          "count": 10
+        }
+      ],
+      "creature_population": {
+        "cave_people": true,
+        "cave_women": true,
+        "dinosaurs": false,
+        "woolly_mammoths": true,
+        "woolly_rhinoceroses": true,
+        "sabre_tooth_tigers": false
+      },
+      "landmarks": [
+        "mammoths",
+        "woolly rhinoceroses",
+        "ice cliffs",
+        "snow hunters",
+        "bridges"
+      ]
+    },
+    {
+      "id": "dino_jungle_basin",
+      "source_map_id": "map_07_dino_jungle_basin",
+      "name": "Dino Jungle Basin",
+      "difficulty": 7,
+      "seed": 72007,
+      "size": [
+        160,
+        163
+      ],
+      "theme": "A dense primeval basin with towering dinosaurs, heavy jungle growth, nests, and tangled routes. Big creatures create moving obstacles everywhere.",
+      "period": "Jurassic/Cretaceous mashup",
+      "preview_image": "res://assets/maps/dino_land/map_07_dino_jungle_basin.png",
+      "recommended_moving_cars": 0,
+      "recommended_people": 8,
+      "recommended_stack_groups": 2,
+      "challenge_notes": [
+        "hard",
+        "hazard: stegosaur_drift",
+        "hazard: dino_trample"
+      ],
+      "ground_regions": [
+        {
+          "type": "prehistoric_floor",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            160,
+            163
+          ]
+        },
+        {
+          "type": "north_grove",
+          "center": [
+            0.0,
+            -61.94
+          ],
+          "size": [
+            128.0,
+            26.08
+          ]
+        },
+        {
+          "type": "central_basin",
+          "center": [
+            0.0,
+            -16.3
+          ],
+          "size": [
+            83.2,
+            58.68
+          ]
+        },
+        {
+          "type": "west_jungle",
+          "center": [
+            -59.2,
+            11.41
+          ],
+          "size": [
+            28.8,
+            114.1
+          ]
+        },
+        {
+          "type": "east_jungle",
+          "center": [
+            59.2,
+            11.41
+          ],
+          "size": [
+            28.8,
+            114.1
+          ]
+        },
+        {
+          "type": "south_marsh",
+          "center": [
+            0.0,
+            53.79
+          ],
+          "size": [
+            108.8,
+            35.86
+          ]
+        }
+      ],
+      "water_regions": [
+        {
+          "type": "south_marsh",
+          "center": [
+            0.0,
+            53.79
+          ],
+          "size": [
+            108.8,
+            35.86
+          ]
+        }
+      ],
+      "roads": [],
+      "building_zones": [],
+      "prop_spawn_zones": [
+        {
+          "type": "north_grove",
+          "center": [
+            0.0,
+            -61.94
+          ],
+          "size": [
+            128.0,
+            26.08
+          ]
+        },
+        {
+          "type": "central_basin",
+          "center": [
+            0.0,
+            -16.3
+          ],
+          "size": [
+            83.2,
+            58.68
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -60.8,
+              55.42
+            ],
+            [
+              57.6,
+              -55.42
+            ],
+            [
+              0.0,
+              -68.46
+            ],
+            [
+              -67.2,
+              0.0
+            ],
+            [
+              67.2,
+              0.0
+            ],
+            [
+              -44.8,
+              -45.64
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [],
+      "stack_spawn_points": [
+        {
+          "type": "bone_stack",
+          "position": [
+            0.0,
+            -61.94
+          ],
+          "count": 10
+        },
+        {
+          "type": "stone_stack",
+          "position": [
+            0.0,
+            -16.3
+          ],
+          "count": 10
+        }
+      ],
+      "creature_population": {
+        "cave_people": false,
+        "cave_women": false,
+        "dinosaurs": true,
+        "woolly_mammoths": false,
+        "woolly_rhinoceroses": false,
+        "sabre_tooth_tigers": false
+      },
+      "landmarks": [
+        "sauropods",
+        "stegosaurs",
+        "raptors",
+        "egg nests",
+        "jungle ponds"
+      ]
+    },
+    {
+      "id": "tar_pit_timewarp",
+      "source_map_id": "map_08_tar_pit_timewarp",
+      "name": "Tar Pit Timewarp",
+      "difficulty": 8,
+      "seed": 72008,
+      "size": [
+        164,
+        168
+      ],
+      "theme": "A brutal tar field where eras collide: fossils, sabre-tooths, mammoths, and dinosaurs stalk the same muddy arena. Movement is constantly punished.",
+      "period": "Time-mixed fossil flats",
+      "preview_image": "res://assets/maps/dino_land/map_08_tar_pit_timewarp.png",
+      "recommended_moving_cars": 1,
+      "recommended_people": 8,
+      "recommended_stack_groups": 3,
+      "challenge_notes": [
+        "very hard",
+        "hazard: tar_traps",
+        "hazard: bone_collapse",
+        "hazard: mixed_predator_packs"
+      ],
+      "ground_regions": [
+        {
+          "type": "prehistoric_floor",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            164,
+            168
+          ]
+        },
+        {
+          "type": "tar_north",
+          "center": [
+            0.0,
+            -62.16
+          ],
+          "size": [
+            131.2,
+            30.24
+          ]
+        },
+        {
+          "type": "tar_center",
+          "center": [
+            0.0,
+            -15.12
+          ],
+          "size": [
+            72.16,
+            57.12
+          ]
+        },
+        {
+          "type": "bone_flats_west",
+          "center": [
+            -60.68,
+            11.76
+          ],
+          "size": [
+            29.52,
+            110.88
+          ]
+        },
+        {
+          "type": "bone_flats_east",
+          "center": [
+            60.68,
+            11.76
+          ],
+          "size": [
+            29.52,
+            110.88
+          ]
+        },
+        {
+          "type": "dry_ridge_south",
+          "center": [
+            0.0,
+            57.12
+          ],
+          "size": [
+            98.4,
+            33.6
+          ]
+        }
+      ],
+      "water_regions": [
+        {
+          "type": "tar_north",
+          "center": [
+            0.0,
+            -62.16
+          ],
+          "size": [
+            131.2,
+            30.24
+          ]
+        },
+        {
+          "type": "tar_center",
+          "center": [
+            0.0,
+            -15.12
+          ],
+          "size": [
+            72.16,
+            57.12
+          ]
+        }
+      ],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "lane",
+          "width": 11.76,
+          "lane_count": 1,
+          "points": [
+            [
+              -49.2,
+              57.12
+            ],
+            [
+              49.2,
+              57.12
+            ]
+          ]
+        }
+      ],
+      "building_zones": [],
+      "prop_spawn_zones": [
+        {
+          "type": "bone_flats_west",
+          "center": [
+            -60.68,
+            11.76
+          ],
+          "size": [
+            29.52,
+            110.88
+          ]
+        },
+        {
+          "type": "bone_flats_east",
+          "center": [
+            60.68,
+            11.76
+          ],
+          "size": [
+            29.52,
+            110.88
+          ]
+        },
+        {
+          "type": "dry_ridge_south",
+          "center": [
+            0.0,
+            57.12
+          ],
+          "size": [
+            98.4,
+            33.6
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -62.32,
+              57.12
+            ],
+            [
+              59.04,
+              -57.12
+            ],
+            [
+              0.0,
+              -70.56
+            ],
+            [
+              -68.88,
+              0.0
+            ],
+            [
+              68.88,
+              0.0
+            ],
+            [
+              -45.92,
+              -47.04
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 8.3
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "bone_stack",
+          "position": [
+            -60.68,
+            11.76
+          ],
+          "count": 10
+        },
+        {
+          "type": "stone_stack",
+          "position": [
+            60.68,
+            11.76
+          ],
+          "count": 10
+        },
+        {
+          "type": "bone_stack",
+          "position": [
+            0.0,
+            57.12
+          ],
+          "count": 10
+        }
+      ],
+      "creature_population": {
+        "cave_people": true,
+        "cave_women": true,
+        "dinosaurs": true,
+        "woolly_mammoths": true,
+        "woolly_rhinoceroses": false,
+        "sabre_tooth_tigers": true
+      },
+      "landmarks": [
+        "tar pits",
+        "fossils",
+        "skeletal remains",
+        "mammoths",
+        "sabre-tooths",
+        "dinosaurs"
+      ]
+    },
+    {
+      "id": "chrono_rift_highlands",
+      "source_map_id": "map_09_chrono_rift_highlands",
+      "name": "Chrono Rift Highlands",
+      "difficulty": 9,
+      "seed": 72009,
+      "size": [
+        168,
+        173
+      ],
+      "theme": "Jagged highlands fractured by glowing time rifts that pull together creatures from different eras. Constant spatial pressure and mixed hazards.",
+      "period": "Multi-era rift zone",
+      "preview_image": "res://assets/maps/dino_land/map_09_chrono_rift_highlands.png",
+      "recommended_moving_cars": 1,
+      "recommended_people": 8,
+      "recommended_stack_groups": 3,
+      "challenge_notes": [
+        "very hard",
+        "hazard: chrono_rifts",
+        "hazard: lightning_cracks",
+        "hazard: apex_predators"
+      ],
+      "ground_regions": [
+        {
+          "type": "prehistoric_floor",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            168,
+            173
+          ]
+        },
+        {
+          "type": "rift_north",
+          "center": [
+            0.0,
+            -65.74
+          ],
+          "size": [
+            107.52,
+            27.68
+          ]
+        },
+        {
+          "type": "highland_bowl",
+          "center": [
+            0.0,
+            -17.3
+          ],
+          "size": [
+            87.36,
+            62.28
+          ]
+        },
+        {
+          "type": "mixed_era_west",
+          "center": [
+            -62.16,
+            8.65
+          ],
+          "size": [
+            30.24,
+            128.02
+          ]
+        },
+        {
+          "type": "mixed_era_east",
+          "center": [
+            62.16,
+            8.65
+          ],
+          "size": [
+            30.24,
+            128.02
+          ]
+        },
+        {
+          "type": "stone_paths_south",
+          "center": [
+            0.0,
+            57.09
+          ],
+          "size": [
+            120.96,
+            38.06
+          ]
+        }
+      ],
+      "water_regions": [],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "lane",
+          "width": 13.321,
+          "lane_count": 1,
+          "points": [
+            [
+              -60.48,
+              57.09
+            ],
+            [
+              60.48,
+              57.09
+            ]
+          ]
+        }
+      ],
+      "building_zones": [],
+      "prop_spawn_zones": [
+        {
+          "type": "highland_bowl",
+          "center": [
+            0.0,
+            -17.3
+          ],
+          "size": [
+            87.36,
+            62.28
+          ]
+        },
+        {
+          "type": "mixed_era_west",
+          "center": [
+            -62.16,
+            8.65
+          ],
+          "size": [
+            30.24,
+            128.02
+          ]
+        },
+        {
+          "type": "mixed_era_east",
+          "center": [
+            62.16,
+            8.65
+          ],
+          "size": [
+            30.24,
+            128.02
+          ]
+        },
+        {
+          "type": "stone_paths_south",
+          "center": [
+            0.0,
+            57.09
+          ],
+          "size": [
+            120.96,
+            38.06
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -63.84,
+              58.82
+            ],
+            [
+              60.48,
+              -58.82
+            ],
+            [
+              0.0,
+              -72.66
+            ],
+            [
+              -70.56,
+              0.0
+            ],
+            [
+              70.56,
+              0.0
+            ],
+            [
+              -47.04,
+              -48.44
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 8.65
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "bone_stack",
+          "position": [
+            0.0,
+            -17.3
+          ],
+          "count": 10
+        },
+        {
+          "type": "stone_stack",
+          "position": [
+            -62.16,
+            8.65
+          ],
+          "count": 10
+        },
+        {
+          "type": "bone_stack",
+          "position": [
+            62.16,
+            8.65
+          ],
+          "count": 10
+        }
+      ],
+      "creature_population": {
+        "cave_people": true,
+        "cave_women": true,
+        "dinosaurs": true,
+        "woolly_mammoths": true,
+        "woolly_rhinoceroses": true,
+        "sabre_tooth_tigers": true
+      },
+      "landmarks": [
+        "glowing rifts",
+        "mammoths",
+        "woolly rhinos",
+        "raptors",
+        "sabre-tooths"
+      ]
+    },
+    {
+      "id": "primeval_citadel",
+      "source_map_id": "map_10_primeval_citadel",
+      "name": "Primeval Citadel",
+      "difficulty": 10,
+      "seed": 72010,
+      "size": [
+        172,
+        178
+      ],
+      "theme": "The final arena: a circular citadel combining volcanic, icy, jungle, and village biomes. Cave people, mammoths, rhinos, sabre-tooths, and dinosaurs all collide here.",
+      "period": "Combined-era fantasy finale",
+      "preview_image": "res://assets/maps/dino_land/map_10_primeval_citadel.png",
+      "recommended_moving_cars": 1,
+      "recommended_people": 8,
+      "recommended_stack_groups": 3,
+      "challenge_notes": [
+        "extreme",
+        "hazard: lava_flows",
+        "hazard: ice_slides",
+        "hazard: mega_stampedes",
+        "hazard: chrono_surges"
+      ],
+      "ground_regions": [
+        {
+          "type": "prehistoric_floor",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            172,
+            178
+          ]
+        },
+        {
+          "type": "outer_ring",
+          "center": [
+            0.0,
+            -67.64
+          ],
+          "size": [
+            158.24,
+            28.48
+          ]
+        },
+        {
+          "type": "volcano_sector",
+          "center": [
+            -41.28,
+            -30.26
+          ],
+          "size": [
+            61.92,
+            39.16
+          ]
+        },
+        {
+          "type": "ice_sector",
+          "center": [
+            41.28,
+            -30.26
+          ],
+          "size": [
+            61.92,
+            39.16
+          ]
+        },
+        {
+          "type": "jungle_sector",
+          "center": [
+            -41.28,
+            39.16
+          ],
+          "size": [
+            61.92,
+            56.96
+          ]
+        },
+        {
+          "type": "village_sector",
+          "center": [
+            41.28,
+            39.16
+          ],
+          "size": [
+            61.92,
+            56.96
+          ]
+        },
+        {
+          "type": "citadel_core",
+          "center": [
+            0.0,
+            0.0
+          ],
+          "size": [
+            55.04,
+            56.96
+          ]
+        }
+      ],
+      "water_regions": [],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "lane",
+          "width": 9.968,
+          "lane_count": 1,
+          "points": [
+            [
+              -79.12,
+              -67.64
+            ],
+            [
+              79.12,
+              -67.64
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "village_sector",
+          "center": [
+            41.28,
+            39.16
+          ],
+          "size": [
+            61.92,
+            56.96
+          ]
+        },
+        {
+          "type": "citadel_core",
+          "center": [
+            0.0,
+            0.0
+          ],
+          "size": [
+            55.04,
+            56.96
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "outer_ring",
+          "center": [
+            0.0,
+            -67.64
+          ],
+          "size": [
+            158.24,
+            28.48
+          ]
+        },
+        {
+          "type": "jungle_sector",
+          "center": [
+            -41.28,
+            39.16
+          ],
+          "size": [
+            61.92,
+            56.96
+          ]
+        },
+        {
+          "type": "village_sector",
+          "center": [
+            41.28,
+            39.16
+          ],
+          "size": [
+            61.92,
+            56.96
+          ]
+        },
+        {
+          "type": "citadel_core",
+          "center": [
+            0.0,
+            0.0
+          ],
+          "size": [
+            55.04,
+            56.96
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -65.36,
+              60.52
+            ],
+            [
+              61.92,
+              -60.52
+            ],
+            [
+              0.0,
+              -74.76
+            ],
+            [
+              -72.24,
+              0.0
+            ],
+            [
+              72.24,
+              0.0
+            ],
+            [
+              -48.16,
+              -49.84
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 9.0
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "bone_stack",
+          "position": [
+            0.0,
+            -67.64
+          ],
+          "count": 10
+        },
+        {
+          "type": "stone_stack",
+          "position": [
+            -41.28,
+            39.16
+          ],
+          "count": 10
+        },
+        {
+          "type": "bone_stack",
+          "position": [
+            41.28,
+            39.16
+          ],
+          "count": 10
+        }
+      ],
+      "creature_population": {
+        "cave_people": true,
+        "cave_women": true,
+        "dinosaurs": true,
+        "woolly_mammoths": true,
+        "woolly_rhinoceroses": true,
+        "sabre_tooth_tigers": true
+      },
+      "landmarks": [
+        "cave citadel",
+        "volcano",
+        "ice wall",
+        "jungle paddock",
+        "village huts",
+        "all creature types"
+      ]
+    }
+  ]
+}

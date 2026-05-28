@@ -1,0 +1,1034 @@
+{
+  "schema_version": "1.0.0",
+  "id": "map_02_carrot_village",
+  "name": "Carrot Village",
+  "display_name": "Carrot Village",
+  "theme": "bunny",
+  "subtheme": "village",
+  "description": "A gentle village with carrot cottages, garden plots, and clearer resource clusters.",
+  "difficulty": {
+    "label": "easy",
+    "index": 2,
+    "recommended_player_skill": "novice"
+  },
+  "world": {
+    "coordinate_space": "normalized_0_to_1",
+    "recommended_world_size": {
+      "width": 2640,
+      "height": 2640
+    },
+    "origin": "top_left",
+    "wrap_edges": false,
+    "outer_wall": {
+      "enabled": true,
+      "style": "white_picket_fence",
+      "collision": true
+    },
+    "camera": {
+      "mode": "top_down",
+      "suggested_zoom": 0.98
+    }
+  },
+  "assets": {
+    "preview_png": "res://BunnyMapPack/images/map_02_carrot_village.png",
+    "json_path": "res://BunnyMapPack/maps/map_02_carrot_village.json",
+    "tileset_hint": "soft_pastel_top_down_bunny_props",
+    "palette": [
+      "carrot_orange",
+      "grass_green",
+      "cream"
+    ],
+    "feature_tags": [
+      "village",
+      "resource_patches",
+      "safe_routes"
+    ]
+  },
+  "player": {
+    "start_position": [
+      0.5,
+      0.86
+    ],
+    "start_hole_radius": 0.026,
+    "max_hole_radius": 0.196,
+    "movement_speed": 0.99,
+    "growth_curve": "eat_value_weighted_radius",
+    "safe_start_radius": 0.102
+  },
+  "gameplay_rules": {
+    "mode": "hole_io_style_collect_and_grow",
+    "round_time_seconds": 136,
+    "score_to_win": 2900,
+    "allow_eat_players": false,
+    "eat_player_score_multiplier": 1.16,
+    "object_eat_rule": "object_radius_must_be_less_than_current_hole_radius_times_0.92",
+    "growth_per_score": 2.6e-05,
+    "combo_window_seconds": 3.0,
+    "combo_bonus_per_stack": 0.042,
+    "respawn_consumed_small_objects": true,
+    "respawn_consumed_large_objects": true,
+    "hazard_damage_enabled": false,
+    "fall_off_map_penalty": "instant_respawn_minus_10_percent_score"
+  },
+  "win_conditions": [
+    {
+      "type": "highest_score_when_timer_expires"
+    },
+    {
+      "type": "score_target",
+      "value": 2900
+    }
+  ],
+  "bot_ai": {
+    "enabled": true,
+    "bot_count": 3,
+    "bot_names": [
+      "Thumper",
+      "Clover",
+      "Mopsy"
+    ],
+    "aggression": 0.26,
+    "pathfinding": "region_graph_then_direct_steering",
+    "targeting_priority": [
+      "nearby_tier_1",
+      "safe_clusters",
+      "bonus_regions",
+      "weaker_players"
+    ],
+    "avoid_hazards_until_radius": 0.087
+  },
+  "audio_visual": {
+    "ambient_track": "village_bouncy_loop",
+    "lighting": "bright_day",
+    "particle_theme": "petals_and_bunny_sparkles",
+    "confetti_on_level_complete": true
+  },
+  "regions": [
+    {
+      "id": "grass_main",
+      "name": "Main Playfield",
+      "type": "ground",
+      "polygon": [
+        [
+          0.03,
+          0.07
+        ],
+        [
+          0.97,
+          0.07
+        ],
+        [
+          0.97,
+          0.97
+        ],
+        [
+          0.03,
+          0.97
+        ]
+      ],
+      "surface": "grass",
+      "color_hint": "#89D86C",
+      "spawn_tags": [
+        "flowers",
+        "carrots",
+        "small_props"
+      ],
+      "nav_cost": 1.0
+    },
+    {
+      "id": "start_pad",
+      "name": "Starting Burrow Pad",
+      "type": "safe_zone",
+      "polygon": [
+        [
+          0.575,
+          0.86
+        ],
+        [
+          0.572,
+          0.879
+        ],
+        [
+          0.565,
+          0.897
+        ],
+        [
+          0.553,
+          0.913
+        ],
+        [
+          0.537,
+          0.925
+        ],
+        [
+          0.519,
+          0.932
+        ],
+        [
+          0.5,
+          0.935
+        ],
+        [
+          0.481,
+          0.932
+        ],
+        [
+          0.463,
+          0.925
+        ],
+        [
+          0.447,
+          0.913
+        ],
+        [
+          0.435,
+          0.897
+        ],
+        [
+          0.428,
+          0.879
+        ],
+        [
+          0.425,
+          0.86
+        ],
+        [
+          0.428,
+          0.841
+        ],
+        [
+          0.435,
+          0.823
+        ],
+        [
+          0.447,
+          0.807
+        ],
+        [
+          0.462,
+          0.795
+        ],
+        [
+          0.481,
+          0.788
+        ],
+        [
+          0.5,
+          0.785
+        ],
+        [
+          0.519,
+          0.788
+        ],
+        [
+          0.537,
+          0.795
+        ],
+        [
+          0.553,
+          0.807
+        ],
+        [
+          0.565,
+          0.823
+        ],
+        [
+          0.572,
+          0.841
+        ]
+      ],
+      "surface": "soft_dirt",
+      "color_hint": "#D9B37B",
+      "spawn_tags": [
+        "safe_small"
+      ],
+      "nav_cost": 0.75
+    },
+    {
+      "id": "pond_left",
+      "name": "Duckling Pond",
+      "type": "water",
+      "polygon": [
+        [
+          0.26,
+          0.66
+        ],
+        [
+          0.257,
+          0.681
+        ],
+        [
+          0.249,
+          0.7
+        ],
+        [
+          0.237,
+          0.717
+        ],
+        [
+          0.22,
+          0.729
+        ],
+        [
+          0.201,
+          0.737
+        ],
+        [
+          0.18,
+          0.74
+        ],
+        [
+          0.159,
+          0.737
+        ],
+        [
+          0.14,
+          0.729
+        ],
+        [
+          0.123,
+          0.717
+        ],
+        [
+          0.111,
+          0.7
+        ],
+        [
+          0.103,
+          0.681
+        ],
+        [
+          0.1,
+          0.66
+        ],
+        [
+          0.103,
+          0.639
+        ],
+        [
+          0.111,
+          0.62
+        ],
+        [
+          0.123,
+          0.603
+        ],
+        [
+          0.14,
+          0.591
+        ],
+        [
+          0.159,
+          0.583
+        ],
+        [
+          0.18,
+          0.58
+        ],
+        [
+          0.201,
+          0.583
+        ],
+        [
+          0.22,
+          0.591
+        ],
+        [
+          0.237,
+          0.603
+        ],
+        [
+          0.249,
+          0.62
+        ],
+        [
+          0.257,
+          0.639
+        ]
+      ],
+      "surface": "water",
+      "color_hint": "#60C4E8",
+      "spawn_tags": [
+        "edge_flowers"
+      ],
+      "nav_cost": 99,
+      "blocked": true
+    },
+    {
+      "id": "carrot_patch_a",
+      "name": "North Carrot Patch",
+      "type": "resource",
+      "polygon": [
+        [
+          0.18,
+          0.18
+        ],
+        [
+          0.34,
+          0.18
+        ],
+        [
+          0.34,
+          0.32
+        ],
+        [
+          0.18,
+          0.32
+        ]
+      ],
+      "surface": "tilled_soil",
+      "color_hint": "#9B6A43",
+      "spawn_tags": [
+        "carrots",
+        "crates"
+      ],
+      "nav_cost": 1.15
+    },
+    {
+      "id": "carrot_patch_b",
+      "name": "South Carrot Patch",
+      "type": "resource",
+      "polygon": [
+        [
+          0.64,
+          0.63
+        ],
+        [
+          0.82,
+          0.63
+        ],
+        [
+          0.82,
+          0.79
+        ],
+        [
+          0.64,
+          0.79
+        ]
+      ],
+      "surface": "tilled_soil",
+      "color_hint": "#9B6A43",
+      "spawn_tags": [
+        "carrots",
+        "crates"
+      ],
+      "nav_cost": 1.15
+    },
+    {
+      "id": "cottage_cluster",
+      "name": "Bunny Cottages",
+      "type": "building_cluster",
+      "polygon": [
+        [
+          0.82,
+          0.25
+        ],
+        [
+          0.817,
+          0.273
+        ],
+        [
+          0.808,
+          0.295
+        ],
+        [
+          0.794,
+          0.314
+        ],
+        [
+          0.775,
+          0.328
+        ],
+        [
+          0.753,
+          0.337
+        ],
+        [
+          0.73,
+          0.34
+        ],
+        [
+          0.707,
+          0.337
+        ],
+        [
+          0.685,
+          0.328
+        ],
+        [
+          0.666,
+          0.314
+        ],
+        [
+          0.652,
+          0.295
+        ],
+        [
+          0.643,
+          0.273
+        ],
+        [
+          0.64,
+          0.25
+        ],
+        [
+          0.643,
+          0.227
+        ],
+        [
+          0.652,
+          0.205
+        ],
+        [
+          0.666,
+          0.186
+        ],
+        [
+          0.685,
+          0.172
+        ],
+        [
+          0.707,
+          0.163
+        ],
+        [
+          0.73,
+          0.16
+        ],
+        [
+          0.753,
+          0.163
+        ],
+        [
+          0.775,
+          0.172
+        ],
+        [
+          0.794,
+          0.186
+        ],
+        [
+          0.808,
+          0.205
+        ],
+        [
+          0.817,
+          0.227
+        ]
+      ],
+      "surface": "cobbles",
+      "color_hint": "#C9B799",
+      "spawn_tags": [
+        "hutches",
+        "baskets"
+      ],
+      "nav_cost": 1.25
+    }
+  ],
+  "paths": [
+    {
+      "id": "main_s_curve",
+      "type": "dirt_path",
+      "width": 0.045,
+      "points": [
+        [
+          0.5,
+          0.93
+        ],
+        [
+          0.45,
+          0.78
+        ],
+        [
+          0.56,
+          0.62
+        ],
+        [
+          0.42,
+          0.45
+        ],
+        [
+          0.55,
+          0.28
+        ],
+        [
+          0.5,
+          0.08
+        ]
+      ]
+    },
+    {
+      "id": "left_branch",
+      "type": "dirt_path",
+      "width": 0.038,
+      "points": [
+        [
+          0.44,
+          0.55
+        ],
+        [
+          0.25,
+          0.48
+        ],
+        [
+          0.15,
+          0.3
+        ]
+      ]
+    },
+    {
+      "id": "right_branch",
+      "type": "dirt_path",
+      "width": 0.038,
+      "points": [
+        [
+          0.56,
+          0.49
+        ],
+        [
+          0.72,
+          0.42
+        ],
+        [
+          0.86,
+          0.26
+        ]
+      ]
+    }
+  ],
+  "spawn_points": [
+    {
+      "id": "player_spawn",
+      "kind": "player",
+      "position": [
+        0.5,
+        0.86
+      ],
+      "rotation_degrees": -90,
+      "safe": true
+    },
+    {
+      "id": "bot_spawn_01",
+      "kind": "bot",
+      "position": [
+        0.18,
+        0.18
+      ],
+      "weight": 1.0
+    },
+    {
+      "id": "bot_spawn_02",
+      "kind": "bot",
+      "position": [
+        0.82,
+        0.18
+      ],
+      "weight": 1.0
+    },
+    {
+      "id": "bot_spawn_03",
+      "kind": "bot",
+      "position": [
+        0.18,
+        0.82
+      ],
+      "weight": 1.0
+    },
+    {
+      "id": "bonus_spawn_01",
+      "kind": "bonus_cluster",
+      "position": [
+        0.5,
+        0.5
+      ],
+      "weight": 1.0
+    },
+    {
+      "id": "bonus_spawn_02",
+      "kind": "bonus_cluster",
+      "position": [
+        0.25,
+        0.28
+      ],
+      "weight": 1.08
+    },
+    {
+      "id": "bonus_spawn_03",
+      "kind": "bonus_cluster",
+      "position": [
+        0.75,
+        0.3
+      ],
+      "weight": 1.16
+    }
+  ],
+  "object_catalog": [
+    {
+      "id": "daisy_patch",
+      "tier": 1,
+      "radius": 0.01,
+      "score": 10,
+      "tags": [
+        "flower",
+        "tiny",
+        "safe"
+      ]
+    },
+    {
+      "id": "clover_clump",
+      "tier": 1,
+      "radius": 0.012,
+      "score": 14,
+      "tags": [
+        "plant",
+        "tiny",
+        "safe"
+      ]
+    },
+    {
+      "id": "baby_carrot",
+      "tier": 1,
+      "radius": 0.014,
+      "score": 18,
+      "tags": [
+        "carrot",
+        "food",
+        "tiny"
+      ]
+    },
+    {
+      "id": "painted_egg_small",
+      "tier": 1,
+      "radius": 0.016,
+      "score": 22,
+      "tags": [
+        "egg",
+        "tiny",
+        "seasonal"
+      ]
+    },
+    {
+      "id": "picnic_basket",
+      "tier": 2,
+      "radius": 0.025,
+      "score": 60,
+      "tags": [
+        "basket",
+        "prop"
+      ]
+    },
+    {
+      "id": "garden_fence_short",
+      "tier": 2,
+      "radius": 0.031,
+      "score": 90,
+      "tags": [
+        "fence",
+        "breakable"
+      ]
+    },
+    {
+      "id": "carrot_crate",
+      "tier": 2,
+      "radius": 0.034,
+      "score": 110,
+      "tags": [
+        "crate",
+        "carrot"
+      ]
+    },
+    {
+      "id": "burrow_sign",
+      "tier": 2,
+      "radius": 0.038,
+      "score": 130,
+      "tags": [
+        "sign",
+        "wood"
+      ]
+    },
+    {
+      "id": "rabbit_hutch",
+      "tier": 3,
+      "radius": 0.055,
+      "score": 260,
+      "tags": [
+        "hut",
+        "building"
+      ]
+    },
+    {
+      "id": "giant_carrot",
+      "tier": 3,
+      "radius": 0.062,
+      "score": 320,
+      "tags": [
+        "carrot",
+        "large_food"
+      ]
+    },
+    {
+      "id": "egg_fountain",
+      "tier": 3,
+      "radius": 0.075,
+      "score": 430,
+      "tags": [
+        "fountain",
+        "egg",
+        "landmark"
+      ]
+    },
+    {
+      "id": "burrow_house",
+      "tier": 4,
+      "radius": 0.095,
+      "score": 850,
+      "tags": [
+        "building",
+        "burrow",
+        "large"
+      ]
+    },
+    {
+      "id": "windmill",
+      "tier": 4,
+      "radius": 0.11,
+      "score": 1050,
+      "tags": [
+        "building",
+        "moving",
+        "large"
+      ]
+    },
+    {
+      "id": "castle_tower",
+      "tier": 5,
+      "radius": 0.135,
+      "score": 1650,
+      "tags": [
+        "castle",
+        "tower",
+        "boss_object"
+      ]
+    }
+  ],
+  "object_spawn_rules": [
+    {
+      "id": "tiny_meadow_scatter",
+      "tier": 1,
+      "object_ids": [
+        "daisy_patch",
+        "clover_clump",
+        "baby_carrot",
+        "painted_egg_small"
+      ],
+      "regions": [
+        "grass_main",
+        "start_pad"
+      ],
+      "count": 126,
+      "distribution": "blue_noise",
+      "respawn_seconds": 8
+    },
+    {
+      "id": "carrot_resource_patches",
+      "tier": 1,
+      "object_ids": [
+        "baby_carrot",
+        "clover_clump"
+      ],
+      "regions": [
+        "carrot_patch_a",
+        "carrot_patch_b",
+        "secret_patch",
+        "royal_garden"
+      ],
+      "count": 51,
+      "distribution": "clustered",
+      "respawn_seconds": 10
+    },
+    {
+      "id": "medium_props",
+      "tier": 2,
+      "object_ids": [
+        "picnic_basket",
+        "garden_fence_short",
+        "carrot_crate",
+        "burrow_sign"
+      ],
+      "regions": [
+        "grass_main",
+        "main_streets",
+        "castle_town_outer",
+        "egg_garden_outer"
+      ],
+      "count": 36,
+      "distribution": "near_paths",
+      "respawn_seconds": 18
+    },
+    {
+      "id": "landmark_props",
+      "tier": 3,
+      "object_ids": [
+        "rabbit_hutch",
+        "giant_carrot",
+        "egg_fountain"
+      ],
+      "regions": [
+        "cottage_cluster",
+        "market_square",
+        "royal_plaza",
+        "tea_party_ring"
+      ],
+      "count": 10,
+      "distribution": "region_centers",
+      "respawn_seconds": 0
+    },
+    {
+      "id": "late_game_structures",
+      "tier": 4,
+      "object_ids": [
+        "burrow_house",
+        "windmill"
+      ],
+      "regions": [
+        "bakery_row",
+        "windmill_ridge",
+        "castle_town_outer",
+        "citadel_outer_ring"
+      ],
+      "count": 1,
+      "distribution": "fixed_landmarks",
+      "respawn_seconds": 0
+    },
+    {
+      "id": "boss_objects",
+      "tier": 5,
+      "object_ids": [
+        "castle_tower"
+      ],
+      "regions": [
+        "throne_keep",
+        "royal_plaza"
+      ],
+      "count": 0,
+      "distribution": "fixed_landmark",
+      "respawn_seconds": 0
+    }
+  ],
+  "hazards": [],
+  "blockers": [
+    {
+      "id": "outer_fence",
+      "type": "static_wall",
+      "source": "world.outer_wall",
+      "collision_layer": "walls"
+    }
+  ],
+  "events": [
+    {
+      "id": "golden_carrot_rush",
+      "trigger": "timer_at_50_percent",
+      "effect": "spawn_bonus_cluster",
+      "positions": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.25,
+          0.75
+        ],
+        [
+          0.75,
+          0.25
+        ]
+      ],
+      "duration_seconds": 15
+    }
+  ],
+  "region_graph": {
+    "nodes": [
+      {
+        "id": "grass_main",
+        "center": [
+          0.5,
+          0.52
+        ],
+        "type": "ground"
+      },
+      {
+        "id": "start_pad",
+        "center": [
+          0.5,
+          0.86
+        ],
+        "type": "safe_zone"
+      },
+      {
+        "id": "pond_left",
+        "center": [
+          0.18,
+          0.66
+        ],
+        "type": "water"
+      },
+      {
+        "id": "carrot_patch_a",
+        "center": [
+          0.26,
+          0.25
+        ],
+        "type": "resource"
+      },
+      {
+        "id": "carrot_patch_b",
+        "center": [
+          0.73,
+          0.71
+        ],
+        "type": "resource"
+      },
+      {
+        "id": "cottage_cluster",
+        "center": [
+          0.73,
+          0.25
+        ],
+        "type": "building_cluster"
+      }
+    ],
+    "links": [
+      {
+        "from": "grass_main",
+        "to": "start_pad",
+        "cost": 1.0
+      },
+      {
+        "from": "grass_main",
+        "to": "pond_left",
+        "cost": 1.0
+      },
+      {
+        "from": "grass_main",
+        "to": "carrot_patch_a",
+        "cost": 1.0
+      },
+      {
+        "from": "grass_main",
+        "to": "carrot_patch_b",
+        "cost": 1.0
+      },
+      {
+        "from": "grass_main",
+        "to": "cottage_cluster",
+        "cost": 1.0
+      },
+      {
+        "from": "start_pad",
+        "to": "grass_main",
+        "cost": 0.5
+      }
+    ]
+  }
+}

@@ -53,6 +53,14 @@ const MIN_SPEED := 4.2
 const ACCELERATION := 22.0
 const DECELERATION := 28.0
 const MAP_SEED := 43021
+const MAP_CATALOG_PATHS := [
+	"res://resources/maps/map_catalog.json",
+	"res://resources/maps/kitty_land/kitty_land_catalog.json",
+	"res://resources/maps/candy_land/candy_land_catalog.json",
+	"res://resources/maps/robot_land/robot_land_catalog.json",
+	"res://resources/maps/bunny_land/bunny_land_catalog.json",
+	"res://resources/maps/dino_land/dino_land_catalog.json",
+]
 const SPAWN_ALGO_VERSION := 1
 const PROFILE_SAVE_PATH := "user://profile.cfg"
 const JOYSTICK_SIZE := 128.0
@@ -95,6 +103,8 @@ var player_respawn_remaining := 0.0
 var remaining_count := 0
 var selected_match_seconds := MATCH_SECONDS
 var selected_map_seed := MAP_SEED
+var selected_map_id := "classic_park"
+var selected_map_name := "Classic Park"
 var selected_bot_count := BOT_COUNT
 var selected_bot_difficulty := BOT_DIFFICULTY_NORMAL
 var time_remaining := MATCH_SECONDS
@@ -113,6 +123,7 @@ var active_prop_indices: PackedInt32Array = PackedInt32Array()
 var moving_props: Array = []
 var moving_routes: Array = []
 var moving_route_lengths: PackedFloat32Array = PackedFloat32Array()
+var map_options: Array = []
 var audio_consume_player: AudioStreamPlayer
 var audio_hole_eaten_player: AudioStreamPlayer
 var audio_countdown_player: AudioStreamPlayer
@@ -294,7 +305,7 @@ func reset_match(start_countdown := true) -> void:
 	_spawn_props()
 	_spawn_moving_props()
 	if start_countdown:
-		_add_event_feed_message("Practice started: %d rivals, %s AI" % [selected_bot_count, _get_bot_difficulty_name()])
+		_add_event_feed_message("Practice started on %s: %d rivals, %s AI" % [selected_map_name, selected_bot_count, _get_bot_difficulty_name()])
 	_update_camera(1.0)
 	_update_hud()
 
@@ -320,11 +331,81 @@ func _on_duration_selected(index: int) -> void:
 	_update_hud()
 
 
+func _load_map_options() -> void:
+	map_options.clear()
+	for catalog_path in MAP_CATALOG_PATHS:
+		_load_map_catalog(catalog_path)
+
+	if map_options.is_empty():
+		_add_map_option("classic_park", "Classic Park", "Classic Park", MAP_SEED)
+		_add_map_option("dense_north", "Dense North", "Dense North", 77031)
+		_add_map_option("wide_scatter", "Wide Scatter", "Wide Scatter", 99173)
+		_add_map_option("big_finish", "Big Finish", "Big Finish", 24680)
+
+
+func _load_map_catalog(catalog_path: String) -> void:
+	if not FileAccess.file_exists(catalog_path):
+		return
+
+	var file := FileAccess.open(catalog_path, FileAccess.READ)
+	if not file:
+		push_warning("Unable to read map catalog: %s" % catalog_path)
+		return
+
+	var parsed = JSON.parse_string(file.get_as_text())
+	if typeof(parsed) != TYPE_DICTIONARY:
+		push_warning("Map catalog is not a dictionary: %s" % catalog_path)
+		return
+
+	var catalog: Dictionary = parsed
+	var maps = catalog.get("maps", [])
+	if typeof(maps) != TYPE_ARRAY:
+		push_warning("Map catalog has no maps array: %s" % catalog_path)
+		return
+
+	var pack_id := String(catalog.get("pack_id", catalog_path.get_base_dir().get_file()))
+	var pack_name := String(catalog.get("name", ""))
+	if pack_name.is_empty():
+		pack_name = "Base Maps" if catalog_path.ends_with("/map_catalog.json") else pack_id.capitalize()
+
+	for map_data in maps:
+		if typeof(map_data) != TYPE_DICTIONARY:
+			continue
+		var map_dictionary: Dictionary = map_data
+		var map_id := String(map_dictionary.get("id", "map_%d" % map_options.size()))
+		var map_name := String(map_dictionary.get("name", map_id.capitalize()))
+		var option_id := "%s/%s" % [pack_id, map_id]
+		var label := "%s: %s" % [pack_name, map_name]
+		var seed := int(map_dictionary.get("seed", MAP_SEED + abs(option_id.hash())))
+		_add_map_option(option_id, map_name, label, seed)
+
+
+func _add_map_option(map_id: String, map_name: String, label: String, seed: int) -> void:
+	map_options.append({
+		"id": map_id,
+		"name": map_name,
+		"label": label,
+		"seed": seed,
+	})
+
+
+func _apply_selected_map_option(index: int, refresh_hud := true) -> void:
+	if index < 0 or index >= map_options.size():
+		return
+
+	var option: Dictionary = map_options[index]
+	selected_map_id = String(option["id"])
+	selected_map_name = String(option["name"])
+	selected_map_seed = int(option["seed"])
+	if refresh_hud:
+		_update_hud()
+
+
 func _on_seed_selected(index: int) -> void:
 	if not seed_option:
 		return
 
-	selected_map_seed = seed_option.get_item_id(index)
+	_apply_selected_map_option(index)
 
 
 func _on_rival_count_selected(index: int) -> void:
@@ -709,16 +790,18 @@ func _build_hud() -> void:
 	menu_box.add_child(duration_option)
 
 	var seed_label := _hud_label(16)
-	seed_label.text = "Arena seed"
+	seed_label.text = "Map"
 	seed_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	menu_box.add_child(seed_label)
 
+	_load_map_options()
 	seed_option = OptionButton.new()
-	seed_option.add_item("Classic", MAP_SEED)
-	seed_option.add_item("Dense North", 77031)
-	seed_option.add_item("Wide Scatter", 99173)
-	seed_option.add_item("Big Finish", 24680)
-	seed_option.select(0)
+	for index in range(map_options.size()):
+		var map_option: Dictionary = map_options[index]
+		seed_option.add_item(String(map_option["label"]), int(map_option["seed"]))
+	if not map_options.is_empty():
+		seed_option.select(0)
+		_apply_selected_map_option(0, false)
 	seed_option.item_selected.connect(_on_seed_selected)
 	menu_box.add_child(seed_option)
 
@@ -989,6 +1072,13 @@ func _spawn_moving_props() -> void:
 
 		var node: Node3D = PROP_CAR_SCENE.instantiate()
 		node.name = "MovingCar_%d" % int(spawn["id"])
+		# Gameplay uses custom footprint checks, not Godot physics overlap, so
+		# strip the scene's StaticBody3D — when the consume tween shrinks the
+		# car to Vector3.ZERO the physics server otherwise inverts a singular
+		# basis and logs `det == 0` per frame.
+		for child in node.get_children():
+			if child is StaticBody3D:
+				child.queue_free()
 		node.position = position
 		node.rotation.y = rotation_y
 		moving_props_root.add_child(node)

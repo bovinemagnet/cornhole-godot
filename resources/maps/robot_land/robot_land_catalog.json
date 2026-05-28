@@ -1,0 +1,1596 @@
+{
+  "schema_version": 1,
+  "pack_id": "robot_land",
+  "name": "Robot Land",
+  "description": "Ten futuristic robot-themed maps normalized to the shared project map catalog layout.",
+  "coordinate_space": "xz",
+  "difficulty_scale": "1 easiest, 10 hardest",
+  "maps": [
+    {
+      "id": "neon_scrap_yard",
+      "source_map_id": "map_01_neon_scrap_yard",
+      "name": "Neon Scrap Yard",
+      "difficulty": 1,
+      "seed": 62001,
+      "size": [
+        138,
+        131
+      ],
+      "theme": "A chaotic scrapyard full of rusted robot husks, repair bays, conveyor runs, and salvage piles. Spacious and forgiving for introductory matches.",
+      "recommended_moving_cars": 1,
+      "recommended_people": 4,
+      "recommended_stack_groups": 1,
+      "challenge_notes": [
+        "easy",
+        "hazard: welding_sparks",
+        "hazard: magnet_crane"
+      ],
+      "ground_regions": [
+        {
+          "type": "robot_floor",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            138,
+            131
+          ]
+        },
+        {
+          "type": "repair_bays",
+          "center": [
+            -48.3,
+            44.54
+          ],
+          "size": [
+            27.6,
+            20.96
+          ]
+        },
+        {
+          "type": "central_scrap_ring",
+          "center": [
+            0.0,
+            17.03
+          ],
+          "size": [
+            49.68,
+            39.3
+          ]
+        }
+      ],
+      "water_regions": [],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "conveyor",
+          "width": 14.41,
+          "lane_count": 1,
+          "points": [
+            [
+              -60.72,
+              -13.755
+            ],
+            [
+              -11.04,
+              -13.755
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "conveyor",
+          "width": 14.41,
+          "lane_count": 1,
+          "points": [
+            [
+              11.04,
+              -13.755
+            ],
+            [
+              60.72,
+              -13.755
+            ]
+          ]
+        }
+      ],
+      "building_zones": [],
+      "prop_spawn_zones": [
+        {
+          "type": "junk_fields",
+          "center": [
+            0.0,
+            -43.23
+          ],
+          "size": [
+            110.4,
+            28.82
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -60.72,
+              -13.755
+            ],
+            [
+              -11.04,
+              -13.755
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "points": [
+            [
+              11.04,
+              -13.755
+            ],
+            [
+              60.72,
+              -13.755
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 5.95,
+          "vehicle": "scrap_cart"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "scrap_stack",
+          "position": [
+            0.0,
+            -43.23
+          ],
+          "count": 5
+        }
+      ],
+      "spawn_point": [
+        -52.44,
+        -49.78
+      ],
+      "preview_png": "res://assets/maps/robot_land/map_01_neon_scrap_yard.png",
+      "source_json": "res://resources/maps/robot_land/maps/json/map_01_neon_scrap_yard.json"
+    },
+    {
+      "id": "servo_suburb",
+      "source_map_id": "map_02_servo_suburb",
+      "name": "Servo Suburb",
+      "difficulty": 2,
+      "seed": 62002,
+      "size": [
+        144,
+        136
+      ],
+      "theme": "A tidy suburban district of robo-homes, charging lawns, and delivery lanes. Long circular roads teach momentum and route planning.",
+      "recommended_moving_cars": 1,
+      "recommended_people": 5,
+      "recommended_stack_groups": 1,
+      "challenge_notes": [
+        "easy",
+        "hazard: garage_doors",
+        "hazard: street_sweepers"
+      ],
+      "ground_regions": [
+        {
+          "type": "robot_floor",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            144,
+            136
+          ]
+        },
+        {
+          "type": "charging_parks",
+          "center": [
+            -55.44,
+            -1.36
+          ],
+          "size": [
+            18.72,
+            29.92
+          ]
+        }
+      ],
+      "water_regions": [],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "road_loop",
+          "width": 54.4,
+          "lane_count": 1,
+          "points": [
+            [
+              -31.68,
+              0.0
+            ],
+            [
+              31.68,
+              0.0
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "north_block",
+          "center": [
+            -34.56,
+            44.88
+          ],
+          "size": [
+            51.84,
+            29.92
+          ]
+        },
+        {
+          "type": "east_block",
+          "center": [
+            36.0,
+            42.16
+          ],
+          "size": [
+            48.96,
+            29.92
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "delivery_lane",
+          "center": [
+            0.0,
+            -47.6
+          ],
+          "size": [
+            115.2,
+            19.04
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -31.68,
+              0.0
+            ],
+            [
+              31.68,
+              0.0
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 6.5,
+          "vehicle": "scrap_cart"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "scrap_stack",
+          "position": [
+            0.0,
+            -47.6
+          ],
+          "count": 6
+        }
+      ],
+      "spawn_point": [
+        -54.72,
+        -51.68
+      ],
+      "preview_png": "res://assets/maps/robot_land/map_02_servo_suburb.png",
+      "source_json": "res://resources/maps/robot_land/maps/json/map_02_servo_suburb.json"
+    },
+    {
+      "id": "circuit_plaza",
+      "source_map_id": "map_03_circuit_plaza",
+      "name": "Circuit Plaza",
+      "difficulty": 3,
+      "seed": 62003,
+      "size": [
+        150,
+        141
+      ],
+      "theme": "A clean civic plaza with circuit-board pathways, kiosks, and statue nodes. Strong sightlines make the middle busier and more competitive.",
+      "recommended_moving_cars": 1,
+      "recommended_people": 6,
+      "recommended_stack_groups": 2,
+      "challenge_notes": [
+        "medium",
+        "hazard: pulse_nodes",
+        "hazard: data_arcs"
+      ],
+      "ground_regions": [
+        {
+          "type": "robot_floor",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            150,
+            141
+          ]
+        },
+        {
+          "type": "plaza_north",
+          "center": [
+            0.0,
+            49.35
+          ],
+          "size": [
+            66.0,
+            25.38
+          ]
+        },
+        {
+          "type": "plaza_south",
+          "center": [
+            0.0,
+            -49.35
+          ],
+          "size": [
+            66.0,
+            25.38
+          ]
+        }
+      ],
+      "water_regions": [],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "lane",
+          "width": 30.0,
+          "lane_count": 1,
+          "points": [
+            [
+              0.0,
+              -50.76
+            ],
+            [
+              0.0,
+              50.76
+            ]
+          ]
+        }
+      ],
+      "building_zones": [],
+      "prop_spawn_zones": [
+        {
+          "type": "side_kiosks_w",
+          "center": [
+            -50.25,
+            0.0
+          ],
+          "size": [
+            34.5,
+            56.4
+          ]
+        },
+        {
+          "type": "side_kiosks_e",
+          "center": [
+            50.25,
+            0.0
+          ],
+          "size": [
+            34.5,
+            56.4
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              0.0,
+              -50.76
+            ],
+            [
+              0.0,
+              50.76
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 7.05,
+          "vehicle": "scrap_cart"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "scrap_stack",
+          "position": [
+            -50.25,
+            0.0
+          ],
+          "count": 7
+        },
+        {
+          "type": "battery_crate_stack",
+          "position": [
+            54.25,
+            -3.0
+          ],
+          "count": 8
+        }
+      ],
+      "spawn_point": [
+        -57.0,
+        -53.58
+      ],
+      "preview_png": "res://assets/maps/robot_land/map_03_circuit_plaza.png",
+      "source_json": "res://resources/maps/robot_land/maps/json/map_03_circuit_plaza.json"
+    },
+    {
+      "id": "mecha_gardens",
+      "source_map_id": "map_04_mecha_gardens",
+      "name": "Mecha Gardens",
+      "difficulty": 4,
+      "seed": 62004,
+      "size": [
+        156,
+        146
+      ],
+      "theme": "A robotic park where floral turbines, geometric hedges, and drone gardeners create a surprisingly tactical arena with split routes.",
+      "recommended_moving_cars": 2,
+      "recommended_people": 7,
+      "recommended_stack_groups": 2,
+      "challenge_notes": [
+        "medium",
+        "hazard: sprinkler_slicks",
+        "hazard: drone_pruners"
+      ],
+      "ground_regions": [
+        {
+          "type": "robot_floor",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            156,
+            146
+          ]
+        },
+        {
+          "type": "sprinkler_court",
+          "center": [
+            0.0,
+            0.0
+          ],
+          "size": [
+            37.44,
+            35.04
+          ]
+        }
+      ],
+      "water_regions": [],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "lane",
+          "width": 18.72,
+          "lane_count": 1,
+          "points": [
+            [
+              0.0,
+              -67.16
+            ],
+            [
+              0.0,
+              67.16
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "lane",
+          "width": 17.52,
+          "lane_count": 1,
+          "points": [
+            [
+              -71.76,
+              0.0
+            ],
+            [
+              71.76,
+              0.0
+            ]
+          ]
+        }
+      ],
+      "building_zones": [],
+      "prop_spawn_zones": [
+        {
+          "type": "blossom_quads",
+          "center": [
+            -40.56,
+            36.5
+          ],
+          "size": [
+            56.16,
+            49.64
+          ]
+        },
+        {
+          "type": "south_grove",
+          "center": [
+            39.0,
+            -36.5
+          ],
+          "size": [
+            53.04,
+            49.64
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              0.0,
+              -67.16
+            ],
+            [
+              0.0,
+              67.16
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "points": [
+            [
+              -71.76,
+              0.0
+            ],
+            [
+              71.76,
+              0.0
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 7.6,
+          "vehicle": "scrap_cart"
+        },
+        {
+          "id": 1,
+          "road_id": 1,
+          "speed": 8.0,
+          "vehicle": "servo_car"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "scrap_stack",
+          "position": [
+            -40.56,
+            36.5
+          ],
+          "count": 8
+        },
+        {
+          "type": "battery_crate_stack",
+          "position": [
+            43.0,
+            -39.5
+          ],
+          "count": 9
+        }
+      ],
+      "spawn_point": [
+        -59.28,
+        -55.48
+      ],
+      "preview_png": "res://assets/maps/robot_land/map_04_mecha_gardens.png",
+      "source_json": "res://resources/maps/robot_land/maps/json/map_04_mecha_gardens.json"
+    },
+    {
+      "id": "drone_docks",
+      "source_map_id": "map_05_drone_docks",
+      "name": "Drone Docks",
+      "difficulty": 5,
+      "seed": 62005,
+      "size": [
+        162,
+        151
+      ],
+      "theme": "A busy loading and landing yard with helipads, cargo bays, runway markings, and patrol drones. High traffic means more moving hazards.",
+      "recommended_moving_cars": 1,
+      "recommended_people": 8,
+      "recommended_stack_groups": 2,
+      "challenge_notes": [
+        "medium-hard",
+        "hazard: patrol_drones",
+        "hazard: air_blasts"
+      ],
+      "ground_regions": [
+        {
+          "type": "robot_floor",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            162,
+            151
+          ]
+        },
+        {
+          "type": "helipad_nw",
+          "center": [
+            -54.27,
+            49.83
+          ],
+          "size": [
+            37.26,
+            33.22
+          ]
+        },
+        {
+          "type": "helipad_center",
+          "center": [
+            0.0,
+            15.1
+          ],
+          "size": [
+            45.36,
+            42.28
+          ]
+        }
+      ],
+      "water_regions": [],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "lane",
+          "width": 15.1,
+          "lane_count": 1,
+          "points": [
+            [
+              -72.9,
+              22.65
+            ],
+            [
+              72.9,
+              22.65
+            ]
+          ]
+        }
+      ],
+      "building_zones": [],
+      "prop_spawn_zones": [
+        {
+          "type": "cargo_east",
+          "center": [
+            53.46,
+            16.61
+          ],
+          "size": [
+            35.64,
+            93.62
+          ]
+        },
+        {
+          "type": "loading_south",
+          "center": [
+            0.0,
+            -48.32
+          ],
+          "size": [
+            136.08,
+            30.2
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -72.9,
+              22.65
+            ],
+            [
+              72.9,
+              22.65
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 8.15,
+          "vehicle": "scrap_cart"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "scrap_stack",
+          "position": [
+            53.46,
+            16.61
+          ],
+          "count": 9
+        },
+        {
+          "type": "battery_crate_stack",
+          "position": [
+            4.0,
+            -51.32
+          ],
+          "count": 10
+        }
+      ],
+      "spawn_point": [
+        -61.56,
+        -57.38
+      ],
+      "preview_png": "res://assets/maps/robot_land/map_05_drone_docks.png",
+      "source_json": "res://resources/maps/robot_land/maps/json/map_05_drone_docks.json"
+    },
+    {
+      "id": "chrome_foundry",
+      "source_map_id": "map_06_chrome_foundry",
+      "name": "Chrome Foundry",
+      "difficulty": 6,
+      "seed": 62006,
+      "size": [
+        168,
+        156
+      ],
+      "theme": "An intense metalworks packed with furnaces, molten channels, crushers, and conveyor spurs. Area control matters more than raw speed.",
+      "recommended_moving_cars": 1,
+      "recommended_people": 9,
+      "recommended_stack_groups": 1,
+      "challenge_notes": [
+        "hard",
+        "hazard: molten_bursts",
+        "hazard: hydraulic_crushers"
+      ],
+      "ground_regions": [
+        {
+          "type": "robot_floor",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            168,
+            156
+          ]
+        },
+        {
+          "type": "forge_ring",
+          "center": [
+            0.0,
+            12.48
+          ],
+          "size": [
+            80.64,
+            74.88
+          ]
+        },
+        {
+          "type": "molten_west",
+          "center": [
+            -62.16,
+            1.56
+          ],
+          "size": [
+            30.24,
+            96.72
+          ]
+        },
+        {
+          "type": "molten_east",
+          "center": [
+            62.16,
+            1.56
+          ],
+          "size": [
+            30.24,
+            96.72
+          ]
+        }
+      ],
+      "water_regions": [],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "conveyor",
+          "width": 21.84,
+          "lane_count": 1,
+          "points": [
+            [
+              -57.12,
+              -51.48
+            ],
+            [
+              57.12,
+              -51.48
+            ]
+          ]
+        }
+      ],
+      "building_zones": [],
+      "prop_spawn_zones": [
+        {
+          "type": "crusher_bays",
+          "center": [
+            0.0,
+            63.96
+          ],
+          "size": [
+            141.12,
+            15.6
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -57.12,
+              -51.48
+            ],
+            [
+              57.12,
+              -51.48
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 8.7,
+          "vehicle": "scrap_cart"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "scrap_stack",
+          "position": [
+            0.0,
+            63.96
+          ],
+          "count": 10
+        }
+      ],
+      "spawn_point": [
+        -63.84,
+        -59.28
+      ],
+      "preview_png": "res://assets/maps/robot_land/map_06_chrome_foundry.png",
+      "source_json": "res://resources/maps/robot_land/maps/json/map_06_chrome_foundry.json"
+    },
+    {
+      "id": "hologrid_junction",
+      "source_map_id": "map_07_hologrid_junction",
+      "name": "Hologrid Junction",
+      "difficulty": 7,
+      "seed": 62007,
+      "size": [
+        174,
+        161
+      ],
+      "theme": "A hyperactive neon intersection loaded with holograms, robo-traffic, and commercial clutter. Many routes, many traps, and lots of visual chaos.",
+      "recommended_moving_cars": 2,
+      "recommended_people": 10,
+      "recommended_stack_groups": 2,
+      "challenge_notes": [
+        "hard",
+        "hazard: traffic_bots",
+        "hazard: holo_billboards"
+      ],
+      "ground_regions": [
+        {
+          "type": "robot_floor",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            174,
+            161
+          ]
+        },
+        {
+          "type": "central_hub",
+          "center": [
+            0.0,
+            0.0
+          ],
+          "size": [
+            48.72,
+            64.4
+          ]
+        }
+      ],
+      "water_regions": [],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "lane",
+          "width": 57.96,
+          "lane_count": 1,
+          "points": [
+            [
+              -80.04,
+              0.0
+            ],
+            [
+              -17.4,
+              0.0
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "lane",
+          "width": 57.96,
+          "lane_count": 1,
+          "points": [
+            [
+              17.4,
+              0.0
+            ],
+            [
+              80.04,
+              0.0
+            ]
+          ]
+        }
+      ],
+      "building_zones": [],
+      "prop_spawn_zones": [
+        {
+          "type": "north_market",
+          "center": [
+            0.0,
+            56.35
+          ],
+          "size": [
+            83.52,
+            32.2
+          ]
+        },
+        {
+          "type": "south_market",
+          "center": [
+            0.0,
+            -54.74
+          ],
+          "size": [
+            104.4,
+            32.2
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -80.04,
+              0.0
+            ],
+            [
+              -17.4,
+              0.0
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "points": [
+            [
+              17.4,
+              0.0
+            ],
+            [
+              80.04,
+              0.0
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 9.25,
+          "vehicle": "scrap_cart"
+        },
+        {
+          "id": 1,
+          "road_id": 1,
+          "speed": 9.65,
+          "vehicle": "servo_car"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "scrap_stack",
+          "position": [
+            0.0,
+            56.35
+          ],
+          "count": 11
+        },
+        {
+          "type": "battery_crate_stack",
+          "position": [
+            4.0,
+            -57.74
+          ],
+          "count": 12
+        }
+      ],
+      "spawn_point": [
+        -66.12,
+        -61.18
+      ],
+      "preview_png": "res://assets/maps/robot_land/map_07_hologrid_junction.png",
+      "source_json": "res://resources/maps/robot_land/maps/json/map_07_hologrid_junction.json"
+    },
+    {
+      "id": "quantum_reactor_maze",
+      "source_map_id": "map_08_quantum_reactor_maze",
+      "name": "Quantum Reactor Maze",
+      "difficulty": 8,
+      "seed": 62008,
+      "size": [
+        180,
+        166
+      ],
+      "theme": "A cramped reactor interior with winding corridors, energy tubes, and multiple dead ends. Great for ambushes and skilled route memorization.",
+      "recommended_moving_cars": 4,
+      "recommended_people": 11,
+      "recommended_stack_groups": 1,
+      "challenge_notes": [
+        "very hard",
+        "hazard: energy_gates",
+        "hazard: radiation_pulses"
+      ],
+      "ground_regions": [
+        {
+          "type": "robot_floor",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            180,
+            166
+          ]
+        }
+      ],
+      "water_regions": [
+        {
+          "type": "reactor_islands",
+          "center": [
+            0.0,
+            -59.76
+          ],
+          "size": [
+            57.6,
+            26.56
+          ]
+        }
+      ],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "maze_lane",
+          "width": 23.24,
+          "lane_count": 1,
+          "points": [
+            [
+              -82.8,
+              61.42
+            ],
+            [
+              82.8,
+              61.42
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "maze_lane",
+          "width": 57.6,
+          "lane_count": 1,
+          "points": [
+            [
+              -46.8,
+              -46.48
+            ],
+            [
+              -46.8,
+              33.2
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "maze_lane",
+          "width": 57.6,
+          "lane_count": 1,
+          "points": [
+            [
+              46.8,
+              -46.48
+            ],
+            [
+              46.8,
+              33.2
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "kind": "speed_strip",
+          "width": 21.6,
+          "lane_count": 1,
+          "points": [
+            [
+              0.0,
+              -46.48
+            ],
+            [
+              0.0,
+              49.8
+            ]
+          ]
+        }
+      ],
+      "building_zones": [],
+      "prop_spawn_zones": [
+        {
+          "type": "robot_scrap_scatter",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            129.6,
+            119.52
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -82.8,
+              61.42
+            ],
+            [
+              82.8,
+              61.42
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "points": [
+            [
+              -46.8,
+              -46.48
+            ],
+            [
+              -46.8,
+              33.2
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 9.8,
+          "vehicle": "scrap_cart"
+        },
+        {
+          "id": 1,
+          "road_id": 1,
+          "speed": 10.2,
+          "vehicle": "servo_car"
+        },
+        {
+          "id": 2,
+          "road_id": 2,
+          "speed": 10.6,
+          "vehicle": "drone_truck"
+        },
+        {
+          "id": 3,
+          "road_id": 3,
+          "speed": 11.0,
+          "vehicle": "scrap_cart"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "scrap_stack",
+          "position": [
+            0,
+            0
+          ],
+          "count": 12
+        }
+      ],
+      "spawn_point": [
+        -68.4,
+        -63.08
+      ],
+      "preview_png": "res://assets/maps/robot_land/map_08_quantum_reactor_maze.png",
+      "source_json": "res://resources/maps/robot_land/maps/json/map_08_quantum_reactor_maze.json"
+    },
+    {
+      "id": "nanotech_citadel",
+      "source_map_id": "map_09_nanotech_citadel",
+      "name": "Nanotech Citadel",
+      "difficulty": 9,
+      "seed": 62009,
+      "size": [
+        186,
+        171
+      ],
+      "theme": "A polished stronghold with defensive rings, turret courtyards, and nanite maintenance swarms. Dominating the lanes is essential.",
+      "recommended_moving_cars": 1,
+      "recommended_people": 12,
+      "recommended_stack_groups": 1,
+      "challenge_notes": [
+        "very hard",
+        "hazard: nano_swarms",
+        "hazard: defense_turrets"
+      ],
+      "ground_regions": [
+        {
+          "type": "robot_floor",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            186,
+            171
+          ]
+        },
+        {
+          "type": "inner_courtyard",
+          "center": [
+            0.0,
+            -1.71
+          ],
+          "size": [
+            96.72,
+            78.66
+          ]
+        },
+        {
+          "type": "nano_gardens",
+          "center": [
+            0.0,
+            -63.27
+          ],
+          "size": [
+            119.04,
+            23.94
+          ]
+        }
+      ],
+      "water_regions": [],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "lane",
+          "width": 27.36,
+          "lane_count": 1,
+          "points": [
+            [
+              -81.84,
+              61.56
+            ],
+            [
+              81.84,
+              61.56
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "tower_quads",
+          "center": [
+            -66.96,
+            -1.71
+          ],
+          "size": [
+            29.76,
+            78.66
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "service_quads",
+          "center": [
+            66.96,
+            -1.71
+          ],
+          "size": [
+            29.76,
+            78.66
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -81.84,
+              61.56
+            ],
+            [
+              81.84,
+              61.56
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 10.35,
+          "vehicle": "scrap_cart"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "scrap_stack",
+          "position": [
+            66.96,
+            -1.71
+          ],
+          "count": 12
+        }
+      ],
+      "spawn_point": [
+        -70.68,
+        -64.98
+      ],
+      "preview_png": "res://assets/maps/robot_land/map_09_nanotech_citadel.png",
+      "source_json": "res://resources/maps/robot_land/maps/json/map_09_nanotech_citadel.json"
+    },
+    {
+      "id": "omega_core_fortress",
+      "source_map_id": "map_10_omega_core_fortress",
+      "name": "Omega Core Fortress",
+      "difficulty": 10,
+      "seed": 62010,
+      "size": [
+        192,
+        176
+      ],
+      "theme": "A layered stronghold wrapped around a volatile omega reactor. Concentric rings, molten moats, and brutal choke points make this the final challenge.",
+      "recommended_moving_cars": 3,
+      "recommended_people": 13,
+      "recommended_stack_groups": 1,
+      "challenge_notes": [
+        "extreme",
+        "hazard: molten_moat",
+        "hazard: gravity_wells",
+        "hazard: turret_rings"
+      ],
+      "ground_regions": [
+        {
+          "type": "robot_floor",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            192,
+            176
+          ]
+        }
+      ],
+      "water_regions": [],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "lane",
+          "width": 24.64,
+          "lane_count": 1,
+          "points": [
+            [
+              -88.32,
+              68.64
+            ],
+            [
+              88.32,
+              68.64
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "lane",
+          "width": 31.68,
+          "lane_count": 1,
+          "points": [
+            [
+              -65.28,
+              33.44
+            ],
+            [
+              65.28,
+              33.44
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "bridge",
+          "width": 15.36,
+          "lane_count": 1,
+          "points": [
+            [
+              0.0,
+              -80.96
+            ],
+            [
+              0.0,
+              80.96
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "fortress_ring",
+          "center": [
+            0.0,
+            -7.04
+          ],
+          "size": [
+            99.84,
+            35.2
+          ]
+        },
+        {
+          "type": "core_platform",
+          "center": [
+            0.0,
+            -1.76
+          ],
+          "size": [
+            53.76,
+            88.0
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "robot_scrap_scatter",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            138.24,
+            126.72
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -88.32,
+              68.64
+            ],
+            [
+              88.32,
+              68.64
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "points": [
+            [
+              -65.28,
+              33.44
+            ],
+            [
+              65.28,
+              33.44
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 10.9,
+          "vehicle": "scrap_cart"
+        },
+        {
+          "id": 1,
+          "road_id": 1,
+          "speed": 11.3,
+          "vehicle": "servo_car"
+        },
+        {
+          "id": 2,
+          "road_id": 2,
+          "speed": 11.7,
+          "vehicle": "drone_truck"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "scrap_stack",
+          "position": [
+            0,
+            0
+          ],
+          "count": 12
+        }
+      ],
+      "spawn_point": [
+        -72.96,
+        -66.88
+      ],
+      "preview_png": "res://assets/maps/robot_land/map_10_omega_core_fortress.png",
+      "source_json": "res://resources/maps/robot_land/maps/json/map_10_omega_core_fortress.json"
+    }
+  ]
+}

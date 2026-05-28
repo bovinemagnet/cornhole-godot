@@ -1,0 +1,416 @@
+{
+  "map": {
+    "id": "map_01_stone_camp_meadow",
+    "name": "Stone Camp Meadow",
+    "slug": "stone_camp_meadow",
+    "world": "prehistoric_world",
+    "period": "Paleolithic grassland",
+    "description": "A gentle prehistoric meadow built around a cave camp with huts, fire pits, watering pools, and roaming hunter-gatherers. Introductory and spacious.",
+    "difficulty": "easy",
+    "difficulty_rank": 1,
+    "recommended_players": "2-4",
+    "estimated_match_length_sec": 130,
+    "preview_image": "images/map_01_stone_camp_meadow.png",
+    "overview_image": "images/prehistoric_world_map_pack_overview.png",
+    "theme": "cavemen camp meadow",
+    "palette": [
+      "#7B9E3A",
+      "#5D4120",
+      "#4AA8D8",
+      "#C49A6C"
+    ],
+    "bounds": {
+      "min": [
+        0.0,
+        0.0
+      ],
+      "max": [
+        1.0,
+        1.0
+      ]
+    },
+    "hole": {
+      "initial_position": [
+        0.5,
+        0.5
+      ],
+      "initial_radius": 0.035,
+      "growth_curve": "linear_plus_pickup_bonus",
+      "max_radius": 0.42,
+      "speed_curve": {
+        "small": 1.0,
+        "medium": 0.88,
+        "large": 0.72,
+        "huge": 0.58
+      }
+    },
+    "regions": [
+      {
+        "id": "camp_core",
+        "type": "safe_area",
+        "polygon": [
+          [
+            0.3,
+            0.28
+          ],
+          [
+            0.7,
+            0.28
+          ],
+          [
+            0.7,
+            0.58
+          ],
+          [
+            0.3,
+            0.58
+          ]
+        ],
+        "notes": "Main starting space around the central hole."
+      },
+      {
+        "id": "west_ponds",
+        "type": "pickup_zone",
+        "polygon": [
+          [
+            0.04,
+            0.54
+          ],
+          [
+            0.25,
+            0.54
+          ],
+          [
+            0.25,
+            0.92
+          ],
+          [
+            0.04,
+            0.92
+          ]
+        ],
+        "notes": "Fishing spots and scattered tools."
+      },
+      {
+        "id": "east_huts",
+        "type": "pickup_zone",
+        "polygon": [
+          [
+            0.74,
+            0.12
+          ],
+          [
+            0.96,
+            0.12
+          ],
+          [
+            0.96,
+            0.48
+          ],
+          [
+            0.74,
+            0.48
+          ]
+        ],
+        "notes": "Huts and storage racks."
+      },
+      {
+        "id": "south_fire_ring",
+        "type": "hub",
+        "polygon": [
+          [
+            0.26,
+            0.72
+          ],
+          [
+            0.74,
+            0.72
+          ],
+          [
+            0.74,
+            0.94
+          ],
+          [
+            0.26,
+            0.94
+          ]
+        ],
+        "notes": "Campfire and mammoth-bone props."
+      },
+      {
+        "id": "fence_lane",
+        "type": "lane",
+        "polygon": [
+          [
+            0.06,
+            0.16
+          ],
+          [
+            0.26,
+            0.16
+          ],
+          [
+            0.26,
+            0.42
+          ],
+          [
+            0.06,
+            0.42
+          ]
+        ],
+        "notes": "Open lane with light clutter."
+      }
+    ],
+    "spawn_points": [
+      {
+        "id": "sp_01",
+        "position": [
+          0.12,
+          0.84
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_02",
+        "position": [
+          0.86,
+          0.16
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_03",
+        "position": [
+          0.5,
+          0.08
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_04",
+        "position": [
+          0.08,
+          0.5
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_05",
+        "position": [
+          0.92,
+          0.5
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_06",
+        "position": [
+          0.22,
+          0.22
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_07",
+        "position": [
+          0.78,
+          0.78
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_08",
+        "position": [
+          0.5,
+          0.92
+        ],
+        "team": "neutral"
+      }
+    ],
+    "object_tiers": [
+      {
+        "tier": 1,
+        "name": "tiny props",
+        "min_hole_radius": 0.0,
+        "examples": [
+          "stones",
+          "bones",
+          "berries",
+          "pots",
+          "eggs"
+        ],
+        "points": 1
+      },
+      {
+        "tier": 2,
+        "name": "small props",
+        "min_hole_radius": 0.05,
+        "examples": [
+          "spears",
+          "camp stools",
+          "baskets",
+          "fish racks",
+          "skulls"
+        ],
+        "points": 3
+      },
+      {
+        "tier": 3,
+        "name": "medium props",
+        "min_hole_radius": 0.1,
+        "examples": [
+          "campfires",
+          "bone arches",
+          "canoes",
+          "small huts",
+          "nest mounds"
+        ],
+        "points": 8
+      },
+      {
+        "tier": 4,
+        "name": "large props",
+        "min_hole_radius": 0.18,
+        "examples": [
+          "stone huts",
+          "mammoth-bone shelters",
+          "totems",
+          "ice blocks",
+          "wooden pens"
+        ],
+        "points": 18
+      },
+      {
+        "tier": 5,
+        "name": "huge props",
+        "min_hole_radius": 0.28,
+        "examples": [
+          "mammoths",
+          "woolly rhinos",
+          "large dinosaurs",
+          "watch towers",
+          "volcanic boulders"
+        ],
+        "points": 40
+      }
+    ],
+    "spawn_rules": {
+      "small_object_density": 0.83,
+      "medium_object_density": 0.37,
+      "bonus_spawn_rate": 1.0,
+      "respawn_interval_sec": 7.75,
+      "prefer_region_types": [
+        "pickup_zone",
+        "hub",
+        "lane"
+      ]
+    },
+    "hazards": [
+      {
+        "id": "mud_patches",
+        "type": "slow_field",
+        "strength": 0.12,
+        "radius": 0.035,
+        "count": 3
+      },
+      {
+        "id": "boar_charge",
+        "type": "moving_hazard",
+        "strength": 0.15,
+        "radius": 0.03,
+        "count": 2
+      }
+    ],
+    "blockers": [
+      {
+        "id": "edge_barrier",
+        "type": "boundary",
+        "shape": "rect",
+        "min": [
+          0.0,
+          0.0
+        ],
+        "max": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "id": "center_no_build",
+        "type": "reserved_hole_space",
+        "shape": "circle",
+        "center": [
+          0.5,
+          0.5
+        ],
+        "radius": 0.1
+      }
+    ],
+    "gameplay_rules": {
+      "mode": "free_for_all",
+      "match_duration_sec": 180,
+      "score_mode": "consumed_mass",
+      "allow_bot_respawn": true,
+      "max_bots": 3,
+      "overtime": {
+        "enabled": true,
+        "sudden_death_after_sec": 180
+      },
+      "pickup_combo_window_sec": 2.5
+    },
+    "bot_behavior": {
+      "aggression": 0.34,
+      "route_bias": "seek_dense_pickups_then_enemy_intercept",
+      "avoid_hazards_weight": 1.07,
+      "preferred_targets": [
+        "tiny props",
+        "small props",
+        "isolated bots"
+      ]
+    },
+    "creature_population": {
+      "cave_people": true,
+      "cave_women": true,
+      "dinosaurs": false,
+      "woolly_mammoths": true,
+      "woolly_rhinoceroses": false,
+      "sabre_tooth_tigers": false
+    },
+    "landmarks": [
+      "campfire",
+      "bone hut",
+      "ponds",
+      "stone tools",
+      "small mammoth herd"
+    ],
+    "generation_hints": {
+      "suggested_world_size_px": [
+        2048,
+        2048
+      ],
+      "tile_size_px": 64,
+      "nav_grid": [
+        32,
+        32
+      ],
+      "visual_style": "bright_topdown_arcade_prehistoric",
+      "notes": "Use the PNG preview as visual guidance only. JSON regions are normalized for procedural generation in Godot."
+    },
+    "metadata": {
+      "package": "PrehistoricMapPack",
+      "version": "1.0.0",
+      "author": "OpenAI - generated pack",
+      "engine": "Godot 4",
+      "license": "Permissive demo content for prototyping",
+      "tags": [
+        "prehistoric",
+        "dinosaur",
+        "mammoth",
+        "caveman",
+        "hole.io",
+        "godot",
+        "procedural"
+      ]
+    }
+  }
+}

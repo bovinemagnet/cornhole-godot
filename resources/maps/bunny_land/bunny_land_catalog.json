@@ -1,0 +1,3146 @@
+{
+  "schema_version": 1,
+  "pack_id": "bunny_land",
+  "name": "Bunny Land",
+  "description": "Ten bunny-themed maps normalized to the shared project map catalog layout.",
+  "coordinate_space": "xz",
+  "difficulty_scale": "1 easiest, 10 hardest",
+  "maps": [
+    {
+      "id": "bunny_meadow",
+      "source_map_id": "map_01_bunny_meadow",
+      "name": "Bunny Meadow",
+      "difficulty": 1,
+      "seed": 72001,
+      "size": [
+        140.0,
+        140.0
+      ],
+      "theme": "A simple open meadow for tutorial play: lots of tiny objects, wide paths, few hazards.",
+      "recommended_moving_cars": 0,
+      "recommended_people": 4,
+      "recommended_stack_groups": 1,
+      "challenge_notes": [
+        "easy"
+      ],
+      "ground_regions": [
+        {
+          "type": "grass",
+          "center": [
+            0.0,
+            -2.8
+          ],
+          "size": [
+            131.6,
+            126.0
+          ]
+        },
+        {
+          "type": "soft_dirt",
+          "center": [
+            0.0,
+            -50.4
+          ],
+          "size": [
+            21.0,
+            21.0
+          ]
+        }
+      ],
+      "water_regions": [
+        {
+          "type": "pond_left",
+          "center": [
+            -44.8,
+            -22.4
+          ],
+          "size": [
+            22.4,
+            22.4
+          ]
+        }
+      ],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "dirt_path",
+          "width": 6.3,
+          "lane_count": 1,
+          "points": [
+            [
+              0.0,
+              -60.2
+            ],
+            [
+              -7.0,
+              -39.2
+            ],
+            [
+              8.4,
+              -16.8
+            ],
+            [
+              -11.2,
+              7.0
+            ],
+            [
+              7.0,
+              30.8
+            ],
+            [
+              0.0,
+              58.8
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "dirt_path",
+          "width": 5.32,
+          "lane_count": 1,
+          "points": [
+            [
+              -8.4,
+              -7.0
+            ],
+            [
+              -35.0,
+              2.8
+            ],
+            [
+              -49.0,
+              28.0
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "dirt_path",
+          "width": 5.32,
+          "lane_count": 1,
+          "points": [
+            [
+              8.4,
+              1.4
+            ],
+            [
+              30.8,
+              11.2
+            ],
+            [
+              50.4,
+              33.6
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "cottage_cluster",
+          "center": [
+            32.2,
+            35.0
+          ],
+          "size": [
+            25.2,
+            25.2
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "carrot_patch_a",
+          "center": [
+            -33.6,
+            35.0
+          ],
+          "size": [
+            22.4,
+            19.6
+          ]
+        },
+        {
+          "type": "carrot_patch_b",
+          "center": [
+            32.2,
+            -29.4
+          ],
+          "size": [
+            25.2,
+            22.4
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              0.0,
+              -60.2
+            ],
+            [
+              -7.0,
+              -39.2
+            ],
+            [
+              8.4,
+              -16.8
+            ],
+            [
+              -11.2,
+              7.0
+            ],
+            [
+              7.0,
+              30.8
+            ],
+            [
+              0.0,
+              58.8
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "points": [
+            [
+              -8.4,
+              -7.0
+            ],
+            [
+              -35.0,
+              2.8
+            ],
+            [
+              -49.0,
+              28.0
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [],
+      "stack_spawn_points": [
+        {
+          "type": "carrot_crate_stack",
+          "position": [
+            -44.8,
+            44.8
+          ],
+          "count": 5
+        }
+      ],
+      "spawn_point": [
+        0.0,
+        -50.4
+      ],
+      "preview_png": "res://assets/maps/bunny_land/map_01_bunny_meadow.png",
+      "source_json": "res://resources/maps/bunny_land/maps/json/map_01_bunny_meadow.json"
+    },
+    {
+      "id": "carrot_village",
+      "source_map_id": "map_02_carrot_village",
+      "name": "Carrot Village",
+      "difficulty": 2,
+      "seed": 72002,
+      "size": [
+        146.667,
+        146.667
+      ],
+      "theme": "A gentle village with carrot cottages, garden plots, and clearer resource clusters.",
+      "recommended_moving_cars": 1,
+      "recommended_people": 5,
+      "recommended_stack_groups": 2,
+      "challenge_notes": [
+        "easy"
+      ],
+      "ground_regions": [
+        {
+          "type": "grass",
+          "center": [
+            0.0,
+            -2.933
+          ],
+          "size": [
+            137.867,
+            132.0
+          ]
+        },
+        {
+          "type": "soft_dirt",
+          "center": [
+            0.0,
+            -52.8
+          ],
+          "size": [
+            22.0,
+            22.0
+          ]
+        }
+      ],
+      "water_regions": [
+        {
+          "type": "pond_left",
+          "center": [
+            -46.933,
+            -23.467
+          ],
+          "size": [
+            23.467,
+            23.467
+          ]
+        }
+      ],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "dirt_path",
+          "width": 6.6,
+          "lane_count": 1,
+          "points": [
+            [
+              0.0,
+              -63.067
+            ],
+            [
+              -7.333,
+              -41.067
+            ],
+            [
+              8.8,
+              -17.6
+            ],
+            [
+              -11.733,
+              7.333
+            ],
+            [
+              7.333,
+              32.267
+            ],
+            [
+              0.0,
+              61.6
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "dirt_path",
+          "width": 5.573,
+          "lane_count": 1,
+          "points": [
+            [
+              -8.8,
+              -7.333
+            ],
+            [
+              -36.667,
+              2.933
+            ],
+            [
+              -51.333,
+              29.333
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "dirt_path",
+          "width": 5.573,
+          "lane_count": 1,
+          "points": [
+            [
+              8.8,
+              1.467
+            ],
+            [
+              32.267,
+              11.733
+            ],
+            [
+              52.8,
+              35.2
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "cottage_cluster",
+          "center": [
+            33.733,
+            36.667
+          ],
+          "size": [
+            26.4,
+            26.4
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "carrot_patch_a",
+          "center": [
+            -35.2,
+            36.667
+          ],
+          "size": [
+            23.467,
+            20.533
+          ]
+        },
+        {
+          "type": "carrot_patch_b",
+          "center": [
+            33.733,
+            -30.8
+          ],
+          "size": [
+            26.4,
+            23.467
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              0.0,
+              -63.067
+            ],
+            [
+              -7.333,
+              -41.067
+            ],
+            [
+              8.8,
+              -17.6
+            ],
+            [
+              -11.733,
+              7.333
+            ],
+            [
+              7.333,
+              32.267
+            ],
+            [
+              0.0,
+              61.6
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "points": [
+            [
+              -8.8,
+              -7.333
+            ],
+            [
+              -36.667,
+              2.933
+            ],
+            [
+              -51.333,
+              29.333
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 5.5,
+          "vehicle": "carrot_cart"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "carrot_crate_stack",
+          "position": [
+            -46.933,
+            46.933
+          ],
+          "count": 6
+        },
+        {
+          "type": "egg_box_stack",
+          "position": [
+            46.933,
+            46.933
+          ],
+          "count": 7
+        }
+      ],
+      "spawn_point": [
+        0.0,
+        -52.8
+      ],
+      "preview_png": "res://assets/maps/bunny_land/map_02_carrot_village.png",
+      "source_json": "res://resources/maps/bunny_land/maps/json/map_02_carrot_village.json"
+    },
+    {
+      "id": "bunny_burrow_park",
+      "source_map_id": "map_03_bunny_burrow_park",
+      "name": "Bunny Burrow Park",
+      "difficulty": 3,
+      "seed": 72003,
+      "size": [
+        153.333,
+        153.333
+      ],
+      "theme": "A park with loops, playground props, hedge pockets, and the first moving hazard.",
+      "recommended_moving_cars": 1,
+      "recommended_people": 6,
+      "recommended_stack_groups": 2,
+      "challenge_notes": [
+        "medium",
+        "hazard: wandering_fox_shadow"
+      ],
+      "ground_regions": [
+        {
+          "type": "grass",
+          "center": [
+            0.0,
+            -3.067
+          ],
+          "size": [
+            144.133,
+            138.0
+          ]
+        },
+        {
+          "type": "soft_dirt",
+          "center": [
+            0.0,
+            -55.2
+          ],
+          "size": [
+            23.0,
+            23.0
+          ]
+        },
+        {
+          "type": "hedge",
+          "center": [
+            39.867,
+            30.667
+          ],
+          "size": [
+            36.8,
+            36.8
+          ]
+        }
+      ],
+      "water_regions": [
+        {
+          "type": "pond",
+          "center": [
+            -33.733,
+            -38.333
+          ],
+          "size": [
+            21.467,
+            21.467
+          ]
+        }
+      ],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "arena_loop",
+          "width": 67.467,
+          "lane_count": 1,
+          "points": [
+            [
+              -33.733,
+              0.0
+            ],
+            [
+              33.733,
+              0.0
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "dirt_loop",
+          "width": 6.133,
+          "lane_count": 1,
+          "points": [
+            [
+              0.0,
+              49.067
+            ],
+            [
+              30.667,
+              35.267
+            ],
+            [
+              46.0,
+              0.0
+            ],
+            [
+              30.667,
+              -35.267
+            ],
+            [
+              0.0,
+              -49.067
+            ],
+            [
+              -30.667,
+              -35.267
+            ],
+            [
+              -46.0,
+              0.0
+            ],
+            [
+              -30.667,
+              35.267
+            ],
+            [
+              0.0,
+              49.067
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "dirt_path",
+          "width": 6.593,
+          "lane_count": 1,
+          "points": [
+            [
+              0.0,
+              -67.467
+            ],
+            [
+              0.0,
+              -33.733
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              33.733
+            ],
+            [
+              0.0,
+              64.4
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "kind": "dirt_path",
+          "width": 6.593,
+          "lane_count": 1,
+          "points": [
+            [
+              -64.4,
+              0.0
+            ],
+            [
+              -33.733,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              33.733,
+              0.0
+            ],
+            [
+              64.4,
+              0.0
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "kind": "dirt_path",
+          "width": 5.367,
+          "lane_count": 1,
+          "points": [
+            [
+              -58.267,
+              58.267
+            ],
+            [
+              58.267,
+              58.267
+            ],
+            [
+              58.267,
+              -58.267
+            ],
+            [
+              -58.267,
+              -58.267
+            ],
+            [
+              -58.267,
+              58.267
+            ]
+          ]
+        }
+      ],
+      "building_zones": [],
+      "prop_spawn_zones": [
+        {
+          "type": "playground",
+          "center": [
+            -45.233,
+            32.2
+          ],
+          "size": [
+            32.2,
+            30.667
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -33.733,
+              0.0
+            ],
+            [
+              33.733,
+              0.0
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "points": [
+            [
+              0.0,
+              49.067
+            ],
+            [
+              30.667,
+              35.267
+            ],
+            [
+              46.0,
+              0.0
+            ],
+            [
+              30.667,
+              -35.267
+            ],
+            [
+              0.0,
+              -49.067
+            ],
+            [
+              -30.667,
+              -35.267
+            ],
+            [
+              -46.0,
+              0.0
+            ],
+            [
+              -30.667,
+              35.267
+            ],
+            [
+              0.0,
+              49.067
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 5.95,
+          "vehicle": "carrot_cart"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "carrot_crate_stack",
+          "position": [
+            -49.067,
+            49.067
+          ],
+          "count": 7
+        },
+        {
+          "type": "egg_box_stack",
+          "position": [
+            49.067,
+            49.067
+          ],
+          "count": 8
+        }
+      ],
+      "spawn_point": [
+        0.0,
+        -55.2
+      ],
+      "preview_png": "res://assets/maps/bunny_land/map_03_bunny_burrow_park.png",
+      "source_json": "res://resources/maps/bunny_land/maps/json/map_03_bunny_burrow_park.json"
+    },
+    {
+      "id": "hopscotch_hills",
+      "source_map_id": "map_04_hopscotch_hills",
+      "name": "Hopscotch Hills",
+      "difficulty": 4,
+      "seed": 72004,
+      "size": [
+        160.0,
+        160.0
+      ],
+      "theme": "Rolling hills with hopscotch bonus lanes, slopes, windmills, and split routes.",
+      "recommended_moving_cars": 2,
+      "recommended_people": 7,
+      "recommended_stack_groups": 3,
+      "challenge_notes": [
+        "medium",
+        "hazard: wandering_fox_shadow"
+      ],
+      "ground_regions": [
+        {
+          "type": "grass",
+          "center": [
+            0.0,
+            -3.2
+          ],
+          "size": [
+            150.4,
+            144.0
+          ]
+        },
+        {
+          "type": "soft_dirt",
+          "center": [
+            0.0,
+            -57.6
+          ],
+          "size": [
+            24.0,
+            24.0
+          ]
+        },
+        {
+          "type": "grass_slope",
+          "center": [
+            -40.0,
+            36.8
+          ],
+          "size": [
+            51.2,
+            51.2
+          ]
+        },
+        {
+          "type": "grass_slope",
+          "center": [
+            35.2,
+            -27.2
+          ],
+          "size": [
+            57.6,
+            57.6
+          ]
+        }
+      ],
+      "water_regions": [],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "bonus_lane",
+          "width": 32.0,
+          "lane_count": 1,
+          "points": [
+            [
+              -1.6,
+              -54.4
+            ],
+            [
+              -1.6,
+              56.0
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "dirt_loop",
+          "width": 6.4,
+          "lane_count": 1,
+          "points": [
+            [
+              0.0,
+              51.2
+            ],
+            [
+              32.0,
+              36.8
+            ],
+            [
+              48.0,
+              0.0
+            ],
+            [
+              32.0,
+              -36.8
+            ],
+            [
+              0.0,
+              -51.2
+            ],
+            [
+              -32.0,
+              -36.8
+            ],
+            [
+              -48.0,
+              0.0
+            ],
+            [
+              -32.0,
+              36.8
+            ],
+            [
+              0.0,
+              51.2
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "dirt_path",
+          "width": 6.88,
+          "lane_count": 1,
+          "points": [
+            [
+              0.0,
+              -70.4
+            ],
+            [
+              0.0,
+              -35.2
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              35.2
+            ],
+            [
+              0.0,
+              67.2
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "kind": "dirt_path",
+          "width": 6.88,
+          "lane_count": 1,
+          "points": [
+            [
+              -67.2,
+              0.0
+            ],
+            [
+              -35.2,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              35.2,
+              0.0
+            ],
+            [
+              67.2,
+              0.0
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "kind": "dirt_path",
+          "width": 5.6,
+          "lane_count": 1,
+          "points": [
+            [
+              -60.8,
+              60.8
+            ],
+            [
+              60.8,
+              60.8
+            ],
+            [
+              60.8,
+              -60.8
+            ],
+            [
+              -60.8,
+              -60.8
+            ],
+            [
+              -60.8,
+              60.8
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "windmill_ridge",
+          "center": [
+            30.4,
+            41.6
+          ],
+          "size": [
+            32.0,
+            32.0
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "tiny_meadow_scatter",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            112.0,
+            112.0
+          ]
+        },
+        {
+          "type": "carrot_resource_patches",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            112.0,
+            112.0
+          ]
+        },
+        {
+          "type": "medium_props",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            112.0,
+            112.0
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -1.6,
+              -54.4
+            ],
+            [
+              -1.6,
+              56.0
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "points": [
+            [
+              0.0,
+              51.2
+            ],
+            [
+              32.0,
+              36.8
+            ],
+            [
+              48.0,
+              0.0
+            ],
+            [
+              32.0,
+              -36.8
+            ],
+            [
+              0.0,
+              -51.2
+            ],
+            [
+              -32.0,
+              -36.8
+            ],
+            [
+              -48.0,
+              0.0
+            ],
+            [
+              -32.0,
+              36.8
+            ],
+            [
+              0.0,
+              51.2
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 6.4,
+          "vehicle": "carrot_cart"
+        },
+        {
+          "id": 1,
+          "road_id": 1,
+          "speed": 6.7,
+          "vehicle": "bakery_cart"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "carrot_crate_stack",
+          "position": [
+            -51.2,
+            51.2
+          ],
+          "count": 8
+        },
+        {
+          "type": "egg_box_stack",
+          "position": [
+            51.2,
+            51.2
+          ],
+          "count": 9
+        },
+        {
+          "type": "bakery_box_stack",
+          "position": [
+            -51.2,
+            -51.2
+          ],
+          "count": 10
+        }
+      ],
+      "spawn_point": [
+        0.0,
+        -57.6
+      ],
+      "preview_png": "res://assets/maps/bunny_land/map_04_hopscotch_hills.png",
+      "source_json": "res://resources/maps/bunny_land/maps/json/map_04_hopscotch_hills.json"
+    },
+    {
+      "id": "easter_garden",
+      "source_map_id": "map_05_easter_garden",
+      "name": "Easter Garden",
+      "difficulty": 5,
+      "seed": 72005,
+      "size": [
+        166.667,
+        166.667
+      ],
+      "theme": "A denser Easter garden with hedge maze geometry, slippery egg tiles, and timed egg bursts.",
+      "recommended_moving_cars": 2,
+      "recommended_people": 8,
+      "recommended_stack_groups": 3,
+      "challenge_notes": [
+        "medium_hard",
+        "hazard: wandering_fox_shadow",
+        "hazard: slippery_egg_tiles",
+        "hazard: spring_bouncer"
+      ],
+      "ground_regions": [
+        {
+          "type": "grass",
+          "center": [
+            0.0,
+            -3.333
+          ],
+          "size": [
+            156.667,
+            150.0
+          ]
+        },
+        {
+          "type": "soft_dirt",
+          "center": [
+            0.0,
+            -60.0
+          ],
+          "size": [
+            25.0,
+            25.0
+          ]
+        },
+        {
+          "type": "hedge_garden",
+          "center": [
+            0.0,
+            0.833
+          ],
+          "size": [
+            133.334,
+            121.667
+          ]
+        }
+      ],
+      "water_regions": [
+        {
+          "type": "fountain",
+          "center": [
+            0.0,
+            3.333
+          ],
+          "size": [
+            21.667,
+            21.667
+          ]
+        }
+      ],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "dirt_loop",
+          "width": 6.667,
+          "lane_count": 1,
+          "points": [
+            [
+              0.0,
+              53.333
+            ],
+            [
+              33.333,
+              38.333
+            ],
+            [
+              50.0,
+              0.0
+            ],
+            [
+              33.333,
+              -38.333
+            ],
+            [
+              0.0,
+              -53.333
+            ],
+            [
+              -33.333,
+              -38.333
+            ],
+            [
+              -50.0,
+              0.0
+            ],
+            [
+              -33.333,
+              38.333
+            ],
+            [
+              0.0,
+              53.333
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "dirt_path",
+          "width": 7.167,
+          "lane_count": 1,
+          "points": [
+            [
+              0.0,
+              -73.333
+            ],
+            [
+              0.0,
+              -36.667
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              36.667
+            ],
+            [
+              0.0,
+              70.0
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "dirt_path",
+          "width": 7.167,
+          "lane_count": 1,
+          "points": [
+            [
+              -70.0,
+              0.0
+            ],
+            [
+              -36.667,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              36.667,
+              0.0
+            ],
+            [
+              70.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "kind": "dirt_path",
+          "width": 5.833,
+          "lane_count": 1,
+          "points": [
+            [
+              -63.333,
+              63.333
+            ],
+            [
+              63.333,
+              63.333
+            ],
+            [
+              63.333,
+              -63.333
+            ],
+            [
+              -63.333,
+              -63.333
+            ],
+            [
+              -63.333,
+              63.333
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "egg_garden_inner",
+          "center": [
+            0.0,
+            3.333
+          ],
+          "size": [
+            60.0,
+            60.0
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "secret_patch",
+          "center": [
+            -48.333,
+            -43.333
+          ],
+          "size": [
+            26.667,
+            26.667
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              0.0,
+              53.333
+            ],
+            [
+              33.333,
+              38.333
+            ],
+            [
+              50.0,
+              0.0
+            ],
+            [
+              33.333,
+              -38.333
+            ],
+            [
+              0.0,
+              -53.333
+            ],
+            [
+              -33.333,
+              -38.333
+            ],
+            [
+              -50.0,
+              0.0
+            ],
+            [
+              -33.333,
+              38.333
+            ],
+            [
+              0.0,
+              53.333
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "points": [
+            [
+              0.0,
+              -73.333
+            ],
+            [
+              0.0,
+              -36.667
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              36.667
+            ],
+            [
+              0.0,
+              70.0
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 6.85,
+          "vehicle": "carrot_cart"
+        },
+        {
+          "id": 1,
+          "road_id": 1,
+          "speed": 7.15,
+          "vehicle": "bakery_cart"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "carrot_crate_stack",
+          "position": [
+            -53.333,
+            53.333
+          ],
+          "count": 9
+        },
+        {
+          "type": "egg_box_stack",
+          "position": [
+            53.333,
+            53.333
+          ],
+          "count": 10
+        },
+        {
+          "type": "bakery_box_stack",
+          "position": [
+            -53.333,
+            -53.333
+          ],
+          "count": 11
+        }
+      ],
+      "spawn_point": [
+        0.0,
+        -60.0
+      ],
+      "preview_png": "res://assets/maps/bunny_land/map_05_easter_garden.png",
+      "source_json": "res://resources/maps/bunny_land/maps/json/map_05_easter_garden.json"
+    },
+    {
+      "id": "bunny_bakery_town",
+      "source_map_id": "map_06_bunny_bakery_town",
+      "name": "Bunny Bakery Town",
+      "difficulty": 6,
+      "seed": 72006,
+      "size": [
+        173.333,
+        173.333
+      ],
+      "theme": "A bakery town with streets, large edible buildings, market routes, and tighter sightlines.",
+      "recommended_moving_cars": 3,
+      "recommended_people": 9,
+      "recommended_stack_groups": 4,
+      "challenge_notes": [
+        "hard",
+        "hazard: wandering_fox_shadow",
+        "hazard: slippery_egg_tiles",
+        "hazard: spring_bouncer"
+      ],
+      "ground_regions": [
+        {
+          "type": "grass",
+          "center": [
+            0.0,
+            -3.467
+          ],
+          "size": [
+            162.933,
+            156.0
+          ]
+        },
+        {
+          "type": "soft_dirt",
+          "center": [
+            0.0,
+            -62.4
+          ],
+          "size": [
+            26.0,
+            26.0
+          ]
+        }
+      ],
+      "water_regions": [],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "stone_street",
+          "width": 7.8,
+          "lane_count": 1,
+          "points": [
+            [
+              -72.8,
+              48.533
+            ],
+            [
+              72.8,
+              48.533
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "stone_street",
+          "width": 8.667,
+          "lane_count": 1,
+          "points": [
+            [
+              -72.8,
+              0.0
+            ],
+            [
+              72.8,
+              0.0
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "stone_street",
+          "width": 7.8,
+          "lane_count": 1,
+          "points": [
+            [
+              -72.8,
+              -48.533
+            ],
+            [
+              72.8,
+              -48.533
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "kind": "stone_street",
+          "width": 7.8,
+          "lane_count": 1,
+          "points": [
+            [
+              -48.533,
+              67.6
+            ],
+            [
+              -48.533,
+              -71.067
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "kind": "stone_street",
+          "width": 8.667,
+          "lane_count": 1,
+          "points": [
+            [
+              0.0,
+              67.6
+            ],
+            [
+              0.0,
+              -71.067
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "kind": "stone_street",
+          "width": 7.8,
+          "lane_count": 1,
+          "points": [
+            [
+              48.533,
+              67.6
+            ],
+            [
+              48.533,
+              -71.067
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "main_streets",
+          "center": [
+            0.0,
+            -1.733
+          ],
+          "size": [
+            145.6,
+            135.2
+          ]
+        },
+        {
+          "type": "bakery_row",
+          "center": [
+            0.0,
+            45.933
+          ],
+          "size": [
+            131.733,
+            29.467
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "market_square",
+          "center": [
+            0.0,
+            -8.667
+          ],
+          "size": [
+            55.467,
+            55.467
+          ]
+        },
+        {
+          "type": "delivery_yard",
+          "center": [
+            45.933,
+            -40.733
+          ],
+          "size": [
+            39.867,
+            36.4
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -72.8,
+              48.533
+            ],
+            [
+              72.8,
+              48.533
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "points": [
+            [
+              -72.8,
+              0.0
+            ],
+            [
+              72.8,
+              0.0
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 7.3,
+          "vehicle": "carrot_cart"
+        },
+        {
+          "id": 1,
+          "road_id": 1,
+          "speed": 7.6,
+          "vehicle": "bakery_cart"
+        },
+        {
+          "id": 2,
+          "road_id": 2,
+          "speed": 7.9,
+          "vehicle": "burrow_buggy"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "carrot_crate_stack",
+          "position": [
+            -55.467,
+            55.467
+          ],
+          "count": 10
+        },
+        {
+          "type": "egg_box_stack",
+          "position": [
+            55.467,
+            55.467
+          ],
+          "count": 11
+        },
+        {
+          "type": "bakery_box_stack",
+          "position": [
+            -55.467,
+            -55.467
+          ],
+          "count": 12
+        },
+        {
+          "type": "carrot_crate_stack",
+          "position": [
+            55.467,
+            -55.467
+          ],
+          "count": 12
+        }
+      ],
+      "spawn_point": [
+        0.0,
+        -62.4
+      ],
+      "preview_png": "res://assets/maps/bunny_land/map_06_bunny_bakery_town.png",
+      "source_json": "res://resources/maps/bunny_land/maps/json/map_06_bunny_bakery_town.json"
+    },
+    {
+      "id": "whisker_wonderland",
+      "source_map_id": "map_07_whisker_wonderland",
+      "name": "Whisker Wonderland",
+      "difficulty": 7,
+      "seed": 72007,
+      "size": [
+        180.0,
+        180.0
+      ],
+      "theme": "A playful wonderland full of curved lanes, tea party props, confusing surfaces, and busy bot traffic.",
+      "recommended_moving_cars": 3,
+      "recommended_people": 10,
+      "recommended_stack_groups": 4,
+      "challenge_notes": [
+        "hard",
+        "hazard: wandering_fox_shadow",
+        "hazard: slippery_egg_tiles",
+        "hazard: spring_bouncer"
+      ],
+      "ground_regions": [
+        {
+          "type": "grass",
+          "center": [
+            0.0,
+            -3.6
+          ],
+          "size": [
+            169.2,
+            162.0
+          ]
+        },
+        {
+          "type": "soft_dirt",
+          "center": [
+            0.0,
+            -64.8
+          ],
+          "size": [
+            27.0,
+            27.0
+          ]
+        },
+        {
+          "type": "hedge",
+          "center": [
+            -44.1,
+            39.6
+          ],
+          "size": [
+            52.2,
+            50.4
+          ]
+        },
+        {
+          "type": "slippery_cards",
+          "center": [
+            45.0,
+            37.8
+          ],
+          "size": [
+            54.0,
+            50.4
+          ]
+        }
+      ],
+      "water_regions": [],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "confusing_lane",
+          "width": 28.8,
+          "lane_count": 1,
+          "points": [
+            [
+              -27.0,
+              -50.4
+            ],
+            [
+              28.8,
+              -50.4
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "stone_street",
+          "width": 8.1,
+          "lane_count": 1,
+          "points": [
+            [
+              -75.6,
+              50.4
+            ],
+            [
+              75.6,
+              50.4
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "stone_street",
+          "width": 9.0,
+          "lane_count": 1,
+          "points": [
+            [
+              -75.6,
+              0.0
+            ],
+            [
+              75.6,
+              0.0
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "kind": "stone_street",
+          "width": 8.1,
+          "lane_count": 1,
+          "points": [
+            [
+              -75.6,
+              -50.4
+            ],
+            [
+              75.6,
+              -50.4
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "kind": "stone_street",
+          "width": 8.1,
+          "lane_count": 1,
+          "points": [
+            [
+              -50.4,
+              70.2
+            ],
+            [
+              -50.4,
+              -73.8
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "kind": "stone_street",
+          "width": 9.0,
+          "lane_count": 1,
+          "points": [
+            [
+              0.0,
+              70.2
+            ],
+            [
+              0.0,
+              -73.8
+            ]
+          ]
+        }
+      ],
+      "building_zones": [],
+      "prop_spawn_zones": [
+        {
+          "type": "tea_party_ring",
+          "center": [
+            0.0,
+            0.0
+          ],
+          "size": [
+            79.2,
+            79.2
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -27.0,
+              -50.4
+            ],
+            [
+              28.8,
+              -50.4
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "points": [
+            [
+              -75.6,
+              50.4
+            ],
+            [
+              75.6,
+              50.4
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 7.75,
+          "vehicle": "carrot_cart"
+        },
+        {
+          "id": 1,
+          "road_id": 1,
+          "speed": 8.05,
+          "vehicle": "bakery_cart"
+        },
+        {
+          "id": 2,
+          "road_id": 2,
+          "speed": 8.35,
+          "vehicle": "burrow_buggy"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "carrot_crate_stack",
+          "position": [
+            -57.6,
+            57.6
+          ],
+          "count": 11
+        },
+        {
+          "type": "egg_box_stack",
+          "position": [
+            57.6,
+            57.6
+          ],
+          "count": 12
+        },
+        {
+          "type": "bakery_box_stack",
+          "position": [
+            -57.6,
+            -57.6
+          ],
+          "count": 12
+        },
+        {
+          "type": "carrot_crate_stack",
+          "position": [
+            57.6,
+            -57.6
+          ],
+          "count": 12
+        }
+      ],
+      "spawn_point": [
+        0.0,
+        -64.8
+      ],
+      "preview_png": "res://assets/maps/bunny_land/map_07_whisker_wonderland.png",
+      "source_json": "res://resources/maps/bunny_land/maps/json/map_07_whisker_wonderland.json"
+    },
+    {
+      "id": "moonlit_burrows",
+      "source_map_id": "map_08_moonlit_burrows",
+      "name": "Moonlit Burrows",
+      "difficulty": 8,
+      "seed": 72008,
+      "size": [
+        186.667,
+        186.667
+      ],
+      "theme": "A night cavern map with narrow bridges, crystal resources, pit zones, and shifting routes.",
+      "recommended_moving_cars": 4,
+      "recommended_people": 11,
+      "recommended_stack_groups": 5,
+      "challenge_notes": [
+        "very_hard",
+        "hazard: wandering_fox_shadow",
+        "hazard: slippery_egg_tiles",
+        "hazard: spring_bouncer",
+        "hazard: pit_edges",
+        "hazard: boss_guard_patrol"
+      ],
+      "ground_regions": [
+        {
+          "type": "grass",
+          "center": [
+            0.0,
+            -3.733
+          ],
+          "size": [
+            175.467,
+            168.0
+          ]
+        },
+        {
+          "type": "soft_dirt",
+          "center": [
+            0.0,
+            -67.2
+          ],
+          "size": [
+            28.0,
+            28.0
+          ]
+        },
+        {
+          "type": "void",
+          "center": [
+            0.0,
+            0.0
+          ],
+          "size": [
+            41.067,
+            59.733
+          ]
+        }
+      ],
+      "water_regions": [],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "cave_network",
+          "width": 143.734,
+          "lane_count": 1,
+          "points": [
+            [
+              -78.4,
+              -0.933
+            ],
+            [
+              78.4,
+              -0.933
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "glow_path",
+          "width": 7.467,
+          "lane_count": 1,
+          "points": [
+            [
+              0.0,
+              -80.267
+            ],
+            [
+              -11.2,
+              -48.533
+            ],
+            [
+              14.933,
+              -22.4
+            ],
+            [
+              -14.933,
+              3.733
+            ],
+            [
+              18.667,
+              29.867
+            ],
+            [
+              0.0,
+              78.4
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "narrow_bridge",
+          "width": 5,
+          "lane_count": 1,
+          "points": [
+            [
+              -63.467,
+              -18.667
+            ],
+            [
+              -29.867,
+              -5.6
+            ],
+            [
+              -13.067,
+              3.733
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "kind": "narrow_bridge",
+          "width": 5,
+          "lane_count": 1,
+          "points": [
+            [
+              63.467,
+              14.933
+            ],
+            [
+              29.867,
+              3.733
+            ],
+            [
+              13.067,
+              -9.333
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "kind": "glow_path",
+          "width": 6.533,
+          "lane_count": 1,
+          "points": [
+            [
+              -67.2,
+              59.733
+            ],
+            [
+              67.2,
+              59.733
+            ],
+            [
+              67.2,
+              -61.6
+            ],
+            [
+              -67.2,
+              -61.6
+            ],
+            [
+              -67.2,
+              59.733
+            ]
+          ]
+        }
+      ],
+      "building_zones": [],
+      "prop_spawn_zones": [
+        {
+          "type": "glow_crystal_north",
+          "center": [
+            -35.467,
+            46.667
+          ],
+          "size": [
+            48.533,
+            48.533
+          ]
+        },
+        {
+          "type": "glow_crystal_south",
+          "center": [
+            33.6,
+            -41.067
+          ],
+          "size": [
+            52.267,
+            52.267
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -78.4,
+              -0.933
+            ],
+            [
+              78.4,
+              -0.933
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "points": [
+            [
+              0.0,
+              -80.267
+            ],
+            [
+              -11.2,
+              -48.533
+            ],
+            [
+              14.933,
+              -22.4
+            ],
+            [
+              -14.933,
+              3.733
+            ],
+            [
+              18.667,
+              29.867
+            ],
+            [
+              0.0,
+              78.4
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 8.2,
+          "vehicle": "carrot_cart"
+        },
+        {
+          "id": 1,
+          "road_id": 1,
+          "speed": 8.5,
+          "vehicle": "bakery_cart"
+        },
+        {
+          "id": 2,
+          "road_id": 2,
+          "speed": 8.8,
+          "vehicle": "burrow_buggy"
+        },
+        {
+          "id": 3,
+          "road_id": 3,
+          "speed": 9.1,
+          "vehicle": "carrot_cart"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "carrot_crate_stack",
+          "position": [
+            -59.733,
+            59.733
+          ],
+          "count": 12
+        },
+        {
+          "type": "egg_box_stack",
+          "position": [
+            59.733,
+            59.733
+          ],
+          "count": 12
+        },
+        {
+          "type": "bakery_box_stack",
+          "position": [
+            -59.733,
+            -59.733
+          ],
+          "count": 12
+        },
+        {
+          "type": "carrot_crate_stack",
+          "position": [
+            59.733,
+            -59.733
+          ],
+          "count": 12
+        },
+        {
+          "type": "egg_box_stack",
+          "position": [
+            0.0,
+            63.467
+          ],
+          "count": 12
+        }
+      ],
+      "spawn_point": [
+        0.0,
+        -67.2
+      ],
+      "preview_png": "res://assets/maps/bunny_land/map_08_moonlit_burrows.png",
+      "source_json": "res://resources/maps/bunny_land/maps/json/map_08_moonlit_burrows.json"
+    },
+    {
+      "id": "bunny_kingdom",
+      "source_map_id": "map_09_bunny_kingdom",
+      "name": "Bunny Kingdom",
+      "difficulty": 9,
+      "seed": 72009,
+      "size": [
+        193.333,
+        193.333
+      ],
+      "theme": "A royal town with castle walls, guard patrols, locked gates, and high-value towers.",
+      "recommended_moving_cars": 3,
+      "recommended_people": 12,
+      "recommended_stack_groups": 5,
+      "challenge_notes": [
+        "very_hard",
+        "hazard: wandering_fox_shadow",
+        "hazard: slippery_egg_tiles",
+        "hazard: spring_bouncer",
+        "hazard: pit_edges",
+        "hazard: boss_guard_patrol"
+      ],
+      "ground_regions": [
+        {
+          "type": "grass",
+          "center": [
+            0.0,
+            -3.867
+          ],
+          "size": [
+            181.733,
+            174.0
+          ]
+        },
+        {
+          "type": "soft_dirt",
+          "center": [
+            0.0,
+            -69.6
+          ],
+          "size": [
+            29.0,
+            29.0
+          ]
+        },
+        {
+          "type": "stone_and_grass",
+          "center": [
+            0.0,
+            -0.967
+          ],
+          "size": [
+            166.266,
+            152.733
+          ]
+        },
+        {
+          "type": "training_ground",
+          "center": [
+            51.233,
+            -44.467
+          ],
+          "size": [
+            44.467,
+            42.533
+          ]
+        }
+      ],
+      "water_regions": [],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "royal_stone_loop",
+          "width": 9.667,
+          "lane_count": 1,
+          "points": [
+            [
+              0.0,
+              58.0
+            ],
+            [
+              52.2,
+              34.8
+            ],
+            [
+              54.133,
+              -32.867
+            ],
+            [
+              0.0,
+              -61.867
+            ],
+            [
+              -54.133,
+              -32.867
+            ],
+            [
+              -52.2,
+              34.8
+            ],
+            [
+              0.0,
+              58.0
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "royal_stone",
+          "width": 10.633,
+          "lane_count": 1,
+          "points": [
+            [
+              0.0,
+              -85.067
+            ],
+            [
+              0.0,
+              -42.533
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              40.6
+            ],
+            [
+              0.0,
+              81.2
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "royal_stone",
+          "width": 8.7,
+          "lane_count": 1,
+          "points": [
+            [
+              -81.2,
+              0.0
+            ],
+            [
+              -38.667,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              38.667,
+              0.0
+            ],
+            [
+              81.2,
+              0.0
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "royal_plaza",
+          "center": [
+            0.0,
+            0.0
+          ],
+          "size": [
+            69.6,
+            69.6
+          ]
+        },
+        {
+          "type": "castle_wall_north",
+          "center": [
+            0.0,
+            57.033
+          ],
+          "size": [
+            104.4,
+            13.533
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "royal_garden",
+          "center": [
+            -50.267,
+            -45.433
+          ],
+          "size": [
+            42.533,
+            40.6
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              0.0,
+              58.0
+            ],
+            [
+              52.2,
+              34.8
+            ],
+            [
+              54.133,
+              -32.867
+            ],
+            [
+              0.0,
+              -61.867
+            ],
+            [
+              -54.133,
+              -32.867
+            ],
+            [
+              -52.2,
+              34.8
+            ],
+            [
+              0.0,
+              58.0
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "points": [
+            [
+              0.0,
+              -85.067
+            ],
+            [
+              0.0,
+              -42.533
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              40.6
+            ],
+            [
+              0.0,
+              81.2
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 8.65,
+          "vehicle": "carrot_cart"
+        },
+        {
+          "id": 1,
+          "road_id": 1,
+          "speed": 8.95,
+          "vehicle": "bakery_cart"
+        },
+        {
+          "id": 2,
+          "road_id": 2,
+          "speed": 9.25,
+          "vehicle": "burrow_buggy"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "carrot_crate_stack",
+          "position": [
+            -61.867,
+            61.867
+          ],
+          "count": 12
+        },
+        {
+          "type": "egg_box_stack",
+          "position": [
+            61.867,
+            61.867
+          ],
+          "count": 12
+        },
+        {
+          "type": "bakery_box_stack",
+          "position": [
+            -61.867,
+            -61.867
+          ],
+          "count": 12
+        },
+        {
+          "type": "carrot_crate_stack",
+          "position": [
+            61.867,
+            -61.867
+          ],
+          "count": 12
+        },
+        {
+          "type": "egg_box_stack",
+          "position": [
+            0.0,
+            65.733
+          ],
+          "count": 12
+        }
+      ],
+      "spawn_point": [
+        0.0,
+        -69.6
+      ],
+      "preview_png": "res://assets/maps/bunny_land/map_09_bunny_kingdom.png",
+      "source_json": "res://resources/maps/bunny_land/maps/json/map_09_bunny_kingdom.json"
+    },
+    {
+      "id": "great_bunny_citadel",
+      "source_map_id": "map_10_great_bunny_citadel",
+      "name": "The Great Bunny Citadel",
+      "difficulty": 10,
+      "seed": 72010,
+      "size": [
+        200.0,
+        200.0
+      ],
+      "theme": "The finale: a spiral citadel with moat hazards, towers, drawbridges, and a late-game throne unlock.",
+      "recommended_moving_cars": 3,
+      "recommended_people": 13,
+      "recommended_stack_groups": 6,
+      "challenge_notes": [
+        "extreme",
+        "hazard: wandering_fox_shadow",
+        "hazard: slippery_egg_tiles",
+        "hazard: spring_bouncer",
+        "hazard: pit_edges",
+        "hazard: boss_guard_patrol"
+      ],
+      "ground_regions": [
+        {
+          "type": "grass",
+          "center": [
+            0.0,
+            -4.0
+          ],
+          "size": [
+            188.0,
+            180.0
+          ]
+        },
+        {
+          "type": "soft_dirt",
+          "center": [
+            0.0,
+            -72.0
+          ],
+          "size": [
+            30.0,
+            30.0
+          ]
+        },
+        {
+          "type": "cloud_edge",
+          "center": [
+            0.0,
+            0.0
+          ],
+          "size": [
+            184.0,
+            184.0
+          ]
+        }
+      ],
+      "water_regions": [
+        {
+          "type": "moat_north",
+          "center": [
+            0.0,
+            53.0
+          ],
+          "size": [
+            108.0,
+            14.0
+          ]
+        },
+        {
+          "type": "moat_south",
+          "center": [
+            0.0,
+            -53.0
+          ],
+          "size": [
+            108.0,
+            14.0
+          ]
+        }
+      ],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "royal_spiral",
+          "width": 9.6,
+          "lane_count": 1,
+          "points": [
+            [
+              0.0,
+              -86.0
+            ],
+            [
+              -58.0,
+              -62.0
+            ],
+            [
+              -68.0,
+              2.0
+            ],
+            [
+              -40.0,
+              56.0
+            ],
+            [
+              12.0,
+              70.0
+            ],
+            [
+              60.0,
+              40.0
+            ],
+            [
+              68.0,
+              -14.0
+            ],
+            [
+              40.0,
+              -54.0
+            ],
+            [
+              -4.0,
+              -60.0
+            ],
+            [
+              -36.0,
+              -30.0
+            ],
+            [
+              -30.0,
+              16.0
+            ],
+            [
+              0.0,
+              32.0
+            ],
+            [
+              24.0,
+              14.0
+            ],
+            [
+              20.0,
+              -14.0
+            ],
+            [
+              0.0,
+              -24.0
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "drawbridge",
+          "width": 8.0,
+          "lane_count": 1,
+          "points": [
+            [
+              -84.0,
+              0.0
+            ],
+            [
+              -40.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              40.0,
+              0.0
+            ],
+            [
+              84.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "drawbridge",
+          "width": 8.0,
+          "lane_count": 1,
+          "points": [
+            [
+              0.0,
+              84.0
+            ],
+            [
+              0.0,
+              40.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -40.0
+            ],
+            [
+              0.0,
+              -88.0
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "citadel_outer_ring",
+          "center": [
+            0.0,
+            0.0
+          ],
+          "size": [
+            172.0,
+            172.0
+          ]
+        },
+        {
+          "type": "citadel_inner_ring",
+          "center": [
+            0.0,
+            0.0
+          ],
+          "size": [
+            108.0,
+            108.0
+          ]
+        },
+        {
+          "type": "throne_keep",
+          "center": [
+            0.0,
+            0.0
+          ],
+          "size": [
+            48.0,
+            48.0
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "tiny_meadow_scatter",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            140.0,
+            140.0
+          ]
+        },
+        {
+          "type": "carrot_resource_patches",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            140.0,
+            140.0
+          ]
+        },
+        {
+          "type": "medium_props",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            140.0,
+            140.0
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              0.0,
+              -86.0
+            ],
+            [
+              -58.0,
+              -62.0
+            ],
+            [
+              -68.0,
+              2.0
+            ],
+            [
+              -40.0,
+              56.0
+            ],
+            [
+              12.0,
+              70.0
+            ],
+            [
+              60.0,
+              40.0
+            ],
+            [
+              68.0,
+              -14.0
+            ],
+            [
+              40.0,
+              -54.0
+            ],
+            [
+              -4.0,
+              -60.0
+            ],
+            [
+              -36.0,
+              -30.0
+            ],
+            [
+              -30.0,
+              16.0
+            ],
+            [
+              0.0,
+              32.0
+            ],
+            [
+              24.0,
+              14.0
+            ],
+            [
+              20.0,
+              -14.0
+            ],
+            [
+              0.0,
+              -24.0
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "points": [
+            [
+              -84.0,
+              0.0
+            ],
+            [
+              -40.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              40.0,
+              0.0
+            ],
+            [
+              84.0,
+              0.0
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 9.1,
+          "vehicle": "carrot_cart"
+        },
+        {
+          "id": 1,
+          "road_id": 1,
+          "speed": 9.4,
+          "vehicle": "bakery_cart"
+        },
+        {
+          "id": 2,
+          "road_id": 2,
+          "speed": 9.7,
+          "vehicle": "burrow_buggy"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "carrot_crate_stack",
+          "position": [
+            -64.0,
+            64.0
+          ],
+          "count": 12
+        },
+        {
+          "type": "egg_box_stack",
+          "position": [
+            64.0,
+            64.0
+          ],
+          "count": 12
+        },
+        {
+          "type": "bakery_box_stack",
+          "position": [
+            -64.0,
+            -64.0
+          ],
+          "count": 12
+        },
+        {
+          "type": "carrot_crate_stack",
+          "position": [
+            64.0,
+            -64.0
+          ],
+          "count": 12
+        },
+        {
+          "type": "egg_box_stack",
+          "position": [
+            0.0,
+            68.0
+          ],
+          "count": 12
+        },
+        {
+          "type": "bakery_box_stack",
+          "position": [
+            0.0,
+            -44.0
+          ],
+          "count": 12
+        }
+      ],
+      "spawn_point": [
+        0.0,
+        -72.0
+      ],
+      "preview_png": "res://assets/maps/bunny_land/map_10_great_bunny_citadel.png",
+      "source_json": "res://resources/maps/bunny_land/maps/json/map_10_great_bunny_citadel.json"
+    }
+  ]
+}

@@ -1,0 +1,418 @@
+{
+  "map": {
+    "id": "map_09_chrono_rift_highlands",
+    "name": "Chrono Rift Highlands",
+    "slug": "chrono_rift_highlands",
+    "world": "prehistoric_world",
+    "period": "Multi-era rift zone",
+    "description": "Jagged highlands fractured by glowing time rifts that pull together creatures from different eras. Constant spatial pressure and mixed hazards.",
+    "difficulty": "very hard",
+    "difficulty_rank": 9,
+    "recommended_players": "5-7",
+    "estimated_match_length_sec": 210,
+    "preview_image": "images/map_09_chrono_rift_highlands.png",
+    "overview_image": "images/prehistoric_world_map_pack_overview.png",
+    "theme": "time-rift highlands",
+    "palette": [
+      "#6B5A3E",
+      "#6C5CE7",
+      "#8E7CC3",
+      "#A4B46D"
+    ],
+    "bounds": {
+      "min": [
+        0.0,
+        0.0
+      ],
+      "max": [
+        1.0,
+        1.0
+      ]
+    },
+    "hole": {
+      "initial_position": [
+        0.5,
+        0.5
+      ],
+      "initial_radius": 0.03,
+      "growth_curve": "linear_plus_pickup_bonus",
+      "max_radius": 0.42,
+      "speed_curve": {
+        "small": 1.0,
+        "medium": 0.88,
+        "large": 0.72,
+        "huge": 0.58
+      }
+    },
+    "regions": [
+      {
+        "id": "rift_north",
+        "type": "hazard_zone",
+        "polygon": [
+          [
+            0.18,
+            0.04
+          ],
+          [
+            0.82,
+            0.04
+          ],
+          [
+            0.82,
+            0.2
+          ],
+          [
+            0.18,
+            0.2
+          ]
+        ]
+      },
+      {
+        "id": "highland_bowl",
+        "type": "hub",
+        "polygon": [
+          [
+            0.24,
+            0.22
+          ],
+          [
+            0.76,
+            0.22
+          ],
+          [
+            0.76,
+            0.58
+          ],
+          [
+            0.24,
+            0.58
+          ]
+        ]
+      },
+      {
+        "id": "mixed_era_west",
+        "type": "pickup_zone",
+        "polygon": [
+          [
+            0.04,
+            0.18
+          ],
+          [
+            0.22,
+            0.18
+          ],
+          [
+            0.22,
+            0.92
+          ],
+          [
+            0.04,
+            0.92
+          ]
+        ]
+      },
+      {
+        "id": "mixed_era_east",
+        "type": "pickup_zone",
+        "polygon": [
+          [
+            0.78,
+            0.18
+          ],
+          [
+            0.96,
+            0.18
+          ],
+          [
+            0.96,
+            0.92
+          ],
+          [
+            0.78,
+            0.92
+          ]
+        ]
+      },
+      {
+        "id": "stone_paths_south",
+        "type": "lane",
+        "polygon": [
+          [
+            0.14,
+            0.72
+          ],
+          [
+            0.86,
+            0.72
+          ],
+          [
+            0.86,
+            0.94
+          ],
+          [
+            0.14,
+            0.94
+          ]
+        ]
+      }
+    ],
+    "spawn_points": [
+      {
+        "id": "sp_01",
+        "position": [
+          0.12,
+          0.84
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_02",
+        "position": [
+          0.86,
+          0.16
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_03",
+        "position": [
+          0.5,
+          0.08
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_04",
+        "position": [
+          0.08,
+          0.5
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_05",
+        "position": [
+          0.92,
+          0.5
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_06",
+        "position": [
+          0.22,
+          0.22
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_07",
+        "position": [
+          0.78,
+          0.78
+        ],
+        "team": "neutral"
+      },
+      {
+        "id": "sp_08",
+        "position": [
+          0.5,
+          0.92
+        ],
+        "team": "neutral"
+      }
+    ],
+    "object_tiers": [
+      {
+        "tier": 1,
+        "name": "tiny props",
+        "min_hole_radius": 0.0,
+        "examples": [
+          "stones",
+          "bones",
+          "berries",
+          "pots",
+          "eggs"
+        ],
+        "points": 1
+      },
+      {
+        "tier": 2,
+        "name": "small props",
+        "min_hole_radius": 0.05,
+        "examples": [
+          "spears",
+          "camp stools",
+          "baskets",
+          "fish racks",
+          "skulls"
+        ],
+        "points": 3
+      },
+      {
+        "tier": 3,
+        "name": "medium props",
+        "min_hole_radius": 0.1,
+        "examples": [
+          "campfires",
+          "bone arches",
+          "canoes",
+          "small huts",
+          "nest mounds"
+        ],
+        "points": 8
+      },
+      {
+        "tier": 4,
+        "name": "large props",
+        "min_hole_radius": 0.18,
+        "examples": [
+          "stone huts",
+          "mammoth-bone shelters",
+          "totems",
+          "ice blocks",
+          "wooden pens"
+        ],
+        "points": 18
+      },
+      {
+        "tier": 5,
+        "name": "huge props",
+        "min_hole_radius": 0.28,
+        "examples": [
+          "mammoths",
+          "woolly rhinos",
+          "large dinosaurs",
+          "watch towers",
+          "volcanic boulders"
+        ],
+        "points": 40
+      }
+    ],
+    "spawn_rules": {
+      "small_object_density": 0.59,
+      "medium_object_density": 0.61,
+      "bonus_spawn_rate": 1.2,
+      "respawn_interval_sec": 5.75,
+      "prefer_region_types": [
+        "pickup_zone",
+        "hub",
+        "lane"
+      ]
+    },
+    "hazards": [
+      {
+        "id": "chrono_rifts",
+        "type": "pull_zone",
+        "strength": 0.26,
+        "radius": 0.05,
+        "count": 4
+      },
+      {
+        "id": "lightning_cracks",
+        "type": "stun_patch",
+        "strength": 0.22,
+        "radius": 0.04,
+        "count": 4
+      },
+      {
+        "id": "apex_predators",
+        "type": "moving_hazard",
+        "strength": 0.26,
+        "radius": 0.03,
+        "count": 5
+      }
+    ],
+    "blockers": [
+      {
+        "id": "edge_barrier",
+        "type": "boundary",
+        "shape": "rect",
+        "min": [
+          0.0,
+          0.0
+        ],
+        "max": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "id": "center_no_build",
+        "type": "reserved_hole_space",
+        "shape": "circle",
+        "center": [
+          0.5,
+          0.5
+        ],
+        "radius": 0.1
+      }
+    ],
+    "gameplay_rules": {
+      "mode": "free_for_all",
+      "match_duration_sec": 180,
+      "score_mode": "consumed_mass",
+      "allow_bot_respawn": true,
+      "max_bots": 7,
+      "overtime": {
+        "enabled": true,
+        "sudden_death_after_sec": 180
+      },
+      "pickup_combo_window_sec": 2.5
+    },
+    "bot_behavior": {
+      "aggression": 0.7,
+      "route_bias": "seek_dense_pickups_then_enemy_intercept",
+      "avoid_hazards_weight": 0.83,
+      "preferred_targets": [
+        "tiny props",
+        "small props",
+        "isolated bots"
+      ]
+    },
+    "creature_population": {
+      "cave_people": true,
+      "cave_women": true,
+      "dinosaurs": true,
+      "woolly_mammoths": true,
+      "woolly_rhinoceroses": true,
+      "sabre_tooth_tigers": true
+    },
+    "landmarks": [
+      "glowing rifts",
+      "mammoths",
+      "woolly rhinos",
+      "raptors",
+      "sabre-tooths"
+    ],
+    "generation_hints": {
+      "suggested_world_size_px": [
+        2048,
+        2048
+      ],
+      "tile_size_px": 64,
+      "nav_grid": [
+        32,
+        32
+      ],
+      "visual_style": "bright_topdown_arcade_prehistoric",
+      "notes": "Use the PNG preview as visual guidance only. JSON regions are normalized for procedural generation in Godot."
+    },
+    "metadata": {
+      "package": "PrehistoricMapPack",
+      "version": "1.0.0",
+      "author": "OpenAI - generated pack",
+      "engine": "Godot 4",
+      "license": "Permissive demo content for prototyping",
+      "tags": [
+        "prehistoric",
+        "dinosaur",
+        "mammoth",
+        "caveman",
+        "hole.io",
+        "godot",
+        "procedural"
+      ]
+    }
+  }
+}

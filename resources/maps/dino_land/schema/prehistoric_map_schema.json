@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Prehistoric World Map Definition",
+  "type": "object",
+  "required": [
+    "map"
+  ],
+  "properties": {
+    "map": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "difficulty",
+        "bounds",
+        "regions",
+        "spawn_points",
+        "object_tiers",
+        "gameplay_rules"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "world": {
+          "type": "string"
+        },
+        "period": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "difficulty": {
+          "type": "string"
+        },
+        "difficulty_rank": {
+          "type": "integer"
+        },
+        "preview_image": {
+          "type": "string"
+        },
+        "bounds": {
+          "type": "object",
+          "properties": {
+            "min": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "max": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          },
+          "required": [
+            "min",
+            "max"
+          ]
+        },
+        "regions": {
+          "type": "array"
+        },
+        "spawn_points": {
+          "type": "array"
+        },
+        "object_tiers": {
+          "type": "array"
+        },
+        "spawn_rules": {
+          "type": "object"
+        },
+        "hazards": {
+          "type": "array"
+        },
+        "blockers": {
+          "type": "array"
+        },
+        "gameplay_rules": {
+          "type": "object"
+        },
+        "bot_behavior": {
+          "type": "object"
+        },
+        "creature_population": {
+          "type": "object"
+        },
+        "generation_hints": {
+          "type": "object"
+        },
+        "metadata": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}
