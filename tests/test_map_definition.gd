@@ -179,6 +179,31 @@ func test_moving_car_route_preserves_road_reference_and_speed() -> String:
 	return ""
 
 
+func test_difficulty_defaults_to_zero() -> String:
+	var def: Dictionary = MapDefinition.from_catalog_map("p", "Pack", _minimal_map())
+	if int(def.get("difficulty", -1)) != 0:
+		return "expected default difficulty 0, got %s" % str(def.get("difficulty"))
+	return ""
+
+
+func test_difficulty_passes_through() -> String:
+	var raw := _minimal_map()
+	raw["difficulty"] = 7
+	var def: Dictionary = MapDefinition.from_catalog_map("p", "Pack", raw)
+	if int(def["difficulty"]) != 7:
+		return "expected difficulty 7, got %s" % str(def["difficulty"])
+	return ""
+
+
+func test_theme_passes_through() -> String:
+	var raw := _minimal_map()
+	raw["theme"] = "open park"
+	var def: Dictionary = MapDefinition.from_catalog_map("p", "Pack", raw)
+	if String(def["theme"]) != "open park":
+		return "expected theme 'open park', got %s" % String(def["theme"])
+	return ""
+
+
 func test_every_real_catalog_map_normalises() -> String:
 	# Load every pack via MapCatalog, then for each option re-load its
 	# source catalog and verify each raw map normalises without error.

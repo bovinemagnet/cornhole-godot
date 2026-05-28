@@ -1,0 +1,555 @@
+{
+  "pack": "candy",
+  "version": "1.0.0",
+  "sprite_size_px": [
+    256,
+    256
+  ],
+  "spritesheet": "sprites/candy/atlas/candy_spritesheet.png",
+  "sprites": [
+    {
+      "id": "lollipop_swirl",
+      "display_name": "Lollipop Swirl",
+      "category": "pickup",
+      "tier": 1,
+      "texture": "sprites/candy/individual/lollipop_swirl.png",
+      "atlas": "sprites/candy/atlas/candy_spritesheet.png",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.28,
+        "consumable_tier": 1,
+        "mass_points": 2
+      }
+    },
+    {
+      "id": "gumdrop_ruby",
+      "display_name": "Gumdrop Ruby",
+      "category": "pickup",
+      "tier": 1,
+      "texture": "sprites/candy/individual/gumdrop_ruby.png",
+      "atlas": "sprites/candy/atlas/candy_spritesheet.png",
+      "frame": {
+        "x": 256,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.28,
+        "consumable_tier": 1,
+        "mass_points": 2
+      }
+    },
+    {
+      "id": "gumdrop_lime",
+      "display_name": "Gumdrop Lime",
+      "category": "pickup",
+      "tier": 1,
+      "texture": "sprites/candy/individual/gumdrop_lime.png",
+      "atlas": "sprites/candy/atlas/candy_spritesheet.png",
+      "frame": {
+        "x": 512,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.28,
+        "consumable_tier": 1,
+        "mass_points": 2
+      }
+    },
+    {
+      "id": "jellybean_blue",
+      "display_name": "Jellybean Blue",
+      "category": "pickup",
+      "tier": 1,
+      "texture": "sprites/candy/individual/jellybean_blue.png",
+      "atlas": "sprites/candy/atlas/candy_spritesheet.png",
+      "frame": {
+        "x": 768,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.28,
+        "consumable_tier": 1,
+        "mass_points": 2
+      }
+    },
+    {
+      "id": "cupcake_house_pink",
+      "display_name": "Cupcake House Pink",
+      "category": "large_prop",
+      "tier": 4,
+      "texture": "sprites/candy/individual/cupcake_house_pink.png",
+      "atlas": "sprites/candy/atlas/candy_spritesheet.png",
+      "frame": {
+        "x": 0,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.52,
+        "consumable_tier": 4,
+        "mass_points": 32
+      }
+    },
+    {
+      "id": "cupcake_house_blue",
+      "display_name": "Cupcake House Blue",
+      "category": "large_prop",
+      "tier": 4,
+      "texture": "sprites/candy/individual/cupcake_house_blue.png",
+      "atlas": "sprites/candy/atlas/candy_spritesheet.png",
+      "frame": {
+        "x": 256,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.52,
+        "consumable_tier": 4,
+        "mass_points": 32
+      }
+    },
+    {
+      "id": "candy_cane_barrier",
+      "display_name": "Candy Cane Barrier",
+      "category": "blocker",
+      "tier": 2,
+      "texture": "sprites/candy/individual/candy_cane_barrier.png",
+      "atlas": "sprites/candy/atlas/candy_spritesheet.png",
+      "frame": {
+        "x": 512,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.36,
+        "consumable_tier": 2,
+        "mass_points": 8
+      }
+    },
+    {
+      "id": "chocolate_bridge",
+      "display_name": "Chocolate Bridge",
+      "category": "bridge",
+      "tier": 3,
+      "texture": "sprites/candy/individual/chocolate_bridge.png",
+      "atlas": "sprites/candy/atlas/candy_spritesheet.png",
+      "frame": {
+        "x": 768,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.44,
+        "consumable_tier": 3,
+        "mass_points": 18
+      }
+    },
+    {
+      "id": "marshmallow_stack",
+      "display_name": "Marshmallow Stack",
+      "category": "pickup",
+      "tier": 2,
+      "texture": "sprites/candy/individual/marshmallow_stack.png",
+      "atlas": "sprites/candy/atlas/candy_spritesheet.png",
+      "frame": {
+        "x": 0,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.36,
+        "consumable_tier": 2,
+        "mass_points": 8
+      }
+    },
+    {
+      "id": "cookie_ring",
+      "display_name": "Cookie Ring",
+      "category": "pickup",
+      "tier": 2,
+      "texture": "sprites/candy/individual/cookie_ring.png",
+      "atlas": "sprites/candy/atlas/candy_spritesheet.png",
+      "frame": {
+        "x": 256,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.36,
+        "consumable_tier": 2,
+        "mass_points": 8
+      }
+    },
+    {
+      "id": "taffy_machine",
+      "display_name": "Taffy Machine",
+      "category": "machine",
+      "tier": 4,
+      "texture": "sprites/candy/individual/taffy_machine.png",
+      "atlas": "sprites/candy/atlas/candy_spritesheet.png",
+      "frame": {
+        "x": 512,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.52,
+        "consumable_tier": 4,
+        "mass_points": 32
+      }
+    },
+    {
+      "id": "gumball_machine",
+      "display_name": "Gumball Machine",
+      "category": "machine",
+      "tier": 4,
+      "texture": "sprites/candy/individual/gumball_machine.png",
+      "atlas": "sprites/candy/atlas/candy_spritesheet.png",
+      "frame": {
+        "x": 768,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.52,
+        "consumable_tier": 4,
+        "mass_points": 32
+      }
+    },
+    {
+      "id": "peppermint_gate",
+      "display_name": "Peppermint Gate",
+      "category": "gate",
+      "tier": 3,
+      "texture": "sprites/candy/individual/peppermint_gate.png",
+      "atlas": "sprites/candy/atlas/candy_spritesheet.png",
+      "frame": {
+        "x": 0,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.44,
+        "consumable_tier": 3,
+        "mass_points": 18
+      }
+    },
+    {
+      "id": "sugar_castle_tower",
+      "display_name": "Sugar Castle Tower",
+      "category": "landmark",
+      "tier": 5,
+      "texture": "sprites/candy/individual/sugar_castle_tower.png",
+      "atlas": "sprites/candy/atlas/candy_spritesheet.png",
+      "frame": {
+        "x": 256,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.6,
+        "consumable_tier": 5,
+        "mass_points": 50
+      }
+    },
+    {
+      "id": "licorice_wall",
+      "display_name": "Licorice Wall",
+      "category": "blocker",
+      "tier": 3,
+      "texture": "sprites/candy/individual/licorice_wall.png",
+      "atlas": "sprites/candy/atlas/candy_spritesheet.png",
+      "frame": {
+        "x": 512,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.44,
+        "consumable_tier": 3,
+        "mass_points": 18
+      }
+    },
+    {
+      "id": "donut_stack",
+      "display_name": "Donut Stack",
+      "category": "pickup",
+      "tier": 3,
+      "texture": "sprites/candy/individual/donut_stack.png",
+      "atlas": "sprites/candy/atlas/candy_spritesheet.png",
+      "frame": {
+        "x": 768,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.44,
+        "consumable_tier": 3,
+        "mass_points": 18
+      }
+    }
+  ]
+}

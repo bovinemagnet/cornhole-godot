@@ -16,7 +16,9 @@ static func choose_static_prop_positions(
 	zones: Array,
 	water_regions: Array,
 	fallback_half_size: float,
-	player_spawn_clearance: float
+	player_spawn_clearance: float,
+	starter_count: int = 0,
+	starter_radius: float = 0.0
 ) -> PackedVector3Array:
 	var positions := PackedVector3Array()
 	if count <= 0:
@@ -25,13 +27,42 @@ static func choose_static_prop_positions(
 	var rng := RandomNumberGenerator.new()
 	rng.seed = map_seed + SEED_NAMESPACE + spawn_algo_version
 
+	# Guarantee a ring of starter props around spawn so no map (regardless of
+	# how its zones are authored) leaves the player stranded with nothing
+	# edible nearby. starter_count of 0 reproduces the original behaviour
+	# exactly, keeping older callers/tests deterministic.
+	var effective_starter: int = clamp(starter_count, 0, count)
 	for i in range(count):
-		var chosen: Vector3 = _pick_one_position(
-			rng, zones, water_regions, fallback_half_size, player_spawn_clearance
-		)
+		var chosen: Vector3
+		if i < effective_starter and starter_radius > player_spawn_clearance:
+			chosen = _sample_starter_position(rng, water_regions, player_spawn_clearance, starter_radius)
+		else:
+			chosen = _pick_one_position(
+				rng, zones, water_regions, fallback_half_size, player_spawn_clearance
+			)
 		positions.append(chosen)
 
 	return positions
+
+
+static func _sample_starter_position(
+	rng: RandomNumberGenerator,
+	water_regions: Array,
+	min_radius: float,
+	max_radius: float
+) -> Vector3:
+	var lo: float = max(min_radius, 1.0)
+	var hi: float = max(max_radius, lo + 1.0)
+	for attempt in range(MAX_ATTEMPTS_PER_PROP):
+		var angle := rng.randf() * TAU
+		# Uniform area distribution across the annulus.
+		var r := sqrt(rng.randf() * (hi * hi - lo * lo) + lo * lo)
+		var candidate := Vector3(cos(angle) * r, 0.0, sin(angle) * r)
+		if not _in_any_water(candidate, water_regions):
+			return candidate
+	# Give up after retries: place on the outer ring away from water bias.
+	var fallback_angle := rng.randf() * TAU
+	return Vector3(cos(fallback_angle) * hi, 0.0, sin(fallback_angle) * hi)
 
 
 static func _pick_one_position(

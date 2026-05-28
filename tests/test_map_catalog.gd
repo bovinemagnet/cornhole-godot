@@ -106,6 +106,21 @@ func test_parse_catalog_handles_empty_or_invalid_input() -> String:
 	return ""
 
 
+func test_parse_catalog_includes_difficulty_when_present() -> String:
+	var catalog := _stub_catalog("test_pack", "Test Pack", [
+		{"id": "alpha", "name": "Alpha", "seed": 1001, "difficulty": 4},
+		{"id": "beta", "name": "Beta", "seed": 1002},
+	])
+	var options: Array = MapCatalog.parse_catalog(catalog, "res://stub.json")
+	if int(options[0]["difficulty"]) != 4:
+		return "expected difficulty 4, got %s" % str(options[0]["difficulty"])
+	if int(options[1]["difficulty"]) != 0:
+		return "expected default difficulty 0 when missing, got %s" % str(options[1]["difficulty"])
+	if not String(options[0]["label"]).contains("diff 4"):
+		return "expected difficulty in label, got %s" % String(options[0]["label"])
+	return ""
+
+
 func test_load_all_loads_real_catalogs() -> String:
 	var paths := PackedStringArray([
 		"res://resources/maps/map_catalog.json",

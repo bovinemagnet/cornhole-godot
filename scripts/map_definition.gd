@@ -34,6 +34,8 @@ static func from_catalog_map(pack_id: String, pack_name: String, map_data: Dicti
 		"pack_id": pack_id,
 		"pack_name": pack_name,
 		"seed": int(map_data["seed"]),
+		"difficulty": int(map_data.get("difficulty", 0)),
+		"theme": String(map_data.get("theme", "")),
 		"size": _coerce_vector2(map_data.get("size", null), DEFAULT_SIZE),
 		"ground_regions": _normalise_regions(map_data.get("ground_regions", [])),
 		"water_regions": _normalise_regions(map_data.get("water_regions", [])),

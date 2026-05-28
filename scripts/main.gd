@@ -9,6 +9,8 @@ const MapCatalog = preload("res://scripts/map_catalog.gd")
 const MapDefinition = preload("res://scripts/map_definition.gd")
 const MapBuilder = preload("res://scripts/map_builder.gd")
 const MapSpawnService = preload("res://scripts/map_spawn_service.gd")
+const ThemedSpriteLibrary = preload("res://scripts/themed_sprites/themed_sprite_library.gd")
+const ThemedSpriteRegistry = preload("res://scripts/themed_sprites/themed_sprite_registry.gd")
 const PROP_CAR_SCENE = preload("res://scenes/props/PropCar.tscn")
 const PROP_GRID_CELL_SIZE := 6.0
 const BOT_TARGET_QUERY_RADIUS := 40.0
@@ -37,6 +39,11 @@ const STACK_MEMBER_AREA := 0.30
 const STACK_MEMBER_SCORE := 18
 const STACK_MEMBER_REQUIRED_RADIUS := 0.85
 const STACK_MEMBER_TIER := 1
+const BUILDING_ID_BASE := 20000
+# Guarantee a ring of starter props around spawn on every map so authored
+# zones that cluster far from origin never leave the player stranded.
+const STARTER_PROP_COUNT := 60
+const STARTER_PROP_RADIUS := 26.0
 
 const ARENA_HALF_SIZE := 72.0
 const INITIAL_RADIUS := 1.15
@@ -124,7 +131,12 @@ var selected_map_seed := MAP_SEED
 var selected_map_id := "classic_park"
 var selected_map_name := "Classic Park"
 var selected_map_catalog_path := ""
+var selected_map_difficulty: int = 0
 var current_map_definition: Dictionary = {}
+# Playable half-extent for the current map. Never smaller than ARENA_HALF_SIZE
+# so small maps keep the tuned feel; larger maps expand so authored content
+# (zones, roads, buildings) stays inside the walls and reachable by actors.
+var current_arena_half_size: float = ARENA_HALF_SIZE
 var selected_bot_count := BOT_COUNT
 var selected_bot_difficulty := BOT_DIFFICULTY_NORMAL
 var time_remaining := MATCH_SECONDS
@@ -147,6 +159,7 @@ var people_actors: Array = []
 var people_paths_world: Array = []
 var people_path_lengths: PackedFloat32Array = PackedFloat32Array()
 var stack_members: Array = []
+var buildings: Array = []
 var map_options: Array = []
 var audio_consume_player: AudioStreamPlayer
 var audio_hole_eaten_player: AudioStreamPlayer
@@ -163,12 +176,14 @@ var props_root: Node3D
 var moving_props_root: Node3D
 var people_root: Node3D
 var stacks_root: Node3D
+var buildings_root: Node3D
 var bots_root: Node3D
 var effects_root: Node3D
 var camera: Camera3D
 var hud_layer: CanvasLayer
 var floating_text_root: Control
 var phase_label: Label
+var map_label: Label
 var score_label: Label
 var size_label: Label
 var timer_label: Label
@@ -283,6 +298,7 @@ func _physics_process(delta: float) -> void:
 				_check_moving_prop_consumption()
 				_check_people_consumption()
 				_check_stack_consumption()
+				_check_building_consumption()
 				_check_hole_consumption()
 		MatchPhase.PAUSED:
 			if Input.is_action_just_pressed("pause_match"):
@@ -336,8 +352,12 @@ func reset_match(start_countdown := true) -> void:
 	_spawn_moving_props()
 	_spawn_people()
 	_spawn_stacks()
+	_spawn_buildings()
 	if start_countdown:
-		_add_event_feed_message("Practice started on %s: %d rivals, %s AI" % [selected_map_name, selected_bot_count, _get_bot_difficulty_name()])
+		var map_tag: String = selected_map_name
+		if selected_map_difficulty > 0:
+			map_tag = "%s (diff %d)" % [selected_map_name, selected_map_difficulty]
+		_add_event_feed_message("Practice started on %s: %d rivals, %s AI" % [map_tag, selected_bot_count, _get_bot_difficulty_name()])
 	_update_camera(1.0)
 	_update_hud()
 
@@ -392,9 +412,15 @@ func _apply_selected_map_option(index: int, refresh_hud := true) -> void:
 	selected_map_name = String(option["name"])
 	selected_map_seed = int(option["seed"])
 	selected_map_catalog_path = String(option.get("catalog_path", ""))
+	selected_map_difficulty = int(option.get("difficulty", 0))
 	_load_current_map_definition()
+	current_arena_half_size = ARENA_HALF_SIZE
+	if not current_map_definition.is_empty():
+		var msize: Vector2 = current_map_definition["size"]
+		current_arena_half_size = max(ARENA_HALF_SIZE, max(msize.x, msize.y) * 0.5)
 	if map_root:
 		MapBuilder.build_map(map_root, current_map_definition)
+		_build_arena_walls()
 	_build_moving_routes()
 	_build_people_paths()
 	if refresh_hud:
@@ -545,11 +571,9 @@ func _build_world() -> void:
 	map_root = Node3D.new()
 	map_root.name = "MapRoot"
 	add_child(map_root)
-
-	_add_wall("NorthWall", Vector3(0.0, 0.35, -ARENA_HALF_SIZE), Vector3(ARENA_HALF_SIZE * 2.0, 0.70, 0.45))
-	_add_wall("SouthWall", Vector3(0.0, 0.35, ARENA_HALF_SIZE), Vector3(ARENA_HALF_SIZE * 2.0, 0.70, 0.45))
-	_add_wall("WestWall", Vector3(-ARENA_HALF_SIZE, 0.35, 0.0), Vector3(0.45, 0.70, ARENA_HALF_SIZE * 2.0))
-	_add_wall("EastWall", Vector3(ARENA_HALF_SIZE, 0.35, 0.0), Vector3(0.45, 0.70, ARENA_HALF_SIZE * 2.0))
+	# Walls are rebuilt per map (sized to current_arena_half_size) in
+	# _apply_selected_map_option, parented to map_root so MapBuilder clears
+	# them on the next map change.
 
 	player_root = Node3D.new()
 	player_root.name = "PlayerHole"
@@ -577,6 +601,12 @@ func _build_world() -> void:
 	camera.name = "Camera3D"
 	camera.current = true
 	camera.fov = 56.0
+	# Tight near/far: the camera orbits 14-34 units from the hole and the
+	# arena spans <=200 units, so 1..400 keeps the whole scene while giving
+	# far better depth precision than the 0.05..4000 default — this is what
+	# stops thin floor/road/water decals from z-fighting.
+	camera.near = 1.0
+	camera.far = 400.0
 	add_child(camera)
 
 	bots_root = Node3D.new()
@@ -597,6 +627,9 @@ func _build_world() -> void:
 	stacks_root = Node3D.new()
 	stacks_root.name = "Stacks"
 	add_child(stacks_root)
+	buildings_root = Node3D.new()
+	buildings_root.name = "Buildings"
+	add_child(buildings_root)
 	# Routes are derived from the loaded map definition; the initial call
 	# happens during _apply_selected_map_option once the menu picks a map.
 
@@ -711,6 +744,7 @@ func _build_hud() -> void:
 	panel.add_child(row)
 
 	phase_label = _hud_label()
+	map_label = _hud_label()
 	score_label = _hud_label()
 	size_label = _hud_label()
 	timer_label = _hud_label()
@@ -719,6 +753,7 @@ func _build_hud() -> void:
 	growth_label = _hud_label()
 	stats_label = _hud_label()
 	row.add_child(phase_label)
+	row.add_child(map_label)
 	row.add_child(score_label)
 	row.add_child(size_label)
 	row.add_child(timer_label)
@@ -957,6 +992,16 @@ func _build_hud() -> void:
 	_build_touch_joystick(hud)
 
 
+func _build_arena_walls() -> void:
+	if not map_root:
+		return
+	var h := current_arena_half_size
+	_add_wall("NorthWall", Vector3(0.0, 0.35, -h), Vector3(h * 2.0, 0.70, 0.45))
+	_add_wall("SouthWall", Vector3(0.0, 0.35, h), Vector3(h * 2.0, 0.70, 0.45))
+	_add_wall("WestWall", Vector3(-h, 0.35, 0.0), Vector3(0.45, 0.70, h * 2.0))
+	_add_wall("EastWall", Vector3(h, 0.35, 0.0), Vector3(0.45, 0.70, h * 2.0))
+
+
 func _add_wall(name: String, position: Vector3, size: Vector3) -> void:
 	var wall := MeshInstance3D.new()
 	var box := BoxMesh.new()
@@ -965,7 +1010,8 @@ func _add_wall(name: String, position: Vector3, size: Vector3) -> void:
 	wall.mesh = box
 	wall.position = position
 	wall.material_override = materials["wall"]
-	add_child(wall)
+	# Parented to map_root so MapBuilder.build_map clears them on map change.
+	map_root.add_child(wall)
 
 
 func _spawn_props() -> void:
@@ -985,20 +1031,24 @@ func _spawn_props() -> void:
 	# are placed never disturbs which tier the per-prop tier rng selects.
 	var prop_spawn_zones: Array = current_map_definition.get("prop_spawn_zones", [])
 	var water_regions: Array = current_map_definition.get("water_regions", [])
-	var zone_positions: PackedVector3Array = MapSpawnService.choose_static_prop_positions(
+	# The service owns both zone placement and the full-arena fallback (when a
+	# map has no zones), plus the guaranteed starter ring — so a single call
+	# covers every case and always seeds props near spawn.
+	var spawn_positions: PackedVector3Array = MapSpawnService.choose_static_prop_positions(
 		selected_map_seed, SPAWN_ALGO_VERSION, PROP_COUNT,
-		prop_spawn_zones, water_regions, ARENA_HALF_SIZE, 6.0
+		prop_spawn_zones, water_regions, current_arena_half_size, 6.0,
+		STARTER_PROP_COUNT, STARTER_PROP_RADIUS
 	)
 
 	for id in range(PROP_COUNT):
 		var tier := _choose_tier(rng)
-		var position: Vector3 = zone_positions[id] if not prop_spawn_zones.is_empty() else _random_spawn_position(rng)
+		var position: Vector3 = spawn_positions[id]
 		var node := Node3D.new()
 		node.name = "%s_%03d" % [tier["name"], id]
 		node.position = position
 		node.rotation_degrees.y = rng.randf_range(0.0, 360.0)
 		props_root.add_child(node)
-		_build_prop_visual(node, tier)
+		_build_prop_visual(node, tier, id)
 		var marker := _build_prop_marker(node, tier)
 		props.append({
 			"id": id,
@@ -1028,7 +1078,7 @@ func _spawn_props() -> void:
 		var p: Vector3 = props[i]["position"]
 		prop_positions[i] = Vector2(p.x, p.z)
 	prop_grid = PropGrid.new()
-	prop_grid.build(prop_positions, ARENA_HALF_SIZE, PROP_GRID_CELL_SIZE)
+	prop_grid.build(prop_positions, current_arena_half_size, PROP_GRID_CELL_SIZE)
 	active_prop_indices.clear()
 	_update_prop_markers()
 
@@ -1121,15 +1171,8 @@ func _spawn_moving_props() -> void:
 		var tangent: Vector3 = sample["tangent"]
 		var rotation_y := atan2(tangent.x, tangent.z)
 
-		var node: Node3D = PROP_CAR_SCENE.instantiate()
+		var node := _build_moving_car_visual(int(spawn["id"]))
 		node.name = "MovingCar_%d" % int(spawn["id"])
-		# Gameplay uses custom footprint checks, not Godot physics overlap, so
-		# strip the scene's StaticBody3D — when the consume tween shrinks the
-		# car to Vector3.ZERO the physics server otherwise inverts a singular
-		# basis and logs `det == 0` per frame.
-		for child in node.get_children():
-			if child is StaticBody3D:
-				child.queue_free()
 		node.position = position
 		node.rotation.y = rotation_y
 		moving_props_root.add_child(node)
@@ -1255,7 +1298,7 @@ func _spawn_people() -> void:
 		var tangent: Vector3 = sample["tangent"]
 		var rotation_y := atan2(tangent.x, tangent.z)
 
-		var node := _build_person_visual()
+		var node := _build_person_visual(PEOPLE_ID_BASE + index)
 		node.name = "Person_%d" % (PEOPLE_ID_BASE + index)
 		node.position = position
 		node.rotation.y = rotation_y
@@ -1278,10 +1321,67 @@ func _spawn_people() -> void:
 			"position": position,
 			"rotation_y": rotation_y,
 			"consumed": false,
+			# Bob is purely visual: offsets node.y by a sin wave each frame.
+			# `position` (used by consumption) stays on the deterministic path,
+			# so multiplayer reproduction is unaffected.
+			"bob_phase": rng.randf_range(0.0, TAU),
 		})
 
 
-func _build_person_visual() -> Node3D:
+func _build_moving_car_visual(car_id: int) -> Node3D:
+	# Sprite path: themed packs get a sprite-driven car visual. The catalogue
+	# uses "machine" for robot-style vehicles and "creature" for prehistoric
+	# rideable beasts, so we try both before falling back to the procedural
+	# scene car. Either way, gameplay metadata (footprint, score, area) is
+	# untouched.
+	var sprite_pack := ThemedSpriteRegistry.sprite_pack_for_map_definition(current_map_definition)
+	if not sprite_pack.is_empty():
+		var def: Dictionary = {}
+		for category in ["machine", "creature", "large_prop"]:
+			def = ThemedSpriteRegistry.choose_sprite(sprite_pack, category, 0, car_id)
+			if not def.is_empty():
+				break
+		if not def.is_empty():
+			var sprite := ThemedSpriteLibrary.create_sprite3d(def)
+			if sprite:
+				var natural_height: float = ThemedSpriteLibrary.sprite_half_height_world(def) * 2.0
+				var scale: float = 2.4 / max(natural_height, 0.01)
+				sprite.scale = Vector3(scale, scale, scale)
+				var root := Node3D.new()
+				root.add_child(sprite)
+				sprite.position.y = natural_height * scale * 0.5
+				return root
+
+	var node: Node3D = PROP_CAR_SCENE.instantiate()
+	# Gameplay uses custom footprint checks, not Godot physics overlap, so
+	# strip the scene's StaticBody3D — when the consume tween shrinks the
+	# car to Vector3.ZERO the physics server otherwise inverts a singular
+	# basis and logs `det == 0` per frame.
+	for child in node.get_children():
+		if child is StaticBody3D:
+			child.queue_free()
+	return node
+
+
+func _build_person_visual(hash_key: int = 0) -> Node3D:
+	var sprite_pack := ThemedSpriteRegistry.sprite_pack_for_map_definition(current_map_definition)
+	if not sprite_pack.is_empty():
+		var def: Dictionary = ThemedSpriteRegistry.choose_sprite(sprite_pack, "character", 0, hash_key)
+		if def.is_empty():
+			def = ThemedSpriteRegistry.choose_sprite(sprite_pack, "creature", 0, hash_key)
+		if not def.is_empty():
+			var sprite := ThemedSpriteLibrary.create_sprite3d(def)
+			if sprite:
+				# Person silhouette is ~1.8m tall; rescale to ~1.6m for a
+				# slimmer placeholder that doesn't dwarf the player hole.
+				var natural_height: float = ThemedSpriteLibrary.sprite_half_height_world(def) * 2.0
+				var scale: float = 1.6 / max(natural_height, 0.01)
+				sprite.scale = Vector3(scale, scale, scale)
+				var sprite_root := Node3D.new()
+				sprite_root.position.y = natural_height * scale * 0.5
+				sprite_root.add_child(sprite)
+				return sprite_root
+
 	var root := Node3D.new()
 	var body := MeshInstance3D.new()
 	var capsule := CapsuleMesh.new()
@@ -1315,8 +1415,12 @@ func _update_people() -> void:
 		var rotation_y := atan2(tangent.x, tangent.z)
 		var node := person["node"] as Node3D
 		if is_instance_valid(node):
-			node.position = position
+			var bob: float = sin(elapsed * 4.6 + float(person["bob_phase"])) * 0.08
+			node.position = Vector3(position.x, position.y + bob, position.z)
 			node.rotation.y = rotation_y
+		# `person["position"]` stays on the deterministic path — consumption
+		# uses this, not the bob-affected node position, so multiplayer
+		# reproduction remains exact.
 		person["position"] = position
 		person["rotation_y"] = rotation_y
 
@@ -1378,7 +1482,7 @@ func _spawn_stacks() -> void:
 				member_size.y * (stack_index + 0.5),
 				base_pos.y
 			)
-			var node := _build_stack_member_visual(stack_type, member_size)
+			var node := _build_stack_member_visual(stack_type, member_size, next_id)
 			node.name = "Stack_%s_%d_%d" % [stack_type, group_index, stack_index]
 			node.position = member_pos
 			stacks_root.add_child(node)
@@ -1403,7 +1507,22 @@ func _spawn_stacks() -> void:
 			next_id += 1
 
 
-func _build_stack_member_visual(stack_type: String, member_size: Vector3) -> Node3D:
+func _build_stack_member_visual(stack_type: String, member_size: Vector3, hash_key: int = 0) -> Node3D:
+	var sprite_pack := ThemedSpriteRegistry.sprite_pack_for_map_definition(current_map_definition)
+	if not sprite_pack.is_empty():
+		var def: Dictionary = ThemedSpriteRegistry.choose_sprite(sprite_pack, "pickup", 0, hash_key)
+		if def.is_empty():
+			def = ThemedSpriteRegistry.choose_sprite(sprite_pack, "decoration", 0, hash_key)
+		if not def.is_empty():
+			var sprite := ThemedSpriteLibrary.create_sprite3d(def)
+			if sprite:
+				var natural_height: float = ThemedSpriteLibrary.sprite_half_height_world(def) * 2.0
+				var scale: float = member_size.y * 1.4 / max(natural_height, 0.01)
+				sprite.scale = Vector3(scale, scale, scale)
+				var sprite_root := Node3D.new()
+				sprite_root.add_child(sprite)
+				return sprite_root
+
 	var root := Node3D.new()
 	var mesh_instance := MeshInstance3D.new()
 	var box := BoxMesh.new()
@@ -1466,19 +1585,169 @@ func _consume_stack_member(member: Dictionary, actor: Dictionary) -> void:
 	var node := member["node"] as Node3D
 	if is_instance_valid(node):
 		node.hide()
+	_animate_stack_collapse(int(member["group_id"]), int(member["stack_index"]))
 
 
-func _random_spawn_position(rng: RandomNumberGenerator) -> Vector3:
-	for attempt in 40:
-		var position := Vector3(
-			rng.randf_range(-ARENA_HALF_SIZE + 2.0, ARENA_HALF_SIZE - 2.0),
-			0.0,
-			rng.randf_range(-ARENA_HALF_SIZE + 2.0, ARENA_HALF_SIZE - 2.0)
-		)
-		if Vector2(position.x, position.z).length() > 4.0:
-			return position
+# Local visual polish: when a lower member is eaten, all higher members in
+# the same group drop straight down by the empty slot count. Gameplay state
+# remains the consumed/standing flag — falling is render-only so multiplayer
+# can replicate just the consumed-event list (per spec design rule).
+func _animate_stack_collapse(group_id: int, consumed_index: int) -> void:
+	for member in stack_members:
+		var entry: Dictionary = member
+		if int(entry["group_id"]) != group_id:
+			continue
+		if bool(entry["consumed"]):
+			continue
+		if int(entry["stack_index"]) < consumed_index:
+			continue
+		var node := entry["node"] as Node3D
+		if not is_instance_valid(node):
+			continue
+		var target := node.position
+		target.y -= STACK_MEMBER_SIZE.y
+		var tween := create_tween()
+		tween.tween_property(node, "position", target, 0.18).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	# Bookkeeping: update stored positions so future consumption maths uses
+	# the post-collapse Y. (X/Z stay fixed; consumption keys on XZ anyway.)
+	for member in stack_members:
+		var entry: Dictionary = member
+		if int(entry["group_id"]) != group_id:
+			continue
+		if bool(entry["consumed"]):
+			continue
+		if int(entry["stack_index"]) <= consumed_index:
+			continue
+		var pos: Vector3 = entry["position"]
+		pos.y -= STACK_MEMBER_SIZE.y
+		entry["position"] = pos
 
-	return Vector3(6.0, 0.0, 6.0)
+
+func _spawn_buildings() -> void:
+	for building in buildings:
+		var existing := building["node"] as Node
+		if is_instance_valid(existing):
+			existing.queue_free()
+	buildings.clear()
+
+	if not buildings_root or current_map_definition.is_empty():
+		return
+
+	var zones: Array = current_map_definition.get("building_zones", [])
+	if zones.is_empty():
+		return
+
+	var sprite_pack: String = ThemedSpriteRegistry.sprite_pack_for_map_definition(current_map_definition)
+	var map_id_hash: int = String(current_map_definition.get("id", "")).hash()
+
+	for index in range(zones.size()):
+		var entry: Dictionary = zones[index]
+		var centre: Vector2 = entry["center"]
+		var size: Vector2 = entry["size"]
+		if size.x <= 0.0 or size.y <= 0.0:
+			continue
+		var type := String(entry.get("type", "")).to_lower()
+		var height: float = MapBuilder.building_height_for_type(type)
+		var building_id := BUILDING_ID_BASE + index
+
+		var node: Node3D = MapBuilder.try_create_building_sprite(sprite_pack, map_id_hash + building_id, height)
+		if not node:
+			node = MapBuilder.make_building_box(size, height, type)
+		node.name = "Building_%d" % building_id
+		node.position = Vector3(centre.x, 0.0, centre.y)
+		buildings_root.add_child(node)
+
+		var gameplay := _building_gameplay_metadata(type, size)
+		buildings.append({
+			"id": building_id,
+			"object_type": "Building:%s" % type,
+			"tier": int(gameplay["tier"]),
+			"shape": "box",
+			"footprint": gameplay["footprint"],
+			"required_radius": float(gameplay["required_radius"]),
+			"collision_radius": float(Vector2(gameplay["footprint"]).length()),
+			"area": float(gameplay["area"]),
+			"score": int(gameplay["score"]),
+			"node": node,
+			"position": Vector3(centre.x, 0.0, centre.y),
+			"rotation_y": 0.0,
+			"consumed": false,
+		})
+
+
+# Returns gameplay metadata for a building of the given type and zone size.
+# Required radius is capped at 5.0 so buildings stay reachable within the
+# growth ceiling (sqrt(MAX_AREA/PI) ≈ 6.3). Bigger buildings cap to area=14
+# / score=900 so a single late-game building still feels rewarding.
+func _building_gameplay_metadata(type: String, size: Vector2) -> Dictionary:
+	var tier_level: int = _building_tier_for_type(type)
+	var footprint := Vector2(min(size.x, 8.0) * 0.5, min(size.y, 8.0) * 0.5)
+	var required: float
+	var area: float
+	var score: int
+	match tier_level:
+		1:
+			required = 2.2
+			area = 4.0
+			score = 220
+		2:
+			required = 3.2
+			area = 7.0
+			score = 380
+		3:
+			required = 4.2
+			area = 10.0
+			score = 620
+		_:
+			required = 5.0
+			area = 14.0
+			score = 900
+	return {
+		"tier": tier_level,
+		"footprint": footprint,
+		"required_radius": required,
+		"area": area,
+		"score": score,
+	}
+
+
+func _building_tier_for_type(type: String) -> int:
+	if type.contains("tower") or type.contains("citadel") or type.contains("monument"):
+		return 4
+	if type.contains("office") or type.contains("apartments") or type.contains("factory") or type.contains("foundry") or type.contains("nanotech"):
+		return 3
+	if type.contains("warehouse") or type.contains("shop") or type.contains("market") or type.contains("bakery"):
+		return 2
+	return 1
+
+
+func _check_building_consumption() -> void:
+	if buildings.is_empty():
+		return
+	for building in buildings:
+		if bool(building["consumed"]):
+			continue
+		var winner: Dictionary = _find_consumption_winner(building)
+		if winner.is_empty():
+			continue
+		_consume_building(building, winner)
+
+
+func _consume_building(building: Dictionary, actor: Dictionary) -> void:
+	# Buildings never decrement remaining_count — they are bonus
+	# milestones, not match-clear conditions.
+	building["consumed"] = true
+	_apply_actor_growth(actor, float(building["area"]), int(building["score"]))
+	_play_consume_effect(building, _get_actor_position(actor))
+	_play_growth_feedback(actor, int(building["score"]))
+	if bool(actor["is_player"]):
+		_record_player_prop_eaten(building)
+		_play_consume_sfx(int(building["tier"]))
+		_spawn_consume_debris(building)
+	_add_event_feed_message("%s ate %s  +%d" % [_get_actor_name(actor), String(building["object_type"]), int(building["score"])])
+	var node := building["node"] as Node3D
+	if is_instance_valid(node):
+		node.hide()
 
 
 func _choose_tier(rng: RandomNumberGenerator) -> Dictionary:
@@ -1496,7 +1765,9 @@ func _choose_tier(rng: RandomNumberGenerator) -> Dictionary:
 	return prop_tiers[0]
 
 
-func _build_prop_visual(parent: Node3D, tier: Dictionary) -> void:
+func _build_prop_visual(parent: Node3D, tier: Dictionary, prop_id: int = 0) -> void:
+	if _try_attach_themed_prop_sprite(parent, tier, prop_id):
+		return
 	if tier["shape"] == "tree":
 		var trunk := MeshInstance3D.new()
 		var trunk_mesh := CylinderMesh.new()
@@ -1544,6 +1815,45 @@ func _build_prop_visual(parent: Node3D, tier: Dictionary) -> void:
 	parent.add_child(visual)
 
 
+# Themed sprite preferred when the selected map has a sprite pack. Gameplay
+# data (tier scale, score, area) is never touched here; we only swap the
+# visual presentation so the spec's "Same map and seed produce same sprite
+# assignment" stays true via the prop_id hash key.
+func _try_attach_themed_prop_sprite(parent: Node3D, tier: Dictionary, prop_id: int) -> bool:
+	var sprite_pack := ThemedSpriteRegistry.sprite_pack_for_map_definition(current_map_definition)
+	if sprite_pack.is_empty():
+		return false
+	var category: String = _prop_sprite_category(int(tier.get("tier", 1)))
+	var def: Dictionary = ThemedSpriteRegistry.choose_sprite(sprite_pack, category, 0, prop_id)
+	if def.is_empty():
+		# Fall back to a broader category before giving up so themed maps
+		# always exercise their sprite art if any candidate exists.
+		def = ThemedSpriteRegistry.choose_sprite(sprite_pack, "pickup", 0, prop_id)
+	if def.is_empty():
+		return false
+	var sprite := ThemedSpriteLibrary.create_sprite3d(def)
+	if not sprite:
+		return false
+	var scale_vec: Vector3 = tier["scale"]
+	var target_height: float = max(scale_vec.y, 0.4)
+	var natural_height: float = ThemedSpriteLibrary.sprite_half_height_world(def) * 2.0
+	var scale_factor: float = target_height / max(natural_height, 0.01)
+	sprite.scale = Vector3(scale_factor, scale_factor, scale_factor)
+	sprite.position.y = natural_height * scale_factor * 0.5
+	parent.add_child(sprite)
+	return true
+
+
+func _prop_sprite_category(tier_level: int) -> String:
+	if tier_level >= 4:
+		return "landmark"
+	if tier_level == 3:
+		return "large_prop"
+	if tier_level == 2:
+		return "decoration"
+	return "pickup"
+
+
 func _build_prop_marker(parent: Node3D, tier: Dictionary) -> MeshInstance3D:
 	var marker := MeshInstance3D.new()
 	marker.name = "EatMarker"
@@ -1568,15 +1878,34 @@ func _handle_movement(delta: float) -> void:
 	var input_vector := _get_move_input()
 
 	var current_speed: float = max(MIN_SPEED, BASE_SPEED - hole_radius * 0.22)
+	current_speed *= _ground_speed_modifier_at(player_root.position)
 	var desired_velocity := Vector3(input_vector.x, 0.0, input_vector.y) * current_speed
 	var change_rate := ACCELERATION if input_vector.length() > 0.0 else DECELERATION
 	velocity = velocity.move_toward(desired_velocity, change_rate * delta)
 
 	var next_position := player_root.position + velocity * delta
-	next_position.x = clamp(next_position.x, -ARENA_HALF_SIZE + hole_radius, ARENA_HALF_SIZE - hole_radius)
-	next_position.z = clamp(next_position.z, -ARENA_HALF_SIZE + hole_radius, ARENA_HALF_SIZE - hole_radius)
+	next_position.x = clamp(next_position.x, -current_arena_half_size + hole_radius, current_arena_half_size - hole_radius)
+	next_position.z = clamp(next_position.z, -current_arena_half_size + hole_radius, current_arena_half_size - hole_radius)
 	next_position.y = 0.0
 	player_root.position = next_position
+
+
+# Returns a multiplicative speed modifier for actors at `world_position`.
+# Currently only water regions slow movement (75%); ground regions remain
+# neutral until per-region modifiers are designed. Reads directly from
+# current_map_definition so per-map water layouts apply automatically.
+func _ground_speed_modifier_at(world_position: Vector3) -> float:
+	if current_map_definition.is_empty():
+		return 1.0
+	var water_regions: Array = current_map_definition.get("water_regions", [])
+	for region in water_regions:
+		var entry: Dictionary = region
+		var centre: Vector2 = entry["center"]
+		var size: Vector2 = entry["size"]
+		if abs(world_position.x - centre.x) <= size.x * 0.5 \
+				and abs(world_position.z - centre.y) <= size.y * 0.5:
+			return 0.75
+	return 1.0
 
 
 func _get_move_input() -> Vector2:
@@ -1630,7 +1959,7 @@ func _get_bot_wall_avoidance(bot: Dictionary) -> Vector2:
 	var bot_root := bot["root"] as Node3D
 	var radius := float(bot["radius"])
 	var wall_margin: float = 6.0 + radius
-	var inner_half: float = ARENA_HALF_SIZE - wall_margin
+	var inner_half: float = current_arena_half_size - wall_margin
 	var steering := Vector2.ZERO
 	if bot_root.position.x > inner_half:
 		steering.x -= (bot_root.position.x - inner_half) / wall_margin
@@ -1728,16 +2057,18 @@ func _find_prop_by_id(prop_id: int) -> Dictionary:
 func _move_bot(bot: Dictionary, move_vector: Vector2, delta: float) -> void:
 	var radius := float(bot["radius"])
 	var current_speed: float = max(MIN_SPEED * 0.92, (BASE_SPEED - radius * 0.22) * 0.90 * _get_bot_speed_scale())
+	var bot_root := bot["root"] as Node3D
+	if is_instance_valid(bot_root):
+		current_speed *= _ground_speed_modifier_at(bot_root.position)
 	var desired_velocity := Vector3(move_vector.x, 0.0, move_vector.y) * current_speed
 	var current_velocity: Vector3 = bot["velocity"]
 	var change_rate := ACCELERATION if move_vector.length() > 0.0 else DECELERATION
 	current_velocity = current_velocity.move_toward(desired_velocity, change_rate * delta)
 	bot["velocity"] = current_velocity
 
-	var bot_root := bot["root"] as Node3D
 	var next_position := bot_root.position + current_velocity * delta
-	next_position.x = clamp(next_position.x, -ARENA_HALF_SIZE + radius, ARENA_HALF_SIZE - radius)
-	next_position.z = clamp(next_position.z, -ARENA_HALF_SIZE + radius, ARENA_HALF_SIZE - radius)
+	next_position.x = clamp(next_position.x, -current_arena_half_size + radius, current_arena_half_size - radius)
+	next_position.z = clamp(next_position.z, -current_arena_half_size + radius, current_arena_half_size - radius)
 	next_position.y = 0.0
 	bot_root.position = next_position
 
@@ -1814,8 +2145,8 @@ func _find_clear_respawn_position(preferred_position: Vector3) -> Vector3:
 			best_distance = nearest_distance
 			best_position = candidate
 
-	best_position.x = clamp(best_position.x, -ARENA_HALF_SIZE + INITIAL_RADIUS, ARENA_HALF_SIZE - INITIAL_RADIUS)
-	best_position.z = clamp(best_position.z, -ARENA_HALF_SIZE + INITIAL_RADIUS, ARENA_HALF_SIZE - INITIAL_RADIUS)
+	best_position.x = clamp(best_position.x, -current_arena_half_size + INITIAL_RADIUS, current_arena_half_size - INITIAL_RADIUS)
+	best_position.z = clamp(best_position.z, -current_arena_half_size + INITIAL_RADIUS, current_arena_half_size - INITIAL_RADIUS)
 	best_position.y = 0.0
 	return best_position
 
@@ -2670,6 +3001,10 @@ func _update_hud() -> void:
 			if pause_panel:
 				pause_panel.hide()
 
+	if selected_map_difficulty > 0:
+		map_label.text = "Map %s (diff %d)" % [selected_map_name, selected_map_difficulty]
+	else:
+		map_label.text = "Map %s" % selected_map_name
 	score_label.text = "Score %d" % score
 	size_label.text = "Radius %.2f" % hole_radius
 	var seconds_left := int(time_remaining)
@@ -2744,8 +3079,8 @@ func _draw_minimap_actors() -> void:
 
 
 func _world_to_minimap(world_position: Vector3) -> Vector2:
-	var x: float = inverse_lerp(-ARENA_HALF_SIZE, ARENA_HALF_SIZE, world_position.x) * MINIMAP_SIZE
-	var y: float = inverse_lerp(-ARENA_HALF_SIZE, ARENA_HALF_SIZE, world_position.z) * MINIMAP_SIZE
+	var x: float = inverse_lerp(-current_arena_half_size, current_arena_half_size, world_position.x) * MINIMAP_SIZE
+	var y: float = inverse_lerp(-current_arena_half_size, current_arena_half_size, world_position.z) * MINIMAP_SIZE
 	return Vector2(x, y)
 
 

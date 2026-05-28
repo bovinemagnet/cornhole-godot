@@ -9,10 +9,21 @@ extends RefCounted
 # because they live alongside the perimeter walls and prop_grid. Visual
 # map extents from the MapDefinition can differ; this is intentional.
 
-const BASE_FLOOR_Y := -0.03
-const GROUND_REGION_Y := 0.001
-const WATER_REGION_Y := 0.012
-const ROAD_Y := 0.005
+const ThemedSpriteLibrary = preload("res://scripts/themed_sprites/themed_sprite_library.gd")
+const ThemedSpriteRegistry = preload("res://scripts/themed_sprites/themed_sprite_registry.gd")
+
+# The base floor sits well below everything else so it can never z-fight the
+# full-map ground regions that cover it — it only shows at the map-edge
+# border. Ground/road/water layers are then spread far enough apart for the
+# camera to resolve at match-zoom distance, with a per-index micro bump so
+# coplanar regions (e.g. plaza inside grass, crossing roads) don't fight.
+const BASE_FLOOR_Y := -0.50
+const GROUND_REGION_Y := 0.000
+const GROUND_REGION_Y_STEP := 0.004
+const WATER_REGION_Y := 0.100
+const WATER_REGION_Y_STEP := 0.002
+const ROAD_Y := 0.050
+const ROAD_Y_STEP := 0.001
 const BUILDING_ID_BASE := 20000
 
 
@@ -25,10 +36,12 @@ static func build_map(map_root: Node3D, map_definition: Dictionary) -> void:
 		return
 
 	_build_base_floor(map_root, map_definition)
-	_build_regions(map_root, map_definition.get("ground_regions", []), GROUND_REGION_Y, false)
-	_build_regions(map_root, map_definition.get("water_regions", []), WATER_REGION_Y, true)
-	_build_roads(map_root, map_definition.get("roads", []))
-	_build_buildings(map_root, map_definition.get("building_zones", []))
+	_build_regions(map_root, map_definition.get("ground_regions", []), GROUND_REGION_Y, GROUND_REGION_Y_STEP, false)
+	_build_regions(map_root, map_definition.get("water_regions", []), WATER_REGION_Y, WATER_REGION_Y_STEP, true)
+	var road_color := resolve_road_color(ThemedSpriteRegistry.sprite_pack_for_map_definition(map_definition))
+	_build_roads(map_root, map_definition.get("roads", []), road_color)
+	# Buildings are spawned by main.gd so the visual and the consumable
+	# gameplay state stay co-located. See `main.gd._spawn_buildings`.
 
 
 # Height per building type — visual only for the MVP. Authoritative
@@ -64,23 +77,53 @@ static func _building_color_for_type(type_lower: String) -> Color:
 	return Color(0.66, 0.62, 0.56)
 
 
-static func _build_buildings(map_root: Node3D, zones: Array) -> void:
-	for index in range(zones.size()):
-		var entry: Dictionary = zones[index]
-		var centre: Vector2 = entry["center"]
-		var size: Vector2 = entry["size"]
-		if size.x <= 0.0 or size.y <= 0.0:
-			continue
-		var type := String(entry.get("type", "")).to_lower()
-		var height := _building_height_for_type(type)
-		var building := MeshInstance3D.new()
-		building.name = "Building_%d" % (BUILDING_ID_BASE + index)
-		var box := BoxMesh.new()
-		box.size = Vector3(size.x, height, size.y)
-		building.mesh = box
-		building.material_override = _make_material(_building_color_for_type(type))
-		building.position = Vector3(centre.x, height * 0.5, centre.y)
-		map_root.add_child(building)
+static func building_height_for_type(type_lower: String) -> float:
+	return _building_height_for_type(type_lower)
+
+
+static func building_color_for_type(type_lower: String) -> Color:
+	return _building_color_for_type(type_lower)
+
+
+# Prefers `landmark` sprites because the catalog reserves those for the most
+# visually load-bearing fixtures (towers, castles, cave huts). Falls back to
+# `building` then `large_prop` so every themed map still gets sprite-driven
+# fixtures even when no landmark candidate exists.
+static func try_create_building_sprite(sprite_pack: String, hash_key: int, fallback_height: float) -> Node3D:
+	if sprite_pack.is_empty():
+		return null
+	var def: Dictionary = ThemedSpriteRegistry.choose_sprite(sprite_pack, "landmark", 0, hash_key)
+	if def.is_empty():
+		def = ThemedSpriteRegistry.choose_sprite(sprite_pack, "building", 0, hash_key)
+	if def.is_empty():
+		def = ThemedSpriteRegistry.choose_sprite(sprite_pack, "large_prop", 0, hash_key)
+	if def.is_empty():
+		return null
+	var sprite := ThemedSpriteLibrary.create_sprite3d(def)
+	if not sprite:
+		return null
+
+	var target_height: float = max(fallback_height, 4.0)
+	var natural_height: float = ThemedSpriteLibrary.sprite_half_height_world(def) * 2.0
+	var scale: float = target_height / max(natural_height, 0.01)
+	sprite.scale = Vector3(scale, scale, scale)
+
+	var root := Node3D.new()
+	root.position.y = natural_height * scale * 0.5
+	root.add_child(sprite)
+	return root
+
+
+static func make_building_box(size: Vector2, height: float, type_lower: String) -> Node3D:
+	var building := MeshInstance3D.new()
+	var box := BoxMesh.new()
+	box.size = Vector3(size.x, height, size.y)
+	building.mesh = box
+	building.material_override = _make_material(_building_color_for_type(type_lower))
+	building.position.y = height * 0.5
+	var root := Node3D.new()
+	root.add_child(building)
+	return root
 
 
 static func resolve_region_color(region_type: String) -> Color:
@@ -99,7 +142,9 @@ static func resolve_region_color(region_type: String) -> Color:
 		return Color(0.92, 0.84, 0.55)
 	if t.contains("plaza") or t.contains("pavement") or t.contains("dock") \
 			or t.contains("conveyor") or t.contains("metal") or t.contains("robot") \
-			or t.contains("asphalt") or t.contains("garage") or t.contains("factory"):
+			or t.contains("asphalt") or t.contains("garage") or t.contains("factory") \
+			or t.contains("court") or t.contains("quad") or t.contains("bay") \
+			or t.contains("scrap") or t.contains("foundry"):
 		return Color(0.52, 0.55, 0.60)
 	if t.contains("candy") or t.contains("sugar") or t.contains("frosting") \
 			or t.contains("marshmallow") or t.contains("lollipop"):
@@ -136,9 +181,12 @@ static func _build_base_floor(map_root: Node3D, map_definition: Dictionary) -> v
 	map_root.add_child(floor_mesh)
 
 
-static func _build_regions(map_root: Node3D, regions: Array, y_height: float, transparent: bool) -> void:
-	for region in regions:
-		var entry: Dictionary = region
+static func _build_regions(map_root: Node3D, regions: Array, y_base: float, y_step: float, transparent: bool) -> void:
+	# Later regions in the array render slightly higher than earlier ones, so
+	# overlapping zones (e.g. a plaza laid on top of grass) never z-fight.
+	# The map author already orders these from "background" → "foreground".
+	for i in range(regions.size()):
+		var entry: Dictionary = regions[i]
 		var center: Vector2 = entry["center"]
 		var size: Vector2 = entry["size"]
 		if size.x <= 0.0 or size.y <= 0.0:
@@ -153,16 +201,35 @@ static func _build_regions(map_root: Node3D, regions: Array, y_height: float, tr
 		if transparent and color.a >= 1.0:
 			color.a = 0.65
 		mesh_instance.material_override = _make_material(color)
-		mesh_instance.position = Vector3(center.x, y_height, center.y)
+		mesh_instance.position = Vector3(center.x, y_base + i * y_step, center.y)
 		map_root.add_child(mesh_instance)
 
 
-static func _build_roads(map_root: Node3D, roads: Array) -> void:
-	for road in roads:
-		var entry: Dictionary = road
+# Road colour follows the map's sprite pack so themed maps don't all read as
+# grey asphalt. Base/kitty maps (no sprite pack) keep neutral asphalt.
+static func resolve_road_color(sprite_pack: String) -> Color:
+	match sprite_pack:
+		"candy":
+			return Color(0.88, 0.74, 0.80)  # pale conveyor cream-pink
+		"bunny":
+			return Color(0.64, 0.52, 0.36)  # garden dirt path
+		"robot":
+			return Color(0.34, 0.40, 0.48)  # brushed metal lane
+		"prehistoric":
+			return Color(0.46, 0.38, 0.28)  # packed earth trail
+		_:
+			return Color(0.16, 0.16, 0.18)  # neutral asphalt
+
+
+static func _build_roads(map_root: Node3D, roads: Array, road_color: Color) -> void:
+	# Each road gets its own Y so crossing roads (very common in
+	# downtown_grid) don't share a plane and z-fight.
+	for road_index in range(roads.size()):
+		var entry: Dictionary = roads[road_index]
 		var points: PackedVector2Array = entry["points"]
 		var width: float = float(entry.get("width", 8.0))
-		var road_material := _make_material(Color(0.16, 0.16, 0.18))
+		var road_material := _make_material(road_color)
+		var road_y := ROAD_Y + road_index * ROAD_Y_STEP
 
 		for i in range(points.size() - 1):
 			var a: Vector2 = points[i]
@@ -178,7 +245,7 @@ static func _build_roads(map_root: Node3D, roads: Array) -> void:
 			segment.mesh = plane
 			segment.material_override = road_material
 			var midpoint := (a + b) * 0.5
-			segment.position = Vector3(midpoint.x, ROAD_Y, midpoint.y)
+			segment.position = Vector3(midpoint.x, road_y, midpoint.y)
 			# atan2(z, x) on the XZ delta gives a Y rotation that aligns the
 			# plane's local +X with the segment direction. Negate so the road
 			# turns clockwise when delta sweeps positive Z.

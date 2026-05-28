@@ -40,12 +40,17 @@ static func parse_catalog(catalog: Dictionary, catalog_path: String) -> Array:
 		var map_id := String(map_dictionary["id"])
 		var map_name := String(map_dictionary["name"])
 		var option_id := "%s/%s" % [pack_id, map_id]
+		var difficulty: int = int(map_dictionary.get("difficulty", 0))
+		var label: String = "%s: %s" % [pack_name, map_name]
+		if difficulty > 0:
+			label = "%s  [diff %d]" % [label, difficulty]
 		options.append({
 			"id": option_id,
 			"name": map_name,
-			"label": "%s: %s" % [pack_name, map_name],
+			"label": label,
 			"seed": int(map_dictionary["seed"]),
 			"catalog_path": catalog_path,
+			"difficulty": difficulty,
 		})
 
 	return options

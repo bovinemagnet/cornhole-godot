@@ -105,3 +105,74 @@ func test_player_clearance_keeps_props_off_origin() -> String:
 		if distance < clearance - 0.5:
 			return "position %s only %f from origin, expected >= %f" % [str(pos), distance, clearance]
 	return ""
+
+
+func test_starter_props_spawn_in_ring_near_origin() -> String:
+	# A far-away zone plus a guaranteed starter ring: the first `starter_count`
+	# positions must land within [clearance, starter_radius] of origin.
+	var zones := [_zone(Vector2(60, 60), Vector2(20, 20), "far")]
+	var clearance := 4.0
+	var starter_radius := 22.0
+	var starter_count := 15
+	var positions := MapSpawnService.choose_static_prop_positions(
+		7, 1, 100, zones, [], 72.0, clearance, starter_count, starter_radius
+	)
+	for i in range(starter_count):
+		var d := Vector2(positions[i].x, positions[i].z).length()
+		if d < clearance - 0.5:
+			return "starter prop %d at %f is inside clearance" % [i, d]
+		if d > starter_radius + 0.5:
+			return "starter prop %d at %f is beyond starter_radius %f" % [i, d, starter_radius]
+	return ""
+
+
+func test_non_starter_props_still_use_zones() -> String:
+	var zones := [_zone(Vector2(60, 0), Vector2(10, 10), "far")]
+	var positions := MapSpawnService.choose_static_prop_positions(
+		7, 1, 40, zones, [], 72.0, 4.0, 10, 20.0
+	)
+	# Props after the starter block should sit in the far zone, not near origin.
+	var found_far := false
+	for i in range(10, positions.size()):
+		if abs(positions[i].x - 60.0) <= 5.5 and abs(positions[i].z) <= 5.5:
+			found_far = true
+	if not found_far:
+		return "expected non-starter props to use the far zone"
+	return ""
+
+
+func test_starter_count_zero_matches_no_starter_call() -> String:
+	# Determinism guard: passing starter_count 0 must reproduce the original
+	# (default-arg) behaviour exactly.
+	var zones := [_zone(Vector2(0, 0), Vector2(40, 40))]
+	var a := MapSpawnService.choose_static_prop_positions(55, 1, 30, zones, [], 72.0, 6.0)
+	var b := MapSpawnService.choose_static_prop_positions(55, 1, 30, zones, [], 72.0, 6.0, 0, 20.0)
+	if a.size() != b.size():
+		return "size mismatch"
+	for i in range(a.size()):
+		if not a[i].is_equal_approx(b[i]):
+			return "position %d differs when starter_count is 0" % i
+	return ""
+
+
+func test_starter_props_are_deterministic() -> String:
+	var zones := [_zone(Vector2(50, 50), Vector2(20, 20))]
+	var a := MapSpawnService.choose_static_prop_positions(88, 1, 40, zones, [], 72.0, 4.0, 12, 22.0)
+	var b := MapSpawnService.choose_static_prop_positions(88, 1, 40, zones, [], 72.0, 4.0, 12, 22.0)
+	for i in range(a.size()):
+		if not a[i].is_equal_approx(b[i]):
+			return "starter spawn not deterministic at %d" % i
+	return ""
+
+
+func test_starter_props_avoid_water() -> String:
+	var zones := [_zone(Vector2(50, 50), Vector2(20, 20))]
+	# Water covering the right half of the starter ring.
+	var water := [_zone(Vector2(12, 0), Vector2(24, 48), "river")]
+	var positions := MapSpawnService.choose_static_prop_positions(
+		3, 1, 60, zones, water, 72.0, 3.0, 20, 22.0
+	)
+	for i in range(20):
+		if _is_inside(positions[i], water[0]):
+			return "starter prop %d landed in water" % i
+	return ""

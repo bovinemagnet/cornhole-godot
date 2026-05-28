@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Godot Themed Sprite Atlas",
+  "type": "object",
+  "required": [
+    "pack",
+    "spritesheet",
+    "sprites"
+  ],
+  "properties": {
+    "pack": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "sprite_size_px": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "spritesheet": {
+      "type": "string"
+    },
+    "sprites": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "texture",
+          "frame",
+          "pivot",
+          "sprite3d",
+          "gameplay"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "display_name": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "tier": {
+            "type": "integer"
+          },
+          "texture": {
+            "type": "string"
+          },
+          "atlas": {
+            "type": "string"
+          },
+          "frame": {
+            "type": "object"
+          },
+          "pivot": {
+            "type": "object"
+          },
+          "sprite3d": {
+            "type": "object"
+          },
+          "gameplay": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}

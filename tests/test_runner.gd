@@ -14,6 +14,8 @@ const TEST_SCRIPTS: Array = [
 	preload("res://tests/test_map_catalog.gd"),
 	preload("res://tests/test_map_definition.gd"),
 	preload("res://tests/test_map_spawn_service.gd"),
+	preload("res://tests/test_themed_sprite_library.gd"),
+	preload("res://tests/test_themed_sprite_registry.gd"),
 ]
 
 

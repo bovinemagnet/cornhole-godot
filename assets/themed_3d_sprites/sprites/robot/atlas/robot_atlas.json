@@ -1,0 +1,555 @@
+{
+  "pack": "robot",
+  "version": "1.0.0",
+  "sprite_size_px": [
+    256,
+    256
+  ],
+  "spritesheet": "sprites/robot/atlas/robot_spritesheet.png",
+  "sprites": [
+    {
+      "id": "friendly_bot",
+      "display_name": "Friendly Bot",
+      "category": "character",
+      "tier": 2,
+      "texture": "sprites/robot/individual/friendly_bot.png",
+      "atlas": "sprites/robot/atlas/robot_spritesheet.png",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.36,
+        "consumable_tier": 2,
+        "mass_points": 8
+      }
+    },
+    {
+      "id": "repair_bot",
+      "display_name": "Repair Bot",
+      "category": "character",
+      "tier": 2,
+      "texture": "sprites/robot/individual/repair_bot.png",
+      "atlas": "sprites/robot/atlas/robot_spritesheet.png",
+      "frame": {
+        "x": 256,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.36,
+        "consumable_tier": 2,
+        "mass_points": 8
+      }
+    },
+    {
+      "id": "security_bot",
+      "display_name": "Security Bot",
+      "category": "hazard",
+      "tier": 3,
+      "texture": "sprites/robot/individual/security_bot.png",
+      "atlas": "sprites/robot/atlas/robot_spritesheet.png",
+      "frame": {
+        "x": 512,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.44,
+        "consumable_tier": 3,
+        "mass_points": 18
+      }
+    },
+    {
+      "id": "hover_drone",
+      "display_name": "Hover Drone",
+      "category": "character",
+      "tier": 2,
+      "texture": "sprites/robot/individual/hover_drone.png",
+      "atlas": "sprites/robot/atlas/robot_spritesheet.png",
+      "frame": {
+        "x": 768,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.36,
+        "consumable_tier": 2,
+        "mass_points": 8
+      }
+    },
+    {
+      "id": "cargo_drone",
+      "display_name": "Cargo Drone",
+      "category": "pickup",
+      "tier": 3,
+      "texture": "sprites/robot/individual/cargo_drone.png",
+      "atlas": "sprites/robot/atlas/robot_spritesheet.png",
+      "frame": {
+        "x": 0,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.44,
+        "consumable_tier": 3,
+        "mass_points": 18
+      }
+    },
+    {
+      "id": "battery_cell",
+      "display_name": "Battery Cell",
+      "category": "pickup",
+      "tier": 1,
+      "texture": "sprites/robot/individual/battery_cell.png",
+      "atlas": "sprites/robot/atlas/robot_spritesheet.png",
+      "frame": {
+        "x": 256,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.28,
+        "consumable_tier": 1,
+        "mass_points": 2
+      }
+    },
+    {
+      "id": "energy_core",
+      "display_name": "Energy Core",
+      "category": "bonus",
+      "tier": 4,
+      "texture": "sprites/robot/individual/energy_core.png",
+      "atlas": "sprites/robot/atlas/robot_spritesheet.png",
+      "frame": {
+        "x": 512,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.52,
+        "consumable_tier": 4,
+        "mass_points": 32
+      }
+    },
+    {
+      "id": "omega_core",
+      "display_name": "Omega Core",
+      "category": "hazard",
+      "tier": 5,
+      "texture": "sprites/robot/individual/omega_core.png",
+      "atlas": "sprites/robot/atlas/robot_spritesheet.png",
+      "frame": {
+        "x": 768,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.6,
+        "consumable_tier": 5,
+        "mass_points": 50
+      }
+    },
+    {
+      "id": "cargo_crate",
+      "display_name": "Cargo Crate",
+      "category": "pickup",
+      "tier": 2,
+      "texture": "sprites/robot/individual/cargo_crate.png",
+      "atlas": "sprites/robot/atlas/robot_spritesheet.png",
+      "frame": {
+        "x": 0,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.36,
+        "consumable_tier": 2,
+        "mass_points": 8
+      }
+    },
+    {
+      "id": "conveyor_segment",
+      "display_name": "Conveyor Segment",
+      "category": "lane",
+      "tier": 2,
+      "texture": "sprites/robot/individual/conveyor_segment.png",
+      "atlas": "sprites/robot/atlas/robot_spritesheet.png",
+      "frame": {
+        "x": 256,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.36,
+        "consumable_tier": 2,
+        "mass_points": 8
+      }
+    },
+    {
+      "id": "neon_sign",
+      "display_name": "Neon Sign",
+      "category": "decoration",
+      "tier": 2,
+      "texture": "sprites/robot/individual/neon_sign.png",
+      "atlas": "sprites/robot/atlas/robot_spritesheet.png",
+      "frame": {
+        "x": 512,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.36,
+        "consumable_tier": 2,
+        "mass_points": 8
+      }
+    },
+    {
+      "id": "robo_house",
+      "display_name": "Robo House",
+      "category": "large_prop",
+      "tier": 4,
+      "texture": "sprites/robot/individual/robo_house.png",
+      "atlas": "sprites/robot/atlas/robot_spritesheet.png",
+      "frame": {
+        "x": 768,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.52,
+        "consumable_tier": 4,
+        "mass_points": 32
+      }
+    },
+    {
+      "id": "circuit_pillar",
+      "display_name": "Circuit Pillar",
+      "category": "landmark",
+      "tier": 3,
+      "texture": "sprites/robot/individual/circuit_pillar.png",
+      "atlas": "sprites/robot/atlas/robot_spritesheet.png",
+      "frame": {
+        "x": 0,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.44,
+        "consumable_tier": 3,
+        "mass_points": 18
+      }
+    },
+    {
+      "id": "foundry_furnace",
+      "display_name": "Foundry Furnace",
+      "category": "hazard",
+      "tier": 4,
+      "texture": "sprites/robot/individual/foundry_furnace.png",
+      "atlas": "sprites/robot/atlas/robot_spritesheet.png",
+      "frame": {
+        "x": 256,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.52,
+        "consumable_tier": 4,
+        "mass_points": 32
+      }
+    },
+    {
+      "id": "holo_billboard",
+      "display_name": "Holo Billboard",
+      "category": "decoration",
+      "tier": 3,
+      "texture": "sprites/robot/individual/holo_billboard.png",
+      "atlas": "sprites/robot/atlas/robot_spritesheet.png",
+      "frame": {
+        "x": 512,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.44,
+        "consumable_tier": 3,
+        "mass_points": 18
+      }
+    },
+    {
+      "id": "nanotech_tower",
+      "display_name": "Nanotech Tower",
+      "category": "landmark",
+      "tier": 5,
+      "texture": "sprites/robot/individual/nanotech_tower.png",
+      "atlas": "sprites/robot/atlas/robot_spritesheet.png",
+      "frame": {
+        "x": 768,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "sprite3d": {
+        "billboard": "BILLBOARD_ENABLED",
+        "alpha_cut": "ALPHA_CUT_DISABLED",
+        "pixel_size": 0.01,
+        "suggested_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "gameplay": {
+        "collision_shape": "capsule_or_circle",
+        "collision_radius_world": 0.6,
+        "consumable_tier": 5,
+        "mass_points": 50
+      }
+    }
+  ]
+}

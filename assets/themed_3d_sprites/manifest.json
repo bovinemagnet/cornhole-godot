@@ -1,0 +1,45 @@
+{
+  "pack_name": "Themed 3D Sprite Packs for Godot",
+  "version": "1.0.0",
+  "description": "Pseudo-3D transparent PNG sprite assets for Candy, Bunny, Robot, and Prehistoric map packs. Designed for Godot Sprite3D/Billboard use.",
+  "engine": "Godot 4",
+  "sprite_size_px": [
+    256,
+    256
+  ],
+  "coordinate_system": "atlas frame rectangles in pixels; pivot normalized",
+  "packs": [
+    {
+      "id": "candy",
+      "name": "Candy 3D Sprite Pack",
+      "sprite_count": 16,
+      "spritesheet": "sprites/candy/atlas/candy_spritesheet.png",
+      "atlas_json": "sprites/candy/atlas/candy_atlas.json",
+      "individual_path": "sprites/candy/individual/"
+    },
+    {
+      "id": "bunny",
+      "name": "Bunny 3D Sprite Pack",
+      "sprite_count": 16,
+      "spritesheet": "sprites/bunny/atlas/bunny_spritesheet.png",
+      "atlas_json": "sprites/bunny/atlas/bunny_atlas.json",
+      "individual_path": "sprites/bunny/individual/"
+    },
+    {
+      "id": "robot",
+      "name": "Robot 3D Sprite Pack",
+      "sprite_count": 16,
+      "spritesheet": "sprites/robot/atlas/robot_spritesheet.png",
+      "atlas_json": "sprites/robot/atlas/robot_atlas.json",
+      "individual_path": "sprites/robot/individual/"
+    },
+    {
+      "id": "prehistoric",
+      "name": "Prehistoric 3D Sprite Pack",
+      "sprite_count": 16,
+      "spritesheet": "sprites/prehistoric/atlas/prehistoric_spritesheet.png",
+      "atlas_json": "sprites/prehistoric/atlas/prehistoric_atlas.json",
+      "individual_path": "sprites/prehistoric/individual/"
+    }
+  ]
+}
