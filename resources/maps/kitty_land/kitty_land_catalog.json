@@ -1,0 +1,2755 @@
+{
+  "schema_version": 1,
+  "pack_id": "kitty_land",
+  "name": "Kitty Land",
+  "description": "Ten cute kitten and cat themed maps ordered from easiest to hardest.",
+  "coordinate_space": "xz",
+  "difficulty_scale": "1 easiest, 10 hardest",
+  "maps": [
+    {
+      "id": "kitten_garden",
+      "name": "Kitten Garden",
+      "difficulty": 1,
+      "seed": 31001,
+      "size": [
+        120,
+        120
+      ],
+      "theme": "tiny kitten starter garden with paw paths and a milk pond",
+      "recommended_moving_cars": 0,
+      "recommended_people": 4,
+      "recommended_stack_groups": 1,
+      "challenge_notes": [
+        "wide open starter layout",
+        "small props clustered near spawn",
+        "water is decorative and easy to avoid"
+      ],
+      "ground_regions": [
+        {
+          "type": "grass",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            120,
+            120
+          ]
+        },
+        {
+          "type": "paw_plaza",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            24,
+            24
+          ]
+        }
+      ],
+      "water_regions": [
+        {
+          "type": "milk_pond",
+          "center": [
+            -36,
+            32
+          ],
+          "size": [
+            18,
+            14
+          ]
+        }
+      ],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "yarn_path",
+          "width": 6,
+          "lane_count": 1,
+          "points": [
+            [
+              -50,
+              -8
+            ],
+            [
+              -18,
+              8
+            ],
+            [
+              18,
+              8
+            ],
+            [
+              50,
+              -8
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "kitten_house",
+          "center": [
+            34,
+            28
+          ],
+          "size": [
+            16,
+            12
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "toy_scatter",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            72,
+            70
+          ]
+        },
+        {
+          "type": "treat_corner",
+          "center": [
+            -34,
+            -30
+          ],
+          "size": [
+            22,
+            22
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -42,
+              18
+            ],
+            [
+              -12,
+              30
+            ],
+            [
+              22,
+              20
+            ],
+            [
+              42,
+              4
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [],
+      "stack_spawn_points": [
+        {
+          "type": "tiny_box_stack",
+          "position": [
+            18,
+            -20
+          ],
+          "count": 4
+        }
+      ],
+      "spawn_point": [
+        0,
+        -42
+      ],
+      "preview_png": "res://assets/maps/kitty_land/01_kitten_garden.png"
+    },
+    {
+      "id": "yarn_meadow",
+      "name": "Yarn Meadow",
+      "difficulty": 2,
+      "seed": 31002,
+      "size": [
+        128,
+        128
+      ],
+      "theme": "rolling meadow with yarn trails and soft toy piles",
+      "recommended_moving_cars": 1,
+      "recommended_people": 5,
+      "recommended_stack_groups": 2,
+      "challenge_notes": [
+        "longer paths encourage route planning",
+        "first slow yarn cart appears",
+        "two small stacks block shortcuts"
+      ],
+      "ground_regions": [
+        {
+          "type": "grass",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            128,
+            128
+          ]
+        },
+        {
+          "type": "flower_patch",
+          "center": [
+            -34,
+            30
+          ],
+          "size": [
+            28,
+            22
+          ]
+        }
+      ],
+      "water_regions": [
+        {
+          "type": "fish_bowl_pond",
+          "center": [
+            38,
+            34
+          ],
+          "size": [
+            18,
+            18
+          ]
+        }
+      ],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "yarn_loop",
+          "width": 7,
+          "lane_count": 1,
+          "points": [
+            [
+              -48,
+              -34
+            ],
+            [
+              36,
+              -34
+            ],
+            [
+              50,
+              24
+            ],
+            [
+              -34,
+              40
+            ],
+            [
+              -48,
+              -34
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "scratching_post",
+          "center": [
+            -42,
+            -8
+          ],
+          "size": [
+            12,
+            18
+          ]
+        },
+        {
+          "type": "nap_tent",
+          "center": [
+            26,
+            8
+          ],
+          "size": [
+            18,
+            14
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "yarn_props",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            88,
+            84
+          ]
+        },
+        {
+          "type": "flower_props",
+          "center": [
+            -34,
+            30
+          ],
+          "size": [
+            24,
+            20
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -42,
+              6
+            ],
+            [
+              -10,
+              24
+            ],
+            [
+              28,
+              14
+            ],
+            [
+              46,
+              -12
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 4.5,
+          "vehicle": "yarn_cart"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "box_stack",
+          "position": [
+            -18,
+            -18
+          ],
+          "count": 5
+        },
+        {
+          "type": "toy_stack",
+          "position": [
+            28,
+            28
+          ],
+          "count": 4
+        }
+      ],
+      "spawn_point": [
+        -42,
+        -42
+      ],
+      "preview_png": "res://assets/maps/kitty_land/02_yarn_meadow.png"
+    },
+    {
+      "id": "whisker_creek",
+      "name": "Whisker Creek",
+      "difficulty": 3,
+      "seed": 31003,
+      "size": [
+        136,
+        128
+      ],
+      "theme": "creekside cat park split by shallow water",
+      "recommended_moving_cars": 1,
+      "recommended_people": 6,
+      "recommended_stack_groups": 2,
+      "challenge_notes": [
+        "water divides the arena",
+        "bridges create contested choke points",
+        "moving cart crosses the central lane"
+      ],
+      "ground_regions": [
+        {
+          "type": "grass",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            136,
+            128
+          ]
+        },
+        {
+          "type": "pebble_path",
+          "center": [
+            0,
+            -20
+          ],
+          "size": [
+            92,
+            18
+          ]
+        }
+      ],
+      "water_regions": [
+        {
+          "type": "whisker_creek",
+          "center": [
+            0,
+            18
+          ],
+          "size": [
+            136,
+            14
+          ]
+        },
+        {
+          "type": "milk_pool",
+          "center": [
+            -44,
+            -36
+          ],
+          "size": [
+            18,
+            12
+          ]
+        }
+      ],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "bridge_path",
+          "width": 8,
+          "lane_count": 1,
+          "points": [
+            [
+              -60,
+              -22
+            ],
+            [
+              -18,
+              -22
+            ],
+            [
+              18,
+              -22
+            ],
+            [
+              60,
+              -22
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "fish_kiosk",
+          "center": [
+            42,
+            34
+          ],
+          "size": [
+            18,
+            14
+          ]
+        },
+        {
+          "type": "cat_tree",
+          "center": [
+            -34,
+            28
+          ],
+          "size": [
+            14,
+            14
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "creekside_props",
+          "center": [
+            0,
+            -26
+          ],
+          "size": [
+            112,
+            42
+          ]
+        },
+        {
+          "type": "north_bank_props",
+          "center": [
+            0,
+            42
+          ],
+          "size": [
+            100,
+            36
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -56,
+              34
+            ],
+            [
+              -18,
+              42
+            ],
+            [
+              24,
+              38
+            ],
+            [
+              56,
+              22
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "points": [
+            [
+              -48,
+              -42
+            ],
+            [
+              0,
+              -34
+            ],
+            [
+              48,
+              -40
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 5.2,
+          "vehicle": "fish_cart"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "crate_stack",
+          "position": [
+            -22,
+            -10
+          ],
+          "count": 6
+        },
+        {
+          "type": "box_stack",
+          "position": [
+            34,
+            12
+          ],
+          "count": 5
+        }
+      ],
+      "spawn_point": [
+        0,
+        -52
+      ],
+      "preview_png": "res://assets/maps/kitty_land/03_whisker_creek.png"
+    },
+    {
+      "id": "meow_market",
+      "name": "Meow Market",
+      "difficulty": 4,
+      "seed": 31004,
+      "size": [
+        142,
+        142
+      ],
+      "theme": "busy kitten market with stalls, food carts, and stacks",
+      "recommended_moving_cars": 2,
+      "recommended_people": 8,
+      "recommended_stack_groups": 3,
+      "challenge_notes": [
+        "dense stall layout",
+        "more people paths cross prop clusters",
+        "medium stacks can collapse into lanes"
+      ],
+      "ground_regions": [
+        {
+          "type": "pavement",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            142,
+            142
+          ]
+        },
+        {
+          "type": "market_mat",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            58,
+            44
+          ]
+        }
+      ],
+      "water_regions": [
+        {
+          "type": "fountain_bowl",
+          "center": [
+            0,
+            34
+          ],
+          "size": [
+            16,
+            16
+          ]
+        }
+      ],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "cart_lane",
+          "width": 8,
+          "lane_count": 1,
+          "points": [
+            [
+              -66,
+              -42
+            ],
+            [
+              66,
+              -42
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "cart_lane",
+          "width": 7,
+          "lane_count": 1,
+          "points": [
+            [
+              -52,
+              18
+            ],
+            [
+              52,
+              18
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "fish_stall",
+          "center": [
+            -34,
+            4
+          ],
+          "size": [
+            18,
+            14
+          ]
+        },
+        {
+          "type": "treat_stall",
+          "center": [
+            2,
+            -4
+          ],
+          "size": [
+            18,
+            14
+          ]
+        },
+        {
+          "type": "yarn_stall",
+          "center": [
+            36,
+            4
+          ],
+          "size": [
+            18,
+            14
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "market_goods",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            96,
+            82
+          ]
+        },
+        {
+          "type": "stall_edges",
+          "center": [
+            0,
+            26
+          ],
+          "size": [
+            112,
+            26
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -58,
+              0
+            ],
+            [
+              -22,
+              10
+            ],
+            [
+              22,
+              8
+            ],
+            [
+              58,
+              -4
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "points": [
+            [
+              -40,
+              -28
+            ],
+            [
+              0,
+              -10
+            ],
+            [
+              44,
+              -28
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 5.8,
+          "vehicle": "delivery_cart"
+        },
+        {
+          "id": 1,
+          "road_id": 1,
+          "speed": 4.8,
+          "vehicle": "treat_cart"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "fish_boxes",
+          "position": [
+            -40,
+            -18
+          ],
+          "count": 7
+        },
+        {
+          "type": "yarn_boxes",
+          "position": [
+            38,
+            -14
+          ],
+          "count": 7
+        },
+        {
+          "type": "treat_stack",
+          "position": [
+            4,
+            22
+          ],
+          "count": 6
+        }
+      ],
+      "spawn_point": [
+        -54,
+        -56
+      ],
+      "preview_png": "res://assets/maps/kitty_land/04_meow_market.png"
+    },
+    {
+      "id": "catnip_boardwalk",
+      "name": "Catnip Boardwalk",
+      "difficulty": 5,
+      "seed": 31005,
+      "size": [
+        152,
+        136
+      ],
+      "theme": "catnip beach boardwalk beside a milk sea",
+      "recommended_moving_cars": 2,
+      "recommended_people": 9,
+      "recommended_stack_groups": 3,
+      "challenge_notes": [
+        "water blocks one side",
+        "narrow boardwalk creates collisions",
+        "cars move parallel to dense prop lanes"
+      ],
+      "ground_regions": [
+        {
+          "type": "sand",
+          "center": [
+            -34,
+            0
+          ],
+          "size": [
+            78,
+            136
+          ]
+        },
+        {
+          "type": "boardwalk",
+          "center": [
+            18,
+            0
+          ],
+          "size": [
+            16,
+            136
+          ]
+        },
+        {
+          "type": "pavement",
+          "center": [
+            56,
+            0
+          ],
+          "size": [
+            48,
+            136
+          ]
+        }
+      ],
+      "water_regions": [
+        {
+          "type": "milk_sea",
+          "center": [
+            -72,
+            0
+          ],
+          "size": [
+            20,
+            136
+          ]
+        },
+        {
+          "type": "tide_pool",
+          "center": [
+            -34,
+            34
+          ],
+          "size": [
+            20,
+            14
+          ]
+        }
+      ],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "coastal_road",
+          "width": 9,
+          "lane_count": 2,
+          "points": [
+            [
+              54,
+              -68
+            ],
+            [
+              54,
+              68
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "boardwalk_cart",
+          "width": 6,
+          "lane_count": 1,
+          "points": [
+            [
+              18,
+              -58
+            ],
+            [
+              18,
+              58
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "catnip_shop",
+          "center": [
+            38,
+            -28
+          ],
+          "size": [
+            20,
+            16
+          ]
+        },
+        {
+          "type": "snack_shack",
+          "center": [
+            38,
+            22
+          ],
+          "size": [
+            20,
+            16
+          ]
+        },
+        {
+          "type": "lifeguard_cat",
+          "center": [
+            -38,
+            18
+          ],
+          "size": [
+            10,
+            10
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "beach_toys",
+          "center": [
+            -34,
+            0
+          ],
+          "size": [
+            60,
+            110
+          ]
+        },
+        {
+          "type": "boardwalk_props",
+          "center": [
+            18,
+            0
+          ],
+          "size": [
+            24,
+            112
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              18,
+              -60
+            ],
+            [
+              18,
+              -20
+            ],
+            [
+              18,
+              20
+            ],
+            [
+              18,
+              60
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "points": [
+            [
+              -54,
+              -20
+            ],
+            [
+              -28,
+              -10
+            ],
+            [
+              -16,
+              20
+            ],
+            [
+              -46,
+              46
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 7.2,
+          "vehicle": "tiny_car"
+        },
+        {
+          "id": 1,
+          "road_id": 1,
+          "speed": 4.2,
+          "vehicle": "treat_cart"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "shop_boxes",
+          "position": [
+            34,
+            -8
+          ],
+          "count": 8
+        },
+        {
+          "type": "beach_crates",
+          "position": [
+            -24,
+            -26
+          ],
+          "count": 7
+        },
+        {
+          "type": "cooler_stack",
+          "position": [
+            -18,
+            34
+          ],
+          "count": 6
+        }
+      ],
+      "spawn_point": [
+        -20,
+        -54
+      ],
+      "preview_png": "res://assets/maps/kitty_land/05_catnip_boardwalk.png"
+    },
+    {
+      "id": "purrfect_plaza",
+      "name": "Purrfect Plaza",
+      "difficulty": 6,
+      "seed": 31006,
+      "size": [
+        154,
+        154
+      ],
+      "theme": "symmetrical plaza with fountains and cat statues",
+      "recommended_moving_cars": 3,
+      "recommended_people": 10,
+      "recommended_stack_groups": 4,
+      "challenge_notes": [
+        "multiple lanes cross the center",
+        "water splits high-value zones",
+        "stack collapses can block plaza exits"
+      ],
+      "ground_regions": [
+        {
+          "type": "pavement",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            154,
+            154
+          ]
+        },
+        {
+          "type": "paw_tile",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            60,
+            60
+          ]
+        },
+        {
+          "type": "garden",
+          "center": [
+            -48,
+            48
+          ],
+          "size": [
+            28,
+            28
+          ]
+        },
+        {
+          "type": "garden",
+          "center": [
+            48,
+            -48
+          ],
+          "size": [
+            28,
+            28
+          ]
+        }
+      ],
+      "water_regions": [
+        {
+          "type": "fountain",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            18,
+            18
+          ]
+        },
+        {
+          "type": "fountain",
+          "center": [
+            -42,
+            -42
+          ],
+          "size": [
+            14,
+            14
+          ]
+        },
+        {
+          "type": "fountain",
+          "center": [
+            42,
+            42
+          ],
+          "size": [
+            14,
+            14
+          ]
+        }
+      ],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "plaza_lane",
+          "width": 8,
+          "lane_count": 1,
+          "points": [
+            [
+              -70,
+              -24
+            ],
+            [
+              70,
+              -24
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "plaza_lane",
+          "width": 8,
+          "lane_count": 1,
+          "points": [
+            [
+              -70,
+              24
+            ],
+            [
+              70,
+              24
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "plaza_lane",
+          "width": 8,
+          "lane_count": 1,
+          "points": [
+            [
+              24,
+              -70
+            ],
+            [
+              24,
+              70
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "cat_statue",
+          "center": [
+            0,
+            34
+          ],
+          "size": [
+            14,
+            14
+          ]
+        },
+        {
+          "type": "cafe",
+          "center": [
+            -50,
+            0
+          ],
+          "size": [
+            20,
+            16
+          ]
+        },
+        {
+          "type": "toy_store",
+          "center": [
+            50,
+            0
+          ],
+          "size": [
+            20,
+            16
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "plaza_props",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            112,
+            112
+          ]
+        },
+        {
+          "type": "garden_props",
+          "center": [
+            -48,
+            48
+          ],
+          "size": [
+            26,
+            26
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -62,
+              0
+            ],
+            [
+              -18,
+              18
+            ],
+            [
+              18,
+              -18
+            ],
+            [
+              62,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "points": [
+            [
+              0,
+              -62
+            ],
+            [
+              16,
+              -18
+            ],
+            [
+              -16,
+              18
+            ],
+            [
+              0,
+              62
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 6.8,
+          "vehicle": "plaza_cart"
+        },
+        {
+          "id": 1,
+          "road_id": 1,
+          "speed": 6.8,
+          "vehicle": "plaza_cart"
+        },
+        {
+          "id": 2,
+          "road_id": 2,
+          "speed": 6.0,
+          "vehicle": "delivery_cart"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "display_boxes",
+          "position": [
+            -24,
+            8
+          ],
+          "count": 8
+        },
+        {
+          "type": "toy_stack",
+          "position": [
+            26,
+            -8
+          ],
+          "count": 8
+        },
+        {
+          "type": "cafe_crates",
+          "position": [
+            -48,
+            -18
+          ],
+          "count": 7
+        },
+        {
+          "type": "store_crates",
+          "position": [
+            48,
+            18
+          ],
+          "count": 7
+        }
+      ],
+      "spawn_point": [
+        0,
+        -64
+      ],
+      "preview_png": "res://assets/maps/kitty_land/06_purrfect_plaza.png"
+    },
+    {
+      "id": "tabby_town",
+      "name": "Tabby Town",
+      "difficulty": 7,
+      "seed": 31007,
+      "size": [
+        164,
+        156
+      ],
+      "theme": "dense cat neighborhood with alleys and fish shops",
+      "recommended_moving_cars": 3,
+      "recommended_people": 12,
+      "recommended_stack_groups": 4,
+      "challenge_notes": [
+        "dense buildings constrain movement",
+        "cars use two-way streets",
+        "high-value props hide behind alleys"
+      ],
+      "ground_regions": [
+        {
+          "type": "pavement",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            164,
+            156
+          ]
+        },
+        {
+          "type": "alley",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            18,
+            130
+          ]
+        },
+        {
+          "type": "alley",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            130,
+            18
+          ]
+        }
+      ],
+      "water_regions": [
+        {
+          "type": "fish_fountain",
+          "center": [
+            -44,
+            36
+          ],
+          "size": [
+            16,
+            16
+          ]
+        }
+      ],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "town_road",
+          "width": 9,
+          "lane_count": 2,
+          "points": [
+            [
+              -82,
+              -42
+            ],
+            [
+              82,
+              -42
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "town_road",
+          "width": 9,
+          "lane_count": 2,
+          "points": [
+            [
+              -82,
+              38
+            ],
+            [
+              82,
+              38
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "town_road",
+          "width": 8,
+          "lane_count": 2,
+          "points": [
+            [
+              -38,
+              -78
+            ],
+            [
+              -38,
+              78
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "fish_shop",
+          "center": [
+            -56,
+            -6
+          ],
+          "size": [
+            22,
+            18
+          ]
+        },
+        {
+          "type": "cat_cafe",
+          "center": [
+            50,
+            8
+          ],
+          "size": [
+            24,
+            18
+          ]
+        },
+        {
+          "type": "apartment",
+          "center": [
+            -54,
+            58
+          ],
+          "size": [
+            26,
+            22
+          ]
+        },
+        {
+          "type": "toy_store",
+          "center": [
+            52,
+            -62
+          ],
+          "size": [
+            24,
+            18
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "alley_props",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            126,
+            126
+          ]
+        },
+        {
+          "type": "shop_props",
+          "center": [
+            -46,
+            -4
+          ],
+          "size": [
+            38,
+            38
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -66,
+              8
+            ],
+            [
+              -22,
+              8
+            ],
+            [
+              22,
+              8
+            ],
+            [
+              66,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "points": [
+            [
+              -18,
+              -66
+            ],
+            [
+              -18,
+              -20
+            ],
+            [
+              -18,
+              20
+            ],
+            [
+              -18,
+              66
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 8.0,
+          "vehicle": "tiny_car"
+        },
+        {
+          "id": 1,
+          "road_id": 1,
+          "speed": 7.8,
+          "vehicle": "tiny_car"
+        },
+        {
+          "id": 2,
+          "road_id": 2,
+          "speed": 7.0,
+          "vehicle": "delivery_cart"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "fish_boxes",
+          "position": [
+            -46,
+            -24
+          ],
+          "count": 9
+        },
+        {
+          "type": "moving_boxes",
+          "position": [
+            42,
+            28
+          ],
+          "count": 9
+        },
+        {
+          "type": "alley_stack",
+          "position": [
+            4,
+            44
+          ],
+          "count": 8
+        },
+        {
+          "type": "toy_stack",
+          "position": [
+            54,
+            -44
+          ],
+          "count": 7
+        }
+      ],
+      "spawn_point": [
+        0,
+        -66
+      ],
+      "preview_png": "res://assets/maps/kitty_land/07_tabby_town.png"
+    },
+    {
+      "id": "alley_cat_canals",
+      "name": "Alley Cat Canals",
+      "difficulty": 8,
+      "seed": 31008,
+      "size": [
+        168,
+        160
+      ],
+      "theme": "canal city with narrow bridges and alley cats",
+      "recommended_moving_cars": 4,
+      "recommended_people": 13,
+      "recommended_stack_groups": 5,
+      "challenge_notes": [
+        "water canals divide routes",
+        "bridges are high-traffic choke points",
+        "more stacks collapse near waterways"
+      ],
+      "ground_regions": [
+        {
+          "type": "cobblestone",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            168,
+            160
+          ]
+        },
+        {
+          "type": "bridge_tile",
+          "center": [
+            0,
+            -22
+          ],
+          "size": [
+            138,
+            18
+          ]
+        },
+        {
+          "type": "bridge_tile",
+          "center": [
+            34,
+            0
+          ],
+          "size": [
+            18,
+            140
+          ]
+        }
+      ],
+      "water_regions": [
+        {
+          "type": "canal",
+          "center": [
+            0,
+            20
+          ],
+          "size": [
+            168,
+            14
+          ]
+        },
+        {
+          "type": "canal",
+          "center": [
+            -30,
+            0
+          ],
+          "size": [
+            14,
+            160
+          ]
+        },
+        {
+          "type": "canal",
+          "center": [
+            54,
+            0
+          ],
+          "size": [
+            12,
+            160
+          ]
+        }
+      ],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "bridge_road",
+          "width": 8,
+          "lane_count": 1,
+          "points": [
+            [
+              -76,
+              -22
+            ],
+            [
+              -10,
+              -22
+            ],
+            [
+              10,
+              -22
+            ],
+            [
+              76,
+              -22
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "bridge_road",
+          "width": 8,
+          "lane_count": 1,
+          "points": [
+            [
+              34,
+              -76
+            ],
+            [
+              34,
+              76
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "canal_lane",
+          "width": 7,
+          "lane_count": 1,
+          "points": [
+            [
+              -70,
+              50
+            ],
+            [
+              0,
+              50
+            ],
+            [
+              70,
+              50
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "canal_shop",
+          "center": [
+            -58,
+            42
+          ],
+          "size": [
+            22,
+            18
+          ]
+        },
+        {
+          "type": "fish_house",
+          "center": [
+            18,
+            42
+          ],
+          "size": [
+            20,
+            18
+          ]
+        },
+        {
+          "type": "cat_tower",
+          "center": [
+            70,
+            -42
+          ],
+          "size": [
+            18,
+            22
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "canal_edges",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            144,
+            130
+          ]
+        },
+        {
+          "type": "bridge_props",
+          "center": [
+            0,
+            -22
+          ],
+          "size": [
+            124,
+            22
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -68,
+              42
+            ],
+            [
+              -22,
+              42
+            ],
+            [
+              22,
+              42
+            ],
+            [
+              68,
+              42
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "points": [
+            [
+              20,
+              -66
+            ],
+            [
+              20,
+              -18
+            ],
+            [
+              20,
+              22
+            ],
+            [
+              20,
+              66
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 6.4,
+          "vehicle": "fish_cart"
+        },
+        {
+          "id": 1,
+          "road_id": 1,
+          "speed": 6.2,
+          "vehicle": "tiny_car"
+        },
+        {
+          "id": 2,
+          "road_id": 2,
+          "speed": 5.8,
+          "vehicle": "delivery_cart"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "bridge_boxes",
+          "position": [
+            -18,
+            -8
+          ],
+          "count": 9
+        },
+        {
+          "type": "fish_crates",
+          "position": [
+            -54,
+            28
+          ],
+          "count": 10
+        },
+        {
+          "type": "canal_crates",
+          "position": [
+            18,
+            28
+          ],
+          "count": 8
+        },
+        {
+          "type": "alley_stack",
+          "position": [
+            64,
+            -22
+          ],
+          "count": 8
+        },
+        {
+          "type": "box_stack",
+          "position": [
+            4,
+            58
+          ],
+          "count": 7
+        }
+      ],
+      "spawn_point": [
+        -68,
+        -60
+      ],
+      "preview_png": "res://assets/maps/kitty_land/08_alley_cat_canals.png"
+    },
+    {
+      "id": "cat_castle_courtyard",
+      "name": "Cat Castle Courtyard",
+      "difficulty": 9,
+      "seed": 31009,
+      "size": [
+        176,
+        166
+      ],
+      "theme": "royal kitty castle with moat, courtyard, and stacked banquet crates",
+      "recommended_moving_cars": 4,
+      "recommended_people": 14,
+      "recommended_stack_groups": 6,
+      "challenge_notes": [
+        "moat constrains entry points",
+        "castle walls create chambers",
+        "large stacks collapse into the central courtyard"
+      ],
+      "ground_regions": [
+        {
+          "type": "grass",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            176,
+            166
+          ]
+        },
+        {
+          "type": "castle_courtyard",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            94,
+            82
+          ]
+        },
+        {
+          "type": "stone_path",
+          "center": [
+            0,
+            -54
+          ],
+          "size": [
+            24,
+            56
+          ]
+        }
+      ],
+      "water_regions": [
+        {
+          "type": "moat_north",
+          "center": [
+            0,
+            54
+          ],
+          "size": [
+            132,
+            14
+          ]
+        },
+        {
+          "type": "moat_south",
+          "center": [
+            0,
+            -54
+          ],
+          "size": [
+            132,
+            14
+          ]
+        },
+        {
+          "type": "moat_west",
+          "center": [
+            -66,
+            0
+          ],
+          "size": [
+            14,
+            108
+          ]
+        },
+        {
+          "type": "moat_east",
+          "center": [
+            66,
+            0
+          ],
+          "size": [
+            14,
+            108
+          ]
+        }
+      ],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "royal_cart_lane",
+          "width": 8,
+          "lane_count": 1,
+          "points": [
+            [
+              0,
+              -82
+            ],
+            [
+              0,
+              -44
+            ],
+            [
+              0,
+              44
+            ],
+            [
+              0,
+              82
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "courtyard_loop",
+          "width": 7,
+          "lane_count": 1,
+          "points": [
+            [
+              -42,
+              -34
+            ],
+            [
+              42,
+              -34
+            ],
+            [
+              42,
+              34
+            ],
+            [
+              -42,
+              34
+            ],
+            [
+              -42,
+              -34
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "cat_castle",
+          "center": [
+            0,
+            48
+          ],
+          "size": [
+            48,
+            26
+          ]
+        },
+        {
+          "type": "tower",
+          "center": [
+            -52,
+            -38
+          ],
+          "size": [
+            18,
+            18
+          ]
+        },
+        {
+          "type": "tower",
+          "center": [
+            52,
+            -38
+          ],
+          "size": [
+            18,
+            18
+          ]
+        },
+        {
+          "type": "banquet_hall",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            30,
+            22
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "courtyard_props",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            88,
+            74
+          ]
+        },
+        {
+          "type": "castle_edges",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            136,
+            120
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -42,
+              0
+            ],
+            [
+              -14,
+              22
+            ],
+            [
+              14,
+              22
+            ],
+            [
+              42,
+              0
+            ],
+            [
+              14,
+              -22
+            ],
+            [
+              -14,
+              -22
+            ],
+            [
+              -42,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "points": [
+            [
+              0,
+              -76
+            ],
+            [
+              0,
+              -36
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              44
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 5.8,
+          "vehicle": "royal_cart"
+        },
+        {
+          "id": 1,
+          "road_id": 1,
+          "speed": 5.2,
+          "vehicle": "banquet_cart"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "banquet_boxes",
+          "position": [
+            -18,
+            4
+          ],
+          "count": 10
+        },
+        {
+          "type": "banquet_boxes",
+          "position": [
+            18,
+            4
+          ],
+          "count": 10
+        },
+        {
+          "type": "tower_crates",
+          "position": [
+            -46,
+            -24
+          ],
+          "count": 8
+        },
+        {
+          "type": "tower_crates",
+          "position": [
+            46,
+            -24
+          ],
+          "count": 8
+        },
+        {
+          "type": "yarn_stack",
+          "position": [
+            0,
+            28
+          ],
+          "count": 9
+        },
+        {
+          "type": "fish_boxes",
+          "position": [
+            0,
+            -28
+          ],
+          "count": 9
+        }
+      ],
+      "spawn_point": [
+        0,
+        -72
+      ],
+      "preview_png": "res://assets/maps/kitty_land/09_cat_castle_courtyard.png"
+    },
+    {
+      "id": "nine_lives_metropolis",
+      "name": "Nine Lives Metropolis",
+      "difficulty": 10,
+      "seed": 31010,
+      "size": [
+        188,
+        176
+      ],
+      "theme": "hard-mode kitty city with canals, traffic loops, towers, and tall collapsing stacks",
+      "recommended_moving_cars": 6,
+      "recommended_people": 16,
+      "recommended_stack_groups": 8,
+      "challenge_notes": [
+        "highest traffic density",
+        "multiple water blockers",
+        "dense towers and tall stacks require careful growth routing"
+      ],
+      "ground_regions": [
+        {
+          "type": "pavement",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            188,
+            176
+          ]
+        },
+        {
+          "type": "neon_paw_plaza",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            58,
+            58
+          ]
+        },
+        {
+          "type": "mini_park",
+          "center": [
+            -58,
+            52
+          ],
+          "size": [
+            30,
+            28
+          ]
+        }
+      ],
+      "water_regions": [
+        {
+          "type": "canal",
+          "center": [
+            0,
+            58
+          ],
+          "size": [
+            188,
+            12
+          ]
+        },
+        {
+          "type": "canal",
+          "center": [
+            -46,
+            0
+          ],
+          "size": [
+            12,
+            176
+          ]
+        },
+        {
+          "type": "milk_reservoir",
+          "center": [
+            58,
+            -54
+          ],
+          "size": [
+            28,
+            20
+          ]
+        }
+      ],
+      "roads": [
+        {
+          "id": 0,
+          "kind": "metro_road",
+          "width": 10,
+          "lane_count": 2,
+          "points": [
+            [
+              -94,
+              -42
+            ],
+            [
+              94,
+              -42
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "kind": "metro_road",
+          "width": 10,
+          "lane_count": 2,
+          "points": [
+            [
+              -94,
+              18
+            ],
+            [
+              94,
+              18
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "metro_road",
+          "width": 10,
+          "lane_count": 2,
+          "points": [
+            [
+              24,
+              -88
+            ],
+            [
+              24,
+              88
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "kind": "metro_loop",
+          "width": 8,
+          "lane_count": 1,
+          "points": [
+            [
+              -70,
+              -70
+            ],
+            [
+              70,
+              -70
+            ],
+            [
+              78,
+              48
+            ],
+            [
+              -70,
+              48
+            ],
+            [
+              -70,
+              -70
+            ]
+          ]
+        }
+      ],
+      "building_zones": [
+        {
+          "type": "cat_tower",
+          "center": [
+            -70,
+            -18
+          ],
+          "size": [
+            28,
+            32
+          ]
+        },
+        {
+          "type": "cat_tower",
+          "center": [
+            70,
+            34
+          ],
+          "size": [
+            28,
+            32
+          ]
+        },
+        {
+          "type": "fish_mall",
+          "center": [
+            48,
+            -14
+          ],
+          "size": [
+            34,
+            24
+          ]
+        },
+        {
+          "type": "yarn_factory",
+          "center": [
+            -16,
+            38
+          ],
+          "size": [
+            34,
+            24
+          ]
+        },
+        {
+          "type": "apartment",
+          "center": [
+            -78,
+            70
+          ],
+          "size": [
+            26,
+            22
+          ]
+        }
+      ],
+      "prop_spawn_zones": [
+        {
+          "type": "metro_clutter",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            160,
+            144
+          ]
+        },
+        {
+          "type": "tower_props",
+          "center": [
+            -60,
+            -8
+          ],
+          "size": [
+            46,
+            54
+          ]
+        },
+        {
+          "type": "plaza_props",
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            60,
+            60
+          ]
+        }
+      ],
+      "people_paths": [
+        {
+          "id": 0,
+          "points": [
+            [
+              -82,
+              0
+            ],
+            [
+              -34,
+              0
+            ],
+            [
+              34,
+              0
+            ],
+            [
+              82,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "points": [
+            [
+              0,
+              -78
+            ],
+            [
+              0,
+              -30
+            ],
+            [
+              0,
+              30
+            ],
+            [
+              0,
+              78
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "points": [
+            [
+              -70,
+              62
+            ],
+            [
+              -20,
+              50
+            ],
+            [
+              30,
+              66
+            ],
+            [
+              74,
+              46
+            ]
+          ]
+        }
+      ],
+      "moving_car_routes": [
+        {
+          "id": 0,
+          "road_id": 0,
+          "speed": 9.2,
+          "vehicle": "tiny_car"
+        },
+        {
+          "id": 1,
+          "road_id": 1,
+          "speed": 8.8,
+          "vehicle": "tiny_car"
+        },
+        {
+          "id": 2,
+          "road_id": 2,
+          "speed": 8.2,
+          "vehicle": "delivery_cart"
+        },
+        {
+          "id": 3,
+          "road_id": 3,
+          "speed": 7.2,
+          "vehicle": "fish_truck"
+        }
+      ],
+      "stack_spawn_points": [
+        {
+          "type": "tower_box_stack",
+          "position": [
+            -62,
+            -36
+          ],
+          "count": 12
+        },
+        {
+          "type": "tower_box_stack",
+          "position": [
+            62,
+            12
+          ],
+          "count": 12
+        },
+        {
+          "type": "factory_crates",
+          "position": [
+            -16,
+            18
+          ],
+          "count": 10
+        },
+        {
+          "type": "mall_boxes",
+          "position": [
+            44,
+            -34
+          ],
+          "count": 10
+        },
+        {
+          "type": "alley_stack",
+          "position": [
+            -28,
+            -58
+          ],
+          "count": 9
+        },
+        {
+          "type": "fish_boxes",
+          "position": [
+            74,
+            -18
+          ],
+          "count": 9
+        },
+        {
+          "type": "yarn_stack",
+          "position": [
+            18,
+            38
+          ],
+          "count": 10
+        },
+        {
+          "type": "plaza_stack",
+          "position": [
+            0,
+            -12
+          ],
+          "count": 8
+        }
+      ],
+      "spawn_point": [
+        -82,
+        -74
+      ],
+      "preview_png": "res://assets/maps/kitty_land/10_nine_lives_metropolis.png"
+    }
+  ]
+}

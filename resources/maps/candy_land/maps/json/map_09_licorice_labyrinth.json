@@ -1,0 +1,486 @@
+{
+  "schema_version": "1.0.0",
+  "map_id": "candy_09_licorice_labyrinth",
+  "display_name": "Licorice Labyrinth",
+  "series": "Candy Collapse Arenas",
+  "difficulty_index": 9,
+  "difficulty_label": "very hard",
+  "title_text": "Map 9 \u2013 Licorice Labyrinth",
+  "theme": "Dense maze of twisting licorice walls, peppermint gates, cookie courtyards, candy vaults and shortcut loops.",
+  "png_reference": {
+    "local_file": "res://maps/candy/images/map_09_licorice_labyrinth.png",
+    "generator_reference_only": true,
+    "note": "Use this PNG as visual concept/layout reference. JSON geometry is normalized and intended for procedural construction/collision, not pixel-perfect tracing."
+  },
+  "godot_import": {
+    "target_engine": "Godot 4.x",
+    "coordinate_system": "normalized_top_left",
+    "world_size_px": {
+      "x": 2048,
+      "y": 2048
+    },
+    "recommended_root_scene": "CandyArena.tscn",
+    "tile_size_px": 32,
+    "spawn_units": "world_pixels",
+    "collision_layers": {
+      "player_holes": 1,
+      "edible_props": 2,
+      "static_blockers": 4,
+      "hazards": 8,
+      "navigation_only": 16
+    }
+  },
+  "match_rules": {
+    "mode": "hole_io_score_attack",
+    "time_limit_seconds": 210,
+    "player_start_radius_px": 14,
+    "player_max_radius_px": 150,
+    "growth": {
+      "score_to_radius_formula": "radius = start_radius + sqrt(score) * 1.85",
+      "mass_decay_per_second": 0.0
+    },
+    "win_conditions": [
+      "highest_score_at_timer_end"
+    ],
+    "tie_breakers": [
+      "largest_radius",
+      "most_large_props_eaten",
+      "earliest_to_score"
+    ]
+  },
+  "edible_tiers": [
+    {
+      "tier": 1,
+      "id": "tiny",
+      "radius_required": 0,
+      "score": 1,
+      "examples": [
+        "sprinkles",
+        "loose jellybeans",
+        "mini gumdrops",
+        "candy pebbles"
+      ]
+    },
+    {
+      "tier": 2,
+      "id": "small",
+      "radius_required": 18,
+      "score": 4,
+      "examples": [
+        "gumdrop bushes",
+        "marshmallow cubes",
+        "small lollipop signs",
+        "cookie stools"
+      ]
+    },
+    {
+      "tier": 3,
+      "id": "medium",
+      "radius_required": 36,
+      "score": 12,
+      "examples": [
+        "cupcake kiosks",
+        "caramel puddle rims",
+        "wafer carts",
+        "frosting fountains"
+      ]
+    },
+    {
+      "tier": 4,
+      "id": "large",
+      "radius_required": 64,
+      "score": 35,
+      "examples": [
+        "cupcake huts",
+        "giant lollipop trees",
+        "donut rides",
+        "candy machines"
+      ]
+    },
+    {
+      "tier": 5,
+      "id": "huge",
+      "radius_required": 96,
+      "score": 95,
+      "examples": [
+        "large factory vats",
+        "large bridges",
+        "castle towers",
+        "major landmark structures"
+      ]
+    }
+  ],
+  "regions": [
+    {
+      "name": "arena_bounds",
+      "shape": "rect",
+      "rect": {
+        "x": 0.04,
+        "y": 0.05,
+        "w": 0.92,
+        "h": 0.9
+      },
+      "gameplay_role": "playable_area",
+      "palette_hint": "green candy maze floor"
+    },
+    {
+      "name": "central_vault",
+      "shape": "rect",
+      "rect": {
+        "x": 0.39,
+        "y": 0.37,
+        "w": 0.22,
+        "h": 0.18
+      },
+      "gameplay_role": "final_food_vault",
+      "palette_hint": "blue gold candy vault"
+    },
+    {
+      "name": "cookie_courtyard_south",
+      "shape": "circle",
+      "center": {
+        "x": 0.5,
+        "y": 0.72
+      },
+      "radius": 0.1,
+      "gameplay_role": "open_scoring_pocket",
+      "palette_hint": "cookie courtyard"
+    },
+    {
+      "name": "northwest_maze",
+      "shape": "rect",
+      "rect": {
+        "x": 0.08,
+        "y": 0.1,
+        "w": 0.35,
+        "h": 0.28
+      },
+      "gameplay_role": "maze_quadrant",
+      "palette_hint": "licorice walls"
+    },
+    {
+      "name": "northeast_maze",
+      "shape": "rect",
+      "rect": {
+        "x": 0.57,
+        "y": 0.1,
+        "w": 0.35,
+        "h": 0.28
+      },
+      "gameplay_role": "maze_quadrant",
+      "palette_hint": "licorice walls"
+    },
+    {
+      "name": "southwest_maze",
+      "shape": "rect",
+      "rect": {
+        "x": 0.08,
+        "y": 0.57,
+        "w": 0.35,
+        "h": 0.3
+      },
+      "gameplay_role": "maze_quadrant",
+      "palette_hint": "licorice walls"
+    },
+    {
+      "name": "southeast_maze",
+      "shape": "rect",
+      "rect": {
+        "x": 0.57,
+        "y": 0.57,
+        "w": 0.35,
+        "h": 0.3
+      },
+      "gameplay_role": "maze_quadrant",
+      "palette_hint": "licorice walls"
+    }
+  ],
+  "pathways": [
+    {
+      "name": "main_labyrinth_thread",
+      "surface": "grass_path",
+      "width": 0.036,
+      "points": [
+        {
+          "x": 0.5,
+          "y": 0.91
+        },
+        {
+          "x": 0.5,
+          "y": 0.8
+        },
+        {
+          "x": 0.38,
+          "y": 0.76
+        },
+        {
+          "x": 0.32,
+          "y": 0.66
+        },
+        {
+          "x": 0.4,
+          "y": 0.56
+        },
+        {
+          "x": 0.28,
+          "y": 0.47
+        },
+        {
+          "x": 0.38,
+          "y": 0.36
+        },
+        {
+          "x": 0.5,
+          "y": 0.45
+        },
+        {
+          "x": 0.62,
+          "y": 0.36
+        },
+        {
+          "x": 0.72,
+          "y": 0.47
+        },
+        {
+          "x": 0.6,
+          "y": 0.56
+        },
+        {
+          "x": 0.68,
+          "y": 0.66
+        },
+        {
+          "x": 0.62,
+          "y": 0.76
+        },
+        {
+          "x": 0.5,
+          "y": 0.8
+        }
+      ],
+      "gameplay_role": "maze_route"
+    },
+    {
+      "name": "north_shortcut",
+      "surface": "grass_path",
+      "width": 0.032,
+      "points": [
+        {
+          "x": 0.18,
+          "y": 0.16
+        },
+        {
+          "x": 0.34,
+          "y": 0.18
+        },
+        {
+          "x": 0.5,
+          "y": 0.25
+        },
+        {
+          "x": 0.66,
+          "y": 0.18
+        },
+        {
+          "x": 0.82,
+          "y": 0.16
+        }
+      ],
+      "gameplay_role": "secret_shortcut"
+    },
+    {
+      "name": "outer_maze_loop",
+      "surface": "grass_path",
+      "width": 0.034,
+      "points": [
+        {
+          "x": 0.1,
+          "y": 0.5
+        },
+        {
+          "x": 0.15,
+          "y": 0.2
+        },
+        {
+          "x": 0.48,
+          "y": 0.1
+        },
+        {
+          "x": 0.85,
+          "y": 0.2
+        },
+        {
+          "x": 0.9,
+          "y": 0.5
+        },
+        {
+          "x": 0.84,
+          "y": 0.84
+        },
+        {
+          "x": 0.52,
+          "y": 0.9
+        },
+        {
+          "x": 0.15,
+          "y": 0.84
+        },
+        {
+          "x": 0.1,
+          "y": 0.5
+        }
+      ],
+      "gameplay_role": "loop_route"
+    }
+  ],
+  "blockers": [
+    {
+      "name": "candy_cane_outer_fence",
+      "type": "boundary",
+      "shape": "rect_ring",
+      "outer_rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "inner_rect": {
+        "x": 0.04,
+        "y": 0.05,
+        "w": 0.92,
+        "h": 0.9
+      },
+      "solid": true
+    },
+    {
+      "name": "licorice_wall_network",
+      "type": "maze_walls",
+      "wall_material": "black_licorice",
+      "generation": "recursive_backtracker_with_loops",
+      "cell_count": {
+        "x": 12,
+        "y": 12
+      },
+      "wall_thickness_px": 28,
+      "loop_chance": 0.18,
+      "dead_end_food_multiplier": 1.6,
+      "solid": true
+    },
+    {
+      "name": "peppermint_gate_props",
+      "type": "peppermint_gate",
+      "center": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "radius": 0.43,
+      "count": 12,
+      "edible_tier": 3,
+      "density": "medium",
+      "placement": "scatter_within_region",
+      "notes": "Decorative and edible when the player radius meets the tier requirement."
+    },
+    {
+      "name": "vault_guard_gumdrops",
+      "type": "gumdrop_cluster",
+      "center": {
+        "x": 0.5,
+        "y": 0.46
+      },
+      "radius": 0.16,
+      "count": 18,
+      "edible_tier": 2,
+      "density": "high",
+      "placement": "scatter_within_region",
+      "notes": "Decorative and edible when the player radius meets the tier requirement."
+    }
+  ],
+  "spawn_rules": {
+    "player_spawns": [
+      {
+        "x": 0.5,
+        "y": 0.91
+      },
+      {
+        "x": 0.12,
+        "y": 0.5
+      },
+      {
+        "x": 0.88,
+        "y": 0.5
+      }
+    ],
+    "bot_spawns": [
+      {
+        "x": 0.14,
+        "y": 0.14
+      },
+      {
+        "x": 0.86,
+        "y": 0.14
+      },
+      {
+        "x": 0.14,
+        "y": 0.86
+      },
+      {
+        "x": 0.86,
+        "y": 0.86
+      },
+      {
+        "x": 0.5,
+        "y": 0.18
+      },
+      {
+        "x": 0.5,
+        "y": 0.72
+      },
+      {
+        "x": 0.24,
+        "y": 0.5
+      }
+    ],
+    "edible_density": 1.12,
+    "large_prop_density": 0.62,
+    "respawn_policy": {
+      "enabled": true,
+      "interval_seconds": 10,
+      "max_respawn_tier": 3
+    }
+  },
+  "hazards": [
+    {
+      "name": "dead_end_pressure",
+      "type": "ai_pressure_rule",
+      "effect": "bots prefer entering behind player in dead-end corridors",
+      "intensity": 0.35
+    },
+    {
+      "name": "licorice_wall_bounce",
+      "type": "collision_response",
+      "bounce_factor": 0.05,
+      "friction": 0.9
+    }
+  ],
+  "bot_rules": {
+    "bot_count": 7,
+    "aggression": 0.8,
+    "route_bias": "ambush_dead_ends_and_vault",
+    "avoid_player_when_smaller": false
+  },
+  "audio_visual_hints": {
+    "music": "sneaky_licorice_maze",
+    "ambient": "licorice_creak_peppermint_chime",
+    "dominant_colors": [
+      "licorice_black",
+      "lime",
+      "pink",
+      "gold"
+    ]
+  },
+  "generator_notes": [
+    "Use thick capsule colliders for licorice walls.",
+    "Do not overfill corridors with props; walls already provide difficulty.",
+    "Put high-value food at dead ends to reward risk."
+  ]
+}

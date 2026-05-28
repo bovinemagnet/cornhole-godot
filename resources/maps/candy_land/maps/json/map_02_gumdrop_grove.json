@@ -1,0 +1,427 @@
+{
+  "schema_version": "1.0.0",
+  "map_id": "candy_02_gumdrop_grove",
+  "display_name": "Gumdrop Grove",
+  "series": "Candy Collapse Arenas",
+  "difficulty_index": 2,
+  "difficulty_label": "easy",
+  "title_text": "Map 2 \u2013 Gumdrop Grove",
+  "theme": "Candy orchard with giant gumdrop clusters, lollipop trees, jellybean trails, caramel puddles and cupcake sheds.",
+  "png_reference": {
+    "local_file": "res://maps/candy/images/map_02_gumdrop_grove.png",
+    "generator_reference_only": true,
+    "note": "Use this PNG as visual concept/layout reference. JSON geometry is normalized and intended for procedural construction/collision, not pixel-perfect tracing."
+  },
+  "godot_import": {
+    "target_engine": "Godot 4.x",
+    "coordinate_system": "normalized_top_left",
+    "world_size_px": {
+      "x": 2048,
+      "y": 2048
+    },
+    "recommended_root_scene": "CandyArena.tscn",
+    "tile_size_px": 32,
+    "spawn_units": "world_pixels",
+    "collision_layers": {
+      "player_holes": 1,
+      "edible_props": 2,
+      "static_blockers": 4,
+      "hazards": 8,
+      "navigation_only": 16
+    }
+  },
+  "match_rules": {
+    "mode": "hole_io_score_attack",
+    "time_limit_seconds": 165,
+    "player_start_radius_px": 14,
+    "player_max_radius_px": 150,
+    "growth": {
+      "score_to_radius_formula": "radius = start_radius + sqrt(score) * 1.85",
+      "mass_decay_per_second": 0.0
+    },
+    "win_conditions": [
+      "highest_score_at_timer_end"
+    ],
+    "tie_breakers": [
+      "largest_radius",
+      "most_large_props_eaten",
+      "earliest_to_score"
+    ]
+  },
+  "edible_tiers": [
+    {
+      "tier": 1,
+      "id": "tiny",
+      "radius_required": 0,
+      "score": 1,
+      "examples": [
+        "sprinkles",
+        "loose jellybeans",
+        "mini gumdrops",
+        "candy pebbles"
+      ]
+    },
+    {
+      "tier": 2,
+      "id": "small",
+      "radius_required": 18,
+      "score": 4,
+      "examples": [
+        "gumdrop bushes",
+        "marshmallow cubes",
+        "small lollipop signs",
+        "cookie stools"
+      ]
+    },
+    {
+      "tier": 3,
+      "id": "medium",
+      "radius_required": 36,
+      "score": 12,
+      "examples": [
+        "cupcake kiosks",
+        "caramel puddle rims",
+        "wafer carts",
+        "frosting fountains"
+      ]
+    },
+    {
+      "tier": 4,
+      "id": "large",
+      "radius_required": 64,
+      "score": 35,
+      "examples": [
+        "cupcake huts",
+        "giant lollipop trees",
+        "donut rides",
+        "candy machines"
+      ]
+    },
+    {
+      "tier": 5,
+      "id": "huge",
+      "radius_required": 96,
+      "score": 95,
+      "examples": [
+        "large factory vats",
+        "large bridges",
+        "castle towers",
+        "major landmark structures"
+      ]
+    }
+  ],
+  "regions": [
+    {
+      "name": "arena_bounds",
+      "shape": "rect",
+      "rect": {
+        "x": 0.04,
+        "y": 0.05,
+        "w": 0.92,
+        "h": 0.9
+      },
+      "gameplay_role": "playable_area",
+      "palette_hint": "green frosting grass"
+    },
+    {
+      "name": "north_grove",
+      "shape": "circle",
+      "center": {
+        "x": 0.5,
+        "y": 0.18
+      },
+      "radius": 0.11,
+      "gameplay_role": "gumdrop_cluster_zone",
+      "palette_hint": "sparkling gumdrops"
+    },
+    {
+      "name": "central_grove",
+      "shape": "circle",
+      "center": {
+        "x": 0.52,
+        "y": 0.49
+      },
+      "radius": 0.13,
+      "gameplay_role": "primary_food_cluster",
+      "palette_hint": "lollipop trees plus gumdrops"
+    },
+    {
+      "name": "south_grove",
+      "shape": "circle",
+      "center": {
+        "x": 0.48,
+        "y": 0.75
+      },
+      "radius": 0.12,
+      "gameplay_role": "medium_food_cluster",
+      "palette_hint": "large gumdrops"
+    },
+    {
+      "name": "west_grove",
+      "shape": "circle",
+      "center": {
+        "x": 0.24,
+        "y": 0.39
+      },
+      "radius": 0.1,
+      "gameplay_role": "choke_cluster",
+      "palette_hint": "pink blue green gumdrops"
+    },
+    {
+      "name": "east_grove",
+      "shape": "circle",
+      "center": {
+        "x": 0.76,
+        "y": 0.41
+      },
+      "radius": 0.1,
+      "gameplay_role": "choke_cluster",
+      "palette_hint": "orange purple gumdrops"
+    },
+    {
+      "name": "caramel_puddle_nw",
+      "shape": "circle",
+      "center": {
+        "x": 0.37,
+        "y": 0.2
+      },
+      "radius": 0.045,
+      "gameplay_role": "slow_hazard",
+      "palette_hint": "caramel"
+    },
+    {
+      "name": "caramel_puddle_mid",
+      "shape": "circle",
+      "center": {
+        "x": 0.36,
+        "y": 0.5
+      },
+      "radius": 0.045,
+      "gameplay_role": "slow_hazard",
+      "palette_hint": "caramel"
+    },
+    {
+      "name": "caramel_puddle_se",
+      "shape": "circle",
+      "center": {
+        "x": 0.65,
+        "y": 0.77
+      },
+      "radius": 0.045,
+      "gameplay_role": "slow_hazard",
+      "palette_hint": "caramel"
+    }
+  ],
+  "pathways": [
+    {
+      "name": "main_diagonal_lane",
+      "surface": "cookie_path",
+      "width": 0.065,
+      "points": [
+        {
+          "x": 0.12,
+          "y": 0.87
+        },
+        {
+          "x": 0.28,
+          "y": 0.66
+        },
+        {
+          "x": 0.44,
+          "y": 0.55
+        },
+        {
+          "x": 0.56,
+          "y": 0.41
+        },
+        {
+          "x": 0.72,
+          "y": 0.3
+        },
+        {
+          "x": 0.88,
+          "y": 0.12
+        }
+      ],
+      "gameplay_role": "primary_route"
+    },
+    {
+      "name": "north_to_south_lane",
+      "surface": "cookie_path",
+      "width": 0.055,
+      "points": [
+        {
+          "x": 0.48,
+          "y": 0.08
+        },
+        {
+          "x": 0.48,
+          "y": 0.24
+        },
+        {
+          "x": 0.56,
+          "y": 0.42
+        },
+        {
+          "x": 0.5,
+          "y": 0.58
+        },
+        {
+          "x": 0.48,
+          "y": 0.92
+        }
+      ],
+      "gameplay_role": "secondary_route"
+    },
+    {
+      "name": "west_east_lane",
+      "surface": "cookie_path",
+      "width": 0.055,
+      "points": [
+        {
+          "x": 0.08,
+          "y": 0.45
+        },
+        {
+          "x": 0.28,
+          "y": 0.4
+        },
+        {
+          "x": 0.5,
+          "y": 0.48
+        },
+        {
+          "x": 0.72,
+          "y": 0.43
+        },
+        {
+          "x": 0.92,
+          "y": 0.47
+        }
+      ],
+      "gameplay_role": "secondary_route"
+    }
+  ],
+  "blockers": [
+    {
+      "name": "candy_cane_outer_fence",
+      "type": "boundary",
+      "shape": "rect_ring",
+      "outer_rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "inner_rect": {
+        "x": 0.04,
+        "y": 0.05,
+        "w": 0.92,
+        "h": 0.9
+      },
+      "solid": true
+    },
+    {
+      "name": "gumdrop_grove_clusters",
+      "type": "gumdrop_cluster",
+      "center": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "radius": 0.43,
+      "count": 28,
+      "edible_tier": 2,
+      "density": "medium",
+      "placement": "scatter_within_region",
+      "notes": "Decorative and edible when the player radius meets the tier requirement."
+    },
+    {
+      "name": "lollipop_tree_pairs",
+      "type": "lollipop_tree",
+      "center": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "radius": 0.4,
+      "count": 10,
+      "edible_tier": 4,
+      "density": "low",
+      "placement": "scatter_within_region",
+      "notes": "Decorative and edible when the player radius meets the tier requirement."
+    }
+  ],
+  "spawn_rules": {
+    "player_spawns": [
+      {
+        "x": 0.5,
+        "y": 0.88
+      },
+      {
+        "x": 0.18,
+        "y": 0.8
+      },
+      {
+        "x": 0.82,
+        "y": 0.8
+      }
+    ],
+    "bot_spawns": [
+      {
+        "x": 0.16,
+        "y": 0.16
+      },
+      {
+        "x": 0.84,
+        "y": 0.16
+      },
+      {
+        "x": 0.2,
+        "y": 0.5
+      },
+      {
+        "x": 0.82,
+        "y": 0.52
+      }
+    ],
+    "edible_density": 0.65,
+    "large_prop_density": 0.26,
+    "respawn_policy": {
+      "enabled": true,
+      "interval_seconds": 10,
+      "max_respawn_tier": 2
+    }
+  },
+  "hazards": [
+    {
+      "name": "caramel_sticky_puddles",
+      "type": "slow_zone",
+      "movement_multiplier": 0.72,
+      "affects_bots": true,
+      "regions": [
+        "caramel_puddle_nw",
+        "caramel_puddle_mid",
+        "caramel_puddle_se"
+      ]
+    }
+  ],
+  "bot_rules": {
+    "bot_count": 4,
+    "aggression": 0.32,
+    "route_bias": "orbit_groves",
+    "avoid_player_when_smaller": true
+  },
+  "audio_visual_hints": {
+    "music": "cheerful_grove_bounce",
+    "ambient": "gumdrop_sparkle_pop",
+    "dominant_colors": [
+      "lime",
+      "magenta",
+      "cyan",
+      "orange"
+    ]
+  },
+  "generator_notes": [
+    "Ensure gumdrop clusters leave at least three clear lanes through the map.",
+    "Caramel puddles should slow but not trap players."
+  ]
+}

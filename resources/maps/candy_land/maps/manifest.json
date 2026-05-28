@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "candy_collapse_arenas",
+  "display_name": "Candy Collapse Arenas - Godot JSON Map Pack",
+  "description": "Ten candy-themed Hole.io-inspired arena specifications for a Godot map generator. Includes PNG references, normalized regions, blockers, pathways, spawn rules, hazards and difficulty tuning.",
+  "target_engine": "Godot 4.x",
+  "coordinate_system": "normalized_top_left",
+  "import_order": "load manifest, then each map JSON, then instantiate props/colliders based on regions/pathways/blockers/spawn_rules",
+  "maps": [
+    {
+      "map_id": "candy_01_lollipop_lawn",
+      "display_name": "Lollipop Lawn",
+      "difficulty_index": 1,
+      "difficulty_label": "introductory",
+      "json": "res://resources/maps/candy_land/maps/json/map_01_lollipop_lawn.json",
+      "png_reference": "res://assets/maps/candy_land/map_01_lollipop_lawn.png",
+      "summary": "Open frosting meadow with lollipop trees, gumdrop bushes, cupcake huts, jellybean patches and icing ponds."
+    },
+    {
+      "map_id": "candy_02_gumdrop_grove",
+      "display_name": "Gumdrop Grove",
+      "difficulty_index": 2,
+      "difficulty_label": "easy",
+      "json": "res://resources/maps/candy_land/maps/json/map_02_gumdrop_grove.json",
+      "png_reference": "res://assets/maps/candy_land/map_02_gumdrop_grove.png",
+      "summary": "Candy orchard with giant gumdrop clusters, lollipop trees, jellybean trails, caramel puddles and cupcake sheds."
+    },
+    {
+      "map_id": "candy_03_peppermint_plaza",
+      "display_name": "Peppermint Plaza",
+      "difficulty_index": 3,
+      "difficulty_label": "easy-medium",
+      "json": "res://resources/maps/candy_land/maps/json/map_03_peppermint_plaza.json",
+      "png_reference": "res://assets/maps/candy_land/map_03_peppermint_plaza.png",
+      "summary": "Structured candy-town plaza with waffle streets, peppermint roundabouts, striped awnings, fountains and candy-cane dividers."
+    },
+    {
+      "map_id": "candy_04_cookie_carnival",
+      "display_name": "Cookie Carnival",
+      "difficulty_index": 4,
+      "difficulty_label": "medium",
+      "json": "res://resources/maps/candy_land/maps/json/map_04_cookie_carnival.json",
+      "png_reference": "res://assets/maps/candy_land/map_04_cookie_carnival.png",
+      "summary": "Festive cookie-and-donut carnival with circular plazas, cookie booths, frosting tents, candy lights and donut rides."
+    },
+    {
+      "map_id": "candy_05_chocolate_canal",
+      "display_name": "Chocolate Canal",
+      "difficulty_index": 5,
+      "difficulty_label": "medium",
+      "json": "res://resources/maps/candy_land/maps/json/map_05_chocolate_canal.json",
+      "png_reference": "res://assets/maps/candy_land/map_05_chocolate_canal.png",
+      "summary": "Candy district split by glossy chocolate canals, wafer bridges, marshmallow docks, cookie barges and fudge embankments."
+    },
+    {
+      "map_id": "candy_06_marshmallow_marina",
+      "display_name": "Marshmallow Marina",
+      "difficulty_index": 6,
+      "difficulty_label": "medium-hard",
+      "json": "res://resources/maps/candy_land/maps/json/map_06_marshmallow_marina.json",
+      "png_reference": "res://assets/maps/candy_land/map_06_marshmallow_marina.png",
+      "summary": "Marshmallow lagoons with fluffy islands, candy boardwalks, jelly docks, syrup pools and puffy bridges."
+    },
+    {
+      "map_id": "candy_07_jellybean_junction",
+      "display_name": "Jellybean Junction",
+      "difficulty_index": 7,
+      "difficulty_label": "hard",
+      "json": "res://resources/maps/candy_land/maps/json/map_07_jellybean_junction.json",
+      "png_reference": "res://assets/maps/candy_land/map_07_jellybean_junction.png",
+      "summary": "Busy candy crossroads with jellybean boulevards, candy-cane medians, peppermint traffic circles, gummy parking lots and shop blocks."
+    },
+    {
+      "map_id": "candy_08_taffy_factory",
+      "display_name": "Taffy Factory",
+      "difficulty_index": 8,
+      "difficulty_label": "hard",
+      "json": "res://resources/maps/candy_land/maps/json/map_08_taffy_factory.json",
+      "png_reference": "res://assets/maps/candy_land/map_08_taffy_factory.png",
+      "summary": "Whimsical candy factory with taffy conveyors, licorice pipes, gum machines, fondant mixers, syrup vats and wrapped-candy crates."
+    },
+    {
+      "map_id": "candy_09_licorice_labyrinth",
+      "display_name": "Licorice Labyrinth",
+      "difficulty_index": 9,
+      "difficulty_label": "very hard",
+      "json": "res://resources/maps/candy_land/maps/json/map_09_licorice_labyrinth.json",
+      "png_reference": "res://assets/maps/candy_land/map_09_licorice_labyrinth.png",
+      "summary": "Dense maze of twisting licorice walls, peppermint gates, cookie courtyards, candy vaults and shortcut loops."
+    },
+    {
+      "map_id": "candy_10_sugar_storm_citadel",
+      "display_name": "Sugar Storm Citadel",
+      "difficulty_index": 10,
+      "difficulty_label": "hardest",
+      "json": "res://resources/maps/candy_land/maps/json/map_10_sugar_storm_citadel.json",
+      "png_reference": "res://assets/maps/candy_land/map_10_sugar_storm_citadel.png",
+      "summary": "Grand candy fortress with central sugar castle, layered courtyards, chocolate moat sections, wafer bridges, peppermint towers and royal candy gardens."
+    }
+  ]
+}
