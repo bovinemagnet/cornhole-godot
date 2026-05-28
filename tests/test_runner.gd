@@ -16,6 +16,10 @@ const TEST_SCRIPTS: Array = [
 	preload("res://tests/test_map_spawn_service.gd"),
 	preload("res://tests/test_themed_sprite_library.gd"),
 	preload("res://tests/test_themed_sprite_registry.gd"),
+	preload("res://tests/test_themed_texture_library.gd"),
+	preload("res://tests/test_texture_material_factory.gd"),
+	preload("res://tests/test_map_texture_registry.gd"),
+	preload("res://tests/test_map_builder_textures.gd"),
 ]
 
 

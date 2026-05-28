@@ -1,0 +1,338 @@
+{
+  "id": "prehistoric",
+  "name": "Prehistoric Texture Pack",
+  "texture_count": 10,
+  "preview": "packs/prehistoric/previews/prehistoric_texture_preview.png",
+  "textures": [
+    {
+      "id": "grassland_ground",
+      "display_name": "Grassland Ground",
+      "category": "ground",
+      "albedo_texture": "packs/prehistoric/textures/grassland_ground.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.96,
+        "metallic": 0.0,
+        "shader": "standard",
+        "uv_scale": [
+          2.5,
+          2.5
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": true,
+        "road": false,
+        "water": false,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "cave_dirt",
+      "display_name": "Cave Dirt",
+      "category": "ground",
+      "albedo_texture": "packs/prehistoric/textures/cave_dirt.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.98,
+        "metallic": 0.0,
+        "shader": "standard",
+        "uv_scale": [
+          2.5,
+          2.5
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": true,
+        "road": false,
+        "water": false,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "stone_path",
+      "display_name": "Stone Path",
+      "category": "road",
+      "albedo_texture": "packs/prehistoric/textures/stone_path.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.9,
+        "metallic": 0.0,
+        "shader": "standard",
+        "uv_scale": [
+          2.0,
+          2.0
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": true,
+        "water": false,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "river_water",
+      "display_name": "River Water",
+      "category": "water",
+      "albedo_texture": "packs/prehistoric/textures/river_water.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.2,
+        "metallic": 0.0,
+        "shader": "scrolling_water",
+        "uv_scale": [
+          1.8,
+          1.8
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": false,
+        "water": true,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "tar_pit",
+      "display_name": "Tar Pit",
+      "category": "hazard",
+      "albedo_texture": "packs/prehistoric/textures/tar_pit.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.22,
+        "metallic": 0.0,
+        "shader": "scrolling_water",
+        "uv_scale": [
+          1.8,
+          1.8
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": false,
+        "water": false,
+        "hazard": true,
+        "floor": false
+      }
+    },
+    {
+      "id": "glacial_ice",
+      "display_name": "Glacial Ice",
+      "category": "hazard",
+      "albedo_texture": "packs/prehistoric/textures/glacial_ice.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.12,
+        "metallic": 0.0,
+        "shader": "standard",
+        "uv_scale": [
+          2.0,
+          2.0
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": false,
+        "water": false,
+        "hazard": true,
+        "floor": false
+      }
+    },
+    {
+      "id": "volcanic_rock",
+      "display_name": "Volcanic Rock",
+      "category": "hazard",
+      "albedo_texture": "packs/prehistoric/textures/volcanic_rock.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.75,
+        "metallic": 0.0,
+        "shader": "emissive_pulse",
+        "uv_scale": [
+          2.0,
+          2.0
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": false,
+        "water": false,
+        "hazard": true,
+        "floor": false
+      }
+    },
+    {
+      "id": "jungle_floor",
+      "display_name": "Jungle Floor",
+      "category": "ground",
+      "albedo_texture": "packs/prehistoric/textures/jungle_floor.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.95,
+        "metallic": 0.0,
+        "shader": "standard",
+        "uv_scale": [
+          2.5,
+          2.5
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": true,
+        "road": false,
+        "water": false,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "fossil_sand",
+      "display_name": "Fossil Sand",
+      "category": "ground",
+      "albedo_texture": "packs/prehistoric/textures/fossil_sand.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.94,
+        "metallic": 0.0,
+        "shader": "standard",
+        "uv_scale": [
+          2.0,
+          2.0
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": true,
+        "road": false,
+        "water": false,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "mammoth_tundra_snow",
+      "display_name": "Mammoth Tundra Snow",
+      "category": "ground",
+      "albedo_texture": "packs/prehistoric/textures/mammoth_tundra_snow.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.9,
+        "metallic": 0.0,
+        "shader": "standard",
+        "uv_scale": [
+          2.5,
+          2.5
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": true,
+        "road": false,
+        "water": false,
+        "hazard": false,
+        "floor": false
+      }
+    }
+  ]
+}

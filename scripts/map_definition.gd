@@ -77,6 +77,12 @@ static func _normalise_regions(value: Variant) -> Array:
 			"type": String(dict.get("type", "")),
 			"center": _coerce_vector2(dict["center"], Vector2.ZERO),
 			"size": _coerce_vector2(dict["size"], Vector2.ZERO),
+			# Optional visual/gameplay overrides (texture-pack spec). Empty
+			# strings mean "infer from category"; movement_effect is reserved
+			# for the gameplay layer and ignored by the renderer.
+			"texture_id": String(dict.get("texture_id", "")),
+			"surface_category": String(dict.get("surface_category", "")),
+			"movement_effect": String(dict.get("movement_effect", "")),
 		})
 	return out
 

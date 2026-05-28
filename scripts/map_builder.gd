@@ -11,6 +11,7 @@ extends RefCounted
 
 const ThemedSpriteLibrary = preload("res://scripts/themed_sprites/themed_sprite_library.gd")
 const ThemedSpriteRegistry = preload("res://scripts/themed_sprites/themed_sprite_registry.gd")
+const MapTextureRegistry = preload("res://scripts/themed_textures/map_texture_registry.gd")
 
 # The base floor sits well below everything else so it can never z-fight the
 # full-map ground regions that cover it — it only shows at the map-edge
@@ -35,11 +36,14 @@ static func build_map(map_root: Node3D, map_definition: Dictionary) -> void:
 	if map_definition.is_empty():
 		return
 
-	_build_base_floor(map_root, map_definition)
-	_build_regions(map_root, map_definition.get("ground_regions", []), GROUND_REGION_Y, GROUND_REGION_Y_STEP, false)
-	_build_regions(map_root, map_definition.get("water_regions", []), WATER_REGION_Y, WATER_REGION_Y_STEP, true)
+	var texture_pack: String = MapTextureRegistry.texture_pack_for_map_definition(map_definition)
+	var map_id_hash: int = String(map_definition.get("id", "")).hash()
+
+	_build_base_floor(map_root, map_definition, texture_pack, map_id_hash)
+	_build_regions(map_root, map_definition.get("ground_regions", []), GROUND_REGION_Y, GROUND_REGION_Y_STEP, false, texture_pack, "ground", map_id_hash)
+	_build_regions(map_root, map_definition.get("water_regions", []), WATER_REGION_Y, WATER_REGION_Y_STEP, true, texture_pack, "water", map_id_hash)
 	var road_color := resolve_road_color(ThemedSpriteRegistry.sprite_pack_for_map_definition(map_definition))
-	_build_roads(map_root, map_definition.get("roads", []), road_color)
+	_build_roads(map_root, map_definition.get("roads", []), road_color, texture_pack, map_id_hash)
 	# Buildings are spawned by main.gd so the visual and the consumable
 	# gameplay state stay co-located. See `main.gd._spawn_buildings`.
 
@@ -169,19 +173,34 @@ static func _make_material(color: Color) -> StandardMaterial3D:
 	return material
 
 
-static func _build_base_floor(map_root: Node3D, map_definition: Dictionary) -> void:
+static func _build_base_floor(map_root: Node3D, map_definition: Dictionary, texture_pack: String, map_id_hash: int) -> void:
 	var size: Vector2 = map_definition["size"]
 	var floor_mesh := MeshInstance3D.new()
 	floor_mesh.name = "BaseFloor"
 	var plane := PlaneMesh.new()
 	plane.size = Vector2(size.x * 1.05, size.y * 1.05)
 	floor_mesh.mesh = plane
-	floor_mesh.material_override = _make_material(Color(0.21, 0.46, 0.27))
+	var textured: Material = MapTextureRegistry.material_for_region(texture_pack, "ground", map_id_hash)
+	floor_mesh.material_override = textured if textured else _make_material(Color(0.21, 0.46, 0.27))
 	floor_mesh.position.y = BASE_FLOOR_Y
 	map_root.add_child(floor_mesh)
 
 
-static func _build_regions(map_root: Node3D, regions: Array, y_base: float, y_step: float, transparent: bool) -> void:
+# Built/paved surfaces want the pack's `floor` textures; open terrain wants
+# `ground`. The default_category fixes water regions to water regardless.
+static func _surface_category_for(region_type: String, default_category: String) -> String:
+	if default_category != "ground":
+		return default_category
+	var t := region_type.to_lower()
+	if t.contains("plaza") or t.contains("pavement") or t.contains("floor") \
+			or t.contains("court") or t.contains("tile") or t.contains("dock") \
+			or t.contains("quad") or t.contains("bay") or t.contains("pad") \
+			or t.contains("boardwalk"):
+		return "floor"
+	return "ground"
+
+
+static func _build_regions(map_root: Node3D, regions: Array, y_base: float, y_step: float, transparent: bool, texture_pack: String, default_category: String, map_id_hash: int) -> void:
 	# Later regions in the array render slightly higher than earlier ones, so
 	# overlapping zones (e.g. a plaza laid on top of grass) never z-fight.
 	# The map author already orders these from "background" → "foreground".
@@ -197,10 +216,22 @@ static func _build_regions(map_root: Node3D, regions: Array, y_base: float, y_st
 		var plane := PlaneMesh.new()
 		plane.size = size
 		mesh_instance.mesh = plane
-		var color := resolve_region_color(String(entry.get("type", "")))
-		if transparent and color.a >= 1.0:
-			color.a = 0.65
-		mesh_instance.material_override = _make_material(color)
+
+		# Themed texture preferred; flat colour is the fallback for base/kitty
+		# maps or when a pack lacks the category entirely.
+		var category := String(entry.get("surface_category", ""))
+		if category.is_empty():
+			category = _surface_category_for(String(entry.get("type", "")), default_category)
+		var textured: Material = MapTextureRegistry.material_for_region(
+			texture_pack, category, map_id_hash + i, String(entry.get("texture_id", ""))
+		)
+		if textured:
+			mesh_instance.material_override = textured
+		else:
+			var color := resolve_region_color(String(entry.get("type", "")))
+			if transparent and color.a >= 1.0:
+				color.a = 0.65
+			mesh_instance.material_override = _make_material(color)
 		mesh_instance.position = Vector3(center.x, y_base + i * y_step, center.y)
 		map_root.add_child(mesh_instance)
 
@@ -221,14 +252,15 @@ static func resolve_road_color(sprite_pack: String) -> Color:
 			return Color(0.16, 0.16, 0.18)  # neutral asphalt
 
 
-static func _build_roads(map_root: Node3D, roads: Array, road_color: Color) -> void:
+static func _build_roads(map_root: Node3D, roads: Array, road_color: Color, texture_pack: String, map_id_hash: int) -> void:
 	# Each road gets its own Y so crossing roads (very common in
 	# downtown_grid) don't share a plane and z-fight.
 	for road_index in range(roads.size()):
 		var entry: Dictionary = roads[road_index]
 		var points: PackedVector2Array = entry["points"]
 		var width: float = float(entry.get("width", 8.0))
-		var road_material := _make_material(road_color)
+		var textured: Material = MapTextureRegistry.material_for_region(texture_pack, "road", map_id_hash + road_index)
+		var road_material: Material = textured if textured else _make_material(road_color)
 		var road_y := ROAD_Y + road_index * ROAD_Y_STEP
 
 		for i in range(points.size() - 1):

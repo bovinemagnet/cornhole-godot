@@ -1,0 +1,338 @@
+{
+  "id": "bunny",
+  "name": "Bunny Texture Pack",
+  "texture_count": 10,
+  "preview": "packs/bunny/previews/bunny_texture_preview.png",
+  "textures": [
+    {
+      "id": "meadow_grass",
+      "display_name": "Meadow Grass",
+      "category": "ground",
+      "albedo_texture": "packs/bunny/textures/meadow_grass.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.95,
+        "metallic": 0.0,
+        "shader": "standard",
+        "uv_scale": [
+          2.5,
+          2.5
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": true,
+        "road": false,
+        "water": false,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "flower_meadow",
+      "display_name": "Flower Meadow",
+      "category": "ground",
+      "albedo_texture": "packs/bunny/textures/flower_meadow.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.95,
+        "metallic": 0.0,
+        "shader": "standard",
+        "uv_scale": [
+          2.5,
+          2.5
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": true,
+        "road": false,
+        "water": false,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "dirt_path",
+      "display_name": "Dirt Path",
+      "category": "road",
+      "albedo_texture": "packs/bunny/textures/dirt_path.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.97,
+        "metallic": 0.0,
+        "shader": "standard",
+        "uv_scale": [
+          2.5,
+          2.5
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": true,
+        "water": false,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "carrot_field",
+      "display_name": "Carrot Field",
+      "category": "ground",
+      "albedo_texture": "packs/bunny/textures/carrot_field.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.92,
+        "metallic": 0.0,
+        "shader": "standard",
+        "uv_scale": [
+          2.0,
+          2.0
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": true,
+        "road": false,
+        "water": false,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "pond_water",
+      "display_name": "Pond Water",
+      "category": "water",
+      "albedo_texture": "packs/bunny/textures/pond_water.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.2,
+        "metallic": 0.0,
+        "shader": "scrolling_water",
+        "uv_scale": [
+          1.8,
+          1.8
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": false,
+        "water": true,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "burrow_soil",
+      "display_name": "Burrow Soil",
+      "category": "ground",
+      "albedo_texture": "packs/bunny/textures/burrow_soil.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.98,
+        "metallic": 0.0,
+        "shader": "standard",
+        "uv_scale": [
+          2.5,
+          2.5
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": true,
+        "road": false,
+        "water": false,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "hopscotch_stone",
+      "display_name": "Hopscotch Stone",
+      "category": "floor",
+      "albedo_texture": "packs/bunny/textures/hopscotch_stone.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.8,
+        "metallic": 0.0,
+        "shader": "standard",
+        "uv_scale": [
+          2.0,
+          2.0
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": false,
+        "water": false,
+        "hazard": false,
+        "floor": true
+      }
+    },
+    {
+      "id": "wood_path",
+      "display_name": "Wood Path",
+      "category": "road",
+      "albedo_texture": "packs/bunny/textures/wood_path.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.88,
+        "metallic": 0.0,
+        "shader": "standard",
+        "uv_scale": [
+          2.0,
+          2.0
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": true,
+        "water": false,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "moonlit_moss",
+      "display_name": "Moonlit Moss",
+      "category": "ground",
+      "albedo_texture": "packs/bunny/textures/moonlit_moss.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.9,
+        "metallic": 0.0,
+        "shader": "emissive_pulse",
+        "uv_scale": [
+          2.2,
+          2.2
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": true,
+        "road": false,
+        "water": false,
+        "hazard": false,
+        "floor": false
+      }
+    },
+    {
+      "id": "garden_pavers",
+      "display_name": "Garden Pavers",
+      "category": "floor",
+      "albedo_texture": "packs/bunny/textures/garden_pavers.png",
+      "tileable": true,
+      "resolution": [
+        512,
+        512
+      ],
+      "material": {
+        "roughness": 0.84,
+        "metallic": 0.0,
+        "shader": "standard",
+        "uv_scale": [
+          2.0,
+          2.0
+        ]
+      },
+      "godot": {
+        "repeat": true,
+        "filter": true,
+        "mipmaps": true,
+        "cull_mode": "back"
+      },
+      "usage_examples": {
+        "ground": false,
+        "road": false,
+        "water": false,
+        "hazard": false,
+        "floor": true
+      }
+    }
+  ]
+}
